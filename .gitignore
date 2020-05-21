@@ -9,3 +9,4 @@ allure-results/
 run_Singapore_ERPSales.bat/
 /bin/
 *.log
+*.bat

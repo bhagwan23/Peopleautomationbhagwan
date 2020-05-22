@@ -1,5 +1,6 @@
 package deskera.web.automation.tests;
 
+import org.junit.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
@@ -46,5 +47,7 @@ public class SignUpTest extends DriverFactory {
 		signUpPage.verifySignUpPageElements();
 		signUpPage.enterEmailandPhone(emailAddress, countryCode, phone);
 		signUpPage.clickCreateACcountButton();
+		
+		Assert.fail("This is how it fails");
 	}
 }

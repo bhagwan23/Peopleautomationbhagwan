@@ -38,6 +38,9 @@ public class SignUpTest extends DriverFactory {
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		String phone = ReadPropertyUtil.readProperty("phone", confPath);
 		String countryCode = ReadPropertyUtil.readProperty("countryCode", confPath);
+		String accountName = ReadPropertyUtil.readProperty("userFirstName", confPath);
+		String passWord = ReadPropertyUtil.readProperty("password", confPath);
+		String company = ReadPropertyUtil.readProperty("company", confPath);
 		// Create Page Object instance
 		SignUpPage signUpPage = new SignUpPage(driver, wait);
 		// Access Test methods
@@ -46,5 +49,12 @@ public class SignUpTest extends DriverFactory {
 		signUpPage.verifySignUpPageElements();
 		signUpPage.enterEmailandPhone(emailAddress, countryCode, phone);
 		signUpPage.clickCreateACcountButton();
+		signUpPage.verifyAccountDetailsPageElements();
+		signUpPage.enterAccountDetails(accountName, passWord, company);
+		signUpPage.clickNextButton();
+		signUpPage.verifyPersonalizeaccountPageElements();
+		signUpPage.enterPersonalizeAccountDetails();
+		signUpPage.clickNext();
+		signUpPage.verifySuccesspage();
 	}
 }

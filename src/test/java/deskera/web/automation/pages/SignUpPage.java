@@ -9,10 +9,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import deskera.web.automation.utils.WebDriverWaitUtil;
+
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 public class SignUpPage {
 	private Map<String, String> data;
@@ -55,6 +56,82 @@ public class SignUpPage {
 	@CacheLookup
 	private WebElement alreadyHaveAccount;
 	private static String pageTitleText = "Deskera SSO";
+	
+	
+	/******************************* Account PAGE ELEMENTS LOCATORS *******************/
+	
+	@FindBy(xpath = "//img[contains(@src,'/assets/images/logos/deskera-logo.svg')]")
+	@CacheLookup
+	private WebElement deskeralogo;
+	@FindBy(xpath = "//span[contains(text(),'account details')]")
+	@CacheLookup
+	private WebElement accountdetails;
+	@FindBy(name = "name")
+	@CacheLookup
+	private WebElement name;
+	@FindBy(name = "password")
+	@CacheLookup
+	private WebElement password;
+	@FindBy(xpath = "//input[@formcontrolname='companyname']")
+	@CacheLookup
+	private WebElement companyname;
+	@FindBy(xpath = "//input[@class='wtf2-checkbox-input cdk-visually-hidden' and @type='checkbox']")
+	@CacheLookup
+	private WebElement checkbox;
+	@FindBy(xpath = "//wtf2-label[contains(text(),'I agree to the')]")
+	@CacheLookup
+	private WebElement iagree;
+	@FindBy(xpath = "//span[text()=' NEXT ']")
+	@CacheLookup
+	private WebElement next;
+	
+	/******************************* Personalize your account PAGE ELEMENTS LOCATORS *******************/
+	
+	@FindBy(xpath = "//span[text()='Personalize your']/following::span[text()=' account ']")
+	@CacheLookup
+	private WebElement personalizeaccount;
+	@FindBy(xpath = "//wtf2-select[@formcontrolname='industryType']")
+	@CacheLookup
+	private WebElement industrytype;
+	@FindBy(xpath = "//span[text()='IT Service']")
+	@CacheLookup
+	private WebElement ITserviceindustrytype;
+	@FindBy(xpath = "//wtf2-label[contains(text(),'What is your Company Size')]")
+	@CacheLookup
+	private WebElement whatiscompanysize;
+	@FindBy(xpath = "//wtf2-button-toggle-group[@formcontrolname='companySize']//wtf2-button-toggle[5]")
+	@CacheLookup
+	private WebElement companysize100;
+	@FindBy(xpath = "//wtf2-label[contains(text(),'What is the main thing you want to manage using Deskera')]")
+	@CacheLookup
+	private WebElement mainthingusingdeskeraapp;
+	@FindBy(xpath = "//span[text()='Others']")
+	@CacheLookup
+	private WebElement otherpurpose;
+	@FindBy(xpath = "//span[text()=' NEXT ']")
+	@CacheLookup
+	private WebElement nextbutton;
+	@FindBy(xpath = "//span[text()=' SKIP ']")
+	@CacheLookup
+	private WebElement skipbutton;
+	
+	
+	/******************************* Success PAGE ELEMENTS LOCATORS *******************/
+	
+	@FindBy(xpath = "//h5[contains(text(),'Please verify your email address')]")
+	@CacheLookup
+	private WebElement verifyyouremail;
+	@FindBy(xpath = "//div/p[contains(text(),'Still can')]")
+	@CacheLookup
+	private WebElement cantfindemail;
+	
+	@FindBy(xpath = "//span[text()=' Resend Email ']")
+	@CacheLookup
+	private WebElement resendemailbutton;
+	
+	
+	
+	
 
 	/***********************************
 	 * 
@@ -110,4 +187,73 @@ public class SignUpPage {
 			userSignupPhone.sendKeys(phoneNumber);
 		}
 	}
+
+	
+	/***********************************
+	 * 
+	 * Account Details Page  manipulation methods
+	 * 
+	 *********************************/
+	public void verifyAccountDetailsPageElements() {
+		WDWait(deskeralogo);
+		deskeralogo.isDisplayed();
+		WDWait(accountdetails);
+		accountdetails.isDisplayed();
+		name.isDisplayed();
+		password.isDisplayed();
+		companyname.isDisplayed();
+		checkbox.isDisplayed();
+		iagree.isDisplayed();	
+	}
+	public void enterAccountDetails(String userFirstName,String passWord,String companyName){
+		name.sendKeys(userFirstName);
+		password.sendKeys(passWord);
+		companyname.sendKeys(companyName);
+		Actions actions = new Actions(driver);
+		actions.moveToElement(checkbox).click().perform();
+	}
+	public void clickNextButton() {
+		next.click();
+	}
+	
+	/***********************************
+	 * 
+	 * Personalize your account Page  manipulation methods
+	 * 
+	 *********************************/
+	public void verifyPersonalizeaccountPageElements() {
+		WDWait(industrytype);
+		industrytype.isDisplayed();
+		whatiscompanysize.isDisplayed();
+		companysize100.isDisplayed();
+		mainthingusingdeskeraapp.isDisplayed();
+		nextbutton.isDisplayed();
+		skipbutton.isDisplayed();	
+	}
+	public void enterPersonalizeAccountDetails(){
+		industrytype.click();
+		ITserviceindustrytype.click();
+		companysize100.click();
+		WDWait(mainthingusingdeskeraapp);
+		Actions actions = new Actions(driver);
+		actions.moveToElement(mainthingusingdeskeraapp).click().perform();
+		actions.moveToElement(otherpurpose).click().perform();	
+	}
+	public void clickNext() {
+		nextbutton.click();
+	}
+	
+
+	/***********************************
+	 * 
+	 * Success  Page  manipulation methods
+	 * 
+	 *********************************/
+	public void verifySuccesspage(){
+		WDWait(verifyyouremail);
+		verifyyouremail.isDisplayed();
+		cantfindemail.isDisplayed();
+		resendemailbutton.isDisplayed();
+	}
 }
+

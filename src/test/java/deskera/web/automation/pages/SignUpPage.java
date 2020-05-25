@@ -1,16 +1,15 @@
 package deskera.web.automation.pages;
 
 import java.util.Map;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class SignUpPage {
 	private Map<String, String> data;
@@ -71,6 +70,11 @@ public class SignUpPage {
 	public void WDWait(WebElement we) {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
+	
+	// Common util for webdriver wait for element to disappear
+		public void WDWaitInv(WebElement we) {
+			wait.until(ExpectedConditions.invisibilityOf(we));
+		}
 
 	public void verifySignUpPageElements() {
 		WDWait(userSignupEmail);

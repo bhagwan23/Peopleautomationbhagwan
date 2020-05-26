@@ -1,6 +1,11 @@
 package deskera.web.automation.pages;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
+import java.util.Random;
+
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -55,79 +60,100 @@ public class SignUpPage {
 	@FindBy(xpath = "//span[contains(text(),'Already have an account ?')]/../span[contains(text(),'Sign in')]")
 	@CacheLookup
 	private WebElement alreadyHaveAccount;
+	@FindBy(xpath = "//span[contains(text(),'Sign up')]/../span[contains(text(),' for Deskera')]")
+	@CacheLookup
+	private WebElement signUpForBookkeeper;
+	@FindBy(xpath = "//span[contains(text(),'Not a bookkeeper?')]/../span[contains(text(),'Sign up for regular account')]")
+	@CacheLookup
+	private WebElement regularAccountLink;
 	private static String pageTitleText = "Deskera SSO";
+	private static String enteredSignUpEmail="";
 	
 	
 	/******************************* Account PAGE ELEMENTS LOCATORS *******************/
 	
 	@FindBy(xpath = "//img[contains(@src,'/assets/images/logos/deskera-logo.svg')]")
 	@CacheLookup
-	private WebElement deskeralogo;
+	private WebElement deskeraLogo;
 	@FindBy(xpath = "//span[contains(text(),'account details')]")
 	@CacheLookup
-	private WebElement accountdetails;
+	private WebElement accountDetails;
 	@FindBy(name = "name")
 	@CacheLookup
 	private WebElement name;
 	@FindBy(name = "password")
 	@CacheLookup
 	private WebElement password;
+	@FindBy(xpath = "//wtf2-icon[contains(.,'visibility_off')]")
+	@CacheLookup
+	private WebElement eyeIcon;
 	@FindBy(xpath = "//input[@formcontrolname='companyname']")
 	@CacheLookup
-	private WebElement companyname;
+	private WebElement companyName;
 	@FindBy(xpath = "//input[@class='wtf2-checkbox-input cdk-visually-hidden' and @type='checkbox']")
 	@CacheLookup
 	private WebElement checkbox;
 	@FindBy(xpath = "//wtf2-label[contains(text(),'I agree to the')]")
 	@CacheLookup
-	private WebElement iagree;
+	private WebElement iAgreeTheTerms;
 	@FindBy(xpath = "//span[text()=' NEXT ']")
 	@CacheLookup
 	private WebElement next;
 	
 	/******************************* Personalize your account PAGE ELEMENTS LOCATORS *******************/
 	
-	@FindBy(xpath = "//span[text()='Personalize your']/following::span[text()=' account ']")
+	@FindBy(xpath = "//span[text()='Personalize your']//following::span[text()=' account ']")
 	@CacheLookup
-	private WebElement personalizeaccount;
+	private WebElement personalizeAccount;
 	@FindBy(xpath = "//wtf2-select[@formcontrolname='industryType']")
 	@CacheLookup
-	private WebElement industrytype;
+	private WebElement industryType;
 	@FindBy(xpath = "//span[text()='IT Service']")
 	@CacheLookup
-	private WebElement ITserviceindustrytype;
+	private WebElement ITserviceIndustryType;
 	@FindBy(xpath = "//wtf2-label[contains(text(),'What is your Company Size')]")
 	@CacheLookup
-	private WebElement whatiscompanysize;
+	private WebElement whatIsCompanySize;
 	@FindBy(xpath = "//wtf2-button-toggle-group[@formcontrolname='companySize']//wtf2-button-toggle[5]")
 	@CacheLookup
-	private WebElement companysize100;
+	private WebElement companySize100;
 	@FindBy(xpath = "//wtf2-label[contains(text(),'What is the main thing you want to manage using Deskera')]")
 	@CacheLookup
-	private WebElement mainthingusingdeskeraapp;
+	private WebElement mainThingUsingDeskeraApp;
 	@FindBy(xpath = "//span[text()='Others']")
 	@CacheLookup
-	private WebElement otherpurpose;
+	private WebElement otherPurpose;
 	@FindBy(xpath = "//span[text()=' NEXT ']")
 	@CacheLookup
-	private WebElement nextbutton;
+	private WebElement nextButton;
 	@FindBy(xpath = "//span[text()=' SKIP ']")
 	@CacheLookup
-	private WebElement skipbutton;
+	private WebElement skipButton;
 	
 	
 	/******************************* Success PAGE ELEMENTS LOCATORS *******************/
 	
 	@FindBy(xpath = "//h5[contains(text(),'Please verify your email address')]")
 	@CacheLookup
-	private WebElement verifyyouremail;
+	private WebElement verifyYourEmailAddress;
+	@FindBy(xpath = "//p[contains(.,', thanks for signing up. We have sent an email to ')]")
+	@CacheLookup
+	private WebElement thanksForSigningUp;
+	@FindBy(xpath = "//p[@class='p1']/a")
+	@CacheLookup
+	private WebElement weHaveSentEmailTo;
+	@FindBy(xpath = "(//p[contains(@class,'p1')])[3]")
+	@CacheLookup
+	private WebElement justClickOnTheLink;
 	@FindBy(xpath = "//div/p[contains(text(),'Still can')]")
 	@CacheLookup
-	private WebElement cantfindemail;
-	
+	private WebElement cantFindEmail;
 	@FindBy(xpath = "//span[text()=' Resend Email ']")
 	@CacheLookup
-	private WebElement resendemailbutton;
+	private WebElement resendEmailButton;
+	@FindBy(xpath = "(//p[contains(@class,'p1')])[1]")
+	@CacheLookup
+	private WebElement weHaveResentVerification;
 	
 	
 	
@@ -161,13 +187,32 @@ public class SignUpPage {
 		bookkeeperLink.isDisplayed();
 	}
 
+	public void clickSignUpForBookkeeper() {
+		bookkeeperLink.click();
+	}
+	
+	public void verifyBookkeeperSignUpPageElements() {
+		WDWait(signUpForBookkeeper);
+		signUpForBookkeeper.isDisplayed();
+		userSignupEmail.isDisplayed();
+		userSignupPhone.isDisplayed();
+		alreadyHaveAccount.isDisplayed();
+		createAccountButton.isDisplayed();
+		countryCodeSelector.isDisplayed();
+		regularAccountLink.isDisplayed();
+	}
+	
 	public void clickCreateACcountButton() {
 		createAccountButton.click();
 	}
 
 	public void enterEmailandPhone(String email, String countryCode, String phoneNumber) {
 		WDWait(userSignupEmail);
-		userSignupEmail.sendKeys(email);
+		//userSignupEmail.sendKeys(email);
+		DateFormat df = new SimpleDateFormat("ddMMyyHHmmss");
+		Date dateobj = new Date();
+		userSignupEmail.sendKeys("testauto_"+df.format(dateobj)+"@test.com");
+		enteredSignUpEmail=userSignupEmail.getAttribute("value");
 		WDWait(userSignupPhone);
 		countryCodeSelector.click();
 		// Country specific selector
@@ -179,7 +224,10 @@ public class SignUpPage {
 		if (countryCode.equalsIgnoreCase("IN")) {
 			WDWait(INCode);
 			INCode.click();
-			userSignupPhone.sendKeys(phoneNumber);
+			//userSignupPhone.sendKeys(phoneNumber);
+			Random rand = new Random();
+			String id = String.format("%04d", rand.nextInt(10000));
+			userSignupPhone.sendKeys("998866"+id);
 		}
 		if (countryCode.equalsIgnoreCase("SG")) {
 			WDWait(SGCode);
@@ -187,6 +235,14 @@ public class SignUpPage {
 			userSignupPhone.sendKeys(phoneNumber);
 		}
 	}
+	public void enterEmailId() {
+		WDWait(userSignupEmail);
+		// Insert  Date and time in email address 
+		DateFormat df = new SimpleDateFormat("ddMMyyHHmmss");
+		Date dateobj = new Date();
+		userSignupEmail.sendKeys("testauto_"+df.format(dateobj)+"@test.com");
+		enteredSignUpEmail=userSignupEmail.getAttribute("value");
+		}
 
 	
 	/***********************************
@@ -195,23 +251,27 @@ public class SignUpPage {
 	 * 
 	 *********************************/
 	public void verifyAccountDetailsPageElements() {
-		WDWait(deskeralogo);
-		deskeralogo.isDisplayed();
-		WDWait(accountdetails);
-		accountdetails.isDisplayed();
+		WDWait(deskeraLogo);
+		deskeraLogo.isDisplayed();
+		WDWait(accountDetails);
+		accountDetails.isDisplayed();
 		name.isDisplayed();
 		password.isDisplayed();
-		companyname.isDisplayed();
+		eyeIcon.isDisplayed();
+		companyName.isDisplayed();
 		checkbox.isDisplayed();
-		iagree.isDisplayed();	
+		iAgreeTheTerms.isDisplayed();
+		next.isDisplayed();
 	}
-	public void enterAccountDetails(String userFirstName,String passWord,String companyName){
+	
+	public void enterAccountDetails(String userFirstName,String passWord,String companyname){
 		name.sendKeys(userFirstName);
 		password.sendKeys(passWord);
-		companyname.sendKeys(companyName);
+		companyName.sendKeys(companyname);
 		Actions actions = new Actions(driver);
 		actions.moveToElement(checkbox).click().perform();
 	}
+	
 	public void clickNextButton() {
 		next.click();
 	}
@@ -221,26 +281,30 @@ public class SignUpPage {
 	 * Personalize your account Page  manipulation methods
 	 * 
 	 *********************************/
-	public void verifyPersonalizeaccountPageElements() {
-		WDWait(industrytype);
-		industrytype.isDisplayed();
-		whatiscompanysize.isDisplayed();
-		companysize100.isDisplayed();
-		mainthingusingdeskeraapp.isDisplayed();
-		nextbutton.isDisplayed();
-		skipbutton.isDisplayed();	
+	public void verifyPersonalizeAccountPageElements() {
+		WDWait(personalizeAccount);
+		personalizeAccount.isDisplayed();
+		WDWait(industryType);
+		industryType.isDisplayed();
+		whatIsCompanySize.isDisplayed();
+		companySize100.isDisplayed();
+		mainThingUsingDeskeraApp.isDisplayed();
+		nextButton.isDisplayed();
+		skipButton.isDisplayed();	
 	}
+	
 	public void enterPersonalizeAccountDetails(){
-		industrytype.click();
-		ITserviceindustrytype.click();
-		companysize100.click();
-		WDWait(mainthingusingdeskeraapp);
+		industryType.click();
+		ITserviceIndustryType.click();
+		companySize100.click();
+		WDWait(mainThingUsingDeskeraApp);
 		Actions actions = new Actions(driver);
-		actions.moveToElement(mainthingusingdeskeraapp).click().perform();
-		actions.moveToElement(otherpurpose).click().perform();	
+		actions.moveToElement(mainThingUsingDeskeraApp).click().perform();
+		actions.moveToElement(otherPurpose).click().perform();	
 	}
+	
 	public void clickNext() {
-		nextbutton.click();
+		nextButton.click();
 	}
 	
 
@@ -249,11 +313,29 @@ public class SignUpPage {
 	 * Success  Page  manipulation methods
 	 * 
 	 *********************************/
-	public void verifySuccesspage(){
-		WDWait(verifyyouremail);
-		verifyyouremail.isDisplayed();
-		cantfindemail.isDisplayed();
-		resendemailbutton.isDisplayed();
+	public void verifySuccessPageElements(){
+		WDWait(verifyYourEmailAddress);
+		verifyYourEmailAddress.isDisplayed();
+		thanksForSigningUp.isDisplayed();
+		Assert.assertEquals(weHaveSentEmailTo.getText(), enteredSignUpEmail);
+		justClickOnTheLink.isDisplayed();
+		cantFindEmail.isDisplayed();
+		resendEmailButton.isDisplayed();
 	}
+	
+	public void clickResentEmailButton(){
+		resendEmailButton.click();
+	}
+	
+	public void verifyPageElementsAfterResentEmail(){
+		WDWait(verifyYourEmailAddress);
+		verifyYourEmailAddress.isDisplayed();
+		weHaveResentVerification.isDisplayed();
+		Assert.assertEquals(weHaveSentEmailTo.getText(), enteredSignUpEmail);
+		justClickOnTheLink.isDisplayed();
+		cantFindEmail.isDisplayed();
+		resendEmailButton.isDisplayed();
+	}
+	
 }
 

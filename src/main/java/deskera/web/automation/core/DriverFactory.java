@@ -97,6 +97,6 @@ public class DriverFactory {
 
 	@AfterSuite
 	public void tearDown() {
-		//driver.quit();
+		driver.quit();
 	}
 }

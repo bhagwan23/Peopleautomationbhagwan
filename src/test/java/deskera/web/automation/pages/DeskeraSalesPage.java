@@ -76,6 +76,18 @@ public class DeskeraSalesPage {
 	@FindBy(xpath = "(//span[contains(.,'Monthly')])[2]")
 	@CacheLookup
 	private WebElement monthlyDropdown;
+	@FindBy(xpath = "//span//img[@class='logo']")
+	@CacheLookup
+	private WebElement chatIcon;
+	@FindBy(xpath = "//span//wtf2-icon[text()='home' or @wtf2tooltip='Your Deskera Apps' ]")
+	@CacheLookup
+	private WebElement homeIcon;
+	@FindBy(xpath = "//wtf2-icon[@role='img' and text()='apps']")
+	@CacheLookup
+	private WebElement switchIcon;
+	@FindBy(xpath = "//span[@class='profile-pic-launchpad']//img")
+	@CacheLookup
+	private WebElement userProfileIcon;
 	private static String pageTitleText = "Deskera Sales";
 	
 	/***********************************
@@ -112,7 +124,11 @@ public class DeskeraSalesPage {
 		dealsLost.isDisplayed();
 		dealsWon.isDisplayed();
 		wonandLostDealsText.isDisplayed();
-		monthlyDropdown.isDisplayed();		
+		monthlyDropdown.isDisplayed();	
+		chatIcon.isDisplayed();
+		homeIcon.isDisplayed();
+		switchIcon.isDisplayed();
+		userProfileIcon.isDisplayed();
 	}
 	
 	public void closeDeskeraSalesTab() {

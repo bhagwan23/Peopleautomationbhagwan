@@ -7,14 +7,13 @@ import deskera.web.automation.core.DriverFactory;
 import deskera.web.automation.core.TestListenerOnFailure;
 import deskera.web.automation.core.TestRailId;
 import deskera.web.automation.pages.DashboardPage;
-import deskera.web.automation.pages.DeskeraSalesPage;
+import deskera.web.automation.pages.DeskShopPage;
 import deskera.web.automation.pages.LoginPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
 @Listeners({ TestListenerOnFailure.class })
-public class OpenDeskeraSalesTest extends DriverFactory {
-
+public class OpenDeskShopTest extends DriverFactory{
 	String confPath, url;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
 
@@ -31,17 +30,17 @@ public class OpenDeskeraSalesTest extends DriverFactory {
 		url = URL;
 	}
 	
-	@TestRailId(testRailId = 20570)
+	@TestRailId(testRailId = 20571)
 	@Test()
-	@Description(value = "C20570 To verify user should be able to open Deskera Sales from Dashboard.")
-	public void openDeskeraSalesTest() throws InterruptedException {
+	@Description(value = "C20571 To verify user should be able to open Desk Shop from Dashboard..")
+	public void openDeskShopTest() throws InterruptedException {
 		// Read test specific data from config
 		String emailAddress = ReadPropertyUtil.readProperty("userEmailID", confPath);
 		String passWord = ReadPropertyUtil.readProperty("userPassword", confPath);	
 		// Create Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
 		DashboardPage dashboarPage=new DashboardPage(driver,wait);
-		DeskeraSalesPage deskeraSalesPage=new DeskeraSalesPage(driver,wait);
+		DeskShopPage deskshopPage=new DeskShopPage(driver,wait);
 		// Access Test methods
 		loginPage.openURL(url);
 		loginPage.verifyPageTitle();
@@ -50,11 +49,12 @@ public class OpenDeskeraSalesTest extends DriverFactory {
 		loginPage.clickSignIn();
 		dashboarPage.verifyPageTitle();
 		dashboarPage.verifyDashboardPageElements();	
-		dashboarPage.openDeskeraSalesApp();
-		deskeraSalesPage.verifyPageTitle();
-		deskeraSalesPage.verifyDeskeraSalesPageElements();
-		deskeraSalesPage.closeDeskeraSalesTab();
+		dashboarPage.openDeskShopApp();
+		deskshopPage.verifyPageTitle();
+		deskshopPage.verifyDeskShopPageElements();
+		deskshopPage.closeDeskShopTab();
 		dashboarPage.verifyPageTitle();
 		dashboarPage.userLogout();
 	}
+	
 }

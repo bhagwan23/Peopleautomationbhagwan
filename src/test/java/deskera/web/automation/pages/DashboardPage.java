@@ -1,8 +1,5 @@
 package deskera.web.automation.pages;
-
 import java.util.ArrayList;
-import java.util.Map;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -15,9 +12,7 @@ import org.testng.Assert;
 
 
 public class DashboardPage {
-	private Map<String, String> data;
 	private WebDriver driver;
-	private int timeout = 15;
 	private WebDriverWait wait;
 	
 	public DashboardPage(WebDriver driver, WebDriverWait wait) {
@@ -25,7 +20,8 @@ public class DashboardPage {
 		this.wait = wait;
 		PageFactory.initElements(driver, this);	
 	}
-	/******************************* LOGIN PAGE ELEMENTS LOCATORS *******************/
+	
+	/******************************* Dashboard/Home  PAGE ELEMENTS LOCATORS *******************/
 	@FindBy(xpath = "//span[text()='Welcome']/../span[text()=' Onboard ']")
 	@CacheLookup
 	private WebElement welcomeOnboard;
@@ -79,7 +75,7 @@ public class DashboardPage {
 	private WebElement homeIcon;
 	@FindBy(xpath = "//wtf2-icon[@role='img' and text()='apps']")
 	@CacheLookup
-	private WebElement switchIcon;
+	private WebElement switchToIcon;
 	@FindBy(xpath = "//span[@class='profile-pic-launchpad']//img")
 	@CacheLookup
 	private WebElement userProfileIcon;
@@ -87,6 +83,26 @@ public class DashboardPage {
 	@CacheLookup
 	private WebElement signOut;
 	
+	/******************************* Switch To Applications / Launcher Bar  PAGE ELEMENTS LOCATORS *******************/
+	
+	@FindBy(xpath = "(//wtf2-icon[contains(.,'business')])[1]")
+	@CacheLookup
+	private WebElement deskeraBooksLink;
+	@FindBy(xpath = "//wtf2-icon[contains(.,'perm_identity')]")
+	@CacheLookup
+	private WebElement deskeraSalesLink;
+	@FindBy(xpath = "(//wtf2-icon[contains(.,'shopping_cart')])[1]")
+	@CacheLookup
+	private WebElement deskShopLink;
+	@FindBy(xpath = "//div//p[text()=' Deskera Chat ']")
+	@CacheLookup
+	private WebElement deskeraChatLink;
+	@FindBy(xpath = "//div//p[text()=' Download Deskera on Mobile ']")
+	@CacheLookup
+	private WebElement downloadDeskeraonMobileLink;
+	@FindBy(xpath = "//div//p[text()=' Administration Settings ']")
+	@CacheLookup
+	private WebElement administrationSettingLink;
 	private static String pageTitleText = "Deskera Cloud";
 	
 	
@@ -130,12 +146,48 @@ public class DashboardPage {
 		DeskeraSalesUpgradeNow.isDisplayed();
 		chatIcon.isDisplayed();
 		homeIcon.isDisplayed();
-		switchIcon.isDisplayed();
+		switchToIcon.isDisplayed();
 		userProfileIcon.isDisplayed();
+	}
+	
+	public void openDeskeraBooksApp() {
+		deskeraBooksCard.click();
+		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs2.get(1));
 	}
 	
 	public void openDeskeraSalesApp() {
 		deskeraSalesCard.click();
+		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs2.get(1));
+	}
+	
+	public void openDeskShopApp() {
+		deskShopCard.click();
+		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs2.get(1));
+	}
+	
+	public void launchDeskeraBooksApp() {
+		switchToIcon.click();
+		WDWait(deskeraBooksLink);
+		deskeraBooksLink.click();
+		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs2.get(1));
+	}
+	
+	public void launchDeskeraSalesApp() {
+		switchToIcon.click();
+		WDWait(deskeraSalesLink);
+		deskeraSalesLink.click();
+		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs2.get(1));
+	}
+	
+	public void launchDeskShopApp() {
+		switchToIcon.click();
+		WDWait(deskShopLink);
+		deskShopLink.click();
 		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
 	    driver.switchTo().window(tabs2.get(1));
 	}

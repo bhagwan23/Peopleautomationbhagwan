@@ -1,10 +1,8 @@
 package deskera.web.automation.tests;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import deskera.web.automation.core.DriverFactory;
 import deskera.web.automation.core.TestListenerOnFailure;
 import deskera.web.automation.core.TestRailId;
@@ -86,6 +84,7 @@ public class SignUpTest extends DriverFactory {
 		signUpPage.clickResentEmailButton();
 		signUpPage.verifyPageElementsAfterResentEmail();
 	}
+	
 	@TestRailId(testRailId = 20566)
 	@Test()
 	@Description(value = "C20566 To verify user should be able to sign up for Deskera Bookkeeper with Phone Number")

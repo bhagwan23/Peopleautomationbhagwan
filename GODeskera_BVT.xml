@@ -53,7 +53,7 @@
 	
 	<test name="Go.Deskera Open Deskera Sales test" parallel="false">
 
-		<!-- US specific test data -->
+	<!-- 	US specific test data -->
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
 			<parameter name="url"
@@ -62,6 +62,55 @@
 			<class name="deskera.web.automation.tests.OpenDeskeraSalesTest">
 				<methods>
 					<include name="openDeskeraSalesTest"></include>				
+				</methods>
+			</class>
+		</classes>
+	</test>
+	 
+	
+	 <test name="Go.Deskera Open Deskera Books test" parallel="false">
+
+		<!-- US specific test data -->
+		<parameter name="conf"
+			value="src/test/resources/TestDataUS.config"></parameter>
+			<parameter name="url"
+		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+		<classes>
+			<class name="deskera.web.automation.tests.OpenDeskeraBooksTest">
+				<methods>
+					<include name="openDeskeraBooksTest"></include>				
+				</methods>
+			</class>
+		</classes>
+	</test> 
+	
+	 <test name="Go.Deskera Open Desk Shop test" parallel="false">
+
+	<!-- 	US specific test data -->
+		<parameter name="conf"
+			value="src/test/resources/TestDataUS.config"></parameter>
+			<parameter name="url"
+		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+		<classes>
+			<class name="deskera.web.automation.tests.OpenDeskShopTest">
+				<methods>
+					<include name="openDeskShopTest"></include>				
+				</methods>
+			</class>
+		</classes>
+	</test> 
+	
+	<test name="Go.Deskera switch to other Apps through launcher bar." parallel="false">
+
+		<!-- US specific test data -->
+		<parameter name="conf"
+			value="src/test/resources/TestDataUS.config"></parameter>
+			<parameter name="url"
+		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+		<classes>
+			<class name="deskera.web.automation.tests.SwitchToOtherAppsTest">
+				<methods>
+					<include name="switchToOtherAppsTest"></include>				
 				</methods>
 			</class>
 		</classes>

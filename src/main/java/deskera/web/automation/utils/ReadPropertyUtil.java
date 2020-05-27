@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Properties;
 
+import org.apache.commons.configuration.PropertiesConfiguration;
+
 public class ReadPropertyUtil {
 	/**
 	 * Description - : This util reads config and return particular key
@@ -17,12 +19,18 @@ public class ReadPropertyUtil {
 		Properties prop;
 		String value = null;
 		try {
+
+			FileInputStream in = new FileInputStream(config_file);
+
 			prop = new Properties();
-			prop.load(new FileInputStream(new File(config_file)));
+			prop.load(in);
 			value = prop.getProperty(property);
 			if (value == null || value.isEmpty()) {
 				throw new Exception("Value not set or empty for " + property);
+
 			}
+			in.close();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -30,7 +38,7 @@ public class ReadPropertyUtil {
 	}
 
 
-	
+
 	/**
 	 * Set property to update any value dynamically
 	 * @param property
@@ -40,10 +48,11 @@ public class ReadPropertyUtil {
 	public  static void writeProperty(String property, String config_file,String value) {
 		Properties prop;
 		try {
-			prop = new Properties();
-			FileOutputStream out = new FileOutputStream(config_file);
-			prop.setProperty(property,value);
-			out.close();
+			  PropertiesConfiguration properties = new PropertiesConfiguration(config_file);
+	            properties.setProperty(property,value);
+	         
+	            properties.save();
+	            System.out.println("config.properties updated Successfully!!");
 
 		} catch (Exception e) {
 			e.printStackTrace();

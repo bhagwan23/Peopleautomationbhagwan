@@ -3,6 +3,7 @@ package deskera.web.automation.core;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
@@ -80,6 +81,8 @@ public class DriverFactory {
 		}
 		System.out.println(driver);
 		wait = (new WebDriverWait(getDriver(), Duration.ofSeconds(30)));
+		driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
+
 		setTRunId(testRunId);
 	}
 

@@ -2,6 +2,7 @@ package deskera.web.automation.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.Properties;
 
 public class ReadPropertyUtil {
@@ -26,5 +27,25 @@ public class ReadPropertyUtil {
 			e.printStackTrace();
 		}
 		return value;
+	}
+
+
+	
+	/**
+	 * Set property to update any value dynamically
+	 * @param property
+	 * @param config_file
+	 * @param value
+	 */
+	public  static void writeProperty(String property, String config_file,String value) {
+		Properties prop;
+		try {
+			prop = new Properties();
+			FileOutputStream out = new FileOutputStream(config_file);
+			prop.setProperty(property,value);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

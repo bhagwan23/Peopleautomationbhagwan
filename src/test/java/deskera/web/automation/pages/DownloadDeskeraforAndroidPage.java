@@ -36,7 +36,7 @@ public class DownloadDeskeraforAndroidPage {
 	@FindBy(xpath = "//img[contains(@alt,'Cover art')]")
 	@CacheLookup
 	private WebElement coverArtImage;
-	@FindBy(xpath = "//span[contains(.,'Add to wishlist')]")
+	@FindBy(xpath = "//span[@class='O53zde vaqewe']")
 	@CacheLookup
 	private WebElement addToWishlistLink;
 	@FindBy(xpath = "//button[contains(.,'Install')]")

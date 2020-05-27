@@ -27,7 +27,7 @@ public class DownloadDeskeraforiOSPage {
 	@FindBy(xpath = "//span[contains(.,'App Store')]//following::span[contains(text(),'Preview')]")
 	@CacheLookup
 	private WebElement previewText;
-	@FindBy(xpath = "//picture[contains(@id,'ember140')]")
+	@FindBy(xpath = "//*[contains(@class,'artwork we-artwork--fullwidth we-artwork--ios-app-icon')]")
 	@CacheLookup
 	private WebElement coverArtImage;
 	@FindBy(xpath = "//h1[@class='product-header__title app-header__title'][contains(.,'Deskera: Business & Accounting')]")
@@ -39,7 +39,7 @@ public class DownloadDeskeraforiOSPage {
 	@FindBy(xpath = "//a[contains(.,'Deskera Holdings Ltd.')]")
 	@CacheLookup
 	private WebElement deskeraHoldingLtdLink;
-	private static String pageTitleText = "?Deskera: Business & Accounting on the App Store";
+	private static String pageTitleText = "Deskera: Business & Accounting on the App Store";
 	
 	
 	/***********************************
@@ -49,7 +49,7 @@ public class DownloadDeskeraforiOSPage {
 	 *********************************/
 	
 	public void verifyPageTitle() {
-		Assert.assertEquals(driver.getTitle(), pageTitleText);
+		Assert.assertEquals(driver.getTitle().contains(pageTitleText), true);
 	}
 
 	// Common util for webdriver wait
@@ -63,6 +63,7 @@ public class DownloadDeskeraforiOSPage {
 		previewText.isDisplayed();
 		coverArtImage.isDisplayed();
 		productHeader.isDisplayed();
+		WDWait(coverArtImage);
 		coverArtImage.isDisplayed();
 		invoiceTaxesAccountingText.isDisplayed();
 		deskeraHoldingLtdLink.isDisplayed();

@@ -43,6 +43,7 @@ public class ReadPropertyUtil {
 			prop = new Properties();
 			FileOutputStream out = new FileOutputStream(config_file);
 			prop.setProperty(property,value);
+			out.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();

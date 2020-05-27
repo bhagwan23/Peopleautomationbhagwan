@@ -107,11 +107,6 @@ public class DeskeraChatPage {
 	@FindBy(xpath = "//wtf2-icon[@aria-label='Send']")
 	@CacheLookup
 	private WebElement sendIcon;
-	
-	
-	
-	
-	
 	private static String pageTitleText = "Deskera Cloud";
 	
 	
@@ -145,6 +140,7 @@ public class DeskeraChatPage {
 		addDirectMessageButton.isDisplayed();
 		viewChannelIcon.isDisplayed();
 		starIcon.isDisplayed();
+		WDWait(memberIcon);
 		memberIcon.isDisplayed();
 		chatContentBox.isDisplayed();
 		boldIcon.isDisplayed();

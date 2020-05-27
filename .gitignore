@@ -10,3 +10,4 @@ run_Singapore_ERPSales.bat/
 /bin/
 *.log
 *.bat
+test-output/

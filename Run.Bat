@@ -1,0 +1,1 @@
+mvn clean test -DsuiteXmlFile=GODeskera_BVT.xml -Dtest_env=xyz allure:report -DtestRunId=124

@@ -1,4 +1,8 @@
 package deskera.web.automation.tests;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
@@ -32,6 +36,11 @@ public class SignUpTest extends DriverFactory {
 	@Test()
 	@Description(value = "C16960 To verify user should be able to sign up with Email and  Phone Number.")
 	public void testSignUpPage() throws InterruptedException {
+	
+		// Writing dynamically created Email 
+		DateFormat df = new SimpleDateFormat("ddMMyyHHmmss");
+		Date dateobj = new Date();
+		ReadPropertyUtil.writeProperty("userEmail", confPath,"testauto_"+df.format(dateobj)+"@getnada.com");
 		// Read test specific data from config
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		String phone = ReadPropertyUtil.readProperty("phone", confPath);
@@ -39,6 +48,7 @@ public class SignUpTest extends DriverFactory {
 		String accountName = ReadPropertyUtil.readProperty("userFirstName", confPath);
 		String passWord = ReadPropertyUtil.readProperty("password", confPath);
 		String company = ReadPropertyUtil.readProperty("company", confPath);
+		
 		// Create Page Object instance
 		SignUpPage signUpPage = new SignUpPage(driver, wait);
 		// Access Test methods
@@ -53,9 +63,10 @@ public class SignUpTest extends DriverFactory {
 		signUpPage.verifyPersonalizeAccountPageElements();
 		signUpPage.enterPersonalizeAccountDetails();
 		signUpPage.clickNext();
-		signUpPage.verifySuccessPageElements();
+		signUpPage.verifySuccessPageElements(emailAddress);
 		signUpPage.clickResentEmailButton();
 		signUpPage.verifyPageElementsAfterResentEmail();
+		
 	}
 	
 	@TestRailId(testRailId = 20565)
@@ -66,6 +77,7 @@ public class SignUpTest extends DriverFactory {
 		String accountName = ReadPropertyUtil.readProperty("userFirstName", confPath);
 		String passWord = ReadPropertyUtil.readProperty("password", confPath);
 		String company = ReadPropertyUtil.readProperty("company", confPath);
+		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		// Create Page Object instance
 		SignUpPage signUpPage = new SignUpPage(driver, wait);
 		// Access Test methods
@@ -80,7 +92,7 @@ public class SignUpTest extends DriverFactory {
 		signUpPage.verifyPersonalizeAccountPageElements();
 		signUpPage.enterPersonalizeAccountDetails();
 		signUpPage.clickNext();
-		signUpPage.verifySuccessPageElements();
+		signUpPage.verifySuccessPageElements(emailAddress);
 		signUpPage.clickResentEmailButton();
 		signUpPage.verifyPageElementsAfterResentEmail();
 	}
@@ -112,7 +124,7 @@ public class SignUpTest extends DriverFactory {
 		signUpPage.verifyPersonalizeAccountPageElements();
 		signUpPage.enterPersonalizeAccountDetails();
 		signUpPage.clickNext();
-		signUpPage.verifySuccessPageElements();
+		signUpPage.verifySuccessPageElements(emailAddress);
 		signUpPage.clickResentEmailButton();
 		signUpPage.verifyPageElementsAfterResentEmail();
 	}

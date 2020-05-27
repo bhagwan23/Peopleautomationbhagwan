@@ -209,9 +209,9 @@ public class SignUpPage {
 	public void enterEmailandPhone(String email, String countryCode, String phoneNumber) {
 		WDWait(userSignupEmail);
 		//userSignupEmail.sendKeys(email);
-		DateFormat df = new SimpleDateFormat("ddMMyyHHmmss");
-		Date dateobj = new Date();
-		userSignupEmail.sendKeys("testauto_"+df.format(dateobj)+"@test.com");
+		//DateFormat df = new SimpleDateFormat("ddMMyyHHmmss");
+		//Date dateobj = new Date();
+		userSignupEmail.sendKeys(email);
 		enteredSignUpEmail=userSignupEmail.getAttribute("value");
 		WDWait(userSignupPhone);
 		countryCodeSelector.click();
@@ -313,11 +313,11 @@ public class SignUpPage {
 	 * Success  Page  manipulation methods
 	 * 
 	 *********************************/
-	public void verifySuccessPageElements(){
+	public void verifySuccessPageElements(String email){
 		WDWait(verifyYourEmailAddress);
 		verifyYourEmailAddress.isDisplayed();
 		thanksForSigningUp.isDisplayed();
-		Assert.assertEquals(weHaveSentEmailTo.getText(), enteredSignUpEmail);
+		Assert.assertEquals(weHaveSentEmailTo.getText(), email);
 		justClickOnTheLink.isDisplayed();
 		cantFindEmail.isDisplayed();
 		resendEmailButton.isDisplayed();

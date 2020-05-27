@@ -34,8 +34,8 @@ public class LoginTest extends DriverFactory {
 	@Description(value = "C16961 To verify user should be able to Sign in with valid credentials and dashboard should load..")
 	public void loginTest() throws InterruptedException {
 		// Read test specific data from config
-		String emailAddress = ReadPropertyUtil.readProperty("userEmailID", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPassword", confPath);	
+		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
 		// Create Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
 		DashboardPage dashboarPage=new DashboardPage(driver,wait);

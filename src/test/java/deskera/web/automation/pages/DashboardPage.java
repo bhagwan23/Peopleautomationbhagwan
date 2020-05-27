@@ -2,6 +2,7 @@ package deskera.web.automation.pages;
 import java.util.ArrayList;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -166,6 +167,24 @@ public class DashboardPage {
 		deskShopCard.click();
 		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
 	    driver.switchTo().window(tabs2.get(1));
+	}
+	
+	public void openDownloadDeskeraforAndroidPage() {
+		Actions actions = new Actions(driver);
+		actions.moveToElement(downloadDeskeraforAndroid).click().perform();
+		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs2.get(1));
+	}
+	
+	public void openDownloadDeskeraforiOSPage() {
+		Actions actions = new Actions(driver);
+		actions.moveToElement(downloadDeskeraforiOS).click().perform();
+		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs2.get(1));
+	}
+	
+	public void openDeskeraChatPage() {
+		deskeraChat.click();
 	}
 	
 	public void launchDeskeraBooksApp() {

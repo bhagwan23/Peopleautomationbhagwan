@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite thread-count="1" name="Go.Deskera Web BVT Suite"
+	parallel="false">
+
+	<listeners>
+		<listener
+			class-name="deskera.web.automation.core.TestListenerOnFailure">
+		</listener>
+	</listeners>
+	<parameter name="browser" value="chrome"></parameter>
+	<parameter name="url"
+		value="https://auth-qa.deskera.xyz/auth/signup"></parameter>
+
+	<!-- System config for framework -->
+	<parameter name="conf"
+		value="src/test/resources/environment.config"></parameter>
+
+	<!-- Run Test Cases  -->
+
+	 	
+	 <test name="Go.Deskera Open Desk Shop test" parallel="false">
+
+	<parameter name="conf"
+			value="src/test/resources/TestDataUS.config"></parameter>
+			<parameter name="url"
+		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+		<classes>
+			<class name="deskera.web.automation.tests.OpenDeskShopTest">
+				<methods>
+					<include name="openDeskShopTest"></include>				
+				</methods>
+			</class>
+		</classes>
+	</test> 
+	 
+	
+	
+</suite> 

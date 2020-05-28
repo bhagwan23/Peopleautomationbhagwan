@@ -235,13 +235,9 @@ public class SignUpPage {
 			userSignupPhone.sendKeys(phoneNumber);
 		}
 	}
-	public void enterEmailId() {
+	public void enterEmailId(String email) {
 		WDWait(userSignupEmail);
-		// Insert  Date and time in email address 
-		DateFormat df = new SimpleDateFormat("ddMMyyHHmmss");
-		Date dateobj = new Date();
-		userSignupEmail.sendKeys("testauto_"+df.format(dateobj)+"@test.com");
-		enteredSignUpEmail=userSignupEmail.getAttribute("value");
+		userSignupEmail.sendKeys(email);
 		}
 
 	
@@ -327,11 +323,11 @@ public class SignUpPage {
 		resendEmailButton.click();
 	}
 	
-	public void verifyPageElementsAfterResentEmail(){
+	public void verifyPageElementsAfterResentEmail(String email){
 		WDWait(verifyYourEmailAddress);
 		verifyYourEmailAddress.isDisplayed();
 		weHaveResentVerification.isDisplayed();
-		Assert.assertEquals(weHaveSentEmailTo.getText(), enteredSignUpEmail);
+		Assert.assertEquals(weHaveSentEmailTo.getText(),email);
 		justClickOnTheLink.isDisplayed();
 		cantFindEmail.isDisplayed();
 		resendEmailButton.isDisplayed();

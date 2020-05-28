@@ -65,7 +65,7 @@ public class SignUpTest extends DriverFactory {
 		signUpPage.clickNext();
 		signUpPage.verifySuccessPageElements(emailAddress);
 		signUpPage.clickResentEmailButton();
-		signUpPage.verifyPageElementsAfterResentEmail();
+		signUpPage.verifyPageElementsAfterResentEmail(emailAddress);
 		
 	}
 	
@@ -73,6 +73,11 @@ public class SignUpTest extends DriverFactory {
 	@Test
 	@Description(value = "C20565 To verify user should be able to sign up without Phone Number.")
 	public void testSignUpWithoutPhoneNumber() throws InterruptedException {
+		
+		// Writing dynamically created Email 
+    	DateFormat df = new SimpleDateFormat("ddMMyyHHmmss");
+		Date dateobj = new Date();
+		ReadPropertyUtil.writeProperty("userEmail", confPath,"testauto_"+df.format(dateobj)+"@getnada.com");
 		// Read test specific data from config
 		String accountName = ReadPropertyUtil.readProperty("userFirstName", confPath);
 		String passWord = ReadPropertyUtil.readProperty("password", confPath);
@@ -84,7 +89,7 @@ public class SignUpTest extends DriverFactory {
 		signUpPage.openURL(url);
 		signUpPage.verifyPageTitle();
 		signUpPage.verifySignUpPageElements();
-		signUpPage.enterEmailId();
+		signUpPage.enterEmailId(emailAddress);
 		signUpPage.clickCreateACcountButton();
 		signUpPage.verifyAccountDetailsPageElements();
 		signUpPage.enterAccountDetails(accountName, passWord, company);
@@ -94,13 +99,18 @@ public class SignUpTest extends DriverFactory {
 		signUpPage.clickNext();
 		signUpPage.verifySuccessPageElements(emailAddress);
 		signUpPage.clickResentEmailButton();
-		signUpPage.verifyPageElementsAfterResentEmail();
+		signUpPage.verifyPageElementsAfterResentEmail(emailAddress);
 	}
 	
 	@TestRailId(testRailId = 20566)
 	@Test()
 	@Description(value = "C20566 To verify user should be able to sign up for Deskera Bookkeeper with Phone Number")
 	public void testSignUpForDeskeraBookkeeper() throws InterruptedException {
+		
+		// Writing dynamically created Email 
+		DateFormat df = new SimpleDateFormat("ddMMyyHHmmss");
+		Date dateobj = new Date();
+		ReadPropertyUtil.writeProperty("userEmail", confPath,"testauto_"+df.format(dateobj)+"@getnada.com");
 		// Read test specific data from config
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		String phone = ReadPropertyUtil.readProperty("phone", confPath);
@@ -126,6 +136,6 @@ public class SignUpTest extends DriverFactory {
 		signUpPage.clickNext();
 		signUpPage.verifySuccessPageElements(emailAddress);
 		signUpPage.clickResentEmailButton();
-		signUpPage.verifyPageElementsAfterResentEmail();
+		signUpPage.verifyPageElementsAfterResentEmail(emailAddress);
 	}
 }

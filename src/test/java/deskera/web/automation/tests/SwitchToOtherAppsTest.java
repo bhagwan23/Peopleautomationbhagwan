@@ -39,8 +39,8 @@ public class SwitchToOtherAppsTest extends DriverFactory{
 	@Description(value = "C16962 To verify user should be able to switch to other applications through launcher bar.")
 	public void switchToOtherAppsTest() throws InterruptedException {
 		// Read test specific data from config
-		String emailAddress = ReadPropertyUtil.readProperty("userEmailID", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPassword", confPath);	
+		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
 		// Create Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
 		DashboardPage dashboardPage=new DashboardPage(driver,wait);
@@ -63,6 +63,7 @@ public class SwitchToOtherAppsTest extends DriverFactory{
 		deskeraSalesPage.verifyDeskeraSalesPageElements();
 		deskeraSalesPage.closeDeskeraSalesTab();
 		dashboardPage.launchDeskShopApp();
+		deskShopPage.clickSetupShop();
 		deskShopPage.verifyPageTitle();
 		deskShopPage.verifyDeskShopPageElements();
 		deskShopPage.closeDeskShopTab();

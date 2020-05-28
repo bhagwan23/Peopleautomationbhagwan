@@ -4,13 +4,11 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import deskera.web.automation.core.DriverFactory;
 import deskera.web.automation.core.TestListenerOnFailure;
 import deskera.web.automation.core.TestRailId;
 import deskera.web.automation.pages.DashboardPage;
 import deskera.web.automation.pages.DeskeraChatPage;
-import deskera.web.automation.pages.DownloadDeskeraforiOSPage;
 import deskera.web.automation.pages.LoginPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;

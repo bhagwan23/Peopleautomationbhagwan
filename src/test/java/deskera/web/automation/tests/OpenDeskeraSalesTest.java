@@ -36,8 +36,8 @@ public class OpenDeskeraSalesTest extends DriverFactory {
 	@Description(value = "C20570 To verify user should be able to open Deskera Sales from Dashboard.")
 	public void openDeskeraSalesTest() throws InterruptedException {
 		// Read test specific data from config
-		String emailAddress = ReadPropertyUtil.readProperty("userEmailID", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPassword", confPath);	
+		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
 		// Create Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
 		DashboardPage dashboarPage=new DashboardPage(driver,wait);

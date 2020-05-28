@@ -35,12 +35,12 @@ public class OpenDeskShopTest extends DriverFactory{
 	@Description(value = "C20571 To verify user should be able to open Desk Shop from Dashboard..")
 	public void openDeskShopTest() throws InterruptedException {
 		// Read test specific data from config
-		String emailAddress = ReadPropertyUtil.readProperty("userEmailID", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPassword", confPath);	
+		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
 		// Create Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
 		DashboardPage dashboarPage=new DashboardPage(driver,wait);
-		DeskShopPage deskshopPage=new DeskShopPage(driver,wait);
+		DeskShopPage deskShopPage=new DeskShopPage(driver,wait);
 		// Access Test methods
 		loginPage.openURL(url);
 		loginPage.verifyPageTitle();
@@ -50,9 +50,10 @@ public class OpenDeskShopTest extends DriverFactory{
 		dashboarPage.verifyPageTitle();
 		dashboarPage.verifyDashboardPageElements();	
 		dashboarPage.openDeskShopApp();
-		deskshopPage.verifyPageTitle();
-		deskshopPage.verifyDeskShopPageElements();
-		deskshopPage.closeDeskShopTab();
+		deskShopPage.clickSetupShop();
+		deskShopPage.verifyPageTitle();
+		deskShopPage.verifyDeskShopPageElements();
+		deskShopPage.closeDeskShopTab();
 		dashboarPage.verifyPageTitle();
 		dashboarPage.userLogout();
 	}

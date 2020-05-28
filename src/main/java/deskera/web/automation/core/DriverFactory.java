@@ -3,6 +3,7 @@ package deskera.web.automation.core;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Capabilities;
@@ -63,6 +64,8 @@ public class DriverFactory {
 			coptions.addArguments("--ignore-certificate-errors");
 			coptions.addArguments("--disable-popup-blocking");
 			coptions.addArguments("--incognito");
+			coptions.setExperimentalOption("useAutomationExtension", false);
+			coptions.setExperimentalOption("excludeSwitches",Collections.singletonList("enable-automation"));    
 			capabilities = coptions;
 			break;
 		case "edge":

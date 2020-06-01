@@ -26,7 +26,7 @@ public class SignUpTest extends DriverFactory {
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "url" })
+	@Parameters({ "conf", "singUpUrl" })
 	public void getConf(String conf, String URL) {
 		confPath = conf;
 		url = URL;

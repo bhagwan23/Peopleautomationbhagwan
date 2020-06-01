@@ -10,8 +10,10 @@
 		</listener>
 	</listeners>
 	<parameter name="browser" value="chrome"></parameter>
-	<parameter name="url"
+	<parameter name="singUpUrl"
 		value="https://auth-qa.deskera.xyz/auth/signup"></parameter>
+	<parameter name="url"
+		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
 
 	<!-- System config for framework -->
 	<parameter name="envConf"
@@ -19,13 +21,8 @@
 
 	<!-- Run Test Cases -->
 
-<<<<<<< HEAD
-	<test name="Go.Deskera Sign Up test" parallel="false">
-=======
-	   <test name="C16960 ,C20565,C20566 Go.Deskera Sign Up test" parallel="false">
->>>>>>> 1e53dec641fb29341a02238c93e32f97948cbb17
-
-
+	<test name="C16960 ,C20565,C20566 Go.Deskera Sign Up test"
+		parallel="false">
 
 		<!-- US specific test data -->
 		<parameter name="conf"
@@ -40,23 +37,15 @@
 				</methods>
 			</class>
 		</classes>
-<<<<<<< HEAD
 	</test>
-=======
-	</test>   
-	
-	
-	 <test name="C16961 Go.Deskera Login test" parallel="false">
->>>>>>> 1e53dec641fb29341a02238c93e32f97948cbb17
 
 
-	<test name="Go.Deskera Login test" parallel="false">
+	<test name="C16961 Go.Deskera Login test" parallel="false">
 
 		<!-- US specific test data -->
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-		<parameter name="url"
-			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+
 		<classes>
 			<class name="deskera.web.automation.tests.LoginTest">
 				<methods>
@@ -64,22 +53,14 @@
 				</methods>
 			</class>
 		</classes>
-<<<<<<< HEAD
 	</test>
 
-	<test name="Go.Deskera Open Deskera Sales test" parallel="false">
+	<test name="C20570 Open Deskera Sales page from Dashboard"
+		parallel="false">
 
-
-=======
-	</test> 
-	
-	<test name="C20570 Open Deskera Sales page from Dashboard" parallel="false">
-
->>>>>>> 1e53dec641fb29341a02238c93e32f97948cbb17
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-		<parameter name="url"
-			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+
 		<classes>
 			<class name="deskera.web.automation.tests.OpenDeskeraSalesTest">
 				<methods>
@@ -88,22 +69,14 @@
 			</class>
 		</classes>
 	</test>
-<<<<<<< HEAD
 
 
-	<test name="Go.Deskera Open Deskera Books test" parallel="false">
+	<test name="C20569 Open Deskera Books page from Dashboard"
+		parallel="false">
 
-
-=======
-	 
-	
-	 <test name="C20569 Open Deskera Books page from Dashboard" parallel="false">
-	
->>>>>>> 1e53dec641fb29341a02238c93e32f97948cbb17
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-		<parameter name="url"
-			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+
 		<classes>
 			<class name="deskera.web.automation.tests.OpenDeskeraBooksTest">
 				<methods>
@@ -111,22 +84,14 @@
 				</methods>
 			</class>
 		</classes>
-<<<<<<< HEAD
 	</test>
 
-	<test name="Go.Deskera Open Desk Shop test" parallel="false">
+	<test name="C20571 Open Desk Shop page from Dashboard"
+		parallel="false">
 
-
-=======
-	</test> 
-	
-	 <test name="C20571 Open Desk Shop page from Dashboard" parallel="false">
-	 
->>>>>>> 1e53dec641fb29341a02238c93e32f97948cbb17
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-		<parameter name="url"
-			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+
 		<classes>
 			<class name="deskera.web.automation.tests.OpenDeskShopTest">
 				<methods>
@@ -134,24 +99,16 @@
 				</methods>
 			</class>
 		</classes>
-<<<<<<< HEAD
 	</test>
 
 
 	<test
-		name="Go.Deskera open Download Deskera for Android page from Dashboard"
+		name="C20627 Open Download Deskera for Android page from Dashboard"
 		parallel="false">
-=======
-	</test> 
-	 
-	 
-	  <test name="C20627 Open Download Deskera for Android page from Dashboard" parallel="false">
->>>>>>> 1e53dec641fb29341a02238c93e32f97948cbb17
 
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-		<parameter name="url"
-			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+
 		<classes>
 			<class
 				name="deskera.web.automation.tests.OpenDownloadDeskeraforAndroidTest">
@@ -160,22 +117,15 @@
 				</methods>
 			</class>
 		</classes>
-<<<<<<< HEAD
 	</test>
 
 	<test
-		name="Go.Deskera open Download Deskera for iOS page from Dashboard"
+		name="C20628 Open Download Deskera for iOS page from Dashboard"
 		parallel="false">
-=======
-	</test> 
-	
-	<test name="C20628 Open Download Deskera for iOS page from Dashboard" parallel="false">
->>>>>>> 1e53dec641fb29341a02238c93e32f97948cbb17
 
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-		<parameter name="url"
-			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+
 		<classes>
 			<class
 				name="deskera.web.automation.tests.OpenDownloadDeskeraforiOSTest">
@@ -184,21 +134,14 @@
 				</methods>
 			</class>
 		</classes>
-<<<<<<< HEAD
 	</test>
 
-	<test name="Go.Deskera  open Deskera chat from Dashboard"
+	<test name="C20626 Open Deskera chat from Dashboard"
 		parallel="false">
-=======
-	</test> 
-	
-	<test name="C20626 Open Deskera chat from Dashboard" parallel="false">
->>>>>>> 1e53dec641fb29341a02238c93e32f97948cbb17
 
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-		<parameter name="url"
-			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+
 		<classes>
 			<class name="deskera.web.automation.tests.OpenDeskeraChatTest">
 				<methods>
@@ -207,97 +150,92 @@
 			</class>
 		</classes>
 	</test>
-<<<<<<< HEAD
 
-	<test name="Go.Deskera switch to other Apps through launcher bar."
-		parallel="false">
-
-=======
-	
 	<test name="C17043 View Billing Page." parallel="false">
 
-	<parameter name="conf"
+		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-			<parameter name="url"
-		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+
 		<classes>
 			<class name="deskera.web.automation.tests.OpenBillingPageTest">
 				<methods>
-					<include name="openBillingPageTest"></include>				
-				</methods>
-			</class>
-		</classes>
-	</test> 
-	
-	 <test name="C20633 Open Administration Setting Page through launcher bar." parallel="false">
-
-		<parameter name="conf"
-			value="src/test/resources/TestDataUS.config"></parameter>
-			<parameter name="url"
-		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
-		<classes>
-			<class name="deskera.web.automation.tests.OpenAdministrationSettingPageTest">
-				<methods>
-					<include name="openAdministrationSettingPageTest"></include>				
-				</methods>
-			</class>
-		</classes>
-	</test> 
-	
-	 <test name="C20567 Open Company Details Page" parallel="false">
-
-		<parameter name="conf"
-			value="src/test/resources/TestDataUS.config"></parameter>
-			<parameter name="url"
-		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
-		<classes>
-			<class name="deskera.web.automation.tests.OpenCompanyDetailsPageTest">
-				<methods>
-					<include name="openCompanyDetailsPageTest"></include>				
+					<include name="openBillingPageTest"></include>
 				</methods>
 			</class>
 		</classes>
 	</test>
-	
-		
-	  <test name="C16963 Open Chat Page and Create Channel" parallel="false">
+
+	<test
+		name="C20633 Open Administration Setting Page through launcher bar."
+		parallel="false">
 
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-			<parameter name="url"
-		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+
+		<classes>
+			<class
+				name="deskera.web.automation.tests.OpenAdministrationSettingPageTest">
+				<methods>
+					<include name="openAdministrationSettingPageTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="C20567 Open Company Details Page" parallel="false">
+
+		<parameter name="conf"
+			value="src/test/resources/TestDataUS.config"></parameter>
+
+		<classes>
+			<class
+				name="deskera.web.automation.tests.OpenCompanyDetailsPageTest">
+				<methods>
+					<include name="openCompanyDetailsPageTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
+	<test name="C16963 Open Chat Page and Create Channel"
+		parallel="false">
+
+		<parameter name="conf"
+			value="src/test/resources/TestDataUS.config"></parameter>
+
 		<classes>
 			<class name="deskera.web.automation.tests.CreateChannelTest">
 				<methods>
-					<include name="createChannelTest"></include>				
+					<include name="createChannelTest"></include>
 				</methods>
 			</class>
 		</classes>
-	</test> 
-	 
-	  <test name="C17041 Add Company Details Test" parallel="false">
+	</test>
 
-	<!-- US specific test data -->
+	<test name="C17041 Add Company Details Test" parallel="false">
+
+		<!-- US specific test data -->
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-			<parameter name="url"
-		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+
 		<classes>
-			<class name="deskera.web.automation.tests.AddCompanyDetailsTest">
+			<class
+				name="deskera.web.automation.tests.AddCompanyDetailsTest">
 				<methods>
-					<include name="addCompanyDetailsTest"></include>				
+					<include name="addCompanyDetailsTest"></include>
 				</methods>
 			</class>
 		</classes>
-	</test> 
-	
-	<test name="C16962 Switch to other Applications through launcher bar." parallel="false">
->>>>>>> 1e53dec641fb29341a02238c93e32f97948cbb17
+	</test>
+
+	<test
+		name="C16962 Switch to other Applications through launcher bar."
+		parallel="false">
 
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-		<parameter name="url"
-			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+
 		<classes>
 			<class
 				name="deskera.web.automation.tests.SwitchToOtherAppsTest">
@@ -309,4 +247,4 @@
 	</test>
 
 
-</suite> 
+</suite>

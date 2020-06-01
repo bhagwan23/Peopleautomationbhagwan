@@ -19,17 +19,19 @@
 
 	<!-- Run Test Cases  -->
 
-	 	
-	 <test name="Go.Deskera Open Desk Shop test" parallel="false">
+	 
+	
+	
+	 <test name="C20564 Sign In using Google" parallel="false">
 
-	<parameter name="conf"
+		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
 			<parameter name="url"
 		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
 		<classes>
-			<class name="deskera.web.automation.tests.OpenDeskShopTest">
+			<class name="deskera.web.automation.tests.SignInUsingGoogleTest">
 				<methods>
-					<include name="openDeskShopTest"></include>				
+					<include name="signInUsingGoogleTest"></include>				
 				</methods>
 			</class>
 		</classes>

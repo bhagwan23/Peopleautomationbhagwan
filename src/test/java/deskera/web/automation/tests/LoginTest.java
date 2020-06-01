@@ -47,6 +47,8 @@ public class LoginTest extends DriverFactory {
 		loginPage.clickSignIn();
 		dashboarPage.verifyPageTitle();
 		dashboarPage.verifyDashboardPageElements();	
+		dashboarPage.verifyLauncherBarPanelElements();
+		dashboarPage.verifyUserProfilePanelElements();
 		dashboarPage.userLogout();
 	}
 }

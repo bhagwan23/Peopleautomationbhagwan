@@ -2,6 +2,7 @@ package deskera.web.automation.pages;
 
 import java.util.Map;
 
+import org.asynchttpclient.netty.request.body.NettyCompositeByteArrayBody;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -53,6 +54,22 @@ public class LoginPage {
 	private WebElement signUpNowLink;
 	private static String pageTitleText = "Deskera SSO";
 	
+	/******************************* Sign Using Google PAGE ELEMENTS LOCATORS *******************/
+	
+	@FindBy(xpath = "//input[@aria-label='Email or phone']")
+	@CacheLookup
+	private WebElement googleEmailOrPhone;
+	@FindBy(xpath = "//span[@class='CwaK9']/span[contains(text(),'Next')]")
+	@CacheLookup
+	private WebElement nextButton;
+	@FindBy(xpath = "//input[contains(@autocomplete,'current-password')]")
+	@CacheLookup
+	private WebElement googlePassword;
+	@FindBy(xpath = "//span[@class='CwaK9']/span[contains(text(),'Next')]")
+	@CacheLookup
+	private WebElement PasswordNextButton;
+	
+	
 	
 	/***********************************
 	 * 
@@ -94,6 +111,17 @@ public class LoginPage {
 	
 	public void clickSignIn() {
 		signInButton.click();
+	}
+	
+	public void clickSignInUsingGoogle() {
+		signInUsingGoogle.click();
+	}
+	
+	public void enterGoogleEmailPassword(String email ,String password) {
+		googleEmailOrPhone.sendKeys(email);
+		nextButton.click();
+		googlePassword.sendKeys(password);
+		PasswordNextButton.click();		
 	}
 	
 	}

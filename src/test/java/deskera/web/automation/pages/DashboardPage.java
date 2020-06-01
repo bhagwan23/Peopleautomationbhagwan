@@ -80,12 +80,16 @@ public class DashboardPage {
 	@FindBy(xpath = "//span[@class='profile-pic-launchpad']//img")
 	@CacheLookup
 	private WebElement userProfileIcon;
-	@FindBy(xpath = "//button[contains(.,'Sign Out')]")
-	@CacheLookup
-	private WebElement signOut;
+	private static String pageTitleText = "Deskera Cloud";
 	
 	/******************************* Switch To Applications / Launcher Bar  PAGE ELEMENTS LOCATORS *******************/
 	
+	@FindBy(xpath = "//span[contains(text(),'SWITCH TO')]")
+	@CacheLookup
+	private WebElement switchToText;
+	@FindBy(xpath = "//wtf2-icon[contains(text(),'close')]")
+	@CacheLookup
+	private WebElement CloseSwitchToIcon;
 	@FindBy(xpath = "(//wtf2-icon[contains(.,'business')])[1]")
 	@CacheLookup
 	private WebElement deskeraBooksLink;
@@ -101,10 +105,39 @@ public class DashboardPage {
 	@FindBy(xpath = "//div//p[text()=' Download Deskera on Mobile ']")
 	@CacheLookup
 	private WebElement downloadDeskeraonMobileLink;
+	@FindBy(xpath = "//img[@src='assets/images/applestore.png']")
+	@CacheLookup
+	private WebElement iOSappStoreImage;
+	@FindBy(xpath = "//img[@src='assets/images/playstore.png']")
+	@CacheLookup
+	private WebElement googlePlayStoreImage;
 	@FindBy(xpath = "//div//p[text()=' Administration Settings ']")
 	@CacheLookup
 	private WebElement administrationSettingLink;
-	private static String pageTitleText = "Deskera Cloud";
+	@FindBy(xpath = "//div//p[text()=' Administration Settings ']")
+	@CacheLookup
+	private WebElement manageUsersAndAccountsInOnePlaceText;
+	
+	
+	/******************************* User Profile Icon  PAGE ELEMENTS LOCATORS *******************/
+	@FindBy(xpath = "//img[@class='profile-pic-launchpad']")
+	@CacheLookup
+	private WebElement userProfileImage;
+	@FindBy(xpath = "//p[contains(@class,'font-weight-600 m-0 p-0 ellipsis')]")
+	@CacheLookup
+	private WebElement userProfileName;
+	@FindBy(xpath = "//p[contains(@class,'base-md m-0 p-0 ellipsis')]")
+	@CacheLookup
+	private WebElement userProfileEmail;
+	@FindBy(xpath = "//button[contains(text(),'Manage Account')]")
+	@CacheLookup
+	private WebElement ManageAccountButton;
+	@FindBy(xpath = "//button[contains(text(),'Billing')]")
+	@CacheLookup
+	private WebElement billingButton;
+	@FindBy(xpath = "//button[contains(.,'Sign Out')]")
+	@CacheLookup
+	private WebElement signOutButton;
 	
 	
 	/***********************************
@@ -151,6 +184,36 @@ public class DashboardPage {
 		userProfileIcon.isDisplayed();
 	}
 	
+	public void verifyLauncherBarPanelElements() {
+		WDWait(switchToIcon);
+		switchToIcon.click();
+		WDWait(switchToText);
+		switchToText.isDisplayed();
+		CloseSwitchToIcon.isDisplayed();
+		deskeraBooksLink.isDisplayed();
+		deskeraSalesLink.isDisplayed();
+		deskShopLink.isDisplayed();
+		deskeraChatLink.isDisplayed();
+		downloadDeskeraonMobileLink.isDisplayed();
+		iOSappStoreImage.isDisplayed();
+		googlePlayStoreImage.isDisplayed();
+		administrationSettingLink.isDisplayed();
+		manageUsersAndAccountsInOnePlaceText.isDisplayed();
+		CloseSwitchToIcon.click();	
+	}
+	
+	public void verifyUserProfilePanelElements() {
+		WDWait(userProfileIcon);
+		userProfileIcon.click();
+		WDWait(userProfileImage);
+		userProfileImage.isDisplayed();
+		userProfileName.isDisplayed();
+		userProfileEmail.isDisplayed();
+		ManageAccountButton.isDisplayed();
+		billingButton.isDisplayed();
+		signOutButton.isDisplayed();
+		userProfileImage.click();	
+	}
 	public void openDeskeraBooksApp() {
 		deskeraBooksCard.click();
 		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
@@ -211,11 +274,37 @@ public class DashboardPage {
 	    driver.switchTo().window(tabs2.get(1));
 	}
 	
+	public void openAdministrationSettingPage() {
+		WDWait(switchToIcon);
+		switchToIcon.click();
+		WDWait(administrationSettingLink);
+		administrationSettingLink.click();
+	}
+	
+	public void openBillingPage() {
+		WDWait(userProfileIcon);
+		userProfileIcon.click();
+		WDWait(billingButton);
+		billingButton.click();
+	}
+	
+	public void openCompanyDetailsPage() {
+		WDWait(userProfileIcon);
+		userProfileIcon.click();
+		WDWait(ManageAccountButton);
+		ManageAccountButton.click();
+	}
+	
+	public void clickChatIcon() {
+		WDWait(chatIcon);
+		chatIcon.click();		
+	}
+	
 	public void userLogout() {
 		WDWait(userProfileIcon);
 		userProfileIcon.click();
-		WDWait(signOut);
-		signOut.click();
+		WDWait(signOutButton);
+		signOutButton.click();
 	}
 	
 	

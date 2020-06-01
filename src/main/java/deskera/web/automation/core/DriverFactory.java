@@ -15,7 +15,9 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
@@ -40,8 +42,8 @@ public class DriverFactory {
 	protected Capabilities capabilities;
 	ChromeOptions coptions = new ChromeOptions();
 
-	@BeforeSuite
-	@Parameters({ "browser", "testRunId", "conf" })
+	@BeforeMethod
+	@Parameters({ "browser", "testRunId", "envConf" })
 	public void setup(String browser, String testRunId, String confPath) throws MalformedURLException {
 		String execMode = ReadPropertyUtil.readProperty("execMode", confPath);
 		String RemoteWebDriverURL = ReadPropertyUtil.readProperty("RemoteWebDriverURL", confPath);
@@ -101,7 +103,7 @@ public class DriverFactory {
 		return driver;
 	}
 
-	@AfterSuite
+	@AfterMethod
 	public void tearDown() {
 		driver.quit();
 	}

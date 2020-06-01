@@ -14,155 +14,166 @@
 		value="https://auth-qa.deskera.xyz/auth/signup"></parameter>
 
 	<!-- System config for framework -->
-	<parameter name="conf"
+	<parameter name="envConf"
 		value="src/test/resources/environment.config"></parameter>
 
-	<!-- Run Test Cases  -->
+	<!-- Run Test Cases -->
 
-	   <test name="Go.Deskera Sign Up test" parallel="false">
+	<test name="Go.Deskera Sign Up test" parallel="false">
 
-	<!-- 	US specific test data -->
+
+
+		<!-- US specific test data -->
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
 		<classes>
 			<class name="deskera.web.automation.tests.SignUpTest">
 				<methods>
 					<include name="testSignUpPage"></include>
-					<include name="testSignUpForDeskeraBookkeeper"></include>	
+					<include name="testSignUpForDeskeraBookkeeper"></include>
 					<include name="testSignUpWithoutPhoneNumber"></include>
-						
+
 				</methods>
 			</class>
 		</classes>
-	</test>   
-	
-	
-	 <test name="Go.Deskera Login test" parallel="false">
+	</test>
 
-	<!-- US specific test data -->
+
+	<test name="Go.Deskera Login test" parallel="false">
+
+		<!-- US specific test data -->
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-			<parameter name="url"
-		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+		<parameter name="url"
+			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
 		<classes>
 			<class name="deskera.web.automation.tests.LoginTest">
 				<methods>
-					<include name="loginTest"></include>				
+					<include name="loginTest"></include>
 				</methods>
 			</class>
 		</classes>
-	</test> 
-	
+	</test>
+
 	<test name="Go.Deskera Open Deskera Sales test" parallel="false">
 
-	
+
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-			<parameter name="url"
-		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+		<parameter name="url"
+			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
 		<classes>
 			<class name="deskera.web.automation.tests.OpenDeskeraSalesTest">
 				<methods>
-					<include name="openDeskeraSalesTest"></include>				
+					<include name="openDeskeraSalesTest"></include>
 				</methods>
 			</class>
 		</classes>
 	</test>
-	 
-	
-	 <test name="Go.Deskera Open Deskera Books test" parallel="false">
 
-		
+
+	<test name="Go.Deskera Open Deskera Books test" parallel="false">
+
+
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-			<parameter name="url"
-		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+		<parameter name="url"
+			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
 		<classes>
 			<class name="deskera.web.automation.tests.OpenDeskeraBooksTest">
 				<methods>
-					<include name="openDeskeraBooksTest"></include>				
+					<include name="openDeskeraBooksTest"></include>
 				</methods>
 			</class>
 		</classes>
-	</test> 
-	
-	 <test name="Go.Deskera Open Desk Shop test" parallel="false">
+	</test>
 
-	
+	<test name="Go.Deskera Open Desk Shop test" parallel="false">
+
+
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-			<parameter name="url"
-		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+		<parameter name="url"
+			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
 		<classes>
 			<class name="deskera.web.automation.tests.OpenDeskShopTest">
 				<methods>
-					<include name="openDeskShopTest"></include>				
+					<include name="openDeskShopTest"></include>
 				</methods>
 			</class>
 		</classes>
-	</test> 
-	 
-	 
-	  <test name="Go.Deskera open Download Deskera for Android page from Dashboard" parallel="false">
+	</test>
+
+
+	<test
+		name="Go.Deskera open Download Deskera for Android page from Dashboard"
+		parallel="false">
 
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-			<parameter name="url"
-		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+		<parameter name="url"
+			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
 		<classes>
-			<class name="deskera.web.automation.tests.OpenDownloadDeskeraforAndroidTest">
+			<class
+				name="deskera.web.automation.tests.OpenDownloadDeskeraforAndroidTest">
 				<methods>
-					<include name="openDownloadDeskeraforAndroidTest"></include>				
+					<include name="openDownloadDeskeraforAndroidTest"></include>
 				</methods>
 			</class>
 		</classes>
-	</test> 
-	
-	<test name="Go.Deskera open Download Deskera for iOS page from Dashboard" parallel="false">
+	</test>
+
+	<test
+		name="Go.Deskera open Download Deskera for iOS page from Dashboard"
+		parallel="false">
 
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-			<parameter name="url"
-		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+		<parameter name="url"
+			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
 		<classes>
-			<class name="deskera.web.automation.tests.OpenDownloadDeskeraforiOSTest">
+			<class
+				name="deskera.web.automation.tests.OpenDownloadDeskeraforiOSTest">
 				<methods>
-					<include name="openDownloadDeskeraforiOSTest"></include>				
+					<include name="openDownloadDeskeraforiOSTest"></include>
 				</methods>
 			</class>
 		</classes>
-	</test> 
-	
-	<test name="Go.Deskera  open Deskera chat from Dashboard" parallel="false">
+	</test>
+
+	<test name="Go.Deskera  open Deskera chat from Dashboard"
+		parallel="false">
 
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-			<parameter name="url"
-		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+		<parameter name="url"
+			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
 		<classes>
 			<class name="deskera.web.automation.tests.OpenDeskeraChatTest">
 				<methods>
-					<include name="openDeskeraChatTest"></include>				
+					<include name="openDeskeraChatTest"></include>
 				</methods>
 			</class>
 		</classes>
 	</test>
-	
-	<test name="Go.Deskera switch to other Apps through launcher bar." parallel="false">
 
-	
+	<test name="Go.Deskera switch to other Apps through launcher bar."
+		parallel="false">
+
+
 		<parameter name="conf"
 			value="src/test/resources/TestDataUS.config"></parameter>
-			<parameter name="url"
-		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+		<parameter name="url"
+			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
 		<classes>
-			<class name="deskera.web.automation.tests.SwitchToOtherAppsTest">
+			<class
+				name="deskera.web.automation.tests.SwitchToOtherAppsTest">
 				<methods>
-					<include name="switchToOtherAppsTest"></include>				
+					<include name="switchToOtherAppsTest"></include>
 				</methods>
 			</class>
 		</classes>
 	</test>
-	
-	
+
+
 </suite> 

@@ -93,7 +93,9 @@ public class TestListenerOnFailure implements ITestListener {
 		String testResult = "{\"status_id\":5,\"comment\":\"This test Failed during AUTOMATED TEST due to "
 				+ failureReason.toString() + "\"}";
 		TestRailUpdator resultupdate = new TestRailUpdator();
+		System.out.println("failureReason---->"+failureReason);
 		resultupdate.UpdateTestCaseResult(testResult, TestID.toString(), "" + trun + "");
+		
 	}
 
 	@Override

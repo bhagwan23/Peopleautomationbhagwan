@@ -1,5 +1,9 @@
 package deskera.web.automation.pages;
 
+import java.awt.AWTException;
+import java.awt.Checkbox;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,9 +17,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
-
-
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -68,10 +72,10 @@ public class SignUpPage {
 	private WebElement regularAccountLink;
 	private static String pageTitleText = "Deskera SSO";
 	private static String enteredSignUpEmail="";
-	
-	
+
+
 	/******************************* Account PAGE ELEMENTS LOCATORS *******************/
-	
+
 	@FindBy(xpath = "//img[contains(@src,'/assets/images/logos/deskera-logo.svg')]")
 	@CacheLookup
 	private WebElement deskeraLogo;
@@ -90,7 +94,7 @@ public class SignUpPage {
 	@FindBy(xpath = "//input[@formcontrolname='companyname']")
 	@CacheLookup
 	private WebElement companyName;
-	@FindBy(xpath = "//input[@class='wtf2-checkbox-input cdk-visually-hidden' and @type='checkbox']")
+	@FindBy(xpath = "//wtf2-checkbox[@id='wtf2-checkbox-3']/label/div")
 	@CacheLookup
 	private WebElement checkbox;
 	@FindBy(xpath = "//wtf2-label[contains(text(),'I agree to the')]")
@@ -99,9 +103,9 @@ public class SignUpPage {
 	@FindBy(xpath = "//span[text()=' NEXT ']")
 	@CacheLookup
 	private WebElement next;
-	
+
 	/******************************* Personalize your account PAGE ELEMENTS LOCATORS *******************/
-	
+
 	@FindBy(xpath = "//span[text()='Personalize your']//following::span[text()=' account ']")
 	@CacheLookup
 	private WebElement personalizeAccount;
@@ -129,10 +133,10 @@ public class SignUpPage {
 	@FindBy(xpath = "//span[text()=' SKIP ']")
 	@CacheLookup
 	private WebElement skipButton;
-	
-	
+
+
 	/******************************* Success PAGE ELEMENTS LOCATORS *******************/
-	
+
 	@FindBy(xpath = "//h5[contains(text(),'Please verify your email address')]")
 	@CacheLookup
 	private WebElement verifyYourEmailAddress;
@@ -154,10 +158,10 @@ public class SignUpPage {
 	@FindBy(xpath = "(//p[contains(@class,'p1')])[1]")
 	@CacheLookup
 	private WebElement weHaveResentVerification;
-	
-	
-	
-	
+
+
+
+
 
 	/***********************************
 	 * 
@@ -190,7 +194,7 @@ public class SignUpPage {
 	public void clickSignUpForBookkeeper() {
 		bookkeeperLink.click();
 	}
-	
+
 	public void verifyBookkeeperSignUpPageElements() {
 		WDWait(signUpForBookkeeper);
 		signUpForBookkeeper.isDisplayed();
@@ -201,7 +205,7 @@ public class SignUpPage {
 		countryCodeSelector.isDisplayed();
 		regularAccountLink.isDisplayed();
 	}
-	
+
 	public void clickCreateACcountButton() {
 		createAccountButton.click();
 	}
@@ -238,9 +242,9 @@ public class SignUpPage {
 	public void enterEmailId(String email) {
 		WDWait(userSignupEmail);
 		userSignupEmail.sendKeys(email);
-		}
+	}
 
-	
+
 	/***********************************
 	 * 
 	 * Account Details Page  manipulation methods
@@ -259,19 +263,27 @@ public class SignUpPage {
 		iAgreeTheTerms.isDisplayed();
 		next.isDisplayed();
 	}
-	
+
 	public void enterAccountDetails(String userFirstName,String passWord,String companyname){
 		name.sendKeys(userFirstName);
 		password.sendKeys(passWord);
 		companyName.sendKeys(companyname);
-		Actions actions = new Actions(driver);
-		actions.moveToElement(checkbox).click().perform();
+
+		if(!checkbox.isSelected())
+		{
+			//Actions actions = new Actions(driver);
+			//actions.moveToElement(checkbox).click().perform();
+			System.out.println("About to click checkbox");
+			WDWait(checkbox);
+			//wait.until(ExpectedConditions.elementToBeClickable(checkbox));
+			checkbox.click();
+		}
 	}
-	
+
 	public void clickNextButton() {
 		next.click();
 	}
-	
+
 	/***********************************
 	 * 
 	 * Personalize your account Page  manipulation methods
@@ -288,8 +300,10 @@ public class SignUpPage {
 		nextButton.isDisplayed();
 		skipButton.isDisplayed();	
 	}
-	
+
 	public void enterPersonalizeAccountDetails(){
+		
+		WDWait(industryType);
 		industryType.click();
 		ITserviceIndustryType.click();
 		companySize100.click();
@@ -298,11 +312,19 @@ public class SignUpPage {
 		actions.moveToElement(mainThingUsingDeskeraApp).click().perform();
 		actions.moveToElement(otherPurpose).click().perform();	
 	}
-	
-	public void clickNext() {
+
+	public void clickNext() throws InterruptedException {
+
+		//wait.until(ExpectedConditions.visibilityOf(nextButton));
+		/*
+		 * Actions action = new Actions(driver); action.moveToElement(nextButton);
+		 */
+		
+		
+		wait.until(ExpectedConditions.elementToBeClickable(nextButton));
 		nextButton.click();
 	}
-	
+
 
 	/***********************************
 	 * 
@@ -318,11 +340,11 @@ public class SignUpPage {
 		cantFindEmail.isDisplayed();
 		resendEmailButton.isDisplayed();
 	}
-	
+
 	public void clickResentEmailButton(){
 		resendEmailButton.click();
 	}
-	
+
 	public void verifyPageElementsAfterResentEmail(String email){
 		WDWait(verifyYourEmailAddress);
 		verifyYourEmailAddress.isDisplayed();
@@ -332,6 +354,17 @@ public class SignUpPage {
 		cantFindEmail.isDisplayed();
 		resendEmailButton.isDisplayed();
 	}
-	
+
+
+
+	public void zoomOut() throws InterruptedException
+	{
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("document.body.style.zoom = '0.90'");
+		Thread.sleep(3000);
+	}
+
+
 }
+
 

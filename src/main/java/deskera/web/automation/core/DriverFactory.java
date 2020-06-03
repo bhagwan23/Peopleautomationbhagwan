@@ -17,8 +17,11 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 
 import deskera.web.automation.utils.ReadPropertyUtil;
@@ -29,6 +32,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
  * @author Amol Tambe
  *
  */
+
+
 public class DriverFactory {
 	protected static RemoteWebDriver driver;
 	protected static WebDriverWait wait;
@@ -85,8 +90,8 @@ public class DriverFactory {
 			driver = new RemoteWebDriver(new URL(RemoteWebDriverURL), capabilities);
 		}
 		System.out.println(driver);
-		wait = (new WebDriverWait(getDriver(), Duration.ofSeconds(30)));
-		driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
+		wait = (new WebDriverWait(getDriver(), Duration.ofSeconds(15)));
+		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
 
 		setTRunId(testRunId);
 	}

@@ -13,7 +13,7 @@ import deskera.web.automation.pages.LoginPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
-@Listeners({ TestListenerOnFailure.class })
+//@Listeners({ DeskFailureListener.class })
 public class OpenDeskeraChatTest extends DriverFactory  {
 
 	String confPath, url;

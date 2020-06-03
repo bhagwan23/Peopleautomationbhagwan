@@ -13,8 +13,7 @@ import deskera.web.automation.core.TestRailId;
 import deskera.web.automation.pages.SignUpPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
-
-@Listeners({ TestListenerOnFailure.class })
+//@Listeners({ TestListenerOnFailure.class })
 public class SignUpTest extends DriverFactory {
 	String confPath, url;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();

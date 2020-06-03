@@ -14,7 +14,7 @@ import deskera.web.automation.pages.LoginPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
-@Listeners({ TestListenerOnFailure.class })
+//@Listeners({ TestListenerOnFailure.class })
 public class CreateChannelTest extends DriverFactory {
 	String confPath, url;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();

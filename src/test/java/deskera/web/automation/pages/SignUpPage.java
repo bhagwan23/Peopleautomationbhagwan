@@ -271,11 +271,7 @@ public class SignUpPage {
 
 		if(!checkbox.isSelected())
 		{
-			//Actions actions = new Actions(driver);
-			//actions.moveToElement(checkbox).click().perform();
-			System.out.println("About to click checkbox");
 			WDWait(checkbox);
-			//wait.until(ExpectedConditions.elementToBeClickable(checkbox));
 			checkbox.click();
 		}
 	}

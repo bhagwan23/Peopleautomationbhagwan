@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Go.Deskera Web BVT Suite" parallel="none"
+	preserve-order="true">
+
+	<listeners>
+		<listener
+			class-name="deskera.web.automation.core.TestListenerOnFailure2">
+		</listener>
+	</listeners>
+	<parameter name="browser" value="chrome"></parameter>
+	<parameter name="singUpUrl"
+		value="https://auth-qa.deskera.xyz/auth/signup"></parameter>
+	<parameter name="url"
+		value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+
+	<!-- System config for framework -->
+	<parameter name="envConf"
+		value="src/test/resources/environment.config"></parameter>
+
+	<!-- Test data US -->
+	<parameter name="conf"
+		value="src/test/resources/TestDataUS.config"></parameter>
+
+	<!-- Run Test Cases -->
+
+<!--
+	<test name="C16960 Go.Deskera Sign Up test" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.tests.SignUpTest">
+				<methods>
+					<include name="testSignUpPage"></include>
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
+
+	 <test name="C20565 Go.Deskera Sign Up as Bookkeeper test"
+		parallel="false">
+		<classes>
+			<class name="deskera.web.automation.tests.SignUpTest">
+				<methods>
+
+					<include name="testSignUpForDeskeraBookkeeper"></include>
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
+	<test name="C20566 Go.Deskera Sign Up without Phone Number test"
+		parallel="false">
+		<classes>
+			<class name="deskera.web.automation.tests.SignUpTest">
+				<methods>
+
+					<include name="testSignUpWithoutPhoneNumber"></include>
+				</methods>
+			</class>
+		</classes>
+	</test> -->
+
+	<test name="C16961 Go.Deskera Login test" preserve-order="true">
+		<classes>
+			<class name="deskera.web.automation.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
+
+	<test name="C20570 Open Deskera Sales page from Dashboard"
+		parallel="none">
+
+
+
+		<classes>
+			<class name="deskera.web.automation.tests.OpenDeskeraSalesTest">
+				<methods>
+					<include name="openDeskeraSalesTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
+	<test name="C20569 Open Deskera Books page from Dashboard"
+		parallel="none">
+		<classes>
+			<class name="deskera.web.automation.tests.OpenDeskeraBooksTest">
+				<methods>
+					<include name="openDeskeraBooksTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
+
+	<test name="C20571 Open Desk Shop page from Dashboard"
+		parallel="false">
+		<classes>
+			<class name="deskera.web.automation.tests.OpenDeskShopTest">
+				<methods>
+					<include name="openDeskShopTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test
+		name="C20627 Open Download Deskera for Android page 
+		from Dashboard"
+		parallel="false">
+		<classes>
+			<class
+				name="deskera.web.automation.tests.OpenDownloadDeskeraforAndroidTest">
+				<methods>
+					<include name="openDownloadDeskeraforAndroidTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
+	<test
+		name="C20628 Open Download Deskera for 
+		iOS page from Dashboard"
+		parallel="false">
+		<classes>
+			<class
+				name="deskera.web.automation.tests.OpenDownloadDeskeraforiOSTest">
+				<methods>
+					<include name="openDownloadDeskeraforiOSTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
+
+	<test name="C20626 Open Deskera chat from Dashboard"
+		parallel="false">
+		<classes>
+			<class name="deskera.web.automation.tests.OpenDeskeraChatTest">
+				<methods>
+					<include name="openDeskeraChatTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="C17043 View Billing Page." parallel="false">
+		<classes>
+			<class name="deskera.web.automation.tests.OpenBillingPageTest">
+				<methods>
+					<include name="openBillingPageTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
+	<test
+		name="C20633 Open Administration Setting Page through 
+		launcher bar."
+		parallel="false">
+		<classes>
+			<class
+				name="deskera.web.automation.tests.OpenAdministrationSettingPageTest">
+				<methods>
+					<include name="openAdministrationSettingPageTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="C20567 Open Company Details Page" parallel="false">
+		<classes>
+			<class
+				name="deskera.web.automation.tests.OpenCompanyDetailsPageTest">
+				<methods>
+					<include name="openCompanyDetailsPageTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="C16963 Open Chat Page and Create Channel"
+		parallel="false">
+
+
+
+		<classes>
+			<class name="deskera.web.automation.tests.CreateChannelTest">
+				<methods>
+					<include name="createChannelTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="C17041 Add Company Details Test" parallel="false">
+		<classes>
+			<class
+				name="deskera.web.automation.tests.AddCompanyDetailsTest">
+				<methods>
+					<include name="addCompanyDetailsTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test
+		name="C16962 Switch to other Applications through launcher bar."
+		parallel="false">
+
+		<classes>
+			<class
+				name="deskera.web.automation.tests.SwitchToOtherAppsTest">
+				<methods>
+					<include name="switchToOtherAppsTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
+</suite>

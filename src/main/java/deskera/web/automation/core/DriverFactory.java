@@ -90,8 +90,8 @@ public class DriverFactory {
 			driver = new RemoteWebDriver(new URL(RemoteWebDriverURL), capabilities);
 		}
 		System.out.println(driver);
-		wait = (new WebDriverWait(getDriver(), Duration.ofSeconds(15)));
-		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+		wait = (new WebDriverWait(getDriver(), Duration.ofSeconds(30)));
+		driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
 
 		setTRunId(testRunId);
 	}

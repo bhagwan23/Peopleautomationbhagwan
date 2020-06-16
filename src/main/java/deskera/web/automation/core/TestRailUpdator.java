@@ -25,9 +25,9 @@ public class TestRailUpdator {
 	 */
 	public void UpdateTestCaseResult(String testResult, String testId, String runId) {
 	
-		String userEmail = ReadPropertyUtil.readProperty("userEmail", "src/test/resources/testRail.config");
-		String userPass = ReadPropertyUtil.readProperty("userPass", "src/test/resources/testRail.config");
-		String testrailURL = ReadPropertyUtil.readProperty("testrailURL", "src/test/resources/testRail.config");
+		String userEmail = ReadPropertyUtil.readProperty("userEmail", "src/test/resources/systemConfig/testRail.config");
+		String userPass = ReadPropertyUtil.readProperty("userPass", "src/test/resources/systemConfig/testRail.config");
+		String testrailURL = ReadPropertyUtil.readProperty("testrailURL", "src/test/resources/systemConfig/testRail.config");
 		RestAssured.baseURI = testrailURL;
 		
 

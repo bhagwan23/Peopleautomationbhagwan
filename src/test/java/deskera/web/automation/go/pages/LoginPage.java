@@ -40,7 +40,7 @@ public class LoginPage {
 	@FindBy(xpath = "//span[contains(.,'Forgot Password')]")
 	@CacheLookup
 	private WebElement forgotPasswordLink;
-	@FindBy(xpath = "(//span[contains(.,'SIGN IN')])[1]")
+	@FindBy(xpath = "(//span[contains(.,' Sign in ')])[1]")
 	@CacheLookup
 	private WebElement signInButton;
 	@FindBy(xpath = "(//span[contains(.,'Sign in using Google')])[1]")
@@ -97,8 +97,8 @@ public class LoginPage {
 		rememberMe.isDisplayed();
 		forgotPasswordLink.isDisplayed();
 		signInButton.isDisplayed();
-		signInUsingGoogle.isDisplayed();
-		signInUsingLinkedIn.isDisplayed();
+		//signInUsingGoogle.isDisplayed();
+		//signInUsingLinkedIn.isDisplayed();
 		signUpNowLink.isDisplayed();
 	}
 	

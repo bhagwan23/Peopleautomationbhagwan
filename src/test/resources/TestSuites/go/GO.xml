@@ -11,7 +11,7 @@
 	</listeners>
 	<parameter name="browser" value="chrome"></parameter>
 	<parameter name="url"
-		value="https://auth-qa.deskera.xyz/auth/signup"></parameter>
+		value="https://auth-qa.deskera.xyz/auth/signin"></parameter>
 
 	<!-- System config for framework -->
 	<parameter name="envConf"
@@ -33,14 +33,37 @@
 			</class>
 		</classes>
 	</test>
+	
+	 <test name="C20565 Go.Deskera Sign Up as Bookkeeper test"
+		parallel="false">
+		<classes>
+			<class name="deskera.web.automation.go.tests.SignUpTest">
+				<methods>
+
+					<include name="testSignUpForDeskeraBookkeeper"></include>
+
+				</methods>
+			</class>
+		</classes>
+	</test>
 
 
-	<test name="C20564 Sign In using Google" parallel="false">
+	<test name="C20566 Go.Deskera Sign Up without Phone Number test"
+		parallel="false">
+		<classes>
+			<class name="deskera.web.automation.go.tests.SignUpTest">
+				<methods>
 
-		<parameter name="conf"
-			value="src/test/resources/goConfig/TestDataUS.config"></parameter>
-		<parameter name="url"
-			value="https://auth-qa.deskera.xyz/auth/signin?app=GO"></parameter>
+					<include name="testSignUpWithoutPhoneNumber"></include>
+				</methods>
+			</class>
+		</classes>
+	</test> 
+
+
+	<test name="C20564 Sign In" parallel="false">
+
+		
 		<classes>
 			<class name="deskera.web.automation.go.tests.LoginTest">
 

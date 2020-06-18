@@ -6,13 +6,12 @@ import org.testng.annotations.Test;
 
 import deskera.web.automation.core.DriverFactory;
 import deskera.web.automation.core.TestRailId;
-import deskera.web.automation.erp.bvtSG.pages.CreateProductPage;
 import deskera.web.automation.erp.bvtSG.pages.HomePage;
 import deskera.web.automation.erp.bvtSG.pages.LoginPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
-public class AddNonTrackedProductTest extends DriverFactory{
+public class AddDemoCompanyTest extends DriverFactory {
 
 	String confPath, url;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
@@ -33,20 +32,15 @@ public class AddNonTrackedProductTest extends DriverFactory{
 	@TestRailId(testRailId = 16961)
 	@Test()
 	@Description(value = "Create Organization ")
-	public void addNonTrackedProductTest() throws InterruptedException {
+	public void addDemoCompanyTest() throws InterruptedException {
 		// Read test specific data from config
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
-		String nonTrackedProductName = ReadPropertyUtil.readProperty("nonTrackedProductName", confPath);	
-		//String barcode = ReadPropertyUtil.readProperty("barcode", confPath);	
-		String description = ReadPropertyUtil.readProperty("description", confPath);	
-		String purchasePrice = ReadPropertyUtil.readProperty("purchasePrice", confPath);	
-		String salesPrice = ReadPropertyUtil.readProperty("salesPrice", confPath);	
 		
 		// Create Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
 		HomePage homePage=new HomePage(driver, wait);
-		CreateProductPage createProductPage=new CreateProductPage(driver,wait);
+	
 		// Access Test methods
 		loginPage.openURL(url);
 		loginPage.verifyPageTitle();
@@ -54,18 +48,9 @@ public class AddNonTrackedProductTest extends DriverFactory{
 		loginPage.enterEmailandPassword(emailAddress, passWord);
 		loginPage.clickSignIn();
 		homePage.verifyPageTitle();
-		homePage.clickProductsTab();
-		createProductPage.clickNewProductButton();
-		createProductPage.verifyPageTitle();
-		createProductPage.verifyCreateNewProductPage();
-		createProductPage.selectNonTrackedProduct();
-		createProductPage.enterProductDetails(nonTrackedProductName,description);
-		createProductPage.clickAccountingTab();
-		createProductPage.verifyAccountingTab();
-		createProductPage.enterAccountingInfo(purchasePrice, salesPrice);
-		createProductPage.clickInventoryTab();
-		createProductPage.verifyInventoryTabForNonTrackedProduct();
-		createProductPage.clickSaveButton();
-		createProductPage.verifyCreatedNonTrackedProduct(nonTrackedProductName, description);
+		homePage.clickGettingStartedButton();
+		homePage.clickDemoCompany();
+		homePage.verifyDemoCompanySuccessMessage();
 }
+	
 }

@@ -22,6 +22,19 @@ public class HomePage {
 	}
 	
 	/******************************* Create Org  PAGE ELEMENTS LOCATORS *******************/
+
+	@FindBy(xpath = "//button[contains(.,'Getting Started')]")
+	@CacheLookup
+	private WebElement gettingStartedButton;
+	@FindBy(xpath = "//button[contains(text(),'Demo Company')]")
+	@CacheLookup
+	private WebElement demoCompanyButton;
+	@FindBy(xpath = "//span[text()='Switched to Demo Organization']")
+	@CacheLookup
+	private WebElement switchedToDemoCompanySuccessMessage;
+	@FindBy(xpath = "//span[text()='Demo Company(SG)']")
+	@CacheLookup
+	private WebElement demoCompanyName;
 	@FindBy(xpath = "//input[contains(@formcontrolname,'countryLookupCode')]")
 	@CacheLookup
 	private WebElement taxResidency;
@@ -72,9 +85,14 @@ public class HomePage {
 	@FindBy(xpath = "//span[contains(.,'Products')]")
 	@CacheLookup
 	private WebElement productsTab;
-	@FindBy(xpath = "//span[@class='action-button-text'][contains(.,'Create Product')]")
+	@FindBy(xpath = "//span[contains(.,'Settings')]")
 	@CacheLookup
-	private WebElement createProductButton;
+	private WebElement settingTab;
+	@FindBy(xpath = "//span[contains(.,'Users')]")
+	@CacheLookup
+	private WebElement usersTab;
+	
+	
 	
 	
 
@@ -142,6 +160,23 @@ public class HomePage {
 	public void clickProductsTab(){
 		WDWait(productsTab);
 		productsTab.click();
+	}
+	
+	public void clickGettingStartedButton(){
+		WDWait(gettingStartedButton);
+		gettingStartedButton.click();
+	}
+	
+	public void clickDemoCompany(){
+		WDWait(demoCompanyButton);
+		demoCompanyButton.click();
+	}
+	
+	public void verifyDemoCompanySuccessMessage(){
+		WDWait(switchedToDemoCompanySuccessMessage);
+		switchedToDemoCompanySuccessMessage.click();
+		WDWait(demoCompanyName);
+		demoCompanyName.isDisplayed();
 	}
 	
 	

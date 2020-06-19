@@ -4,6 +4,7 @@ package deskera.web.automation.erp.bvtSG.pages;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -182,12 +183,21 @@ public class HomePage {
 	}
 	
 	public void clickSettingTab() throws InterruptedException{
-		Thread.sleep(8000);
+		//Thread.sleep(8000);
 		//WDWait(settingTab); 
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].scrollIntoView();", settingTab);
-		  settingTab.click();
+		/*
+		 * JavascriptExecutor js = (JavascriptExecutor) driver;
+		 * js.executeScript("arguments[0].scrollIntoView();", settingTab);
+		 * settingTab.click();
+		 */
 		
+		Actions builder = new Actions(driver);
+        Action mouseOverSettings = builder
+                .moveToElement(settingTab)
+                .build();
+        System.out.println("Before hover: ");
+        mouseOverSettings.perform(); 
+        System.out.println("First Hover done");
 		//Actions action=new Actions(driver);
 		//action.moveToElement(settingTab).click().perform();
 		//settingTab.click();

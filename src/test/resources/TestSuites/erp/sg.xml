@@ -34,7 +34,7 @@
 		</classes>
 	</test>
 
-	<test name="C20565 Go.Deskera Sign Up as Bookkeeper test" enabled="false"
+	<test name="C20565 Deskera books Sign Up as Bookkeeper test" enabled="false"
 		parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
@@ -48,7 +48,7 @@
 	</test>
 
 
-	<test name="C20566 Go.Deskera Sign Up without Phone Number test" enabled="false"
+	<test name="C20566 Deskera books Sign Up without Phone Number test" enabled="false"
 		 parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
@@ -61,7 +61,7 @@
 	</test>
 
 
-	<test name="C20564 Sign In" parallel="false">
+	<test name="C20564 Sign In" enabled="false" parallel="false">
 
 
 		<classes>
@@ -88,7 +88,7 @@
 
 
 
-	<test name="C20274 To verify that user is able to Create/Connect - Bank" 
+	<test name="C20274 To verify that user is able to Create/Connect - Bank" enabled="false"
 		 parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.CreateBankTest">

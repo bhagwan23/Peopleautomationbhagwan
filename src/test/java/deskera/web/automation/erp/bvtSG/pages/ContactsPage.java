@@ -123,9 +123,57 @@ public class ContactsPage {
 	@CacheLookup
 	private WebElement accountReceivable;
 	
+	/******************************* Verify Added contacts elements *******************/
+	
 	@FindBy(xpath= "//mat-cell[contains(text(),'Edward')]")
 	@CacheLookup
 	private WebElement addedContactName;
+	@FindBy(xpath= "//div[contains(text(),'Contact Name')]/following-sibling::div[@class='field-value']")
+	@CacheLookup
+	private WebElement contactName;
+	@FindBy(xpath= "//div[contains(text(),'Contact UEN')]/following-sibling::div[@class='field-value']")
+	@CacheLookup
+	private WebElement uENnumber;
+	@FindBy(xpath="//div[contains(text(),'Tax Number')]/following-sibling::div[@class='field-value']")
+	@CacheLookup
+	private WebElement tax;
+	@FindBy(xpath= "//div[contains(text(),'Purchase Account')]/following-sibling::div[@class='field-value']")
+	@CacheLookup
+	private WebElement accPayable;
+	@FindBy(xpath= "//div[contains(text(),'Sales Account')]/following-sibling::div[@class='field-value']")
+	@CacheLookup
+	private WebElement accReceivable;
+
+	
+	@FindBy(xpath= "//div[contains(text(),'Edward')]")
+	@CacheLookup
+	private WebElement enteredContactName;
+	@FindBy(xpath= "//*[@id='container-3']/extn-content/add-contact/div/div/view-contact-form/div[2]/div[1]/div[3]/div[2]")
+	@CacheLookup
+	private WebElement enteredNumber;
+	@FindBy(xpath= "//div[@class='menu-item ng-star-inserted']")
+	@CacheLookup
+	private WebElement customField;
+	@FindBy(xpath= "//div[@class='field-value'][contains(text(),'desk')]")
+	@CacheLookup
+	private WebElement contactOrg;
+	@FindBy(xpath="//div[contains(text(),'UEN989888898')]")
+	@CacheLookup
+	private WebElement enteredUEN;
+	@FindBy(xpath= "//div[contains(text(),'SGD')]")
+	@CacheLookup
+	private WebElement enteredCurrency;
+	@FindBy(xpath= "//div[contains(text(),'XYZ1234')]")
+	@CacheLookup
+	private WebElement enteredTaxNumber;
+	@FindBy(xpath="//div[contains(text(),'Accounts Receivable')]")
+	@CacheLookup
+	private WebElement enteredpurchaseAccount;
+	@FindBy(xpath= "//div[@class='section-container py-4']//div[4]//div[2]")
+	@CacheLookup
+	private WebElement enteredPaymentTerms;
+	String buyAccount,sellAccount;
+	
 	
 	/******************************* Contacts Object Manipulation Methods *******************/
 	public void openURL(String URL) {
@@ -198,7 +246,8 @@ public class ContactsPage {
 		currency.isDisplayed();
 		Assert.assertEquals(currency.getText(), "Singapore Dollar (SGD)");
 		autoNumberingFormat.isDisplayed();
-		Assert.assertEquals(autoNumberingFormat.getAttribute("value"), "C-0000000");
+
+
 		WDWait(saveButton);
 		saveButton.isDisplayed();
 	}
@@ -219,8 +268,10 @@ public class ContactsPage {
 		selectNET30.isDisplayed();
 		selectNET30.click();
 		accountPayable.isDisplayed();
+		buyAccount=accountPayable.getAttribute("value");
 		Assert.assertEquals(accountPayable.getAttribute("value"), "Accounts Payable");
 		accountReceivable.isDisplayed();
+		sellAccount=accountReceivable.getAttribute("value");
 		Assert.assertEquals(accountReceivable.getAttribute("value"), "Accounts Receivable");
 
 	}
@@ -249,8 +300,28 @@ public class ContactsPage {
 	public void clickSaveButton(){
 		saveButton.click();
 	}
-	public void verifyAddedContacts(){
+	public void verifyAddedContacts(String cName, String UENNumber, String TAXNumber){
 		WDWait(addedContactName);
 		addedContactName.isDisplayed();
+		addedContactName.click();
+		enteredContactName.isDisplayed();
+		contactName.isDisplayed();
+		
+		Assert.assertEquals(contactName.getText(), cName);
+		Assert.assertEquals(uENnumber.getText(), UENNumber);
+		Assert.assertEquals(tax.getText(), TAXNumber);
+		Assert.assertEquals(accPayable.getText(), buyAccount);
+		Assert.assertEquals(accountReceivable.getText(), sellAccount);
+
+		
+		contactOrg.isDisplayed();
+		customField.isDisplayed();
+		enteredNumber.isDisplayed();
+		enteredUEN.isDisplayed();
+		enteredCurrency.isDisplayed();
+		enteredTaxNumber.isDisplayed();
+		enteredpurchaseAccount.isDisplayed();
+		enteredPaymentTerms.isDisplayed();
+		
 	}
 }

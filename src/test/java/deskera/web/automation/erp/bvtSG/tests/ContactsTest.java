@@ -107,6 +107,6 @@ public class ContactsTest extends DriverFactory {
 		contactsPage.addressDetails();
 		contactsPage.addAddressDetail(address, state, postal, city, country);
 		contactsPage.clickSaveButton();
-		contactsPage.verifyAddedContacts();
+		contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber);
 
 	}}

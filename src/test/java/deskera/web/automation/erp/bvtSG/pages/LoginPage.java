@@ -2,7 +2,6 @@ package deskera.web.automation.erp.bvtSG.pages;
 
 import java.util.Map;
 
-import org.asynchttpclient.netty.request.body.NettyCompositeByteArrayBody;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -40,16 +39,15 @@ public class LoginPage {
 	@FindBy(xpath = "//span[contains(.,'Forgot Password')]")
 	@CacheLookup
 	private WebElement forgotPasswordLink;
-	@FindBy(xpath = "(/html/body/app-root/microframework-signin/div[1]/div/div/div[1]/div/form/button[1]/span)")
+
+	@FindBy(xpath = "(//span[contains(.,'Sign in')])[2]")
 	@CacheLookup
 	private WebElement signInButton;
 	@FindBy(xpath = "(//span[contains(.,'Sign in using Google')])[1]")
 	@CacheLookup
 	private WebElement signInUsingGoogle;
-	@FindBy(xpath = "(//span[contains(.,'Sign in using Facebook')])[1]")
-	@CacheLookup
-	private WebElement signInUsingFacebook;
-	@FindBy(xpath = "(//span[contains(.,'have an account ? ')]/../span[contains(text(),'Sign Up Now')])[2]")
+
+	@FindBy(xpath = "(//span[contains(.,'Sign Up Now')])[2]")
 	@CacheLookup
 	private WebElement signUpNowLink;
 	@FindBy(xpath = "//h6[@class='m-0 p-0 font-weight-500']")
@@ -101,7 +99,7 @@ public class LoginPage {
 		forgotPasswordLink.isDisplayed();
 		signInButton.isDisplayed();
 		signInUsingGoogle.isDisplayed();
-		signInUsingFacebook.isDisplayed();
+
 		signUpNowLink.isDisplayed();
 	}
 	

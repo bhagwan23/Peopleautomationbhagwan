@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite thread-count="1" name="Go.Deskera Web BVT Suite"
+	parallel="false">
+
+	<listeners>
+		<listener
+			class-name="deskera.web.automation.core.TestListenerOnFailure">
+		</listener>
+	</listeners>
+	<parameter name="browser" value="chrome"></parameter>
+	<parameter name="url"
+		value="https://auth-qa.deskera.xyz/auth/signin?redirectUrl=https:%2F%2Freality-qa.deskera.xyz"></parameter>
+
+	<!-- System config for framework -->
+	<parameter name="envConf"
+		value="src/test/resources/systemConfig/environment.config"></parameter>
+
+	<parameter name="singUpUrl"
+		value="https://auth-qa.deskera.xyz/auth/signup"></parameter>
+
+	<!-- Run Test Cases -->
+	<parameter name="conf"
+		value="src/test/resources/bvtSGConfig/TestDataSG.config"></parameter>
+		
+		
+	<test name=" Sign Up test" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
+				<methods>
+					<include name="testSignUpPage"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+	 <test name="Sign Up as Bookkeeper test" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
+				<methods>
+					<include name="testSignUpForDeskeraBookkeeper"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
+	<test name="Sign Up without Phone Number test" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
+				<methods>
+					<include name="testSignUpWithoutPhoneNumber"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>  
+
+
+	<test name="Sign In" parallel="false">	
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+			</class>
+		</classes>
+	</test> 
+	
+	
+	<test name="Create Organization" parallel="false">		
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
+			</class>
+		</classes>
+	</test> 
+
+
+   <test name="C20262 Add Tracked Product" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.AddTrackedProductTest">
+			</class>
+		</classes>
+	</test>
+
+	
+	 <test name="C20263 Add Non Tracked Product" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.AddNonTrackedProductTest">
+			</class>
+		</classes>
+	</test> 
+	
+	<test name="C21022 Add Bills Of Material Product" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.AddBOMProductTest">
+			</class>
+		</classes>
+	</test>
+
+  <test name="C20425 Add Demo Company" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.AddDemoCompanyTest">
+			</class>
+		</classes>
+	</test> 
+
+
+
+
+</suite> 

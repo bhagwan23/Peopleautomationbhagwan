@@ -2,8 +2,6 @@ package deskera.web.automation.erp.bvtSG.pages;
 
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.locks.Condition;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;

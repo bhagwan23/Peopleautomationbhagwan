@@ -25,7 +25,7 @@
 		value="src/test/resources/bvtSGConfig/TestDataSG.config"></parameter>
 		
 
-	
+	<!-- 
 	 <test name="Sign Up without Phone Number test"
 		parallel="false">
 		<classes>
@@ -36,7 +36,7 @@
 			</class>
 		</classes>
 	</test> 
-	
+	 -->
 	<!-- <test name="Login Test" parallel="false">		
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
@@ -45,7 +45,7 @@
 	</test>  -->
 	
 	
-	
+<!-- 	
 	<test name="Create Organization" parallel="false">		
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
@@ -79,6 +79,13 @@
      <test name="C20425 Add Demo Company" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.AddDemoCompanyTest">
+			</class>
+		</classes>
+	</test>  -->
+	
+	 <test name="C20278 Add Roles Of User" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.AddRolesOfUserTest">
 			</class>
 		</classes>
 	</test> 

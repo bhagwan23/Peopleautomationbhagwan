@@ -3,7 +3,6 @@ package deskera.web.automation.erp.bvtSG.tests;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import deskera.web.automation.core.DriverFactory;
 import deskera.web.automation.core.TestRailId;
 import deskera.web.automation.erp.bvtSG.pages.CreateProductPage;
@@ -40,10 +39,7 @@ public class AddBOMProductTest extends DriverFactory {
 		String description = ReadPropertyUtil.readProperty("description", confPath);	
 		String salesPrice = ReadPropertyUtil.readProperty("salesPrice", confPath);	
 		String openingQuanity = ReadPropertyUtil.readProperty("openingQuanity", confPath);	
-		String openingValuation = ReadPropertyUtil.readProperty("openingValuation", confPath);
-		
-		String componentproduct1 = ReadPropertyUtil.readProperty("componentproduct1", confPath);	
-		String componentproduct2 = ReadPropertyUtil.readProperty("componentproduct2", confPath);	
+		String openingValuation = ReadPropertyUtil.readProperty("openingValuation", confPath);	
 		String quantity1 = ReadPropertyUtil.readProperty("quantity1", confPath);	
 		String quantity2 = ReadPropertyUtil.readProperty("quantity2", confPath);
 		

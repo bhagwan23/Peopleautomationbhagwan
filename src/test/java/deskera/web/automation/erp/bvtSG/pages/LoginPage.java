@@ -25,10 +25,10 @@ public class LoginPage {
 	}
 	
 	/******************************* LOGIN PAGE ELEMENTS LOCATORS *******************/
-	@FindBy(xpath = "(//input[@formcontrolname='userName'])[1]")
+	@FindBy(xpath = "//*[@id='wtf2-input-2']") 
 	@CacheLookup
 	private WebElement userLoginEmail;
-	@FindBy(xpath = "(//input[@formcontrolname='password'])[1]")
+	@FindBy(xpath = "//*[@id='wtf2-input-3']")
 	@CacheLookup
 	private WebElement userLoginPassword;
 	@FindBy(xpath = "//wtf2-icon[contains(.,'visibility_off')]")
@@ -40,18 +40,21 @@ public class LoginPage {
 	@FindBy(xpath = "//span[contains(.,'Forgot Password')]")
 	@CacheLookup
 	private WebElement forgotPasswordLink;
-	@FindBy(xpath = "(//span[contains(.,'SIGN IN')])[1]")
+	@FindBy(xpath = "(/html/body/app-root/microframework-signin/div[1]/div/div/div[1]/div/form/button[1]/span)")
 	@CacheLookup
 	private WebElement signInButton;
 	@FindBy(xpath = "(//span[contains(.,'Sign in using Google')])[1]")
 	@CacheLookup
 	private WebElement signInUsingGoogle;
-	@FindBy(xpath = "(//span[contains(.,'Sign in using LinkedIn')])[1]")
+	@FindBy(xpath = "(//span[contains(.,'Sign in using Facebook')])[1]")
 	@CacheLookup
-	private WebElement signInUsingLinkedIn;
+	private WebElement signInUsingFacebook;
 	@FindBy(xpath = "(//span[contains(.,'have an account ? ')]/../span[contains(text(),'Sign Up Now')])[2]")
 	@CacheLookup
 	private WebElement signUpNowLink;
+	@FindBy(xpath = "//h6[@class='m-0 p-0 font-weight-500']")
+	@CacheLookup
+	private WebElement dashboardHeading;
 	private static String pageTitleText = "Deskera SSO";
 	
 	/******************************* Sign Using Google PAGE ELEMENTS LOCATORS *******************/
@@ -98,7 +101,7 @@ public class LoginPage {
 		forgotPasswordLink.isDisplayed();
 		signInButton.isDisplayed();
 		signInUsingGoogle.isDisplayed();
-		signInUsingLinkedIn.isDisplayed();
+		signInUsingFacebook.isDisplayed();
 		signUpNowLink.isDisplayed();
 	}
 	
@@ -110,7 +113,10 @@ public class LoginPage {
 	}
 	
 	public void clickSignIn() {
+		WDWait(signInButton);
 		signInButton.click();
+		WDWait(dashboardHeading);
+		dashboardHeading.isDisplayed();
 	}
 	
 	public void clickSignInUsingGoogle() {
@@ -121,7 +127,7 @@ public class LoginPage {
 		googleEmailOrPhone.sendKeys(email);
 		nextButton.click();
 		googlePassword.sendKeys(password);
-		PasswordNextButton.click();		
+		PasswordNextButton.click();	
 	}
 	
 	}

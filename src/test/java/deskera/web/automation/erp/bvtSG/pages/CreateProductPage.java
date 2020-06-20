@@ -400,6 +400,8 @@ public class CreateProductPage {
 		// component2Quantity.sendKeys(quantity2);
 	 }
 	public void clickSaveButton(){
+		WDWait(saveButton);
+		wait.until(ExpectedConditions.elementToBeClickable(saveButton));
 		saveButton.click();
 	}
 	

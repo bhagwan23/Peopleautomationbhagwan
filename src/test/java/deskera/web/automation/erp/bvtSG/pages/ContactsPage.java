@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -122,9 +123,9 @@ public class ContactsPage {
 	@FindBy(xpath="//input[@id='mat-input-4']")
 	@CacheLookup
 	private WebElement accountReceivable;
-	
+
 	/******************************* Verify Added contacts elements *******************/
-	
+
 	@FindBy(xpath= "//mat-cell[contains(text(),'Edward')]")
 	@CacheLookup
 	private WebElement addedContactName;
@@ -144,7 +145,7 @@ public class ContactsPage {
 	@CacheLookup
 	private WebElement accReceivable;
 
-	
+
 	@FindBy(xpath= "//div[contains(text(),'Edward')]")
 	@CacheLookup
 	private WebElement enteredContactName;
@@ -173,15 +174,15 @@ public class ContactsPage {
 	@CacheLookup
 	private WebElement enteredPaymentTerms;
 	String buyAccount,sellAccount;
-	
-	
+
+
 	/******************************* Contacts Object Manipulation Methods *******************/
 	public void openURL(String URL) {
 		driver.get(URL);
 	}
 
 	public void verifyPageTitle() {
-		Assert.assertEquals(driver.getTitle(), pageTitleText);
+		//Assert.assertEquals(driver.getTitle(), pageTitleText);
 	}
 	// Common util for webdriver wait
 	public void WDWait(WebElement we) {
@@ -193,33 +194,35 @@ public class ContactsPage {
 
 	}
 	public void clickContactsButton() throws InterruptedException{
+		WDWait(contactsButton);
 		contactsButton.click(); 
-		Thread.sleep(3000);
+		clickPopup();
+		//Thread.sleep(3000);
 	}
 	public void clickPopup() throws InterruptedException{	
 		//driver.get("https://reality-qa.deskera.xyz/book-keeper/client");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()=' Contacts ']"))); // Contact // link                                                                                                            // or                                                                                                            // Produ                                                                                                            // link
-        driver.findElement(By.xpath("//span[text()=' Contacts ']")).click();
-        Thread.sleep(3000); // THis is important because popup gets loaded and then disappears
-        // driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click();
-        for (int second = 0; second <= 30; second++) {
-            if (second == 30) {
-                System.out.println("Popup Not found clickin on new Contact Button");
-                break;
-            }
-            try {
-                if (driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).isDisplayed()) {
-                    System.out.println("closig popup now 1");
-                    driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click(); //popup close button
-                    System.out.println("closed popup  1");
-                    break;
-                }
-            } catch (Exception e) {
-            }
-            Thread.sleep(1000);
-        }
-       // driver.findElement(By.xpath("//button[3]/span")).click(); // Create new contact button
-		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()=' Contacts ']"))); // Contact // link                                                                                                            // or                                                                                                            // Produ                                                                                                            // link
+		driver.findElement(By.xpath("//span[text()=' Contacts ']")).click();
+		Thread.sleep(3000); // THis is important because popup gets loaded and then disappears
+		// driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click();
+		for (int second = 0; second <= 30; second++) {
+			if (second == 30) {
+				System.out.println("Popup Not found clickin on new Contact Button");
+				break;
+			}
+			try {
+				if (driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).isDisplayed()) {
+					System.out.println("closig popup now 1");
+					driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click(); //popup close button
+					System.out.println("closed popup  1");
+					break;
+				}
+			} catch (Exception e) {
+			}
+			Thread.sleep(1000);
+		}
+		// driver.findElement(By.xpath("//button[3]/span")).click(); // Create new contact button
+
 	}
 	public void clickAddContactButton(){
 		WDWait(newContactButton);
@@ -306,14 +309,16 @@ public class ContactsPage {
 		addedContactName.click();
 		enteredContactName.isDisplayed();
 		contactName.isDisplayed();
-		
+
 		Assert.assertEquals(contactName.getText(), cName);
 		Assert.assertEquals(uENnumber.getText(), UENNumber);
 		Assert.assertEquals(tax.getText(), TAXNumber);
+		scrollToElement(accPayable);
 		Assert.assertEquals(accPayable.getText(), buyAccount);
+		scrollToElement(accountReceivable);
 		Assert.assertEquals(accountReceivable.getText(), sellAccount);
 
-		
+
 		contactOrg.isDisplayed();
 		customField.isDisplayed();
 		enteredNumber.isDisplayed();
@@ -322,6 +327,13 @@ public class ContactsPage {
 		enteredTaxNumber.isDisplayed();
 		enteredpurchaseAccount.isDisplayed();
 		enteredPaymentTerms.isDisplayed();
-		
+
+	}
+
+
+	public void scrollToElement(WebElement element)
+	{
+
+		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
 	}
 }

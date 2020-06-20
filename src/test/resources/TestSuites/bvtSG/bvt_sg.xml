@@ -25,7 +25,7 @@
 		value="src/test/resources/bvtSGConfig/TestDataSG.config"></parameter>
 		
 		
-	<test name=" Sign Up test" parallel="false">
+	<!-- <test name=" Sign Up test" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
 				<methods>
@@ -33,9 +33,9 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> -->
 	
-	 <test name="Sign Up as Bookkeeper test" parallel="false">
+	<!--  <test name="Sign Up as Bookkeeper test" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
 				<methods>
@@ -43,10 +43,10 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> -->
 
 
-	<test name="Sign Up without Phone Number test" parallel="false">
+	<!-- <test name="Sign Up without Phone Number test" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
 				<methods>
@@ -71,9 +71,9 @@
 			</class>
 		</classes>
 	</test> 
+ -->
 
-
-   <test name="C20262 Add Tracked Product" parallel="false">
+  <!--  <test name="C20262 Add Tracked Product" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.AddTrackedProductTest">
 			</class>
@@ -101,8 +101,31 @@
 			</class>
 		</classes>
 	</test> 
+ -->
+<test name="C20261 Add Contacts"  parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.ContactsTest">
+				<methods>
+				<!-- 	<include name="addContacts"></include> -->
+					<include name="addContacts1"></include>
+
+				</methods>
+			</class>
+		</classes>
+	</test>
 
 
+
+<!-- 	<test name="C20274 To verify that user is able to Create/Connect - Bank" enabled="false"
+		 parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.CreateBankTest">
+				<methods>
+					<include name="addBank"></include>
+				</methods>
+			</class>
+		</classes>
+	</test> -->
 
 
 </suite> 

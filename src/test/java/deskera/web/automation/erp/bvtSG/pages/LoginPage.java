@@ -113,8 +113,8 @@ public class LoginPage {
 	public void clickSignIn() {
 		WDWait(signInButton);
 		signInButton.click();
-		WDWait(dashboardHeading);
-		dashboardHeading.isDisplayed();
+		//WDWait(dashboardHeading);
+		//dashboardHeading.isDisplayed();
 	}
 	
 	public void clickSignInUsingGoogle() {

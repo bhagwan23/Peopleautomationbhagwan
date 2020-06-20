@@ -61,7 +61,7 @@ public class ContactsTest extends DriverFactory {
 		contactsPage.verifyPageTitle();
 		contactsPage.verifyContactElements();
 		contactsPage.clickContactsButton();
-		contactsPage.clickPopup();
+	//	contactsPage.clickPopup();
 
 		//contactsPage.clickPopup();
 		contactsPage.clickAddContactButton();
@@ -70,7 +70,11 @@ public class ContactsTest extends DriverFactory {
 		contactsPage.addressDetails();
 		contactsPage.addAddressDetail(address, state, postal, city, country);
 		contactsPage.clickSaveButton();
-		
+		//contactsPage.clickContactsButton();
+
+		//contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber);
+
+
 
 	}
 	@TestRailId(testRailId = 20261)
@@ -107,6 +111,7 @@ public class ContactsTest extends DriverFactory {
 		contactsPage.addressDetails();
 		contactsPage.addAddressDetail(address, state, postal, city, country);
 		contactsPage.clickSaveButton();
+		contactsPage.clickContactsButton();
 		contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber);
 
 	}}

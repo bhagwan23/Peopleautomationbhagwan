@@ -79,13 +79,21 @@
 			<class name="deskera.web.automation.erp.bvtSG.tests.ContactsTest">
 				<methods>
 					<include name="addContacts"></include>
-					<include name="addContacts1"></include>
-
+					 <include name="addContacts1"></include>
 				</methods>
 			</class>
 		</classes>
 	</test>
 
+<test name="C20261 Delete Contacts"  parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.DeleteContactTest">
+				<methods>
+					<include name="deleteContacts"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
 
 
 	<test name="C20274 To verify that user is able to Create/Connect - Bank" enabled="false"

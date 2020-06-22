@@ -1,5 +1,7 @@
 package deskera.web.automation.erp.bvtSG.tests;
 
+import java.util.Random;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -27,7 +29,6 @@ public class AddBOMProductTest extends DriverFactory {
 		confPath = conf;
 		url = URL;
 	}
-	
 	@TestRailId(testRailId = 21022)
 	@Test()
 	@Description(value = "C21022 Create BOM Product ")
@@ -37,11 +38,23 @@ public class AddBOMProductTest extends DriverFactory {
 		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
 		String BOMProductName = ReadPropertyUtil.readProperty("BOMProductName", confPath);	
 		String description = ReadPropertyUtil.readProperty("description", confPath);	
+		Random random = new Random();
+		String barcode = String.format("%04d", random.nextInt(1000));
 		String salesPrice = ReadPropertyUtil.readProperty("salesPrice", confPath);	
 		String openingQuanity = ReadPropertyUtil.readProperty("openingQuanity", confPath);	
 		String openingValuation = ReadPropertyUtil.readProperty("openingValuation", confPath);	
 		String quantity1 = ReadPropertyUtil.readProperty("quantity1", confPath);	
 		String quantity2 = ReadPropertyUtil.readProperty("quantity2", confPath);
+		String defaultPurchaseAccount = ReadPropertyUtil.readProperty("defaultPurchaseAccount", confPath);	
+		String defaultPurchaseTax = ReadPropertyUtil.readProperty("defaultPurchaseTax", confPath);
+		String defaultSalesAccount = ReadPropertyUtil.readProperty("defaultSalesAccount", confPath);	
+		String defaultSalesPrice = ReadPropertyUtil.readProperty("defaultSalesPrice", confPath);
+		String defaultSalesTax = ReadPropertyUtil.readProperty("defaultSalesTax", confPath);
+		String defaultUnitOfMeasurement = ReadPropertyUtil.readProperty("defaultUnitOfMeasurement", confPath);	
+		String defaultCostOfGoodSoldAccount = ReadPropertyUtil.readProperty("defaultCostOfGoodSoldAccount", confPath);	
+		String defaultManufacturingAccount = ReadPropertyUtil.readProperty("defaultManufacturingAccount", confPath);	
+		String defaultStockAdjustmentAccount = ReadPropertyUtil.readProperty("defaultStockAdjustmentAccount", confPath);
+		String defaultWarehouseCode = ReadPropertyUtil.readProperty("defaultWarehouseCode", confPath);
 		
 		// Create Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
@@ -59,18 +72,25 @@ public class AddBOMProductTest extends DriverFactory {
 		createProductPage.verifyPageTitle();
 		createProductPage.verifyCreateNewProductPage();
 		createProductPage.selectBOMProduct();
-		createProductPage.enterProductDetails(BOMProductName,description);
+		createProductPage.enterProductDetails(BOMProductName,description,barcode);
 		createProductPage.clickAccountingTab();
-		createProductPage.verifyAccountingTabForBOMProduct();
+	    createProductPage.verifyPurchaseAccountDropdownValues();
+		createProductPage.verifySalesAccountDropdownValues();
+		createProductPage.verifyAccountingTabForBOMProduct(defaultPurchaseAccount,defaultPurchaseTax, defaultSalesAccount, defaultSalesPrice,defaultSalesTax);
 		createProductPage.enterAccountingInfoForBOMProduct(salesPrice);	
 		createProductPage.clickInventoryTab();
-		createProductPage.verifyInventoryTabForBOMProduct();
+		createProductPage.verifyInventoryTabForBOMProduct(defaultUnitOfMeasurement,defaultCostOfGoodSoldAccount, defaultManufacturingAccount, defaultStockAdjustmentAccount);
 		createProductPage.selectInventoryAccount();
 		createProductPage.enterOpeningBalanceDetails(openingQuanity, openingValuation);
 		createProductPage.clickBillOfMaterialTab();
 		createProductPage.verifyBillOfMaterialTab();
 		createProductPage.enterBOMDetails(quantity1, quantity2);
-		createProductPage.clickSaveButton();	
-		createProductPage.verifyCreatedBOMProduct(BOMProductName, description);
+		Thread.sleep(2000);
+		createProductPage.clickSaveButton();
+		createProductPage.verifyCreateProductSuccessMessage();
+		createProductPage.verifyBomProductCount();
+		createProductPage.verifyCreatedBOMProduct(BOMProductName, description,barcode,defaultPurchaseAccount,defaultSalesAccount,salesPrice,defaultPurchaseTax,defaultSalesTax);
+		createProductPage.verifyInventoryDetailsForCreatedBOMProduct(defaultUnitOfMeasurement, defaultCostOfGoodSoldAccount,defaultStockAdjustmentAccount, defaultWarehouseCode, openingQuanity, openingValuation);
+
  }
 }

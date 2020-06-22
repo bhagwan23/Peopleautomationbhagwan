@@ -57,6 +57,7 @@ public class CreateOrganizationTest extends DriverFactory{
 		homePage.verifyorgElements();
 		homePage.enterOrgDetails(taxResidency, financialStartDate, bookBeginningDate, addressLine1, addressLine2, city, state, zipcode);
 		homePage.clickSaveButton();
+		homePage.verifyCreateOrgSuccessMessage();
 		homePage.clickSkipButton();
 		
 	}

@@ -74,9 +74,9 @@ public class HomePage {
 	@FindBy(xpath = "//button[contains(.,'Save')]")
 	@CacheLookup
 	private WebElement saveButton;
-	@FindBy(xpath = "//div[@id='cdk-overlay-6']/snack-bar-container/simple-snack-bar/span")
+	@FindBy(xpath = "//span[contains(text(),'Organization Added Successfully')]")
 	@CacheLookup
-	private WebElement successMessage;	
+	private WebElement OrgCreationSuccessMessage;	
 	@FindBy(xpath = "(//button[contains(.,'Skip')])[2]")
 	@CacheLookup
 	private WebElement skipButton;	
@@ -151,8 +151,9 @@ public class HomePage {
 	}
 	
 	public void verifyCreateOrgSuccessMessage(){
-		System.out.println(successMessage.getText());
-		Assert.assertEquals(successMessage.getText().contains(createOrgSuccessMessageText), true);
+		WDWait(OrgCreationSuccessMessage);
+		OrgCreationSuccessMessage.isDisplayed();
+		wait.until(ExpectedConditions.invisibilityOf(OrgCreationSuccessMessage));
 	}
 	
 	public void clickSkipButton(){

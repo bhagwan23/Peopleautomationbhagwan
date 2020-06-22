@@ -17,14 +17,16 @@ import org.testng.Assert;
 public class CreateProductPage {
 	private WebDriver driver;
 	private WebDriverWait wait;
-	
+
 	public CreateProductPage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;
-		PageFactory.initElements(driver, this);	
+		PageFactory.initElements(driver, this);
 	}
-	
-	/******************************* Create New Product PAGE ELEMENTS LOCATORS *******************/
+
+	/*******************************
+	 * Create New Product PAGE ELEMENTS LOCATORS
+	 *******************/
 	@FindBy(xpath = "//span[contains(.,'Products')]")
 	@CacheLookup
 	private WebElement productsTab;
@@ -100,11 +102,10 @@ public class CreateProductPage {
 	@FindBy(xpath = "//textarea[@formcontrolname='description']")
 	@CacheLookup
 	private WebElement descriptionInputBox;
-    private static String pageTitleText = "Deskera Books";
-	
-	
-	/***************  Accounting tab ******************************************/
-	
+	private static String pageTitleText = "Deskera Books";
+
+	/*************** Accounting tab ******************************************/
+
 	@FindBy(xpath = "//p[text()='Buy']")
 	@CacheLookup
 	private WebElement buyText;
@@ -141,8 +142,8 @@ public class CreateProductPage {
 	@FindBy(xpath = "//mat-label[contains(text(),' Sales Tax ')]/parent::label/parent::span/parent::div/input")
 	@CacheLookup
 	private WebElement salesTax;
-	
-	/***************  Inventory tab ******************************************/
+
+	/*************** Inventory tab ******************************************/
 	@FindBy(xpath = "//mat-label[contains(text(),'Unit of Measurement')]/parent::label/parent::span/parent::div/mat-select")
 	@CacheLookup
 	private WebElement unitOfMeasurement;
@@ -176,9 +177,11 @@ public class CreateProductPage {
 	@FindBy(xpath = "//span[text()='Product has been saved successfully']")
 	@CacheLookup
 	private WebElement createProductSuccessMessage;
-	
-	/***************  Bill Of Material tab ******************************************/
-	
+
+	/***************
+	 * Bill Of Material tab
+	 ******************************************/
+
 	@FindBy(xpath = "//div[contains(text(),'+ Add a Component Product')]")
 	@CacheLookup
 	private WebElement addComponentProductButton;
@@ -206,9 +209,10 @@ public class CreateProductPage {
 	@FindBy(xpath = "(//input[contains(@placeholder,'Quantity')])[2]")
 	@CacheLookup
 	private WebElement component2Quantity;
-	
-	
-	/******************************* Created Product Verification  Elements ***********/
+
+	/*******************************
+	 * Created Product Verification Elements
+	 ***********/
 	@FindBy(xpath = "//span[text()='Non-Tracked']//following::span[1][@class='count']")
 	@CacheLookup
 	private WebElement nonTrackedProductCount;
@@ -296,7 +300,7 @@ public class CreateProductPage {
 	@FindBy(xpath = "//button[contains(.,'Delete')]")
 	@CacheLookup
 	private WebElement deleteButton;
-	
+
 	/***********************************
 	 * 
 	 * Page objects manipulation methods
@@ -311,237 +315,250 @@ public class CreateProductPage {
 	public void WDWait(WebElement we) {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
-	
-	public void clickNewProductButton() throws InterruptedException{
-		
-		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Products')]"))); 
-		  //  driver.findElement(By.xpath("//div[@id='container-1']/dt-navbar/div/ul/li[10]/a/span")).click();
-	        Thread.sleep(3000); // THis is important because popup gets loaded and then disappears
-	        // driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click();
-	        for (int second = 0; second <= 10; second++) {
-	            if (second == 10) {
-	                System.out.println("Popup Not found clickin on new Contact Button");
-	                break;
-	            }
-	            try {
-	                if (driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).isDisplayed()) {
-	                    System.out.println("closig popup now 1");
-	                    driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click(); //popup close button
-	                    System.out.println("closed popup  1");
-	                    break;
-	                }
-	            } catch (Exception e) {
-	            }
-	            Thread.sleep(1000);
-	        }	
-	        newProductButton.click();	
+
+	public void clickNewProductButton() throws InterruptedException {
+
+		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Products')]")));
+		// driver.findElement(By.xpath("//div[@id='container-1']/dt-navbar/div/ul/li[10]/a/span")).click();
+		Thread.sleep(3000); // THis is important because popup gets loaded and
+							// then disappears
+		// driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click();
+		for (int second = 0; second <= 10; second++) {
+			if (second == 10) {
+				System.out.println("Popup Not found clickin on new Contact Button");
+				break;
+			}
+			try {
+				if (driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).isDisplayed()) {
+					System.out.println("closig popup now 1");
+					driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click(); // popup
+																									// close
+																									// button
+					System.out.println("closed popup  1");
+					break;
+				}
+			} catch (Exception e) {
+			}
+			Thread.sleep(1000);
+		}
+		newProductButton.click();
 	}
-	
-    public void verifyCreateNewProductPage(){
-    	WDWait(createNewProductText);
-    	createNewProductText.isDisplayed();
-    	generalInfoTab.isDisplayed();
-    	accountingTab.isDisplayed();
-    	inventoryTab.isDisplayed();
-    	infoIcon.isDisplayed();
-    	chatIcon.isDisplayed();
-    	notificationIcon.isDisplayed();
-    	quickActionsText.isDisplayed();
-    	customNumberFormat.isDisplayed();
-    	customFields.isDisplayed();
-    	addImageArea.isDisplayed();
-    	productTypedropdown.isDisplayed();
-    	productNumber.isDisplayed();
-    	ProductNameInputBox.isDisplayed();
-    	barcodeInputBox.isDisplayed();
-    	descriptionInputBox.isDisplayed();	
-    	saveButton.isDisplayed();
+
+	public void verifyCreateNewProductPage() {
+		WDWait(createNewProductText);
+		createNewProductText.isDisplayed();
+		generalInfoTab.isDisplayed();
+		accountingTab.isDisplayed();
+		inventoryTab.isDisplayed();
+		infoIcon.isDisplayed();
+		chatIcon.isDisplayed();
+		notificationIcon.isDisplayed();
+		quickActionsText.isDisplayed();
+		customNumberFormat.isDisplayed();
+		customFields.isDisplayed();
+		addImageArea.isDisplayed();
+		productTypedropdown.isDisplayed();
+		productNumber.isDisplayed();
+		ProductNameInputBox.isDisplayed();
+		barcodeInputBox.isDisplayed();
+		descriptionInputBox.isDisplayed();
+		saveButton.isDisplayed();
 	}
-	
-    public void selectNonTrackedProduct(){
-    	productTypedropdown.click();
-    	nonTrackedProductType.click();
-    }
-    
-    public void selectTrackedProduct(){
-    	productTypedropdown.click();
-    	trackedProductType.click();
-    }
-    
-    public void selectBOMProduct(){
-    	productTypedropdown.click();
-    	billsOfMaterialProductType.click();
-    }
-    public void enterProductDetails(String productname,String description,String barcode){
-    	ProductNameInputBox.sendKeys(productname);
+
+	public void selectNonTrackedProduct() {
+		productTypedropdown.click();
+		nonTrackedProductType.click();
+	}
+
+	public void selectTrackedProduct() {
+		productTypedropdown.click();
+		trackedProductType.click();
+	}
+
+	public void selectBOMProduct() {
+		productTypedropdown.click();
+		billsOfMaterialProductType.click();
+	}
+
+	public void enterProductDetails(String productname, String description, String barcode) {
+		ProductNameInputBox.sendKeys(productname);
 		barcodeInputBox.sendKeys(barcode);
-    	descriptionInputBox.sendKeys(description);
-    }
-    
-    public void clickAccountingTab(){
-    	WDWait(accountingTab);
-    	accountingTab.click();
-    }
-    
-    /************** Purchase account dropdown  should not have Sales and Sales Return , Sales Account should not have Purchase and Purchase Return values */
-    public void verifyPurchaseAccountDropdownValues(){
-    	purchaseAccount.click();
-    	 for(WebElement we:purchaseAccountDropdownValues)  
-         {  
-          for (int i=0; i<purchaseAccountDropdownValues.size(); i++){
-        	  if(we.getText().equalsIgnoreCase("Sales") || we.getText().equalsIgnoreCase("Sales Return")){
-        		Assert.fail(); 
-        	  }
-            }
-         } 
-    	 accountingTab.click();   	 
-    }
-    
-    public void verifySalesAccountDropdownValues(){
-    	salesAccount.click();
-    	
-    	 for(WebElement we:salesAccountDropdownValues)  
-         {  
-          for (int i=0; i<salesAccountDropdownValues.size(); i++){
-        	  if(we.getText().equalsIgnoreCase("Purchases") || we.getText().equalsIgnoreCase("Purchase Return")){
-        		Assert.fail(); 
-        	  }
-            }
-         } 
-    	 accountingTab.click();
-    }
-    
-	public void verifyAccountingTab(String defaultPurchaseAccount,String defaultPurchasePrice,String defaultPurchaseTax,String defaultSalesAccount, String defaultSalesPrice ,String defaultSalesTax){
+		descriptionInputBox.sendKeys(description);
+	}
+
+	public void clickAccountingTab() {
+		WDWait(accountingTab);
+		accountingTab.click();
+	}
+
+	/**************
+	 * Purchase account dropdown should not have Sales and Sales Return , Sales
+	 * Account should not have Purchase and Purchase Return values
+	 */
+	public void verifyPurchaseAccountDropdownValues() {
+		purchaseAccount.click();
+		for (WebElement we : purchaseAccountDropdownValues) {
+			for (int i = 0; i < purchaseAccountDropdownValues.size(); i++) {
+				if (we.getText().equalsIgnoreCase("Sales") || we.getText().equalsIgnoreCase("Sales Return")) {
+					Assert.fail();
+				}
+			}
+		}
+		accountingTab.click();
+	}
+
+	public void verifySalesAccountDropdownValues() {
+		salesAccount.click();
+
+		for (WebElement we : salesAccountDropdownValues) {
+			for (int i = 0; i < salesAccountDropdownValues.size(); i++) {
+				if (we.getText().equalsIgnoreCase("Purchases") || we.getText().equalsIgnoreCase("Purchase Return")) {
+					Assert.fail();
+				}
+			}
+		}
+		accountingTab.click();
+	}
+
+	public void verifyAccountingTab(String defaultPurchaseAccount, String defaultPurchasePrice,
+			String defaultPurchaseTax, String defaultSalesAccount, String defaultSalesPrice, String defaultSalesTax) {
 		WDWait(buyText);
 		buyText.isDisplayed();
 		Assert.assertEquals(purchaseAccount.getAttribute("value"), defaultPurchaseAccount);
 		Assert.assertEquals(purchasePrice.getAttribute("value"), defaultPurchasePrice);
 		purchaseTax.isDisplayed();
 		Assert.assertEquals(purchaseTax.getAttribute("value"), defaultPurchaseTax);
-	    priceIsTaxInclusiveCheckBox_Buy.isDisplayed();
+		priceIsTaxInclusiveCheckBox_Buy.isDisplayed();
 		sellText.isDisplayed();
 		Assert.assertEquals(salesAccount.getAttribute("value"), defaultSalesAccount);
 		Assert.assertEquals(salesPrice.getAttribute("value"), defaultSalesPrice);
-		salesTax.isDisplayed();		
-		Assert.assertEquals(salesTax.getAttribute("value"), defaultSalesTax);
-	    priceIsTaxInclusiveCheckBox_Sell.isDisplayed();
-	}
-	
-	public void verifyAccountingTabForBOMProduct(String defaultPurchaseAccount,String defaultPurchaseTax, String defaultSalesAccount, String defaultSalesPrice,String defaultSalesTax){
-		WDWait(buyText);
-		buyText.isDisplayed();
-		Assert.assertEquals(purchaseAccount.getAttribute("value"), defaultPurchaseAccount);
-	    purchaseTax.isDisplayed();
-		Assert.assertEquals(purchaseTax.getAttribute("value"), defaultPurchaseTax);
-	    priceIsTaxInclusiveCheckBox_Buy.isDisplayed();
-		sellText.isDisplayed();
-		Assert.assertEquals(salesAccount.getAttribute("value"), defaultSalesAccount);
-		Assert.assertEquals(salesPrice.getAttribute("value"), defaultSalesPrice);
-		salesTax.isDisplayed();	
+		salesTax.isDisplayed();
 		Assert.assertEquals(salesTax.getAttribute("value"), defaultSalesTax);
 		priceIsTaxInclusiveCheckBox_Sell.isDisplayed();
 	}
-	
-	public void enterAccountingInfo(String purchaseprice, String salesprice){
-    	purchasePrice.sendKeys(purchaseprice);
-    	salesPrice.sendKeys(salesprice);
-    }
-	
-	public void enterAccountingInfoForBOMProduct(String salesprice){
-    	salesPrice.sendKeys(salesprice);
-    }
-	
-	 public void clickInventoryTab(){
-	    WDWait(inventoryTab);
-	    inventoryTab.click();
+
+	public void verifyAccountingTabForBOMProduct(String defaultPurchaseAccount, String defaultPurchaseTax,
+			String defaultSalesAccount, String defaultSalesPrice, String defaultSalesTax) {
+		WDWait(buyText);
+		buyText.isDisplayed();
+		Assert.assertEquals(purchaseAccount.getAttribute("value"), defaultPurchaseAccount);
+		purchaseTax.isDisplayed();
+		Assert.assertEquals(purchaseTax.getAttribute("value"), defaultPurchaseTax);
+		priceIsTaxInclusiveCheckBox_Buy.isDisplayed();
+		sellText.isDisplayed();
+		Assert.assertEquals(salesAccount.getAttribute("value"), defaultSalesAccount);
+		Assert.assertEquals(salesPrice.getAttribute("value"), defaultSalesPrice);
+		salesTax.isDisplayed();
+		Assert.assertEquals(salesTax.getAttribute("value"), defaultSalesTax);
+		priceIsTaxInclusiveCheckBox_Sell.isDisplayed();
 	}
-	 
-	 public void verifyInventoryTabForNonTrackedProduct(String defaultUnitOfMeasurement){
-	    	WDWait(unitOfMeasurement);
-	    	unitOfMeasurement.isDisplayed();
-	    	Assert.assertEquals(unitOfMeasurement.getText(), defaultUnitOfMeasurement);
-	    	
-	    }
-	 
-	 public void verifyInventoryTabForTrackedProduct(String defaultUnitOfMeasurement,String defaultCostOfGoodSoldAccount,String defaultInventoryAccount,String defaultStockAdjustmentAccount) throws InterruptedException{
-		    Thread.sleep(4000);   
-		    WDWait(unitOfMeasurement);
-	    	unitOfMeasurement.isDisplayed();    	
-	    	Assert.assertEquals(unitOfMeasurement.getText(), defaultUnitOfMeasurement);
-	    	costOfGoodsSoldAccount.isDisplayed();
-	    	Assert.assertEquals(costOfGoodsSoldAccount.getAttribute("value"), defaultCostOfGoodSoldAccount);
-	    	inventoryAccount.isDisplayed();
-	    	Assert.assertEquals(inventoryAccount.getAttribute("value"), defaultInventoryAccount);
-	    	stockAdjustmentAccount.isDisplayed();
-	    	Assert.assertEquals(stockAdjustmentAccount.getAttribute("value"), defaultStockAdjustmentAccount);
-	    	Assert.assertEquals(openingQuanity.getAttribute("value"), "0");
-	    	Assert.assertEquals(openingValuation.getAttribute("value"), "0");
-	    	warehouse.isDisplayed();
-	    	Assert.assertEquals(warehouse.getText(), "Primary Warehouse");
-	    }
-	 
-	 public void verifyInventoryTabForBOMProduct(String defaultUnitOfMeasurement,String defaultCostOfGoodSoldAccount,String defaultManufacturingAccount,String defaultStockAdjustmentAccount) throws InterruptedException{
-		   Thread.sleep(4000); 
-		    WDWait(unitOfMeasurement);
-	    	unitOfMeasurement.isDisplayed();
-	    	Assert.assertEquals(unitOfMeasurement.getText(), defaultUnitOfMeasurement);
-	    	costOfGoodsSoldAccount.isDisplayed();
-	    	Assert.assertEquals(costOfGoodsSoldAccount.getAttribute("value"), defaultCostOfGoodSoldAccount);
-	    	inventoryAccount.isDisplayed();
-	    	stockAdjustmentAccount.isDisplayed();
-	    	Assert.assertEquals(stockAdjustmentAccount.getAttribute("value"), defaultStockAdjustmentAccount);
-	    	manufacturingAccount.isDisplayed();
-            Assert.assertEquals(manufacturingAccount.getAttribute("value"), defaultManufacturingAccount);
-	    	Assert.assertEquals(openingQuanity.getAttribute("value"), "0");
-	    	Assert.assertEquals(openingValuation.getAttribute("value"), "0");
-	    	warehouse.isDisplayed();  	
-	    	Assert.assertEquals(warehouse.getText(), "Primary Warehouse");
-	    }
-	
-		public void selectInventoryAccount(){
-			inventoryAccount.click();
-			WDWait(manufacturingCostInventoryAccount);
-			manufacturingCostInventoryAccount.click();
-		}
-	 public void enterOpeningBalanceDetails(String openingquanity,String openingvaluation){
-		 openingQuanity.sendKeys(openingquanity);
-		 openingValuation.sendKeys(openingvaluation);
-	 }
-	 
-	 public void clickBillOfMaterialTab(){
-	    	WDWait(billsOfMaterialTab);
-	    	billsOfMaterialTab.click();
-	    }
-	 
-	 public void verifyBillOfMaterialTab(){
-	    	WDWait(addComponentProductButton);
-	    	addComponentProductButton.isDisplayed();
-	    	addAdditionalCostButton.isDisplayed(); 
-	    }
-	 
-	 public void enterBOMDetails(String quantity1, String quantity2){
+
+	public void enterAccountingInfo(String purchaseprice, String salesprice) {
+		purchasePrice.sendKeys(purchaseprice);
+		salesPrice.sendKeys(salesprice);
+	}
+
+	public void enterAccountingInfoForBOMProduct(String salesprice) {
+		salesPrice.sendKeys(salesprice);
+	}
+
+	public void clickInventoryTab() {
+		WDWait(inventoryTab);
+		inventoryTab.click();
+	}
+
+	public void verifyInventoryTabForNonTrackedProduct(String defaultUnitOfMeasurement) {
+		WDWait(unitOfMeasurement);
+		unitOfMeasurement.isDisplayed();
+		Assert.assertEquals(unitOfMeasurement.getText(), defaultUnitOfMeasurement);
+
+	}
+
+	public void verifyInventoryTabForTrackedProduct(String defaultUnitOfMeasurement,
+			String defaultCostOfGoodSoldAccount, String defaultInventoryAccount, String defaultStockAdjustmentAccount)
+			throws InterruptedException {
+		Thread.sleep(4000);
+		WDWait(unitOfMeasurement);
+		unitOfMeasurement.isDisplayed();
+		Assert.assertEquals(unitOfMeasurement.getText(), defaultUnitOfMeasurement);
+		costOfGoodsSoldAccount.isDisplayed();
+		Assert.assertEquals(costOfGoodsSoldAccount.getAttribute("value"), defaultCostOfGoodSoldAccount);
+		inventoryAccount.isDisplayed();
+		Assert.assertEquals(inventoryAccount.getAttribute("value"), defaultInventoryAccount);
+		stockAdjustmentAccount.isDisplayed();
+		Assert.assertEquals(stockAdjustmentAccount.getAttribute("value"), defaultStockAdjustmentAccount);
+		Assert.assertEquals(openingQuanity.getAttribute("value"), "0");
+		Assert.assertEquals(openingValuation.getAttribute("value"), "0");
+		warehouse.isDisplayed();
+		Assert.assertEquals(warehouse.getText(), "Primary Warehouse");
+	}
+
+	public void verifyInventoryTabForBOMProduct(String defaultUnitOfMeasurement, String defaultCostOfGoodSoldAccount,
+			String defaultManufacturingAccount, String defaultStockAdjustmentAccount) throws InterruptedException {
+		Thread.sleep(4000);
+		WDWait(unitOfMeasurement);
+		unitOfMeasurement.isDisplayed();
+		Assert.assertEquals(unitOfMeasurement.getText(), defaultUnitOfMeasurement);
+		costOfGoodsSoldAccount.isDisplayed();
+		Assert.assertEquals(costOfGoodsSoldAccount.getAttribute("value"), defaultCostOfGoodSoldAccount);
+		inventoryAccount.isDisplayed();
+		stockAdjustmentAccount.isDisplayed();
+		Assert.assertEquals(stockAdjustmentAccount.getAttribute("value"), defaultStockAdjustmentAccount);
+		manufacturingAccount.isDisplayed();
+		Assert.assertEquals(manufacturingAccount.getAttribute("value"), defaultManufacturingAccount);
+		Assert.assertEquals(openingQuanity.getAttribute("value"), "0");
+		Assert.assertEquals(openingValuation.getAttribute("value"), "0");
+		warehouse.isDisplayed();
+		Assert.assertEquals(warehouse.getText(), "Primary Warehouse");
+	}
+
+	public void selectInventoryAccount() {
+		inventoryAccount.click();
+		WDWait(manufacturingCostInventoryAccount);
+		manufacturingCostInventoryAccount.click();
+	}
+
+	public void enterOpeningBalanceDetails(String openingquanity, String openingvaluation) {
+		openingQuanity.sendKeys(openingquanity);
+		openingValuation.sendKeys(openingvaluation);
+	}
+
+	public void clickBillOfMaterialTab() {
+		WDWait(billsOfMaterialTab);
+		billsOfMaterialTab.click();
+	}
+
+	public void verifyBillOfMaterialTab() {
 		WDWait(addComponentProductButton);
-		 addComponentProductButton.click();
-		 WDWait(componentProduct1TextBox);
-		 componentProduct1TextBox.click();
-		 WDWait(componentProduct1Value);
-		 componentProduct1Value.click();
-		 component1Quantity.sendKeys(quantity1);
-	 }
-	public void clickSaveButton(){
+		addComponentProductButton.isDisplayed();
+		addAdditionalCostButton.isDisplayed();
+	}
+
+	public void enterBOMDetails(String quantity1, String quantity2) {
+		WDWait(addComponentProductButton);
+		addComponentProductButton.click();
+		WDWait(componentProduct1TextBox);
+		componentProduct1TextBox.click();
+		WDWait(componentProduct1Value);
+		componentProduct1Value.click();
+		component1Quantity.sendKeys(quantity1);
+	}
+
+	public void clickSaveButton() {
 		WDWait(saveButton);
+		wait.until(ExpectedConditions.elementToBeClickable(saveButton));
 		saveButton.click();
 	}
-	
-	public void verifyCreateProductSuccessMessage(){
+
+	public void verifyCreateProductSuccessMessage() {
 		WDWait(createProductSuccessMessage);
 		createProductSuccessMessage.isDisplayed();
 		wait.until(ExpectedConditions.invisibilityOf(createProductSuccessMessage));
 	}
-	
-	public void verifyTrackedProductCount() throws InterruptedException{
-		//Thread.sleep(5000);
-		if(startByAddingOrImportingYourProducsText.size()!=0){
+
+	public void verifyTrackedProductCount() throws InterruptedException {
+		// Thread.sleep(5000);
+		if (startByAddingOrImportingYourProducsText.size() != 0) {
 			Thread.sleep(2000);
 			closeIcon.click();
 		}
@@ -549,10 +566,10 @@ public class CreateProductPage {
 		trackedProductCount.isDisplayed();
 		Assert.assertEquals(trackedProductCount.getText(), "1");
 	}
-	
-	public void verifyNonTrackedProductCount() throws InterruptedException{
-		//Thread.sleep(5000);
-		if(startByAddingOrImportingYourProducsText.size()!=0){
+
+	public void verifyNonTrackedProductCount() throws InterruptedException {
+		// Thread.sleep(5000);
+		if (startByAddingOrImportingYourProducsText.size() != 0) {
 			Thread.sleep(2000);
 			closeIcon.click();
 		}
@@ -560,10 +577,10 @@ public class CreateProductPage {
 		nonTrackedProductCount.isDisplayed();
 		Assert.assertEquals(nonTrackedProductCount.getText(), "1");
 	}
-	
-	public void verifyBomProductCount() throws InterruptedException{
-		//Thread.sleep(5000);
-		if(startByAddingOrImportingYourProducsText.size()!=0){
+
+	public void verifyBomProductCount() throws InterruptedException {
+		// Thread.sleep(5000);
+		if (startByAddingOrImportingYourProducsText.size() != 0) {
 			Thread.sleep(2000);
 			closeIcon.click();
 		}
@@ -571,20 +588,22 @@ public class CreateProductPage {
 		BOMProductCount.isDisplayed();
 		Assert.assertEquals(BOMProductCount.getText(), "1");
 	}
-	
-	public void verifyCreatedTrackedProduct(String productname, String description,String barcode,String defaultPurchaseAccount,String purchasePrice,String defaultSalesAccount ,String salesPrice,String defaultPurchaseTax,String defaultSalesTax) throws InterruptedException{
+
+	public void verifyCreatedTrackedProduct(String productname, String description, String barcode,
+			String defaultPurchaseAccount, String purchasePrice, String defaultSalesAccount, String salesPrice,
+			String defaultPurchaseTax, String defaultSalesTax) throws InterruptedException {
 		WDWait(searchRecordsBox);
 		Thread.sleep(2000);
 		searchRecordsBox.click();
 		searchRecordsBox.sendKeys(productname);
 		Thread.sleep(2000);
-		Actions action=new Actions(driver);
-		action.sendKeys(Keys.ENTER).perform();	
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.ENTER).perform();
 		searchedRecord.click();
 		WDWait(displayedProducName);
 		Assert.assertEquals(displayedProducName.getText(), productname);
 		Assert.assertEquals(displayedProducType.getText(), "Tracked");
-		Assert.assertEquals(displayedBarcode.getText(), barcode);	
+		Assert.assertEquals(displayedBarcode.getText(), barcode);
 		Assert.assertEquals(displayedDescription.getText(), description);
 		action.moveToElement(displayedPurchaseAccount).perform();
 		Assert.assertEquals(displayedPurchaseAccount.getText(), defaultPurchaseAccount);
@@ -601,15 +620,17 @@ public class CreateProductPage {
 		Assert.assertEquals(displayedSalesTax.getText(), defaultSalesTax);
 		uncheckedPriceIsTaxInclusiveCheckbox_Sell.isDisplayed();
 	}
-	
-	public void verifyCreatedNonTrackedProduct(String productname, String description,String barcode,String defaultPurchaseAccount,String purchasePrice,String defaultSalesAccount ,String salesPrice,String defaultPurchaseTax,String defaultSalesTax) throws InterruptedException{
+
+	public void verifyCreatedNonTrackedProduct(String productname, String description, String barcode,
+			String defaultPurchaseAccount, String purchasePrice, String defaultSalesAccount, String salesPrice,
+			String defaultPurchaseTax, String defaultSalesTax) throws InterruptedException {
 		WDWait(searchRecordsBox);
 		searchRecordsBox.click();
 		searchRecordsBox.sendKeys(productname);
 		Thread.sleep(2000);
-		Actions action=new Actions(driver);
+		Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER).build().perform();
-		//WDWait(searchedRecord);
+		// WDWait(searchedRecord);
 		searchedRecord.click();
 		WDWait(displayedProducName);
 		Assert.assertEquals(displayedProducName.getText(), productname);
@@ -619,7 +640,7 @@ public class CreateProductPage {
 		action.moveToElement(displayedPurchaseAccount).perform();
 		Assert.assertEquals(displayedPurchaseAccount.getText(), defaultPurchaseAccount);
 		action.moveToElement(displayedPurchasePrice).perform();
-		Assert.assertEquals(displayedPurchasePrice.getText(), purchasePrice);		
+		Assert.assertEquals(displayedPurchasePrice.getText(), purchasePrice);
 		action.moveToElement(displayedPurchaseTax).perform();
 		Assert.assertEquals(displayedPurchaseTax.getText(), defaultPurchaseTax);
 		uncheckedPriceIsTaxInclusiveCheckbox_Buy.isDisplayed();
@@ -631,15 +652,17 @@ public class CreateProductPage {
 		Assert.assertEquals(displayedSalesTax.getText(), defaultSalesTax);
 		uncheckedPriceIsTaxInclusiveCheckbox_Sell.isDisplayed();
 	}
-	
-	public void verifyInventoryDetailsForCreatedNonTrackedProduct(String defaultUnitOfMeasurement){
-		Actions action=new Actions(driver);
+
+	public void verifyInventoryDetailsForCreatedNonTrackedProduct(String defaultUnitOfMeasurement) {
+		Actions action = new Actions(driver);
 		action.moveToElement(displayedUnitOfMeasurement).perform();
 		Assert.assertEquals(displayedUnitOfMeasurement.getText(), defaultUnitOfMeasurement);
 	}
-	
-	public void verifyInventoryDetailsForCreatedTrackedProduct(String defaultUnitOfMeasurement,String defaultCostOfGoodSoldAccount,String defaultInventoryAccount,String defaultStockAdjustmentAccount,String defaultWarehouseCode,String openingQuanity,String openingValuation){
-		Actions action=new Actions(driver);
+
+	public void verifyInventoryDetailsForCreatedTrackedProduct(String defaultUnitOfMeasurement,
+			String defaultCostOfGoodSoldAccount, String defaultInventoryAccount, String defaultStockAdjustmentAccount,
+			String defaultWarehouseCode, String openingQuanity, String openingValuation) {
+		Actions action = new Actions(driver);
 		action.moveToElement(displayedUnitOfMeasurement).perform();
 		Assert.assertEquals(displayedUnitOfMeasurement.getText(), defaultUnitOfMeasurement);
 		action.moveToElement(displayedCostOfGoodsAccount).perform();
@@ -653,17 +676,19 @@ public class CreateProductPage {
 		action.moveToElement(displayedOpeningQuantity).perform();
 		Assert.assertEquals(displayedOpeningQuantity.getText(), openingQuanity);
 		action.moveToElement(displayedOpeningValuation).perform();
-		Assert.assertEquals(displayedOpeningValuation.getText(), openingValuation);		
+		Assert.assertEquals(displayedOpeningValuation.getText(), openingValuation);
 	}
-	
-	public void verifyCreatedBOMProduct(String productname, String description,String barcode,String defaultPurchaseAccount,String defaultSalesAccount ,String salesPrice,String defaultPurchaseTax,String defaultSalesTax) throws InterruptedException{
+
+	public void verifyCreatedBOMProduct(String productname, String description, String barcode,
+			String defaultPurchaseAccount, String defaultSalesAccount, String salesPrice, String defaultPurchaseTax,
+			String defaultSalesTax) throws InterruptedException {
 		WDWait(searchRecordsBox);
 		searchRecordsBox.click();
 		searchRecordsBox.sendKeys(productname);
 		Thread.sleep(2000);
-		Actions action=new Actions(driver);
+		Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER).perform();
-		//WDWait(searchedRecord);
+		// WDWait(searchedRecord);
 		searchedRecord.click();
 		WDWait(displayedProducName);
 		Assert.assertEquals(displayedProducName.getText(), productname);
@@ -682,11 +707,13 @@ public class CreateProductPage {
 		Assert.assertEquals(displayedSalesPrice.getText(), salesPrice);
 		action.moveToElement(displayedSalesTax).perform();
 		Assert.assertEquals(displayedSalesTax.getText(), defaultSalesTax);
-		uncheckedPriceIsTaxInclusiveCheckbox_Sell.isDisplayed();	
+		uncheckedPriceIsTaxInclusiveCheckbox_Sell.isDisplayed();
 	}
-	
-	public void verifyInventoryDetailsForCreatedBOMProduct(String defaultUnitOfMeasurement,String defaultCostOfGoodSoldAccount,String defaultStockAdjustmentAccount,String defaultWarehouseCode,String openingQuanity,String openingValuation){
-		Actions action=new Actions(driver);
+
+	public void verifyInventoryDetailsForCreatedBOMProduct(String defaultUnitOfMeasurement,
+			String defaultCostOfGoodSoldAccount, String defaultStockAdjustmentAccount, String defaultWarehouseCode,
+			String openingQuanity, String openingValuation) {
+		Actions action = new Actions(driver);
 		action.moveToElement(displayedUnitOfMeasurement).perform();
 		Assert.assertEquals(displayedUnitOfMeasurement.getText(), defaultUnitOfMeasurement);
 		action.moveToElement(displayedCostOfGoodsAccount).perform();
@@ -700,25 +727,26 @@ public class CreateProductPage {
 		action.moveToElement(displayedOpeningQuantity).perform();
 		Assert.assertEquals(displayedOpeningQuantity.getText(), openingQuanity);
 		action.moveToElement(displayedOpeningValuation).perform();
-		Assert.assertEquals(displayedOpeningValuation.getText(), openingValuation);		
+		Assert.assertEquals(displayedOpeningValuation.getText(), openingValuation);
 	}
-	
-	
-	/***************************** Edit Product Methods ******************************/
-	
-	public void selectFirstProduct(){
+
+	/*****************************
+	 * Edit Product Methods
+	 ******************************/
+
+	public void selectFirstProduct() {
 		WDWait(firstProduct);
 		firstProduct.click();
 	}
-	
-	public void clickThreeDotsOnFirstProduct(){
+
+	public void clickThreeDotsOnFirstProduct() {
 		WDWait(threeDotsOnFirstProduct);
 		threeDotsOnFirstProduct.click();
 	}
-	
-	public void clickTEditButton(){
+
+	public void clickTEditButton() {
 		WDWait(editButton);
 		editButton.click();
 	}
-	
+
 }

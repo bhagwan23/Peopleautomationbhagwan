@@ -216,10 +216,16 @@ public class SignUpPage {
 		//DateFormat df = new SimpleDateFormat("ddMMyyHHmmss");
 		//Date dateobj = new Date();
 		userSignupEmail.sendKeys(email);
-		enteredSignUpEmail=userSignupEmail.getAttribute("value");
 		WDWait(userSignupPhone);
 		countryCodeSelector.click();
 		// Country specific selector
+		if (countryCode.equalsIgnoreCase("SG")) {
+			WDWait(SGCode);
+			SGCode.click();
+			Random rand = new Random();
+			String id = String.format("%04d", rand.nextInt(10000));
+			userSignupPhone.sendKeys("9988"+id);
+		}
 		if (countryCode.equalsIgnoreCase("US")) {
 			WDWait(USCode);
 			USCode.click();
@@ -233,11 +239,7 @@ public class SignUpPage {
 			String id = String.format("%04d", rand.nextInt(10000));
 			userSignupPhone.sendKeys("998866"+id);
 		}
-		if (countryCode.equalsIgnoreCase("SG")) {
-			WDWait(SGCode);
-			SGCode.click();
-			userSignupPhone.sendKeys(phoneNumber);
-		}
+		
 	}
 	public void enterEmailId(String email) {
 		WDWait(userSignupEmail);

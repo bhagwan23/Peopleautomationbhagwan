@@ -5,7 +5,6 @@ import java.util.Random;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import deskera.web.automation.core.DriverFactory;
 import deskera.web.automation.core.TestRailId;
 import deskera.web.automation.erp.bvtSG.pages.CreateProductPage;
@@ -14,7 +13,7 @@ import deskera.web.automation.erp.bvtSG.pages.LoginPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
-public class AddNonTrackedProductTest extends DriverFactory{
+public class EditProductTest extends DriverFactory{
 
 	String confPath, url;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
@@ -34,8 +33,8 @@ public class AddNonTrackedProductTest extends DriverFactory{
 	
 	@TestRailId(testRailId = 20263)
 	@Test()
-	@Description(value = "Add Non-Tracked Product ")
-	public void addNonTrackedProductTest() throws InterruptedException {
+	@Description(value = "Edit Product ")
+	public void editProductTest() throws InterruptedException {
 		// Read test specific data from config
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
@@ -66,22 +65,10 @@ public class AddNonTrackedProductTest extends DriverFactory{
 		loginPage.clickSignIn();
 		homePage.verifyPageTitle();
 		homePage.clickProductsTab();
-		createProductPage.clickNewProductButton();
-		createProductPage.verifyPageTitle();
-		createProductPage.verifyCreateNewProductPage();
-		createProductPage.selectNonTrackedProduct();
-		createProductPage.enterProductDetails(nonTrackedProductName,description,barcode);
-		createProductPage.clickAccountingTab();
-	    createProductPage.verifyPurchaseAccountDropdownValues();
-		createProductPage.verifySalesAccountDropdownValues();
-		createProductPage.verifyAccountingTab(defaultPurchaseAccount,defaultPurchasePrice,defaultPurchaseTax, defaultSalesAccount, defaultSalesPrice,defaultSalesTax);
-		createProductPage.enterAccountingInfo(purchasePrice, salesPrice);
-		createProductPage.clickInventoryTab();
-		createProductPage.verifyInventoryTabForNonTrackedProduct(defaultUnitOfMeasurement);
-		createProductPage.clickSaveButton();
-		createProductPage.verifyCreateProductSuccessMessage();
-		createProductPage.verifyNonTrackedProductCount();
-		createProductPage.verifyCreatedNonTrackedProduct(nonTrackedProductName, description,barcode,defaultPurchaseAccount,purchasePrice,defaultSalesAccount,salesPrice,defaultPurchaseTax,defaultSalesTax);
-		createProductPage.verifyInventoryDetailsForCreatedNonTrackedProduct(defaultUnitOfMeasurement);
+		createProductPage.clickThreeDotsOnFirstProduct();
+		createProductPage.clickTEditButton();
+		
+		
+		
 }
 }

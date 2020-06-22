@@ -123,7 +123,11 @@ public class ContactsPage {
 	@FindBy(xpath="//input[@id='mat-input-4']")
 	@CacheLookup
 	private WebElement accountReceivable;
-
+	
+	@FindBy(xpath= "//span[text()='Contact Successfuly Added']")
+	@CacheLookup
+	private WebElement createContactSuccessMessage;
+	
 	/******************************* Verify Added contacts elements *******************/
 
 	@FindBy(xpath= "//mat-cell[contains(text(),'Edward')]")
@@ -149,12 +153,23 @@ public class ContactsPage {
 	@FindBy(xpath= "//div[contains(text(),'Edward')]")
 	@CacheLookup
 	private WebElement enteredContactName;
-	@FindBy(xpath= "//*[@id='container-3']/extn-content/add-contact/div/div/view-contact-form/div[2]/div[1]/div[3]/div[2]")
+	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/mat-table/mat-row[1]/mat-cell[2]")
 	@CacheLookup
 	private WebElement enteredNumber;
-	@FindBy(xpath= "//div[@class='menu-item ng-star-inserted']")
+	
+	@FindBy(xpath= "//span[@class='menu-label ng-star-inserted'][contains(text(),'Custom Fields')]")
 	@CacheLookup
 	private WebElement customField;
+	@FindBy(xpath= "//span[contains(text(),'Cancel')]")
+	@CacheLookup
+	private WebElement customCancelButton;
+	@FindBy(xpath= "//span[contains(text(),'Custom Number Format')]")
+	@CacheLookup
+	private WebElement customNumberFormat;
+	@FindBy(xpath= "//span[contains(text(),'Cancel')]")
+	@CacheLookup
+	private WebElement cusomNumberFormatCancelButton;
+	
 	@FindBy(xpath= "//div[@class='field-value'][contains(text(),'desk')]")
 	@CacheLookup
 	private WebElement contactOrg;
@@ -175,7 +190,17 @@ public class ContactsPage {
 	private WebElement enteredPaymentTerms;
 	String buyAccount,sellAccount;
 
-
+	@FindBy(xpath= "//input[@placeholder='Search Records']")
+	@CacheLookup
+	private WebElement searchRecord;
+	
+	@FindBy(xpath= "//button[@class='cancel-btn mat-icon-button mat-button-base mat-primary']//mat-icon[@class='mat-icon notranslate mat-icon-no-color']//*[local-name()='svg']")
+	@CacheLookup
+	private WebElement contactBackButton;
+	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/div[2]/div[2]/div[1]/span[2]")
+	@CacheLookup
+	private WebElement allSummaryCount;
+	
 	/******************************* Contacts Object Manipulation Methods *******************/
 	public void openURL(String URL) {
 		driver.get(URL);
@@ -228,9 +253,24 @@ public class ContactsPage {
 		WDWait(newContactButton);
 		newContactButton.isDisplayed();
 		newContactButton.click();
+		
+		WDWait(customNumberFormat);
+		customNumberFormat.isDisplayed();
+		customNumberFormat.click();
+		WDWait(cusomNumberFormatCancelButton);
+		cusomNumberFormatCancelButton.isDisplayed();
+		cusomNumberFormatCancelButton.click();
+		WDWait(customField);
+		customField.isDisplayed();
+		customField.click();
+		WDWait(customCancelButton);
+		customCancelButton.isDisplayed();
+		customCancelButton.click();
+		
 		/*WDWait(addContactButton);   //Add contacts through Add Contact button
 		addContactButton.isDisplayed();
 		addContactButton.click();*/
+		
 		WDWait(generalInfotab);
 		generalInfotab.isDisplayed();
 		generalInfotab.click();
@@ -249,7 +289,6 @@ public class ContactsPage {
 		currency.isDisplayed();
 		Assert.assertEquals(currency.getText(), "Singapore Dollar (SGD)");
 		autoNumberingFormat.isDisplayed();
-
 
 		WDWait(saveButton);
 		saveButton.isDisplayed();
@@ -270,9 +309,13 @@ public class ContactsPage {
 		selectNET45.isDisplayed();
 		selectNET30.isDisplayed();
 		selectNET30.click();
+		
+		WDWait(accountPayable);
 		accountPayable.isDisplayed();
 		buyAccount=accountPayable.getAttribute("value");
 		Assert.assertEquals(accountPayable.getAttribute("value"), "Accounts Payable");
+		
+		WDWait(accountReceivable);
 		accountReceivable.isDisplayed();
 		sellAccount=accountReceivable.getAttribute("value");
 		Assert.assertEquals(accountReceivable.getAttribute("value"), "Accounts Receivable");
@@ -303,13 +346,19 @@ public class ContactsPage {
 	public void clickSaveButton(){
 		saveButton.click();
 	}
-	public void verifyAddedContacts(String cName, String UENNumber, String TAXNumber){
-		WDWait(addedContactName);
+	public void verifyAddedContacts(String cName, String UENNumber, String TAXNumber) throws InterruptedException{
+		/*WDWait(addedContactName);
 		addedContactName.isDisplayed();
 		addedContactName.click();
 		enteredContactName.isDisplayed();
-		contactName.isDisplayed();
+		contactName.isDisplayed();*/
 
+		WDWait(searchRecord);
+		searchRecord.click();
+		searchRecord.sendKeys(cName);
+		
+		WDWait(enteredNumber);
+		enteredNumber.click();
 		Assert.assertEquals(contactName.getText(), cName);
 		Assert.assertEquals(uENnumber.getText(), UENNumber);
 		Assert.assertEquals(tax.getText(), TAXNumber);
@@ -318,18 +367,37 @@ public class ContactsPage {
 		scrollToElement(accountReceivable);
 		Assert.assertEquals(accountReceivable.getText(), sellAccount);
 
-
+		
+		
 		contactOrg.isDisplayed();
+		WDWait(customField);
 		customField.isDisplayed();
+		customField.click();
+		WDWait(customCancelButton);
+		customCancelButton.isDisplayed();
+		customCancelButton.click();
 		//enteredNumber.isDisplayed();
 		//enteredUEN.isDisplayed();
 		enteredCurrency.isDisplayed();
 		enteredTaxNumber.isDisplayed();
 		//enteredpurchaseAccount.isDisplayed();
 		//enteredPaymentTerms.isDisplayed();
+		contactBackButton.isDisplayed();
+		contactBackButton.click();
+	}
+	
+	public void verifyContactCreatedSucessMessage(){
+		WDWait(createContactSuccessMessage);
+		createContactSuccessMessage.isDisplayed();
+        wait.until(ExpectedConditions.invisibilityOf(createContactSuccessMessage));
 
 	}
+	public void allSummaryCount(){
+		WDWait(allSummaryCount);
+		allSummaryCount.isDisplayed();
+	    Assert.assertEquals(allSummaryCount.getText(), "2");
 
+	}
 
 	public void scrollToElement(WebElement element)
 	{

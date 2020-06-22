@@ -40,6 +40,7 @@ public class SignUpTest extends DriverFactory {
 		ReadPropertyUtil.writeProperty("userEmail", confPath,"testauto_"+df.format(dateobj)+"@getnada.com");
 		// Read test specific data from config
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		System.out.println("Signup Email Address ----->"+emailAddress);
 		String phone = ReadPropertyUtil.readProperty("phone", confPath);
 		String countryCode = ReadPropertyUtil.readProperty("countryCode", confPath);
 		String accountName = ReadPropertyUtil.readProperty("userFirstName", confPath);

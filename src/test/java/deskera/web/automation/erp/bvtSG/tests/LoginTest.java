@@ -34,6 +34,7 @@ public class LoginTest extends DriverFactory {
 		// Read test specific data from config
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
+		System.out.println("Login Email Address ----->"+emailAddress);
 		// Create Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
 		

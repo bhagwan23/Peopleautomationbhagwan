@@ -111,7 +111,7 @@ public class ContactsPage {
 	@FindBy(xpath= "//input[@id='mat-input-11']")
 	@CacheLookup
 	private WebElement country;
-	@FindBy(xpath= "//span[contains(text(),'Save')]")
+	@FindBy(xpath= "//button[@class='mat-flat-button mat-button-base mat-primary']")
 	@CacheLookup
 	private WebElement saveButton;
 	@FindBy(xpath= "//div//i[contains(@class,'fa-times close-button m')]//self::i[1]")
@@ -205,8 +205,8 @@ public class ContactsPage {
 		driver.findElement(By.xpath("//span[text()=' Contacts ']")).click();
 		Thread.sleep(3000); // THis is important because popup gets loaded and then disappears
 		// driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click();
-		for (int second = 0; second <= 30; second++) {
-			if (second == 30) {
+		for (int second = 0; second <= 15; second++) {
+			if (second == 15) {
 				System.out.println("Popup Not found clickin on new Contact Button");
 				break;
 			}
@@ -321,12 +321,12 @@ public class ContactsPage {
 
 		contactOrg.isDisplayed();
 		customField.isDisplayed();
-		enteredNumber.isDisplayed();
-		enteredUEN.isDisplayed();
+		//enteredNumber.isDisplayed();
+		//enteredUEN.isDisplayed();
 		enteredCurrency.isDisplayed();
 		enteredTaxNumber.isDisplayed();
-		enteredpurchaseAccount.isDisplayed();
-		enteredPaymentTerms.isDisplayed();
+		//enteredpurchaseAccount.isDisplayed();
+		//enteredPaymentTerms.isDisplayed();
 
 	}
 

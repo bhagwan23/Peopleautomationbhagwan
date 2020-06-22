@@ -1,5 +1,7 @@
 package deskera.web.automation.erp.bvtSG.tests;
 
+import java.util.Random;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -29,20 +31,33 @@ public class AddTrackedProductTest extends DriverFactory{
 		url = URL;
 	}
 	
-	@TestRailId(testRailId = 16961)
+	@TestRailId(testRailId = 20262)
 	@Test()
-	@Description(value = "Create Organization ")
+	@Description(value = "Add Tracked Product")
 	public void addTrackedProductTest() throws InterruptedException {
 		// Read test specific data from config
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
 		String trackedProductName = ReadPropertyUtil.readProperty("trackedProductName", confPath);	
-		//String barcode = ReadPropertyUtil.readProperty("barcode", confPath);	
 		String description = ReadPropertyUtil.readProperty("description", confPath);	
+		Random rand = new Random();
+		String barcode = String.format("%04d", rand.nextInt(1000));
 		String purchasePrice = ReadPropertyUtil.readProperty("purchasePrice", confPath);	
 		String salesPrice = ReadPropertyUtil.readProperty("salesPrice", confPath);	
 		String openingQuanity = ReadPropertyUtil.readProperty("openingQuanity", confPath);	
 		String openingValuation = ReadPropertyUtil.readProperty("openingValuation", confPath);
+		String defaultPurchaseAccount = ReadPropertyUtil.readProperty("defaultPurchaseAccount", confPath);	
+		String defaultPurchasePrice = ReadPropertyUtil.readProperty("defaultPurchasePrice", confPath);	
+		String defaultPurchaseTax = ReadPropertyUtil.readProperty("defaultPurchaseTax", confPath);	
+		String defaultSalesAccount = ReadPropertyUtil.readProperty("defaultSalesAccount", confPath);	
+		String defaultSalesPrice = ReadPropertyUtil.readProperty("defaultSalesPrice", confPath);
+		String defaultSalesTax = ReadPropertyUtil.readProperty("defaultSalesTax", confPath);	
+		String defaultUnitOfMeasurement = ReadPropertyUtil.readProperty("defaultUnitOfMeasurement", confPath);	
+		String defaultCostOfGoodSoldAccount = ReadPropertyUtil.readProperty("defaultCostOfGoodSoldAccount", confPath);	
+		String defaultInventoryAccount = ReadPropertyUtil.readProperty("defaultInventoryAccount", confPath);	
+		String defaultStockAdjustmentAccount = ReadPropertyUtil.readProperty("defaultStockAdjustmentAccount", confPath);
+		String defaultWarehouseCode = ReadPropertyUtil.readProperty("defaultWarehouseCode", confPath);
+		
 		// Create Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
 		HomePage homePage=new HomePage(driver, wait);
@@ -59,14 +74,19 @@ public class AddTrackedProductTest extends DriverFactory{
 		createProductPage.verifyPageTitle();
 		createProductPage.verifyCreateNewProductPage();
 		createProductPage.selectTrackedProduct();
-		createProductPage.enterProductDetails(trackedProductName,description);
+		createProductPage.enterProductDetails(trackedProductName,description,barcode);
 		createProductPage.clickAccountingTab();
-		createProductPage.verifyAccountingTab();
+		createProductPage.verifyPurchaseAccountDropdownValues();
+		createProductPage.verifySalesAccountDropdownValues();
+		createProductPage.verifyAccountingTab(defaultPurchaseAccount,defaultPurchasePrice,defaultPurchaseTax, defaultSalesAccount, defaultSalesPrice,defaultSalesTax);
 		createProductPage.enterAccountingInfo(purchasePrice, salesPrice);
 		createProductPage.clickInventoryTab();
-		createProductPage.verifyInventoryTabForTrackedProduct();
+		createProductPage.verifyInventoryTabForTrackedProduct(defaultUnitOfMeasurement,defaultCostOfGoodSoldAccount,defaultInventoryAccount,defaultStockAdjustmentAccount);
 		createProductPage.enterOpeningBalanceDetails(openingQuanity, openingValuation);
 		createProductPage.clickSaveButton();
-		createProductPage.verifyCreatedTrackedProduct(trackedProductName, description);
+		createProductPage.verifyCreateProductSuccessMessage();
+		createProductPage.verifyTrackedProductCount();
+		createProductPage.verifyCreatedTrackedProduct(trackedProductName, description,barcode,defaultPurchaseAccount,purchasePrice,defaultSalesAccount,salesPrice,defaultPurchaseTax,defaultSalesTax);
+		createProductPage.verifyInventoryDetailsForCreatedTrackedProduct(defaultUnitOfMeasurement, defaultCostOfGoodSoldAccount, defaultInventoryAccount, defaultStockAdjustmentAccount, defaultWarehouseCode, openingQuanity, openingValuation);
  }
 }

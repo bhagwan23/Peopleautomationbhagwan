@@ -8,7 +8,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import deskera.web.automation.core.DriverFactory;
 import deskera.web.automation.core.TestRailId;
-import deskera.web.automation.go.pages.SignUpPage;
+import deskera.web.automation.erp.bvtSG.pages.SignUpPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 //@Listeners({ TestListenerOnFailure.class })

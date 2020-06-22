@@ -1,1 +1,1 @@
-mvn clean test -DsuiteXmlFile=src/test/resources/TestSuites/bvtSG/bvt_sg.xml -Dtest_env=xyz allure:report -DtestRunId=1
+mvn clean test -DsuiteXmlFile=src/test/resources/TestSuites/bvtSG/sg1.xml -Dtest_env=xyz allure:report -DtestRunId=1

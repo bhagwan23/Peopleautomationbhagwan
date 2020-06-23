@@ -5,6 +5,7 @@ import java.util.Random;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
 import deskera.web.automation.core.DriverFactory;
 import deskera.web.automation.core.TestRailId;
 import deskera.web.automation.erp.bvtSG.pages.CreateProductPage;
@@ -13,8 +14,7 @@ import deskera.web.automation.erp.bvtSG.pages.LoginPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
-public class EditProductTest extends DriverFactory{
-
+public class CopyProductTest extends DriverFactory {
 	String confPath, url;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
 
@@ -33,12 +33,12 @@ public class EditProductTest extends DriverFactory{
 	
 	@TestRailId(testRailId = 20263)
 	@Test()
-	@Description(value = "Edit Product ")
-	public void editProductTest() throws InterruptedException {
+	@Description(value = "Copy Product ")
+	public void copyProductTest() throws InterruptedException {
 		// Read test specific data from config
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
-		String nonTrackedProductName1 = ReadPropertyUtil.readProperty("nonTrackedProductName1", confPath);	
+		String trackedProductName1 = ReadPropertyUtil.readProperty("trackedProductName1", confPath);	
 		//String barcode = ReadPropertyUtil.readProperty("barcode", confPath);	
 		String description1 = ReadPropertyUtil.readProperty("description1", confPath);
 		Random random = new Random();
@@ -49,7 +49,13 @@ public class EditProductTest extends DriverFactory{
 		String defaultPurchaseTax = ReadPropertyUtil.readProperty("defaultPurchaseTax", confPath);	
 		String updatedSalesAccount = ReadPropertyUtil.readProperty("updatedSalesAccount", confPath);	
 		String defaultSalesTax = ReadPropertyUtil.readProperty("defaultSalesTax", confPath);	
-		String updatedUnitOfMeasurement = ReadPropertyUtil.readProperty("updatedUnitOfMeasurement", confPath);	
+		String defaultUnitOfMeasurement = ReadPropertyUtil.readProperty("defaultUnitOfMeasurement", confPath);	
+		String defaultCostOfGoodSoldAccount = ReadPropertyUtil.readProperty("defaultCostOfGoodSoldAccount", confPath);	
+		String defaultInventoryAccount = ReadPropertyUtil.readProperty("defaultInventoryAccount", confPath);		
+		String defaultStockAdjustmentAccount = ReadPropertyUtil.readProperty("defaultStockAdjustmentAccount", confPath);	
+		String defaultWarehouseCode = ReadPropertyUtil.readProperty("defaultWarehouseCode", confPath);	
+		String openingQuanity = ReadPropertyUtil.readProperty("openingQuanity", confPath);	
+		String openingValuation = ReadPropertyUtil.readProperty("openingValuation", confPath);			
 		// Create Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
 		HomePage homePage=new HomePage(driver, wait);
@@ -62,17 +68,16 @@ public class EditProductTest extends DriverFactory{
 		loginPage.clickSignIn();
 		homePage.verifyPageTitle();
 		homePage.clickProductsTab();
-		createProductPage.clickThreeDotsOnNonTrackedProduct();
-		createProductPage.clickEditButton();
-		createProductPage.editGeneralInfo(nonTrackedProductName1, barcode, description1);
+		createProductPage.clickThreeDotsOnTrackedProduct();
+		createProductPage.clickCopyButton();
+		createProductPage.editGeneralInfo(trackedProductName1, barcode, description1);
 		createProductPage.clickAccountingTab();
 		createProductPage.editAccountingDetails(purchasePrice1, salesPrice1);
 		createProductPage.clickInventoryTab();
-		createProductPage.editInventoryDetails(updatedUnitOfMeasurement);
-		createProductPage.clickSaveChangesButton();
-		createProductPage.verifyEditSuccessMessage();
-		createProductPage.verifyEditedNonTrackedProduct(nonTrackedProductName1, description1,barcode,updatedPurchaseAccount,purchasePrice1,updatedSalesAccount,salesPrice1,defaultPurchaseTax,defaultSalesTax);
-		createProductPage.verifyInventoryDetailsForCreatedNonTrackedProduct(updatedUnitOfMeasurement);
-	
-		}
+		createProductPage.clickSaveButton();
+		createProductPage.verifyCreateProductSuccessMessage();
+		createProductPage.verifyTrackedProductCountAfterCopyProduct();
+		createProductPage.verifyCopiedTrackedProduct(trackedProductName1, description1,barcode,updatedPurchaseAccount,purchasePrice1,updatedSalesAccount,salesPrice1,defaultPurchaseTax,defaultSalesTax);
+		createProductPage.verifyInventoryDetailsForCreatedTrackedProduct(defaultUnitOfMeasurement, defaultCostOfGoodSoldAccount, defaultInventoryAccount, defaultStockAdjustmentAccount, defaultWarehouseCode, openingQuanity, openingValuation);
+	}
 }

@@ -1,6 +1,6 @@
 package deskera.web.automation.erp.bvtSG.pages;
 
-
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -81,7 +81,6 @@ public class HomePage {
 	@CacheLookup
 	private WebElement skipButton;	
 	private static String pageTitleText = "Deskera Books";
-	private static String createOrgSuccessMessageText = "Organization Added Successfully";
 	
 	
 	/******************************* HOMEPAGE ELEMENTS LOCATORS *******************/
@@ -184,7 +183,7 @@ public class HomePage {
 	}
 	
 	public void clickSettingTab() throws InterruptedException{
-		//Thread.sleep(8000);
+		Thread.sleep(8000);
 		//WDWait(settingTab); 
 		/*
 		 * JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -192,7 +191,18 @@ public class HomePage {
 		 * settingTab.click();
 		 */
 		
-		Actions builder = new Actions(driver);
+	    //WDWait(settingTab);
+	    wait.until(ExpectedConditions.elementToBeClickable(settingTab));
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", settingTab);
+		
+		
+		/*
+		  Actions action = new Actions(driver);
+	        WebElement settings = driver.findElement(By.xpath("//span[contains(.,'Settings')]"));
+	        action.moveToElement(settings).perform();*/
+		
+		/*Actions builder = new Actions(driver);
         Action mouseOverSettings = builder
                 .moveToElement(settingTab)
                 .build();
@@ -202,6 +212,12 @@ public class HomePage {
 		//Actions action=new Actions(driver);
 		//action.moveToElement(settingTab).click().perform();
 		//settingTab.click();
+*/        
+        
+       
+
+      
+      
 	}
 	
 	public void clickUsersTab(){

@@ -1,7 +1,6 @@
 package deskera.web.automation.erp.bvtSG.pages;
 
 import java.util.List;
-import java.util.Random;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -112,6 +111,9 @@ public class CreateProductPage {
 	@FindBy(xpath = "//mat-label[contains(text(),'Purchase Account ')]/parent::label/parent::span/parent::div/input")
 	@CacheLookup
 	private WebElement purchaseAccount;
+	@FindBy(xpath = "//span[contains(.,'Purchase Return')]")
+	@CacheLookup
+	private WebElement purchaseReturnPurchaseAccount;
 	@FindBy(xpath = "//div[@class='cdk-overlay-pane mat-autocomplete-panel-above']//div//mat-option//span")
 	@CacheLookup
 	private List<WebElement> purchaseAccountDropdownValues;
@@ -136,6 +138,9 @@ public class CreateProductPage {
 	@FindBy(xpath = "//mat-label[contains(text(),' Sales Account ')]/parent::label/parent::span/parent::div/input")
 	@CacheLookup
 	private WebElement salesAccount;
+	@FindBy(xpath = "//span[contains(.,'Sales Return')]")
+	@CacheLookup
+	private WebElement salesReturnSalesAccount;
 	@FindBy(xpath = "//mat-label[contains(text(),'Sales Price')]/parent::label/parent::span/parent::div/input")
 	@CacheLookup
 	private WebElement salesPrice;
@@ -147,6 +152,9 @@ public class CreateProductPage {
 	@FindBy(xpath = "//mat-label[contains(text(),'Unit of Measurement')]/parent::label/parent::span/parent::div/mat-select")
 	@CacheLookup
 	private WebElement unitOfMeasurement;
+	@FindBy(xpath = "//span[contains(.,'Pieces')]")
+	@CacheLookup
+	private WebElement piecesUnitOfMeasurement;
 	@FindBy(xpath = "//mat-label[contains(text(),' Cost of Goods Sold Account ')]/parent::label/parent::span/parent::div/input")
 	@CacheLookup
 	private WebElement costOfGoodsSoldAccount;
@@ -222,7 +230,11 @@ public class CreateProductPage {
 	@FindBy(xpath = "//span[text()='Bill of Materials']//following::span[1][@class='count']")
 	@CacheLookup
 	private WebElement BOMProductCount;
-	@FindBy(xpath = "//input[contains(@placeholder,'SEARCH_RECORDS')]")
+	
+	@FindBy(xpath = "//span[contains(text(),'0')]//following::span[text()='Item with No Stock']")
+	@CacheLookup
+	private WebElement zeroItemWithNoStock;
+	@FindBy(xpath = "//input[contains(@placeholder,'SEARCH_RECORDS') or contains(@ng-reflect-placeholder,'Search Records')]")
 	@CacheLookup
 	private WebElement searchRecordsBox;
 	@FindBy(xpath = "//mat-table//mat-row[@class='mat-row ng-star-inserted']//mat-cell[3]//span[1]")
@@ -288,9 +300,15 @@ public class CreateProductPage {
 	@FindBy(xpath = "//mat-table[contains(@class,'deskera-grid deskera-grid-products')]//following::mat-cell[2]//span[@class='text-elipsis']")
 	@CacheLookup
 	private WebElement firstProduct;
-	@FindBy(xpath = "(//mat-icon[contains(.,'more_vert')])[1]")
+	@FindBy(xpath = "//mat-cell[text()=' Non-Tracked ']//following::mat-icon[contains(.,'more_vert')]")
 	@CacheLookup
-	private WebElement threeDotsOnFirstProduct;
+	private WebElement threeDotsOnNonTrackedProduct;
+	@FindBy(xpath = "//mat-cell[text()=' Tracked ']//following::mat-icon[contains(.,'more_vert')]")
+	@CacheLookup
+	private WebElement threeDotsOnTrackedProduct;
+	@FindBy(xpath = "//mat-cell[text()=' Bill of Materials ']//following::mat-icon[contains(.,'more_vert')]")
+	@CacheLookup
+	private WebElement threeDotsOnBOMProduct;
 	@FindBy(xpath = "//button[contains(.,'Edit')]")
 	@CacheLookup
 	private WebElement editButton;
@@ -300,6 +318,24 @@ public class CreateProductPage {
 	@FindBy(xpath = "//button[contains(.,'Delete')]")
 	@CacheLookup
 	private WebElement deleteButton;
+	@FindBy(xpath = "//span[@class='ng-star-inserted'][contains(.,'Save Changes')]")
+	@CacheLookup
+	private WebElement saveChangesButton;
+	@FindBy(xpath = "//span[text()='Product has been updated successfully']")
+	@CacheLookup
+	private WebElement editSuccessMessage;
+	@FindBy(xpath = "//div[contains(text(),'Are you sure you want to delete this product?')]")
+	@CacheLookup
+	private WebElement deleteConfirmationMessage;
+	@FindBy(xpath = "//button[contains(.,'No')]")
+	@CacheLookup
+	private WebElement noButtonOnDeleteConfirmation;
+	@FindBy(xpath = "//span[contains(.,'Yes')]")
+	@CacheLookup
+	private WebElement yesButtonOnDeleteConfirmation;
+	@FindBy(xpath = "//span[text()='Product has been deleted successfully']")
+	@CacheLookup
+	private WebElement deleteSuccessMessage;
 
 	/***********************************
 	 * 
@@ -565,6 +601,7 @@ public class CreateProductPage {
 		WDWait(trackedProductCount);
 		trackedProductCount.isDisplayed();
 		Assert.assertEquals(trackedProductCount.getText(), "1");
+		zeroItemWithNoStock.isDisplayed();		
 	}
 
 	public void verifyNonTrackedProductCount() throws InterruptedException {
@@ -576,6 +613,7 @@ public class CreateProductPage {
 		WDWait(nonTrackedProductCount);
 		nonTrackedProductCount.isDisplayed();
 		Assert.assertEquals(nonTrackedProductCount.getText(), "1");
+		zeroItemWithNoStock.isDisplayed();	
 	}
 
 	public void verifyBomProductCount() throws InterruptedException {
@@ -587,6 +625,7 @@ public class CreateProductPage {
 		WDWait(BOMProductCount);
 		BOMProductCount.isDisplayed();
 		Assert.assertEquals(BOMProductCount.getText(), "1");
+		zeroItemWithNoStock.isDisplayed();	
 	}
 
 	public void verifyCreatedTrackedProduct(String productname, String description, String barcode,
@@ -624,6 +663,7 @@ public class CreateProductPage {
 	public void verifyCreatedNonTrackedProduct(String productname, String description, String barcode,
 			String defaultPurchaseAccount, String purchasePrice, String defaultSalesAccount, String salesPrice,
 			String defaultPurchaseTax, String defaultSalesTax) throws InterruptedException {
+		wait.until(ExpectedConditions.elementToBeClickable(searchRecordsBox));
 		WDWait(searchRecordsBox);
 		searchRecordsBox.click();
 		searchRecordsBox.sendKeys(productname);
@@ -739,14 +779,195 @@ public class CreateProductPage {
 		firstProduct.click();
 	}
 
-	public void clickThreeDotsOnFirstProduct() {
-		WDWait(threeDotsOnFirstProduct);
-		threeDotsOnFirstProduct.click();
+	public void clickThreeDotsOnNonTrackedProduct() {
+		WDWait(threeDotsOnNonTrackedProduct);
+		threeDotsOnNonTrackedProduct.click();
+	}
+	
+	public void clickThreeDotsOnTrackedProduct() {
+		WDWait(threeDotsOnTrackedProduct);
+		threeDotsOnTrackedProduct.click();
+	}
+	
+	public void clickThreeDotsOnBOMProduct() {
+		WDWait(threeDotsOnBOMProduct);
+		threeDotsOnBOMProduct.click();
 	}
 
-	public void clickTEditButton() {
+	public void clickEditButton() {
 		WDWait(editButton);
 		editButton.click();
 	}
+	
+	public void clickCopyButton() {
+		WDWait(copyButton);
+		copyButton.click();
+	}
+	
+	public void clickDeleteButton() {
+		WDWait(deleteButton);
+		deleteButton.click();
+	}
+	
+	public void editGeneralInfo(String productname,String barcode,String description) {
+		WDWait(ProductNameInputBox);
+		ProductNameInputBox.clear();
+		ProductNameInputBox.sendKeys(productname);
+		barcodeInputBox.clear();
+		barcodeInputBox.sendKeys(barcode);
+		descriptionInputBox.clear();
+		descriptionInputBox.sendKeys(description);	
+	}
 
+	public void editAccountingDetails(String purchaseprice,String salesprice){
+		WDWait(purchaseAccount);
+		purchaseAccount.click();
+		WDWait(purchaseReturnPurchaseAccount);
+		purchaseReturnPurchaseAccount.click();
+		purchasePrice.clear();
+		purchasePrice.sendKeys(purchaseprice);
+		WDWait(salesAccount);
+		salesAccount.click();
+		WDWait(salesReturnSalesAccount);
+		salesReturnSalesAccount.click();
+		salesPrice.clear();
+		salesPrice.sendKeys(salesprice);	
+	}
+	
+	public void editInventoryDetails(String updatedUnitOfMeasurement){
+		WDWait(unitOfMeasurement);
+		unitOfMeasurement.click();
+		WDWait(piecesUnitOfMeasurement);
+		piecesUnitOfMeasurement.click();
+	}
+	
+	public void clickSaveChangesButton(){
+		WDWait(saveChangesButton);
+		saveChangesButton.click();
+	}
+	
+	public void verifyEditSuccessMessage(){
+		WDWait(editSuccessMessage);
+		editSuccessMessage.isDisplayed();
+		wait.until(ExpectedConditions.invisibilityOf(editSuccessMessage));
+	}
+	
+	public void verifyEditedNonTrackedProduct(String productname, String description, String barcode,
+			String updatedPurchaseAccount, String purchasePrice, String updatedSalesAccount, String salesPrice,
+			String defaultPurchaseTax, String defaultSalesTax) throws InterruptedException {
+		wait.until(ExpectedConditions.elementToBeClickable(searchRecordsBox));
+		WDWait(searchRecordsBox);
+		searchRecordsBox.click();
+		searchRecordsBox.sendKeys(productname);
+		Thread.sleep(2000);
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.ENTER).build().perform();
+		// WDWait(searchedRecord);
+		searchedRecord.click();
+		WDWait(displayedProducName);
+		Assert.assertEquals(displayedProducName.getText(), productname);
+		Assert.assertEquals(displayedProducType.getText(), "Non-Tracked");
+		Assert.assertEquals(displayedBarcode.getText(), barcode);
+		Assert.assertEquals(displayedDescription.getText(), description);
+		action.moveToElement(displayedPurchaseAccount).perform();
+		Assert.assertEquals(displayedPurchaseAccount.getText(), updatedPurchaseAccount);
+		action.moveToElement(displayedPurchasePrice).perform();
+		Assert.assertEquals(displayedPurchasePrice.getText(), purchasePrice);
+		action.moveToElement(displayedPurchaseTax).perform();
+		Assert.assertEquals(displayedPurchaseTax.getText(), defaultPurchaseTax);
+		uncheckedPriceIsTaxInclusiveCheckbox_Buy.isDisplayed();
+		action.moveToElement(displayedSalesAccount).perform();
+		Assert.assertEquals(displayedSalesAccount.getText(), updatedSalesAccount);
+		action.moveToElement(displayedSalesPrice).perform();
+		Assert.assertEquals(displayedSalesPrice.getText(), salesPrice);
+		action.moveToElement(displayedSalesTax).perform();
+		Assert.assertEquals(displayedSalesTax.getText(), defaultSalesTax);
+		uncheckedPriceIsTaxInclusiveCheckbox_Sell.isDisplayed();
+	}
+	
+	public void verifyTrackedProductCountAfterCopyProduct() throws InterruptedException {
+		// Thread.sleep(5000);
+		if (startByAddingOrImportingYourProducsText.size() != 0) {
+			Thread.sleep(2000);
+			closeIcon.click();
+		}
+		WDWait(trackedProductCount);
+		trackedProductCount.isDisplayed();
+		Assert.assertEquals(trackedProductCount.getText(), "2");
+	}
+	
+	
+	public void verifyCopiedTrackedProduct(String productname, String description, String barcode,
+			String defaultPurchaseAccount, String purchasePrice, String defaultSalesAccount, String salesPrice,
+			String defaultPurchaseTax, String defaultSalesTax) throws InterruptedException {
+		wait.until(ExpectedConditions.elementToBeClickable(searchRecordsBox));
+		WDWait(searchRecordsBox);
+		Thread.sleep(2000);
+		searchRecordsBox.click();
+		searchRecordsBox.sendKeys(productname);
+		Thread.sleep(2000);
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.ENTER).perform();
+		searchedRecord.click();
+		WDWait(displayedProducName);
+		Assert.assertEquals(displayedProducName.getText(), productname);
+		Assert.assertEquals(displayedProducType.getText(), "Tracked");
+		Assert.assertEquals(displayedBarcode.getText(), barcode);
+		Assert.assertEquals(displayedDescription.getText(), description);
+		action.moveToElement(displayedPurchaseAccount).perform();
+		Assert.assertEquals(displayedPurchaseAccount.getText(), defaultPurchaseAccount);
+		action.moveToElement(displayedPurchasePrice).perform();
+		Assert.assertEquals(displayedPurchasePrice.getText(), purchasePrice);
+		action.moveToElement(displayedPurchaseTax).perform();
+		Assert.assertEquals(displayedPurchaseTax.getText(), defaultPurchaseTax);
+		uncheckedPriceIsTaxInclusiveCheckbox_Buy.isDisplayed();
+		action.moveToElement(displayedSalesAccount).perform();
+		Assert.assertEquals(displayedSalesAccount.getText(), defaultSalesAccount);
+		action.moveToElement(displayedSalesPrice).perform();
+		Assert.assertEquals(displayedSalesPrice.getText(), salesPrice);
+		action.moveToElement(displayedSalesTax).perform();
+		Assert.assertEquals(displayedSalesTax.getText(), defaultSalesTax);
+		uncheckedPriceIsTaxInclusiveCheckbox_Sell.isDisplayed();
+	}
+	
+	public void verifyDeleteConfirmation(){
+		WDWait(deleteConfirmationMessage);
+		deleteConfirmationMessage.isDisplayed();
+		noButtonOnDeleteConfirmation.isDisplayed();
+		yesButtonOnDeleteConfirmation.isDisplayed();
+	}
+	
+	public void clickYesButtonOnDeleteConfirmation() throws InterruptedException{
+	    WDWait(yesButtonOnDeleteConfirmation);
+		wait.until(ExpectedConditions.elementToBeClickable(yesButtonOnDeleteConfirmation));
+		yesButtonOnDeleteConfirmation.click();	
+	}
+	
+	public void verifyDeleteProductSuccessMessage() {
+		WDWait(deleteSuccessMessage);
+		deleteSuccessMessage.isDisplayed();
+		wait.until(ExpectedConditions.invisibilityOf(deleteSuccessMessage));
+	}
+	
+	public void verifyBOMProductCountAfterDelete() throws InterruptedException {
+		// Thread.sleep(5000);
+		if (startByAddingOrImportingYourProducsText.size() != 0) {
+			Thread.sleep(2000);
+			closeIcon.click();
+		}
+		WDWait(BOMProductCount);
+		BOMProductCount.isDisplayed();
+		Assert.assertEquals(BOMProductCount.getText(), "0");
+	}
+	
+	public void verifyDeletedProduct(String BOMProductName) {
+		if (driver.getPageSource().contains(BOMProductName)){
+			System.out.println("Product not deleted");
+			Assert.fail();        
+		}
+		else{
+			System.out.println("Product Deleted successfully");
+		}
+	}
+	
 }

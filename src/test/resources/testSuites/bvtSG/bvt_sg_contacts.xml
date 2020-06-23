@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite thread-count="1" name="Go.Deskera Web BVT Suite"
-	parallel="false">
+<suite thread-count="1" name="Go.Deskera Web BVT Contacts Suite" parallel="false" preserve-order="true">
 
 	<listeners>
 		<listener
@@ -22,7 +21,7 @@
 
 	<!-- Run Test Cases -->
 	<parameter name="conf"
-		value="src/test/resources/bvtSGConfig/TestDataSG.config"></parameter>
+		value="src/test/resources/bvtSGConfig/TestDataContactSG.config"></parameter>
 		
 		
 	<!-- <test name=" Sign Up test" parallel="false">
@@ -71,35 +70,7 @@
 			</class>
 		</classes>
 	</test> 
- <test name="C20262 Add Tracked Product" parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.AddTrackedProductTest">
-			</class>
-		</classes>
-	</test>
-
-	
-	 <test name="C20263 Add Non Tracked Product" parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.AddNonTrackedProductTest">
-			</class>
-		</classes>
-	</test> 
-	
-	<test name="C21022 Add Bills Of Material Product" parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.AddBOMProductTest">
-			</class>
-		</classes>
-	</test>
-
-  <test name="C20425 Add Demo Company" parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.AddDemoCompanyTest">
-			</class>
-		</classes>
-	</test> 
- 
+  
 <test name="C20261 Add Contacts"  parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.ContactsTest">
@@ -122,7 +93,7 @@
 		</classes>
 	</test>
 
-<test name="C20274 To verify that user is able to Create/Connect - Bank" enabled="false"
+<!-- <test name="C20274 To verify that user is able to Create/Connect - Bank" enabled="false"
 		 parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.CreateBankTest">
@@ -131,7 +102,7 @@
 				</methods>
 			</class>
 		</classes>
-	</test> 
+	</test>  -->
 
 
 </suite> 

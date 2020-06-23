@@ -363,6 +363,7 @@ public class ContactsPage {
 		Assert.assertEquals(uENnumber.getText(), UENNumber);
 		Assert.assertEquals(tax.getText(), TAXNumber);
 		scrollToElement(accPayable);
+		wait.until(ExpectedConditions.visibilityOf(accPayable));
 		Assert.assertEquals(accPayable.getText(), buyAccount);
 		scrollToElement(accountReceivable);
 		Assert.assertEquals(accountReceivable.getText(), sellAccount);

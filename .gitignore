@@ -11,3 +11,4 @@ run_Singapore_ERPSales.bat/
 *.log
 *.bat
 test-output/
+*.Bat

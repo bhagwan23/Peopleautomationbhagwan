@@ -45,14 +45,6 @@
 			</class>
 		</classes>
 	</test>  
-
-	<test name="Sign In" parallel="false">	
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
-			</class>
-		</classes>
-	</test> 
-	
 	
 	<test name="Create Organization" parallel="false">		
 		<classes>

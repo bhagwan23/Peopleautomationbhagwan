@@ -32,8 +32,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
  * @author Amol Tambe
  *
  */
-
-
 public class DriverFactory {
 	protected static RemoteWebDriver driver;
 	protected static WebDriverWait wait;
@@ -72,7 +70,7 @@ public class DriverFactory {
 			coptions.addArguments("--disable-popup-blocking");
 			coptions.addArguments("--incognito");
 			coptions.setExperimentalOption("useAutomationExtension", false);
-			coptions.setExperimentalOption("excludeSwitches",Collections.singletonList("enable-automation"));    
+			coptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 			capabilities = coptions;
 			break;
 		case "edge":
@@ -92,7 +90,6 @@ public class DriverFactory {
 		System.out.println(driver);
 		wait = (new WebDriverWait(getDriver(), Duration.ofSeconds(60)));
 		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-
 		setTRunId(testRunId);
 	}
 

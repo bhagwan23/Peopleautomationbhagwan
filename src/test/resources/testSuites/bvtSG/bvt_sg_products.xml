@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite thread-count="1" name="Go.Deskera Web BVT Suite"
-	parallel="false">
+<suite thread-count="1" name="Go.Deskera Web BVT Products Suite" parallel="false" preserve-order="true">
 
 	<listeners>
 		<listener
@@ -22,7 +21,7 @@
 
 	<!-- Run Test Cases -->
 	<parameter name="conf"
-		value="src/test/resources/bvtSGConfig/TestDataSG.config"></parameter>
+		value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
 		
 		
 	<!-- <test name=" Sign Up test" parallel="false">

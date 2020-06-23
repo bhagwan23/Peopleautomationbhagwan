@@ -70,8 +70,7 @@ public class ContactsTest extends DriverFactory {
 		contactsPage.addAddressDetail(address, state, postal, city, country);
 		contactsPage.clickSaveButton();
 		contactsPage.verifyContactCreatedSucessMessage();
-		//contactsPage.clickContactsButton();
-
+		contactsPage.clickContactsButton();
 		contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber);
 		//contactsPage.allSummaryCount();
 
@@ -112,6 +111,7 @@ public class ContactsTest extends DriverFactory {
 		contactsPage.addAddressDetail(address, state, postal, city, country);
 		contactsPage.clickSaveButton();
 		contactsPage.verifyContactCreatedSucessMessage();
+		contactsPage.clickContactsButton();
 		contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber);
 		contactsPage.allSummaryCount();
 

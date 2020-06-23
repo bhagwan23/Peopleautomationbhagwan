@@ -22,10 +22,10 @@
 
 	<!-- Run Test Cases -->
 	<parameter name="conf"
-		value="src/test/resources/bvtSGConfig/TestDataSG.config"></parameter>
+		value="src/test/resources/bvtSGConfig/TestDataSGProducts.config"></parameter>
 		
 		
-	<!-- <test name=" Sign Up test" parallel="false">
+	 <test name=" Sign Up test" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
 				<methods>
@@ -33,18 +33,8 @@
 				</methods>
 			</class>
 		</classes>
-	</test> -->
+	</test> 
 	
-	<!--  <test name="Sign Up as Bookkeeper test" parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
-				<methods>
-					<include name="testSignUpForDeskeraBookkeeper"></include>
-				</methods>
-			</class>
-		</classes>
-	</test> -->
-
 
 	<test name="Sign Up without Phone Number test" parallel="false">
 		<classes>
@@ -55,7 +45,6 @@
 			</class>
 		</classes>
 	</test>  
-
 
 	<test name="Sign In" parallel="false">	
 		<classes>
@@ -71,17 +60,31 @@
 			</class>
 		</classes>
 	</test> 
- <test name="C20262 Add Tracked Product" parallel="false">
+
+    <test name="C20263 Add Non Tracked Product" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.AddNonTrackedProductTest">
+			</class>
+		</classes>
+	</test> 
+	
+	<test name=" Edit Product" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.EditProductTest">
+			</class>
+		</classes>
+	</test> 
+	
+    <test name="C20262 Add Tracked Product" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.AddTrackedProductTest">
 			</class>
 		</classes>
 	</test>
 
-	
-	 <test name="C20263 Add Non Tracked Product" parallel="false">
+    <test name=" Copy Product" parallel="false">
 		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.AddNonTrackedProductTest">
+			<class name="deskera.web.automation.erp.bvtSG.tests.CopyProductTest">
 			</class>
 		</classes>
 	</test> 
@@ -93,11 +96,18 @@
 		</classes>
 	</test>
 
-<!--   <test name="C20425 Add Demo Company" parallel="false">
+    <test name="Delete Product" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.DeleteProductTest">
+			</class>
+		</classes>
+	</test>
+ 
+    <test name="C20425 Add Demo Company" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.AddDemoCompanyTest">
 			</class>
 		</classes>
-	</test>  -->
+	</test> 
 
 </suite> 

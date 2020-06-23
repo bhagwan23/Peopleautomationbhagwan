@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.qameta.allure.Step;
+
 public class DeleteContactPage {
 	private Map<String, String> data;
 	private WebDriver driver;
@@ -37,12 +39,14 @@ public class DeleteContactPage {
 	private WebElement thereIsNoMatchingRecords;
 	
 	/******************************* Contacts Delete Object Manipulation Methods *******************/
+	@Step("Open URL")
 	public void openURL(String URL) {
 		driver.get(URL);
 	}
 	public void WDWait(WebElement we) {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
+	@Step("Click on Context menu icon")
 	public void clickContextMenuIcon(){
 		WDWait(contextMenuIcon);
 		contextMenuIcon.isDisplayed();
@@ -51,11 +55,13 @@ public class DeleteContactPage {
 		deleteButton.isDisplayed();
 		deleteButton.click();
 	}
+	@Step("Verify success message")
 	public void verifySuccessMessageForDelete(){
 		WDWait(deleteSucessMessage);
 		deleteSucessMessage.isDisplayed();
         wait.until(ExpectedConditions.invisibilityOf(deleteSucessMessage));
 	}
+	@Step("Verify deleted contacts")
 	public void verifyDeletedContact(){
 		WDWait(thereIsNoMatchingRecords);
 		thereIsNoMatchingRecords.isDisplayed();

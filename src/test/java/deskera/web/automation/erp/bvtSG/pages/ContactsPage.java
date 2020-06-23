@@ -15,6 +15,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import io.qameta.allure.Step;
+
 public class ContactsPage {
 	private Map<String, String> data;
 	private WebDriver driver;
@@ -202,10 +204,11 @@ public class ContactsPage {
 	private WebElement allSummaryCount;
 	
 	/******************************* Contacts Object Manipulation Methods *******************/
+	@Step("Open URl")
 	public void openURL(String URL) {
 		driver.get(URL);
 	}
-
+	@Step("Verify page title")
 	public void verifyPageTitle() {
 		//Assert.assertEquals(driver.getTitle(), pageTitleText);
 	}
@@ -213,17 +216,20 @@ public class ContactsPage {
 	public void WDWait(WebElement we) {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
+	@Step("verify contact elements")
 	public void verifyContactElements(){
 		WDWait(contactsButton);
 		contactsButton.isDisplayed();
 
 	}
+	@Step("Click on contact button")
 	public void clickContactsButton() throws InterruptedException{
 		WDWait(contactsButton);
 		contactsButton.click(); 
 		clickPopup();
 		//Thread.sleep(3000);
 	}
+	@Step("close popup on contacts page")
 	public void clickPopup() throws InterruptedException{	
 		//driver.get("https://reality-qa.deskera.xyz/book-keeper/client");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()=' Contacts ']"))); // Contact // link                                                                                                            // or                                                                                                            // Produ                                                                                                            // link
@@ -249,6 +255,7 @@ public class ContactsPage {
 		// driver.findElement(By.xpath("//button[3]/span")).click(); // Create new contact button
 
 	}
+	@Step("click on new contact button")
 	public void clickAddContactButton(){
 		WDWait(newContactButton);
 		newContactButton.isDisplayed();
@@ -276,6 +283,7 @@ public class ContactsPage {
 		generalInfotab.click();
 
 	}
+	@Step("Enter general info")
 	public void enterGeneralInfo(String Cname, String email, String UEN, String tax){
 		WDWait(name);
 		name.isDisplayed();
@@ -293,6 +301,7 @@ public class ContactsPage {
 		WDWait(saveButton);
 		saveButton.isDisplayed();
 	}
+	@Step("Enter account details")
 	public void enterAccountingDetails(){
 		WDWait(accountingtab);
 		accountingtab.isDisplayed();
@@ -321,6 +330,7 @@ public class ContactsPage {
 		Assert.assertEquals(accountReceivable.getAttribute("value"), "Accounts Receivable");
 
 	}
+	@Step("Verify address details")
 	public void addressDetails(){
 		WDWait(address);
 		address.isDisplayed();
@@ -331,6 +341,7 @@ public class ContactsPage {
 		city.isDisplayed();
 		country.isDisplayed();
 	}
+	@Step("Enter address details")
 	public void addAddressDetail(String addr, String state1,String postal, String city1, String country1){ 
 		WDWait(enterAddress);
 		enterAddress.sendKeys(addr);
@@ -343,9 +354,11 @@ public class ContactsPage {
 		WDWait(country);
 		country.sendKeys(country1);
 	}
+	@Step("Click on save button")
 	public void clickSaveButton(){
 		saveButton.click();
 	}
+	@Step("Verify added contacts")
 	public void verifyAddedContacts(String cName, String UENNumber, String TAXNumber) throws InterruptedException{
 		/*WDWait(addedContactName);
 		addedContactName.isDisplayed();
@@ -388,20 +401,21 @@ public class ContactsPage {
 		contactBackButton.isDisplayed();
 		contactBackButton.click();
 	}
-	
+	@Step("Verify success message")
 	public void verifyContactCreatedSucessMessage(){
 		WDWait(createContactSuccessMessage);
 		createContactSuccessMessage.isDisplayed();
         wait.until(ExpectedConditions.invisibilityOf(createContactSuccessMessage));
 
 	}
+	@Step("Verify summary count")
 	public void allSummaryCount(){
 		WDWait(allSummaryCount);
 		allSummaryCount.isDisplayed();
 	    Assert.assertEquals(allSummaryCount.getText(), "2");
 
 	}
-
+	@Step("Scroll page")
 	public void scrollToElement(WebElement element)
 	{
 

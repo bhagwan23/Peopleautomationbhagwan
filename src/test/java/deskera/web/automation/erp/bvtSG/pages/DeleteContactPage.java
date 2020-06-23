@@ -32,6 +32,9 @@ public class DeleteContactPage {
 	@FindBy(xpath="//span[text()='Contact Deleted']")
 	@CacheLookup
 	private WebElement deleteSucessMessage;
+	@FindBy(xpath= "//div[@class='no-records ng-star-inserted']")
+	@CacheLookup
+	private WebElement thereIsNoMatchingRecords;
 	
 	/******************************* Contacts Delete Object Manipulation Methods *******************/
 	public void openURL(String URL) {
@@ -52,7 +55,9 @@ public class DeleteContactPage {
 		WDWait(deleteSucessMessage);
 		deleteSucessMessage.isDisplayed();
         wait.until(ExpectedConditions.invisibilityOf(deleteSucessMessage));
-
-		
+	}
+	public void verifyDeletedContact(){
+		WDWait(thereIsNoMatchingRecords);
+		thereIsNoMatchingRecords.isDisplayed();
 	}
 }

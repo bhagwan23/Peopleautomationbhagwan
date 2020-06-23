@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.qameta.allure.Step;
+
 public class EditContactPage {
 	private Map<String, String> data;
 	private WebDriver driver;
@@ -74,22 +76,26 @@ public class EditContactPage {
 	private WebElement searchRecord;
 	
 	/*******************************Edit Contacts Object Manipulation Methods *******************/
+	@Step("Open URL")
 	public void openURL(String URL) {
 		driver.get(URL);
 	}
 	public void WDWait(WebElement we) {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
+	@Step("Click on Context Menu icon")
 	public void clickContextMenuIcon(){
 		WDWait(contextMenuIcon);
 		contextMenuIcon.isDisplayed();
 		contextMenuIcon.click();
 	}
+	@Step("Click on Edit button")
 	public void clickEditButton(){
 		WDWait(editButton);
 		editButton.isDisplayed();
 		editButton.click();
 	}
+	@Step("Enter new general info")
 	public void editGeneralInfo(String cname,String email, String uenno, String taxno){
 		WDWait(name);
 		name.clear();
@@ -107,7 +113,7 @@ public class EditContactPage {
 		taxNumber.clear();
 		taxNumber.sendKeys(taxno);
 	}
-	
+	@Step("Enter new address info")
 	public void editAddressInfo(String addr, String state1,String postal, String city1, String country1){ 
 		WDWait(address);
 		address.isDisplayed();
@@ -133,12 +139,13 @@ public class EditContactPage {
 		country.clear();
 		country.sendKeys(country1);
 	}
-	
+	@Step("Click on save and change button")
 	public void clickSaveChangeButton(){
 		WDWait(saveChangeButton);
 		saveChangeButton.isDisplayed();
 		saveChangeButton.click();
 	}
+	@Step("Verify success message")
 	public void verifysuccessmessage(){
 		WDWait(updateContactSuccessMessage);
 		updateContactSuccessMessage.isDisplayed();

@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.qameta.allure.Step;
+
 public class CopyContactPage {
 	private Map<String, String> data;
 	private WebDriver driver;
@@ -38,27 +40,32 @@ public class CopyContactPage {
 	private WebElement copyContactSuccessMessage;
 	
 	/*******************************Edit Contacts Object Manipulation Methods *******************/
+	@Step("Open URL")
 	public void openURL(String URL) {
 		driver.get(URL);
 	}
 	public void WDWait(WebElement we) {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
+	@Step("Click on Context menu icon")
 	public void clickContextMenuIcon(){
 		WDWait(contextMenuIcon);
 		contextMenuIcon.isDisplayed();
 		contextMenuIcon.click();
 	}
+	@Step("Click on copy button")
 	public void clickCopyButton(){
 		WDWait(copyButton);
 		copyButton.isDisplayed();
 		copyButton.click();
 	}
+	@Step("Click on Save button")
 	public void clickSaveButton(){
 		WDWait(saveButton);
 		saveButton.isDisplayed();
 		saveButton.click();
 	}
+	@Step("Verify success message")
 	public void verifysuccessmessage(){
 		WDWait(copyContactSuccessMessage);
 		copyContactSuccessMessage.isDisplayed();

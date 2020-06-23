@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import io.qameta.allure.Step;
+
 public class LoginPage {
 	private Map<String, String> data;
 	private WebDriver driver;
@@ -77,10 +79,12 @@ public class LoginPage {
 	 * Page objects manipulation methods
 	 * 
 	 *********************************/
+	@Step("Open URL")
 	public void openURL(String URL) {
 		driver.get(URL);
 	}
 
+	@Step("Verify Page Title")
 	public void verifyPageTitle() {
 		Assert.assertEquals(driver.getTitle(), pageTitleText);
 	}
@@ -90,6 +94,7 @@ public class LoginPage {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
 	
+	@Step("Verify Login Page Elements")
 	public void verifyLoginPageElements() {
 		WDWait(userLoginEmail);
 		userLoginEmail.isDisplayed();
@@ -99,17 +104,18 @@ public class LoginPage {
 		forgotPasswordLink.isDisplayed();
 		signInButton.isDisplayed();
 		signInUsingGoogle.isDisplayed();
-
 		signUpNowLink.isDisplayed();
 	}
 	
+	@Step("Enter Email and Password")
 	public void enterEmailandPassword(String email, String password) {
 		WDWait(userLoginEmail);
 		userLoginEmail.sendKeys(email);
 		userLoginPassword.click();
 		userLoginPassword.sendKeys(password);
 	}
-	
+
+	@Step("Click Sign In")
 	public void clickSignIn() {
 		WDWait(signInButton);
 		signInButton.click();
@@ -117,6 +123,7 @@ public class LoginPage {
 		//dashboardHeading.isDisplayed();
 	}
 	
+
 	public void clickSignInUsingGoogle() {
 		signInUsingGoogle.click();
 	}

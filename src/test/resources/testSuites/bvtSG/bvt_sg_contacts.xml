@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite thread-count="1" name="Go.Deskera Web BVT Suite" parallel="false">
+
+<suite thread-count="1" name="Go.Deskera Web BVT Contacts Suite" parallel="false" preserve-order="true">
 
 	<listeners>
 		<listener class-name="deskera.web.automation.core.TestListenerOnFailure">
@@ -19,41 +20,36 @@
 
 	<!-- Run Test Cases -->
 	<parameter name="conf"
-		value="src/test/resources/bvtSGConfig/TestDataSG.config"></parameter>
 
-
-	<test name="C16960 Deskera Books Sign Up test" enabled="false"
-		parallel="false">
+		value="src/test/resources/bvtSGConfig/TestDataContactSG.config"></parameter>
+		
+		
+	<!-- <test name=" Sign Up test" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
 				<methods>
 					<include name="testSignUpPage"></include>
-
 				</methods>
 			</class>
 		</classes>
-	</test>
-
-	<test name="C20565 Deskera books Sign Up as Bookkeeper test" enabled="false"
-		parallel="false">
+	</test> -->
+	
+	<!--  <test name="Sign Up as Bookkeeper test" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
 				<methods>
-
 					<include name="testSignUpForDeskeraBookkeeper"></include>
-
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> -->
 
 
-	<test name="C20566 Deskera books Sign Up without Phone Number test" enabled="false"
-		 parallel="false">
+
+	<test name="Sign Up without Phone Number test" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
 				<methods>
-
 					<include name="testSignUpWithoutPhoneNumber"></include>
 				</methods>
 			</class>
@@ -61,31 +57,56 @@
 	</test>
 
 
-	<test name="C20564 Sign In" enabled="false" parallel="false">
-
-
+	<test name="Sign In" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
-				<methods>
-
-					<include name="loginTest"></include>
-				</methods>
 			</class>
 		</classes>
 	</test>
 
-	<test name="C20261 Add Contacts"  parallel="false">
+
+	<test name="Create Organization" parallel="false">
+		<classes>
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
+			</class>
+		</classes>
+
+	</test> 
+  
+<test name="C20261 Add Contacts"  parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.ContactsTest">
 				<methods>
 					<include name="addContacts"></include>
-					 <include name="addContacts1"></include>
+					<include name="addContacts1"></include>
+
 				</methods>
 			</class>
 		</classes>
 	</test>
 
-<test name="C20261 Delete Contacts"  parallel="false">
+	<test name="C20261 Edit Contacts" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.EditContactTest">
+				<methods>
+					<include name="editContacts"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="C20261 Copy Contacts" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.CopyContactTest">
+				<methods>
+					<include name="copyContacts"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="C20261 Delete Contacts" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.DeleteContactTest">
 				<methods>
@@ -96,15 +117,8 @@
 	</test>
 
 
-	<test name="C20274 To verify that user is able to Create/Connect - Bank" enabled="false"
-		 parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.CreateBankTest">
-				<methods>
-					<include name="addBank"></include>
-				</methods>
-			</class>
-		</classes>
-	</test>
-	
+
+
+
+
 </suite> 

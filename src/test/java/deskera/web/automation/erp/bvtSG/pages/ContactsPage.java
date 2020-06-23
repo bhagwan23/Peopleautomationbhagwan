@@ -153,7 +153,7 @@ public class ContactsPage {
 	@FindBy(xpath= "//div[contains(text(),'Edward')]")
 	@CacheLookup
 	private WebElement enteredContactName;
-	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/mat-table/mat-row[1]/mat-cell[2]")
+	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/mat-table/mat-row[1]/mat-cell[3]")
 	@CacheLookup
 	private WebElement enteredNumber;
 	
@@ -358,11 +358,14 @@ public class ContactsPage {
 		searchRecord.sendKeys(cName);
 		
 		WDWait(enteredNumber);
+		Assert.assertEquals(enteredNumber.getText(), cName);
 		enteredNumber.click();
+		
 		Assert.assertEquals(contactName.getText(), cName);
 		Assert.assertEquals(uENnumber.getText(), UENNumber);
 		Assert.assertEquals(tax.getText(), TAXNumber);
 		scrollToElement(accPayable);
+		wait.until(ExpectedConditions.visibilityOf(accPayable));
 		Assert.assertEquals(accPayable.getText(), buyAccount);
 		scrollToElement(accountReceivable);
 		Assert.assertEquals(accountReceivable.getText(), sellAccount);

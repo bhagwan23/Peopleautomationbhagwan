@@ -348,6 +348,7 @@ public class SignUpPage {
 		verifyYourEmailAddress.isDisplayed();
 		weHaveResentVerification.isDisplayed();
 		Assert.assertEquals(weHaveSentEmailTo.getText(),email);
+		WDWait(justClickOnTheLink);
 		justClickOnTheLink.isDisplayed();
 		cantFindEmail.isDisplayed();
 		resendEmailButton.isDisplayed();

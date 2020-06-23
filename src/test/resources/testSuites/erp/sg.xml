@@ -34,8 +34,8 @@
 		</classes>
 	</test>
 
-	<test name="C20565 Deskera books Sign Up as Bookkeeper test" enabled="false"
-		parallel="false">
+	<test name="C20565 Deskera books Sign Up as Bookkeeper test"
+		enabled="false" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
 				<methods>
@@ -48,8 +48,8 @@
 	</test>
 
 
-	<test name="C20566 Deskera books Sign Up without Phone Number test" enabled="false"
-		 parallel="false">
+	<test name="C20566 Deskera books Sign Up without Phone Number test"
+		enabled="false" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
 				<methods>
@@ -74,18 +74,38 @@
 		</classes>
 	</test>
 
-	<test name="C20261 Add Contacts"  parallel="false">
+	<test name="C20261 Add Contacts" enabled="false" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.ContactsTest">
 				<methods>
-					<include name="addContacts"></include>
-					 <include name="addContacts1"></include>
+					<!--<include name="addContacts"></include> -->
+					<include name="addContacts1"></include>
 				</methods>
 			</class>
 		</classes>
 	</test>
 
-<test name="C20261 Delete Contacts"  parallel="false">
+	<test name="C20261 Edit Contacts" enabled="false" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.EditContactTest">
+				<methods>
+					<include name="editContacts"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="C20261 Copy Contacts"   parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.CopyContactTest">
+				<methods>
+					<include name="copyContacts"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="C20261 Delete Contacts" enabled="false" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.DeleteContactTest">
 				<methods>
@@ -96,8 +116,8 @@
 	</test>
 
 
-	<test name="C20274 To verify that user is able to Create/Connect - Bank" enabled="false"
-		 parallel="false">
+	<test name="C20274 To verify that user is able to Create/Connect - Bank"
+		enabled="false" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.CreateBankTest">
 				<methods>
@@ -106,5 +126,5 @@
 			</class>
 		</classes>
 	</test>
-	
+
 </suite> 

@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import io.qameta.allure.Step;
+
 public class CreateProductPage {
 	private WebDriver driver;
 	private WebDriverWait wait;
@@ -343,15 +345,18 @@ public class CreateProductPage {
 	 * 
 	 *********************************/
 
+	@Step("Verify Page Title")
 	public void verifyPageTitle() {
 		Assert.assertEquals(driver.getTitle(), pageTitleText);
 	}
 
 	// Common util for webdriver wait
+	@Step("Wait Element to be Visible")
 	public void WDWait(WebElement we) {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
 
+	@Step("Click on New Product Button")
 	public void clickNewProductButton() throws InterruptedException {
 
 		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Products')]")));
@@ -380,6 +385,7 @@ public class CreateProductPage {
 		newProductButton.click();
 	}
 
+	@Step("Verify Create New Product Page")
 	public void verifyCreateNewProductPage() {
 		WDWait(createNewProductText);
 		createNewProductText.isDisplayed();
@@ -401,27 +407,32 @@ public class CreateProductPage {
 		saveButton.isDisplayed();
 	}
 
+	@Step("Select Non Tracked Product from Dropdown")
 	public void selectNonTrackedProduct() {
 		productTypedropdown.click();
 		nonTrackedProductType.click();
 	}
 
+	@Step("Select Tracked Product from Dropdown")
 	public void selectTrackedProduct() {
 		productTypedropdown.click();
 		trackedProductType.click();
 	}
 
+	@Step("Select BOM Product from Dropdown")
 	public void selectBOMProduct() {
 		productTypedropdown.click();
 		billsOfMaterialProductType.click();
 	}
 
+	@Step("Enter Product Details")
 	public void enterProductDetails(String productname, String description, String barcode) {
 		ProductNameInputBox.sendKeys(productname);
 		barcodeInputBox.sendKeys(barcode);
 		descriptionInputBox.sendKeys(description);
 	}
 
+	@Step("Click On Accounting Tab")
 	public void clickAccountingTab() {
 		WDWait(accountingTab);
 		accountingTab.click();
@@ -431,6 +442,8 @@ public class CreateProductPage {
 	 * Purchase account dropdown should not have Sales and Sales Return , Sales
 	 * Account should not have Purchase and Purchase Return values
 	 */
+	
+	@Step("Verify Purchase Account Dropdown Values")
 	public void verifyPurchaseAccountDropdownValues() {
 		purchaseAccount.click();
 		for (WebElement we : purchaseAccountDropdownValues) {
@@ -443,6 +456,7 @@ public class CreateProductPage {
 		accountingTab.click();
 	}
 
+	@Step("Verify Sales Account Dropdown Values")
 	public void verifySalesAccountDropdownValues() {
 		salesAccount.click();
 
@@ -456,6 +470,7 @@ public class CreateProductPage {
 		accountingTab.click();
 	}
 
+	@Step("Verify Accounting Tab Elements")
 	public void verifyAccountingTab(String defaultPurchaseAccount, String defaultPurchasePrice,
 			String defaultPurchaseTax, String defaultSalesAccount, String defaultSalesPrice, String defaultSalesTax) {
 		WDWait(buyText);
@@ -473,6 +488,7 @@ public class CreateProductPage {
 		priceIsTaxInclusiveCheckBox_Sell.isDisplayed();
 	}
 
+	@Step("Verify Accounting Tab Elements for BOM Product")
 	public void verifyAccountingTabForBOMProduct(String defaultPurchaseAccount, String defaultPurchaseTax,
 			String defaultSalesAccount, String defaultSalesPrice, String defaultSalesTax) {
 		WDWait(buyText);
@@ -489,20 +505,24 @@ public class CreateProductPage {
 		priceIsTaxInclusiveCheckBox_Sell.isDisplayed();
 	}
 
+	@Step("Enter Accounting Info")
 	public void enterAccountingInfo(String purchaseprice, String salesprice) {
 		purchasePrice.sendKeys(purchaseprice);
 		salesPrice.sendKeys(salesprice);
 	}
 
+	@Step("Enter Accounting Info for BOM Product")
 	public void enterAccountingInfoForBOMProduct(String salesprice) {
 		salesPrice.sendKeys(salesprice);
 	}
 
+	@Step("Click on Inventory Tab")
 	public void clickInventoryTab() {
 		WDWait(inventoryTab);
 		inventoryTab.click();
 	}
 
+	@Step("Verify Inventory Tab For Non Tracked Product")
 	public void verifyInventoryTabForNonTrackedProduct(String defaultUnitOfMeasurement) {
 		WDWait(unitOfMeasurement);
 		unitOfMeasurement.isDisplayed();
@@ -510,6 +530,7 @@ public class CreateProductPage {
 
 	}
 
+	@Step("Verify Inventory Tab For Tracked Product")
 	public void verifyInventoryTabForTrackedProduct(String defaultUnitOfMeasurement,
 			String defaultCostOfGoodSoldAccount, String defaultInventoryAccount, String defaultStockAdjustmentAccount)
 			throws InterruptedException {
@@ -529,6 +550,7 @@ public class CreateProductPage {
 		Assert.assertEquals(warehouse.getText(), "Primary Warehouse");
 	}
 
+	@Step("Verify Inventory Tab For BOM Product")
 	public void verifyInventoryTabForBOMProduct(String defaultUnitOfMeasurement, String defaultCostOfGoodSoldAccount,
 			String defaultManufacturingAccount, String defaultStockAdjustmentAccount) throws InterruptedException {
 		Thread.sleep(4000);
@@ -548,28 +570,34 @@ public class CreateProductPage {
 		Assert.assertEquals(warehouse.getText(), "Primary Warehouse");
 	}
 
+
+	@Step("Select Inventory Account")
 	public void selectInventoryAccount() {
 		inventoryAccount.click();
 		WDWait(manufacturingCostInventoryAccount);
 		manufacturingCostInventoryAccount.click();
 	}
 
+	@Step("Enter Opening Balance Details")
 	public void enterOpeningBalanceDetails(String openingquanity, String openingvaluation) {
 		openingQuanity.sendKeys(openingquanity);
 		openingValuation.sendKeys(openingvaluation);
 	}
 
+	@Step("Click On Bills Of Material Tab")
 	public void clickBillOfMaterialTab() {
 		WDWait(billsOfMaterialTab);
 		billsOfMaterialTab.click();
 	}
 
+	@Step("Verify On Bills Of Material Tab")
 	public void verifyBillOfMaterialTab() {
 		WDWait(addComponentProductButton);
 		addComponentProductButton.isDisplayed();
 		addAdditionalCostButton.isDisplayed();
 	}
 
+	@Step("Enter BOM Details")
 	public void enterBOMDetails(String quantity1, String quantity2) {
 		WDWait(addComponentProductButton);
 		addComponentProductButton.click();
@@ -580,18 +608,21 @@ public class CreateProductPage {
 		component1Quantity.sendKeys(quantity1);
 	}
 
+	@Step("Click On Save Button")
 	public void clickSaveButton() {
 		WDWait(saveButton);
 		wait.until(ExpectedConditions.elementToBeClickable(saveButton));
 		saveButton.click();
 	}
 
+	@Step("Verify Create Product Success Message")
 	public void verifyCreateProductSuccessMessage() {
 		WDWait(createProductSuccessMessage);
 		createProductSuccessMessage.isDisplayed();
 		wait.until(ExpectedConditions.invisibilityOf(createProductSuccessMessage));
 	}
 
+	@Step("Verify Tracked Product Count")
 	public void verifyTrackedProductCount() throws InterruptedException {
 		// Thread.sleep(5000);
 		if (startByAddingOrImportingYourProducsText.size() != 0) {
@@ -604,6 +635,7 @@ public class CreateProductPage {
 		zeroItemWithNoStock.isDisplayed();		
 	}
 
+	@Step("Verify Non Tracked Product Count")
 	public void verifyNonTrackedProductCount() throws InterruptedException {
 		// Thread.sleep(5000);
 		if (startByAddingOrImportingYourProducsText.size() != 0) {
@@ -616,6 +648,7 @@ public class CreateProductPage {
 		zeroItemWithNoStock.isDisplayed();	
 	}
 
+	@Step("Verify BOM Product Count")
 	public void verifyBomProductCount() throws InterruptedException {
 		// Thread.sleep(5000);
 		if (startByAddingOrImportingYourProducsText.size() != 0) {
@@ -628,6 +661,7 @@ public class CreateProductPage {
 		zeroItemWithNoStock.isDisplayed();	
 	}
 
+	@Step("Verify Created Tracked Product")
 	public void verifyCreatedTrackedProduct(String productname, String description, String barcode,
 			String defaultPurchaseAccount, String purchasePrice, String defaultSalesAccount, String salesPrice,
 			String defaultPurchaseTax, String defaultSalesTax) throws InterruptedException {
@@ -660,6 +694,7 @@ public class CreateProductPage {
 		uncheckedPriceIsTaxInclusiveCheckbox_Sell.isDisplayed();
 	}
 
+	@Step("Verify Created Non Tracked Product")
 	public void verifyCreatedNonTrackedProduct(String productname, String description, String barcode,
 			String defaultPurchaseAccount, String purchasePrice, String defaultSalesAccount, String salesPrice,
 			String defaultPurchaseTax, String defaultSalesTax) throws InterruptedException {
@@ -693,12 +728,14 @@ public class CreateProductPage {
 		uncheckedPriceIsTaxInclusiveCheckbox_Sell.isDisplayed();
 	}
 
+	@Step("Verify Inventory Details For Created Non Tracked Product")
 	public void verifyInventoryDetailsForCreatedNonTrackedProduct(String defaultUnitOfMeasurement) {
 		Actions action = new Actions(driver);
 		action.moveToElement(displayedUnitOfMeasurement).perform();
 		Assert.assertEquals(displayedUnitOfMeasurement.getText(), defaultUnitOfMeasurement);
 	}
 
+	@Step("Verify Inventory Details For Created Tracked Product")
 	public void verifyInventoryDetailsForCreatedTrackedProduct(String defaultUnitOfMeasurement,
 			String defaultCostOfGoodSoldAccount, String defaultInventoryAccount, String defaultStockAdjustmentAccount,
 			String defaultWarehouseCode, String openingQuanity, String openingValuation) {
@@ -719,6 +756,7 @@ public class CreateProductPage {
 		Assert.assertEquals(displayedOpeningValuation.getText(), openingValuation);
 	}
 
+	@Step("Verify Created BOM Product")
 	public void verifyCreatedBOMProduct(String productname, String description, String barcode,
 			String defaultPurchaseAccount, String defaultSalesAccount, String salesPrice, String defaultPurchaseTax,
 			String defaultSalesTax) throws InterruptedException {
@@ -750,6 +788,7 @@ public class CreateProductPage {
 		uncheckedPriceIsTaxInclusiveCheckbox_Sell.isDisplayed();
 	}
 
+	@Step("Verify Inventory Details For Created BOM Product")
 	public void verifyInventoryDetailsForCreatedBOMProduct(String defaultUnitOfMeasurement,
 			String defaultCostOfGoodSoldAccount, String defaultStockAdjustmentAccount, String defaultWarehouseCode,
 			String openingQuanity, String openingValuation) {
@@ -774,41 +813,49 @@ public class CreateProductPage {
 	 * Edit Product Methods
 	 ******************************/
 
+	@Step("Select First Product")
 	public void selectFirstProduct() {
 		WDWait(firstProduct);
 		firstProduct.click();
 	}
 
+	@Step("Click Three Dots On Non Tracked Product")
 	public void clickThreeDotsOnNonTrackedProduct() {
 		WDWait(threeDotsOnNonTrackedProduct);
 		threeDotsOnNonTrackedProduct.click();
 	}
 	
+	@Step("Click Three Dots On Tracked Product")
 	public void clickThreeDotsOnTrackedProduct() {
 		WDWait(threeDotsOnTrackedProduct);
 		threeDotsOnTrackedProduct.click();
 	}
 	
+	@Step("Click Three Dots On BOM Product")
 	public void clickThreeDotsOnBOMProduct() {
 		WDWait(threeDotsOnBOMProduct);
 		threeDotsOnBOMProduct.click();
 	}
 
+	@Step("Click On Edit Button")
 	public void clickEditButton() {
 		WDWait(editButton);
 		editButton.click();
 	}
 	
+	@Step("Click On Copy Button")
 	public void clickCopyButton() {
 		WDWait(copyButton);
 		copyButton.click();
 	}
 	
+	@Step("Click On Delete Button")
 	public void clickDeleteButton() {
 		WDWait(deleteButton);
 		deleteButton.click();
 	}
 	
+	@Step("Edit General Information")
 	public void editGeneralInfo(String productname,String barcode,String description) {
 		WDWait(ProductNameInputBox);
 		ProductNameInputBox.clear();
@@ -819,6 +866,7 @@ public class CreateProductPage {
 		descriptionInputBox.sendKeys(description);	
 	}
 
+	@Step("Edit Account Details")
 	public void editAccountingDetails(String purchaseprice,String salesprice){
 		WDWait(purchaseAccount);
 		purchaseAccount.click();
@@ -834,6 +882,7 @@ public class CreateProductPage {
 		salesPrice.sendKeys(salesprice);	
 	}
 	
+	@Step("Edit Inventory Details")
 	public void editInventoryDetails(String updatedUnitOfMeasurement){
 		WDWait(unitOfMeasurement);
 		unitOfMeasurement.click();
@@ -841,17 +890,20 @@ public class CreateProductPage {
 		piecesUnitOfMeasurement.click();
 	}
 	
+	@Step("Click On Save Changes Button")
 	public void clickSaveChangesButton(){
 		WDWait(saveChangesButton);
 		saveChangesButton.click();
 	}
 	
+	@Step("Verify Edit Success Message")
 	public void verifyEditSuccessMessage(){
 		WDWait(editSuccessMessage);
 		editSuccessMessage.isDisplayed();
 		wait.until(ExpectedConditions.invisibilityOf(editSuccessMessage));
 	}
 	
+	@Step("Verify Edited Non Tracked Product")
 	public void verifyEditedNonTrackedProduct(String productname, String description, String barcode,
 			String updatedPurchaseAccount, String purchasePrice, String updatedSalesAccount, String salesPrice,
 			String defaultPurchaseTax, String defaultSalesTax) throws InterruptedException {
@@ -885,6 +937,7 @@ public class CreateProductPage {
 		uncheckedPriceIsTaxInclusiveCheckbox_Sell.isDisplayed();
 	}
 	
+	@Step("Verify Tracked Product Count After Copy Product")
 	public void verifyTrackedProductCountAfterCopyProduct() throws InterruptedException {
 		// Thread.sleep(5000);
 		if (startByAddingOrImportingYourProducsText.size() != 0) {
@@ -896,7 +949,7 @@ public class CreateProductPage {
 		Assert.assertEquals(trackedProductCount.getText(), "2");
 	}
 	
-	
+	@Step("Verify Copied Tracked Product")
 	public void verifyCopiedTrackedProduct(String productname, String description, String barcode,
 			String defaultPurchaseAccount, String purchasePrice, String defaultSalesAccount, String salesPrice,
 			String defaultPurchaseTax, String defaultSalesTax) throws InterruptedException {
@@ -930,6 +983,7 @@ public class CreateProductPage {
 		uncheckedPriceIsTaxInclusiveCheckbox_Sell.isDisplayed();
 	}
 	
+	@Step("Verify Delete Confirmation")
 	public void verifyDeleteConfirmation(){
 		WDWait(deleteConfirmationMessage);
 		deleteConfirmationMessage.isDisplayed();
@@ -937,18 +991,21 @@ public class CreateProductPage {
 		yesButtonOnDeleteConfirmation.isDisplayed();
 	}
 	
+	@Step("Click Yes Button On Delete Confirmation")
 	public void clickYesButtonOnDeleteConfirmation() throws InterruptedException{
 	    WDWait(yesButtonOnDeleteConfirmation);
 		wait.until(ExpectedConditions.elementToBeClickable(yesButtonOnDeleteConfirmation));
 		yesButtonOnDeleteConfirmation.click();	
 	}
 	
+	@Step("Verify Delete Product Success Message")
 	public void verifyDeleteProductSuccessMessage() {
 		WDWait(deleteSuccessMessage);
 		deleteSuccessMessage.isDisplayed();
 		wait.until(ExpectedConditions.invisibilityOf(deleteSuccessMessage));
 	}
 	
+	@Step("Verify BOM Product Count After Delete")
 	public void verifyBOMProductCountAfterDelete() throws InterruptedException {
 		// Thread.sleep(5000);
 		if (startByAddingOrImportingYourProducsText.size() != 0) {
@@ -960,6 +1017,7 @@ public class CreateProductPage {
 		Assert.assertEquals(BOMProductCount.getText(), "0");
 	}
 	
+	@Step("Verify Deleted Product")
 	public void verifyDeletedProduct(String BOMProductName) {
 		if (driver.getPageSource().contains(BOMProductName)){
 			System.out.println("Product not deleted");

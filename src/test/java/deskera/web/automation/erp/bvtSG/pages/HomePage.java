@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import io.qameta.allure.Step;
+
 public class HomePage {
 	
 	private WebDriver driver;
@@ -103,16 +105,19 @@ public class HomePage {
 	 * Page objects manipulation methods
 	 * 
 	 *********************************/
+	@Step("Verify Home Page Title")
 	public void verifyPageTitle() throws InterruptedException {
 		Thread.sleep(3000);
 		Assert.assertEquals(driver.getTitle(), pageTitleText);
 	}
 
 	// Common util for webdriver wait
+	@Step("Wait Element to be Visible")
 	public void WDWait(WebElement we) {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
 	
+	@Step("Verify Org Creation Page Elements")
 	public void verifyorgElements() {
 		WDWait(taxResidency);
 		taxResidency.isDisplayed();
@@ -125,6 +130,7 @@ public class HomePage {
 		saveButton.isDisplayed();
 	}
 	
+	@Step("Enter Organization Details")
 	public void enterOrgDetails(String taxresidency,String fstartdate,String bookbeginningdate,String addline1,String addline2,String City,String State,String Zipcode){
 		taxResidency.click();
 		taxResidency.clear();
@@ -145,36 +151,43 @@ public class HomePage {
 		uenNo.sendKeys("5895685");
 	}
 	
+	@Step("Click On Save Button")
 	public void clickSaveButton(){
 		saveButton.click();
 	}
 	
+	@Step("Verify Create Org Success Message")
 	public void verifyCreateOrgSuccessMessage(){
 		WDWait(OrgCreationSuccessMessage);
 		OrgCreationSuccessMessage.isDisplayed();
 		wait.until(ExpectedConditions.invisibilityOf(OrgCreationSuccessMessage));
 	}
 	
+	@Step("Click On Skip Button")
 	public void clickSkipButton(){
 		WDWait(skipButton);
 		skipButton.click();
 	}
 	
+	@Step("Click On Products Tab")
 	public void clickProductsTab(){
 		WDWait(productsTab);
 		productsTab.click();
 	}
 	
+	@Step("Click On Getting Started Button")
 	public void clickGettingStartedButton(){
 		WDWait(gettingStartedButton);
 		gettingStartedButton.click();
 	}
 	
+	@Step("Click On Demo Company Button ")
 	public void clickDemoCompany(){
 		WDWait(demoCompanyButton);
 		demoCompanyButton.click();
 	}
 	
+	@Step("Verify Create Demo Company Success Message")
 	public void verifyDemoCompanySuccessMessage(){
 		WDWait(switchedToDemoCompanySuccessMessage);
 		switchedToDemoCompanySuccessMessage.click();
@@ -182,6 +195,7 @@ public class HomePage {
 		demoCompanyName.isDisplayed();
 	}
 	
+	@Step("Click On Setting Tab")
 	public void clickSettingTab() throws InterruptedException{
 		Thread.sleep(8000);
 		//WDWait(settingTab); 
@@ -220,6 +234,7 @@ public class HomePage {
       
 	}
 	
+	@Step("Click On User Tab")
 	public void clickUsersTab(){
 		WDWait(usersTab);
 		usersTab.click();

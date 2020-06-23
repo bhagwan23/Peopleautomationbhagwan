@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import io.qameta.allure.Step;
+
 public class UsersPage {
 
 	private WebDriver driver;
@@ -73,6 +75,7 @@ public class UsersPage {
 	 * Page objects manipulation methods
 	* 
 	 *********************************/
+	@Step("Verify Page Title")
 	public void verifyPageTitle() throws InterruptedException {
 		Thread.sleep(3000);
 		Assert.assertEquals(driver.getTitle(), pageTitleText);
@@ -83,6 +86,7 @@ public class UsersPage {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
 	
+	@Step("Verify Users Page Elements")
 	public void verifyUsersPageElements(){
 		WDWait(addUsersButton);
 		addUsersButton.isDisplayed();
@@ -92,10 +96,12 @@ public class UsersPage {
 		roleColumn.isDisplayed();
 	}
 	
+	@Step("Click on Add User Button")
 	public void clickAddUserButton(){
 		addUsersButton.click();
 	}
 	
+	@Step("Verify Add User Page Elements")
 	public void verifyAddUserPageElements(){
 		WDWait(firstName);
 		firstName.isDisplayed();
@@ -108,6 +114,7 @@ public class UsersPage {
 		saveButton.isDisplayed();
 	}
 	
+	@Step("Enter User Details")
 	public void enterUserDetails(String firstname,String lastname,String emailid,String passWord,String phone){
 		WDWait(firstName);
 		firstName.sendKeys(firstname);
@@ -120,6 +127,7 @@ public class UsersPage {
 		businessRole.click();
 	}
 	
+	@Step("Click On Save Button")
 	public void clickSaveButton(){
 		saveButton.click();
 	}

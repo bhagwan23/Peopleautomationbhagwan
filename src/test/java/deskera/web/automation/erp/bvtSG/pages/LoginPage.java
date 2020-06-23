@@ -123,11 +123,12 @@ public class LoginPage {
 		//dashboardHeading.isDisplayed();
 	}
 	
-
+	@Step("ClickS On ignIn Using Google")
 	public void clickSignInUsingGoogle() {
 		signInUsingGoogle.click();
 	}
 	
+	@Step("Enter Google Email Password")
 	public void enterGoogleEmailPassword(String email ,String password) {
 		googleEmailOrPhone.sendKeys(email);
 		nextButton.click();

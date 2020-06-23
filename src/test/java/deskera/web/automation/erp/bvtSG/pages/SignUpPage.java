@@ -17,6 +17,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import io.qameta.allure.Step;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -71,7 +74,7 @@ public class SignUpPage {
 	@CacheLookup
 	private WebElement regularAccountLink;
 	private static String pageTitleText = "Deskera SSO";
-	private static String enteredSignUpEmail="";
+	
 
 
 	/******************************* Account PAGE ELEMENTS LOCATORS *******************/
@@ -168,19 +171,23 @@ public class SignUpPage {
 	 * Page objects manipulation methods
 	 * 
 	 *********************************/
+	@Step("Open URL")
 	public void openURL(String URL) {
 		driver.get(URL);
 	}
 
+	@Step("Verify Page Title")
 	public void verifyPageTitle() {
 		Assert.assertEquals(driver.getTitle(), pageTitleText);
 	}
 
 	// Common util for webdriver wait
+	@Step("Wait Element to be Visible")
 	public void WDWait(WebElement we) {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
 
+	@Step("Verify Sign Up Page Elements")
 	public void verifySignUpPageElements() {
 		WDWait(userSignupEmail);
 		userSignupEmail.isDisplayed();
@@ -191,10 +198,12 @@ public class SignUpPage {
 		bookkeeperLink.isDisplayed();
 	}
 
+	@Step("Click on SignUp for Bookkeper ")
 	public void clickSignUpForBookkeeper() {
 		bookkeeperLink.click();
 	}
 
+	@Step("Verify Bookkeeper SignUp Page Elements ")
 	public void verifyBookkeeperSignUpPageElements() {
 		WDWait(signUpForBookkeeper);
 		signUpForBookkeeper.isDisplayed();
@@ -206,10 +215,12 @@ public class SignUpPage {
 		regularAccountLink.isDisplayed();
 	}
 
+	@Step("Click on Create Account Button")
 	public void clickCreateACcountButton() {
 		createAccountButton.click();
 	}
 
+	@Step("Enter Email and Phone Number")
 	public void enterEmailandPhone(String email, String countryCode, String phoneNumber) {
 		WDWait(userSignupEmail);
 		//userSignupEmail.sendKeys(email);
@@ -241,6 +252,7 @@ public class SignUpPage {
 		}
 		
 	}
+	@Step("Enter Email")
 	public void enterEmailId(String email) {
 		WDWait(userSignupEmail);
 		userSignupEmail.sendKeys(email);
@@ -252,6 +264,7 @@ public class SignUpPage {
 	 * Account Details Page  manipulation methods
 	 * 
 	 *********************************/
+	@Step("Verify Account Details Page Elements")
 	public void verifyAccountDetailsPageElements() {
 		WDWait(deskeraLogo);
 		deskeraLogo.isDisplayed();
@@ -266,6 +279,7 @@ public class SignUpPage {
 		next.isDisplayed();
 	}
 
+	@Step("Enter Account Details")
 	public void enterAccountDetails(String userFirstName,String passWord,String companyname){
 		name.sendKeys(userFirstName);
 		password.sendKeys(passWord);
@@ -278,6 +292,7 @@ public class SignUpPage {
 		}
 	}
 
+	@Step("Click on Next Button")
 	public void clickNextButton() {
 		next.click();
 	}
@@ -287,6 +302,7 @@ public class SignUpPage {
 	 * Personalize your account Page  manipulation methods
 	 * 
 	 *********************************/
+	@Step("Verify Personalize Account Page Elements")
 	public void verifyPersonalizeAccountPageElements() {
 		WDWait(personalizeAccount);
 		personalizeAccount.isDisplayed();
@@ -299,6 +315,7 @@ public class SignUpPage {
 		skipButton.isDisplayed();	
 	}
 
+	@Step("Enter Personalize Account Details")
 	public void enterPersonalizeAccountDetails(){
 		
 		WDWait(industryType);
@@ -311,6 +328,7 @@ public class SignUpPage {
 		actions.moveToElement(otherPurpose).click().perform();	
 	}
 
+	@Step("Click on Next Button")	
 	public void clickNext() throws InterruptedException {
 
 		//wait.until(ExpectedConditions.visibilityOf(nextButton));
@@ -329,6 +347,7 @@ public class SignUpPage {
 	 * Success  Page  manipulation methods
 	 * 
 	 *********************************/
+	@Step("Verify Success Page Elements")	
 	public void verifySuccessPageElements(String email){
 		WDWait(verifyYourEmailAddress);
 		verifyYourEmailAddress.isDisplayed();
@@ -339,10 +358,12 @@ public class SignUpPage {
 		resendEmailButton.isDisplayed();
 	}
 
+	@Step("Click Resent Email Button")	
 	public void clickResentEmailButton(){
 		resendEmailButton.click();
 	}
 
+	@Step("Verify Page Elements After Resent Email")	
 	public void verifyPageElementsAfterResentEmail(String email){
 		WDWait(verifyYourEmailAddress);
 		verifyYourEmailAddress.isDisplayed();
@@ -355,7 +376,7 @@ public class SignUpPage {
 	}
 
 
-
+	@Step("Zoom Out")	
 	public void zoomOut() throws InterruptedException
 	{
 		JavascriptExecutor executor = (JavascriptExecutor)driver;

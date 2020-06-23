@@ -21,20 +21,9 @@
 
 	<!-- Run Test Cases -->
 	<parameter name="conf"
-		value="src/test/resources/bvtSGConfig/TestDataSGProducts.config"></parameter>
+		value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
 
 		
-	 <test name=" Sign Up test" parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
-				<methods>
-					<include name="testSignUpPage"></include>
-				</methods>
-			</class>
-		</classes>
-	</test> 
-	
-
 	<test name="Sign Up without Phone Number test" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">

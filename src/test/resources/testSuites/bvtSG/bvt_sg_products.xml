@@ -24,7 +24,7 @@
 		value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
 
 		
-	<test name="Sign Up without Phone Number test" parallel="false">
+	<test name=" 1 Sign Up without Phone Number test" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
 				<methods>
@@ -34,60 +34,67 @@
 		</classes>
 	</test>  
 	
-	<test name="Create Organization" parallel="false">		
+	<test name=" 2 Create Organization" parallel="false">		
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
 			</class>
 		</classes>
 	</test> 
 
-    <test name="C20263 Add Non Tracked Product" parallel="false">
+    <test name=" 3 C20263 Add Non Tracked Product" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.AddNonTrackedProductTest">
 			</class>
 		</classes>
 	</test> 
 	
-	<test name=" Edit Product" parallel="false">
+	<test name=" 4 Edit Product" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.EditProductTest">
 			</class>
 		</classes>
 	</test> 
 	
-    <test name="C20262 Add Tracked Product" parallel="false">
+    <test name=" 5 C20262 Add Tracked Product" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.AddTrackedProductTest">
 			</class>
 		</classes>
 	</test>
 
-    <test name=" Copy Product" parallel="false">
+    <test name=" 6 Copy Product" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.CopyProductTest">
 			</class>
 		</classes>
 	</test> 
 	
-	<test name="C21022 Add Bills Of Material Product" parallel="false">
+	<test name=" 7 C21022 Add Bills Of Material Product" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.AddBOMProductTest">
 			</class>
 		</classes>
 	</test>
 
-    <test name="Delete Product" parallel="false">
+    <test name=" 8 Delete Product" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.DeleteProductTest">
 			</class>
 		</classes>
 	</test>
  
-    <test name="C20425 Add Demo Company" parallel="false">
+    <test name=" 9 C20425 Add Demo Company" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.AddDemoCompanyTest">
 			</class>
 		</classes>
 	</test> 
+	
+	<test name="10 Create Custom Number Format" parallel="false">		
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.CreateCustomNumberFormat">
+			</class>
+		</classes>
+	</test>
 
 </suite> 

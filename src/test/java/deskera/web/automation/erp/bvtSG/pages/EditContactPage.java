@@ -2,8 +2,11 @@ package deskera.web.automation.erp.bvtSG.pages;
 
 import java.util.Map;
 
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -25,10 +28,10 @@ public class EditContactPage {
 	}
 
 	/******************************* EDIT CONTACT PAGE ELEMENTS LOCATORS *******************/
-	@FindBy(xpath = "//mat-row[1]//mat-cell[8]//button[1]//mat-icon[1]")
+	@FindBy(xpath = "//mat-icon[@class='mat-icon notranslate material-icons mat-icon-no-color']")
 	@CacheLookup
 	private WebElement contextMenuIcon;
-	@FindBy(xpath= "//button[contains(text(),'Edit')]")
+	@FindBy(xpath= "//*[@id='cdk-overlay-2']/div/div/button[1]")
 	@CacheLookup
 	private WebElement editButton;
 	@FindBy(id= "mat-input-1")
@@ -74,6 +77,9 @@ public class EditContactPage {
 	@FindBy(xpath= "//input[@placeholder='Search Records']")
 	@CacheLookup
 	private WebElement searchRecord;
+	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/mat-table/mat-row[1]/mat-cell[3]")
+	@CacheLookup
+	private WebElement enteredName;
 	
 	/*******************************Edit Contacts Object Manipulation Methods *******************/
 	@Step("Open URL")
@@ -83,17 +89,31 @@ public class EditContactPage {
 	public void WDWait(WebElement we) {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
+	@Step("Search contact to edit")
+	public void searchRecord(String cName) throws InterruptedException{
+		WDWait(searchRecord);
+		searchRecord.click();
+		searchRecord.sendKeys(cName);
+		Thread.sleep(2000);
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.ENTER).build().perform();
+		
+	}
 	@Step("Click on Context Menu icon")
-	public void clickContextMenuIcon(){
+	public void clickContextMenuIcon() throws InterruptedException{
 		WDWait(contextMenuIcon);
+		wait.until(ExpectedConditions.visibilityOf(contextMenuIcon));
 		contextMenuIcon.isDisplayed();
 		contextMenuIcon.click();
 	}
 	@Step("Click on Edit button")
 	public void clickEditButton(){
+		
 		WDWait(editButton);
+		wait.until(ExpectedConditions.visibilityOf(editButton));
 		editButton.isDisplayed();
-		editButton.click();
+		editButton.click();	
+		
 	}
 	@Step("Enter new general info")
 	public void editGeneralInfo(String cname,String email, String uenno, String taxno){

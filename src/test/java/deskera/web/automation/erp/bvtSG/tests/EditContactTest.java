@@ -38,6 +38,8 @@ public class EditContactTest extends DriverFactory {
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
 		
+		String cEdit= ReadPropertyUtil.readProperty("ContactName1", confPath);
+
 		String name= ReadPropertyUtil.readProperty("UpdatedContactName", confPath);
 		String UENNumber= ReadPropertyUtil.readProperty("UpdatedUEN_Number", confPath);
 		String TAXNumber= ReadPropertyUtil.readProperty("UpdatedTAX_Number", confPath);
@@ -62,12 +64,13 @@ public class EditContactTest extends DriverFactory {
 
 		//Edit contact page object instance
 		EditContactPage editcontact= new EditContactPage(driver, wait);
+		editcontact.searchRecord(cEdit);
 		editcontact.clickContextMenuIcon();
 		editcontact.clickEditButton();
 		editcontact.editGeneralInfo(name, email, UENNumber, TAXNumber);
 		editcontact.editAddressInfo(address, state, postal, city, country);
 		editcontact.clickSaveChangeButton();
 		editcontact.verifysuccessmessage();
-		//contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber);
+		contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber);
 	}
 }

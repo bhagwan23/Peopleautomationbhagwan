@@ -5,8 +5,10 @@ import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -157,7 +159,7 @@ public class ContactsPage {
 	private WebElement enteredContactName;
 	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/mat-table/mat-row[1]/mat-cell[3]")
 	@CacheLookup
-	private WebElement enteredNumber;
+	private WebElement enteredName;
 	
 	@FindBy(xpath= "//span[@class='menu-label ng-star-inserted'][contains(text(),'Custom Fields')]")
 	@CacheLookup
@@ -369,10 +371,13 @@ public class ContactsPage {
 		WDWait(searchRecord);
 		searchRecord.click();
 		searchRecord.sendKeys(cName);
+		Thread.sleep(2000);
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.ENTER).build().perform();
 		
-		WDWait(enteredNumber);
-		Assert.assertEquals(enteredNumber.getText(), cName);
-		enteredNumber.click();
+		WDWait(enteredName);
+		Assert.assertEquals(enteredName.getText(), cName);
+		enteredName.click();
 		
 		Assert.assertEquals(contactName.getText(), cName);
 		Assert.assertEquals(uENnumber.getText(), UENNumber);
@@ -382,8 +387,6 @@ public class ContactsPage {
 		Assert.assertEquals(accPayable.getText(), buyAccount);
 		scrollToElement(accountReceivable);
 		Assert.assertEquals(accountReceivable.getText(), sellAccount);
-
-		
 		
 		contactOrg.isDisplayed();
 		WDWait(customField);

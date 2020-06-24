@@ -37,9 +37,9 @@ public class DeleteContactTest extends DriverFactory{
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
 		
-		String name= ReadPropertyUtil.readProperty("ContactName1", confPath);
-		String UENNumber= ReadPropertyUtil.readProperty("UEN_Number", confPath);
-		String TAXNumber= ReadPropertyUtil.readProperty("TAX_Number", confPath);
+		String name= ReadPropertyUtil.readProperty("UpdatedContactName", confPath);
+		//String UENNumber= ReadPropertyUtil.readProperty("UEN_Number", confPath);
+		//String TAXNumber= ReadPropertyUtil.readProperty("TAX_Number", confPath);
 		
 		// Create login Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
@@ -57,8 +57,12 @@ public class DeleteContactTest extends DriverFactory{
 		deletecontact.verifySuccessMessageForDelete();
 		
 		//Click on searchbox and search deleted contact
-		//contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber);	
+		deletecontact.searchdeletedRecord(name);
 		
-		//deletecontact.verifyDeletedContact();
+		//Verify deleted contact
+		deletecontact.verifyDeletedContact();
+		
+		//verify all summary count after deletion of contact
+		deletecontact.verifysummarycount();
 }
 }

@@ -1,3 +1,4 @@
 call mvn clean
 call mvn clean
+
 call mvn clean test -DsuiteXmlFile=src/test/resources/TestSuites/bvtSG/sg1.xml -Dtest_env=xyz allure:serve -DtestRunId=1

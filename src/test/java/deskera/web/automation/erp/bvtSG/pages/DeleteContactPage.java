@@ -2,13 +2,16 @@ package deskera.web.automation.erp.bvtSG.pages;
 
 import java.util.Map;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import io.qameta.allure.Step;
 
@@ -34,9 +37,16 @@ public class DeleteContactPage {
 	@FindBy(xpath="//span[text()='Contact Deleted']")
 	@CacheLookup
 	private WebElement deleteSucessMessage;
+	@FindBy(xpath= "//input[@placeholder='Search Records']")
+	@CacheLookup
+	private WebElement searchRecord;
 	@FindBy(xpath= "//div[@class='no-records ng-star-inserted']")
 	@CacheLookup
 	private WebElement thereIsNoMatchingRecords;
+	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/div[2]/div[2]/div[1]/span[2]")
+	@CacheLookup
+	private WebElement allSummaryCount;
+	
 	
 	/******************************* Contacts Delete Object Manipulation Methods *******************/
 	@Step("Open URL")
@@ -61,9 +71,24 @@ public class DeleteContactPage {
 		deleteSucessMessage.isDisplayed();
         wait.until(ExpectedConditions.invisibilityOf(deleteSucessMessage));
 	}
+	@Step("Search deleted contact")
+	public void searchdeletedRecord(String cName) throws InterruptedException{
+		WDWait(searchRecord);
+		searchRecord.click();
+		searchRecord.sendKeys(cName);
+		Thread.sleep(2000);
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.ENTER).build().perform();
+	}
 	@Step("Verify deleted contacts")
 	public void verifyDeletedContact(){
 		WDWait(thereIsNoMatchingRecords);
 		thereIsNoMatchingRecords.isDisplayed();
+	}
+	@Step("Verify summary count after deletion of contact")
+	public void verifysummarycount(){
+		WDWait(allSummaryCount);
+		allSummaryCount.isDisplayed();
+		Assert.assertEquals(allSummaryCount.getText(), "0");
 	}
 }

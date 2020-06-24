@@ -220,9 +220,7 @@ public class CreateProductPage {
 	@CacheLookup
 	private WebElement component2Quantity;
 
-	/*******************************
-	 * Created Product Verification Elements
-	 ***********/
+	/**************************** Created Product Verification Elements ***********/
 	@FindBy(xpath = "//span[text()='Non-Tracked']//following::span[1][@class='count']")
 	@CacheLookup
 	private WebElement nonTrackedProductCount;
@@ -245,6 +243,9 @@ public class CreateProductPage {
 	@FindBy(xpath = "//div[text()='Product Name']//following::div[@class='field-value'][1]")
 	@CacheLookup
 	private WebElement displayedProducName;
+	@FindBy(xpath = "//div[text()='Product Number']//following::div[@class='field-value'][1]")
+	@CacheLookup
+	private WebElement displayedProductNumber;
 	@FindBy(xpath = "//div[text()='Product Type']//following::div[@class='field-value'][1]")
 	@CacheLookup
 	private WebElement displayedProducType;
@@ -339,6 +340,49 @@ public class CreateProductPage {
 	@CacheLookup
 	private WebElement deleteSuccessMessage;
 
+	/**************************** Custom Number Format  Elements ***********/
+		
+	@FindBy(xpath = "//mat-label[contains(.,'Preview')]")
+	@CacheLookup
+	private WebElement previewText;
+	@FindBy(xpath = "//div//div[contains(@class,'result mt')]")
+	@CacheLookup
+	private WebElement previewResultBox;
+	@FindBy(xpath = "//input[@placeholder='Enter prefix']")
+	@CacheLookup
+	private WebElement prefixTextBox;
+	@FindBy(xpath = "(//div[@class='mat-select-arrow'])[2]")
+	@CacheLookup
+	private WebElement separatorDropdown;
+	@FindBy(xpath = "//span[@class='mat-option-text'][contains(.,'-')]")
+	@CacheLookup
+	private WebElement hypenSeparator;
+	@FindBy(xpath = "//span[@class='mat-option-text'][contains(.,'-')]")
+	@CacheLookup
+	private WebElement hypenSeparatorAfterDigits;
+	@FindBy(xpath = "//input[@placeholder='Enter display digits']")
+	@CacheLookup
+	private WebElement digitsTextBox;
+	@FindBy(xpath = "(//div[@class='mat-select-arrow'])[3]")
+	@CacheLookup
+	private WebElement separatorDropdownAfterDigits;
+	@FindBy(xpath = "//input[contains(@placeholder,'Enter suffix')]")
+	@CacheLookup
+	private WebElement suffixTextBox;
+	@FindBy(xpath = "//div[@class='mat-checkbox-inner-container']//following::span[contains(.,'Set as Default ')]")
+	@CacheLookup
+	private WebElement setAsDefaultCheckBox;
+	@FindBy(xpath = "//span[contains(.,'Cancel')]")
+	@CacheLookup
+	private WebElement cancelCustomNumberFormat;
+	@FindBy(xpath = "(//button[contains(.,'Save')])[2]")
+	@CacheLookup
+	private WebElement saveCustomNumberFormat;
+	@FindBy(xpath = "//div[contains(text(),'is saved successfully')]")
+	@CacheLookup
+	private WebElement createCustomNumberFormatSuccessMessage;
+	String customProductNumber="G-0001-A";
+
 	/***********************************
 	 * 
 	 * Page objects manipulation methods
@@ -409,6 +453,7 @@ public class CreateProductPage {
 
 	@Step("Select Non Tracked Product from Dropdown")
 	public void selectNonTrackedProduct() {
+		wait.until(ExpectedConditions.elementToBeClickable(productTypedropdown));
 		productTypedropdown.click();
 		nonTrackedProductType.click();
 	}
@@ -507,7 +552,9 @@ public class CreateProductPage {
 
 	@Step("Enter Accounting Info")
 	public void enterAccountingInfo(String purchaseprice, String salesprice) {
+		purchasePrice.clear();
 		purchasePrice.sendKeys(purchaseprice);
+		salesPrice.clear();
 		salesPrice.sendKeys(salesprice);
 	}
 
@@ -702,7 +749,7 @@ public class CreateProductPage {
 		WDWait(searchRecordsBox);
 		searchRecordsBox.click();
 		searchRecordsBox.sendKeys(productname);
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER).build().perform();
 		// WDWait(searchedRecord);
@@ -869,12 +916,14 @@ public class CreateProductPage {
 	@Step("Edit Account Details")
 	public void editAccountingDetails(String purchaseprice,String salesprice){
 		WDWait(purchaseAccount);
+		wait.until(ExpectedConditions.elementToBeClickable(purchaseAccount));
 		purchaseAccount.click();
 		WDWait(purchaseReturnPurchaseAccount);
 		purchaseReturnPurchaseAccount.click();
 		purchasePrice.clear();
 		purchasePrice.sendKeys(purchaseprice);
 		WDWait(salesAccount);
+		wait.until(ExpectedConditions.elementToBeClickable(salesAccount));
 		salesAccount.click();
 		WDWait(salesReturnSalesAccount);
 		salesReturnSalesAccount.click();
@@ -885,6 +934,7 @@ public class CreateProductPage {
 	@Step("Edit Inventory Details")
 	public void editInventoryDetails(String updatedUnitOfMeasurement){
 		WDWait(unitOfMeasurement);
+		wait.until(ExpectedConditions.elementToBeClickable(unitOfMeasurement));
 		unitOfMeasurement.click();
 		WDWait(piecesUnitOfMeasurement);
 		piecesUnitOfMeasurement.click();
@@ -1028,4 +1078,77 @@ public class CreateProductPage {
 		}
 	}
 	
+	@Step("Click On Custom Number Format Button")
+	public void clickCustomNumberFormat() {
+		wait.until(ExpectedConditions.elementToBeClickable(customNumberFormat));
+		customNumberFormat.click();
+	}
+	
+	@Step("Verify Custom Number Format Page Elements ")
+	public void verifyCustomNumberFormatPageElements() {
+		WDWait(previewText);
+		previewText.isDisplayed();
+		previewResultBox.isDisplayed();
+		prefixTextBox.isDisplayed();
+		separatorDropdown.isDisplayed();
+		digitsTextBox.isDisplayed();
+		separatorDropdownAfterDigits.isDisplayed();
+		suffixTextBox.isDisplayed();
+		setAsDefaultCheckBox.isDisplayed();
+		cancelCustomNumberFormat.isDisplayed();
+		saveCustomNumberFormat.isDisplayed();
+	}
+	
+	@Step("Enter / Select Custom Number format details ")
+	public void enterCustomNumberFormat() {
+		WDWait(prefixTextBox);
+		prefixTextBox.sendKeys("G");
+		wait.until(ExpectedConditions.elementToBeClickable(separatorDropdown));
+		separatorDropdown.click();
+		WDWait(hypenSeparator);
+		hypenSeparator.click();
+		digitsTextBox.clear();
+		digitsTextBox.sendKeys("4");
+		wait.until(ExpectedConditions.elementToBeClickable(separatorDropdownAfterDigits));
+		separatorDropdownAfterDigits.click();
+		WDWait(hypenSeparatorAfterDigits);
+		hypenSeparatorAfterDigits.click();
+		WDWait(suffixTextBox);
+		suffixTextBox.sendKeys("A");	
+	}
+	
+	@Step("Preview Custom Number format")
+	public void previewCustomNumberFormat() {
+		WDWait(previewResultBox);
+		Assert.assertEquals(previewResultBox.getText(), customProductNumber);	
+	}
+	
+	@Step("Click on Save Button on Custom Number Format Page")
+	public void clickSaveCustomNumberFormat() throws InterruptedException {
+		WDWait(saveCustomNumberFormat);
+		saveCustomNumberFormat.click();
+		Thread.sleep(4000);
+	}
+	
+	@Step("Verify Custom Number Format In Product Number")
+	public void verifyCustomNumberFormatInProductNumber() throws InterruptedException {
+		WDWait(productNumber);
+		Thread.sleep(5000);
+		Assert.assertEquals(productNumber.getAttribute("value"), customProductNumber);		
+	}
+	
+	@Step("Verify Create Custom Number Format Success Message")
+	public void verifyCustomNumberFormatSuccessMessage() {
+		WDWait(createCustomNumberFormatSuccessMessage);
+		createCustomNumberFormatSuccessMessage.isDisplayed();
+		wait.until(ExpectedConditions.invisibilityOf(createCustomNumberFormatSuccessMessage));
+	}
+	
+	@Step("Verify Dispalyed Product Number and Format")
+	public void verifyDisplayedProductNumber() {
+		WDWait(displayedProductNumber);
+		Actions action = new Actions(driver);
+		action.moveToElement(displayedProductNumber).perform();
+        Assert.assertEquals(displayedProductNumber.getText(), customProductNumber);
+	}
 }

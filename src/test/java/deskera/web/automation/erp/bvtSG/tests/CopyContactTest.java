@@ -53,15 +53,17 @@ public class CopyContactTest extends DriverFactory {
 		ContactsPage contactsPage = new ContactsPage(driver, wait);
 		contactsPage.clickContactsButton();
 
+		//Edit contact page object instance
 		EditContactPage editcontact= new EditContactPage(driver, wait);
 		
-		//Edit contact page object instance
+		
 		CopyContactPage copycontact= new CopyContactPage(driver, wait);
 		copycontact.clickContextMenuIcon();
-		copycontact.clickCopyButton();
+		copycontact.clickCopyButton();		
 		editcontact.editGeneralInfo(name, email, UENNumber, TAXNumber);
 		copycontact.clickSaveButton();
 		copycontact.verifysuccessmessage();
-		contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber);
+		//contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber);
+		copycontact.verifyCopiedContact(name, UENNumber, TAXNumber);
 	}
 }

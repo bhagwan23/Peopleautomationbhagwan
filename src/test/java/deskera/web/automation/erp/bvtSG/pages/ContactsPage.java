@@ -64,7 +64,7 @@ public class ContactsPage {
 	@FindBy(xpath= "//input[@id='mat-input-6']")
 	@CacheLookup
 	private WebElement taxNumber;
-	@FindBy(xpath= "//div[@class='currency-select-trigger']")
+	@FindBy(xpath= "//div[@class='currency-dropdown-code']")
 	@CacheLookup
 	private WebElement currency;
 	@FindBy(xpath= "//input[@name='sequenceValue']")
@@ -77,7 +77,7 @@ public class ContactsPage {
 	@FindBy(xpath= "//p[contains(text(),'Payment Terms')]")
 	@CacheLookup
 	private WebElement paymentTerms;
-	@FindBy(xpath= "//div[@class='mat-select-value']")
+	@FindBy(xpath= "//*[@id='mat-select-0']/div/div[1]")
 	@CacheLookup
 	private WebElement paymentTermsList;
 
@@ -146,7 +146,7 @@ public class ContactsPage {
 	@FindBy(xpath="//div[contains(text(),'Tax Number')]/following-sibling::div[@class='field-value']")
 	@CacheLookup
 	private WebElement tax;
-	@FindBy(xpath= "//div[contains(text(),'Purchase Account')]/following-sibling::div[@class='field-value']")
+	@FindBy(xpath= "//div[contains(text(),'Account Payable')]/following-sibling::div[@class='field-value']")
 	@CacheLookup
 	private WebElement accPayable;
 	@FindBy(xpath= "//div[contains(text(),'Sales Account')]/following-sibling::div[@class='field-value']")
@@ -229,7 +229,6 @@ public class ContactsPage {
 		WDWait(contactsButton);
 		contactsButton.click(); 
 		clickPopup();
-		//Thread.sleep(3000);
 	}
 	@Step("close popup on contacts page")
 	public void clickPopup() throws InterruptedException{	
@@ -371,17 +370,22 @@ public class ContactsPage {
 		WDWait(searchRecord);
 		searchRecord.click();
 		searchRecord.sendKeys(cName);
-		Thread.sleep(2000);
+		/*Thread.sleep(2000);
 		Actions action = new Actions(driver);
-		action.sendKeys(Keys.ENTER).build().perform();
+		action.sendKeys(Keys.ENTER).build().perform();*/
 		
 		WDWait(enteredName);
 		Assert.assertEquals(enteredName.getText(), cName);
+		//wait.until(ExpectedConditions.visibilityOf(enteredName));
+		Thread.sleep(5000);
+		enteredName.isDisplayed();
+		//Thread.sleep(5000);
 		enteredName.click();
 		
 		Assert.assertEquals(contactName.getText(), cName);
 		Assert.assertEquals(uENnumber.getText(), UENNumber);
 		Assert.assertEquals(tax.getText(), TAXNumber);
+		
 		scrollToElement(accPayable);
 		wait.until(ExpectedConditions.visibilityOf(accPayable));
 		Assert.assertEquals(accPayable.getText(), buyAccount);
@@ -395,12 +399,9 @@ public class ContactsPage {
 		WDWait(customCancelButton);
 		customCancelButton.isDisplayed();
 		customCancelButton.click();
-		//enteredNumber.isDisplayed();
-		//enteredUEN.isDisplayed();
+		
 		enteredCurrency.isDisplayed();
 		enteredTaxNumber.isDisplayed();
-		//enteredpurchaseAccount.isDisplayed();
-		//enteredPaymentTerms.isDisplayed();
 		contactBackButton.isDisplayed();
 		contactBackButton.click();
 	}

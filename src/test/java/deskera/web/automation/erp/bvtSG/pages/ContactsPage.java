@@ -121,7 +121,7 @@ public class ContactsPage {
 	@FindBy(xpath= "//div//i[contains(@class,'fa-times close-button m')]//self::i[1]")
 	@CacheLookup
 	private WebElement cancel;
-	@FindBy(xpath= "//input[@id='mat-input-3']")
+	@FindBy(xpath= "//input[@aria-autocomplete='list'])[1]")
 	@CacheLookup
 	private WebElement accountPayable;
 	@FindBy(xpath="//input[@id='mat-input-4']")
@@ -157,7 +157,7 @@ public class ContactsPage {
 	@FindBy(xpath= "//div[contains(text(),'Edward')]")
 	@CacheLookup
 	private WebElement enteredContactName;
-	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/mat-table/mat-row[1]/mat-cell[3]")
+	@FindBy(xpath= "//mat-cell[text()='Updated_Edward']")
 	@CacheLookup
 	private WebElement enteredName;
 	
@@ -204,6 +204,10 @@ public class ContactsPage {
 	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/div[2]/div[2]/div[1]/span[2]")
 	@CacheLookup
 	private WebElement allSummaryCount;
+	
+	@FindBy(xpath= "//mat-cell[text()='Updated_Edward']")
+	@CacheLookup
+	private WebElement enteredName1;
 	
 	/******************************* Contacts Object Manipulation Methods *******************/
 	@Step("Open URl")
@@ -322,7 +326,9 @@ public class ContactsPage {
 		
 		WDWait(accountPayable);
 		accountPayable.isDisplayed();
+		
 		buyAccount=accountPayable.getAttribute("value");
+		//System.out.println(accountPayable.getAttribute("value"));
 		Assert.assertEquals(accountPayable.getAttribute("value"), "Accounts Payable");
 		
 		WDWait(accountReceivable);
@@ -370,17 +376,18 @@ public class ContactsPage {
 		WDWait(searchRecord);
 		searchRecord.click();
 		searchRecord.sendKeys(cName);
-		/*Thread.sleep(2000);
-		Actions action = new Actions(driver);
+		Thread.sleep(5000);
+		/*Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER).build().perform();*/
 		
-		WDWait(enteredName);
-		Assert.assertEquals(enteredName.getText(), cName);
-		//wait.until(ExpectedConditions.visibilityOf(enteredName));
+		//wait.until(ExpectedConditions.elementToBeClickable(enteredName1));
+		WDWait(enteredName1);
+		Assert.assertEquals(enteredName1.getText(), cName);
+		
+		wait.until(ExpectedConditions.elementToBeClickable(enteredName1));
 		Thread.sleep(5000);
-		enteredName.isDisplayed();
-		//Thread.sleep(5000);
-		enteredName.click();
+		//enteredName.isDisplayed();
+		enteredName1.click();
 		
 		Assert.assertEquals(contactName.getText(), cName);
 		Assert.assertEquals(uENnumber.getText(), UENNumber);

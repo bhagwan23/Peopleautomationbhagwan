@@ -73,7 +73,6 @@
 		</classes>
 
 	</test> 
-  
 
 <test name="C20261 Add Contacts"  parallel="false">
 		<classes>
@@ -86,7 +85,8 @@
 			</class>
 		</classes>
 	</test>
--->	 
+	  -->
+	 
 	<test name="C20261 Edit Contacts" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.EditContactTest">

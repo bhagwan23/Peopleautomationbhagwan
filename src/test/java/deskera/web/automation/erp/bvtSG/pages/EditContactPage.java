@@ -78,7 +78,7 @@ public class EditContactPage {
 	@FindBy(xpath= "//input[@placeholder='Search Records']")
 	@CacheLookup
 	private WebElement searchRecord;
-	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/mat-table/mat-row[1]/mat-cell[3]")
+	@FindBy(xpath= "//mat-cell[text()='Updated_Edward']")
 	@CacheLookup
 	private WebElement enteredName;
 
@@ -90,6 +90,7 @@ public class EditContactPage {
 	public void WDWait(WebElement we) {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
+	
 	@Step("Search contact to edit")
 	public void searchRecord(String cName) throws InterruptedException{
 		WDWait(searchRecord);
@@ -113,10 +114,11 @@ public class EditContactPage {
 	@Step("Click on Edit button")
 	public void clickEditButton() throws InterruptedException{
 
-		//WDWait(editButton);
+		WDWait(editButton);
+		wait.until(ExpectedConditions.elementToBeClickable(editButton));
 		//wait.until(ExpectedConditions.visibilityOf(editButton));
 		//Thread.sleep(2000);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);				
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);				
 		editButton.isDisplayed();
 		//Thread.sleep(2000);
 		editButton.click();	

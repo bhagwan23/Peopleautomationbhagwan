@@ -64,7 +64,7 @@ public class ContactsPage {
 	@FindBy(xpath= "//input[@id='mat-input-6']")
 	@CacheLookup
 	private WebElement taxNumber;
-	@FindBy(xpath= "//div[@class='currency-dropdown-code']")
+	@FindBy(xpath= "//div[@class='currency-select-trigger']")
 	@CacheLookup
 	private WebElement currency;
 	@FindBy(xpath= "//input[@name='sequenceValue']")
@@ -77,7 +77,7 @@ public class ContactsPage {
 	@FindBy(xpath= "//p[contains(text(),'Payment Terms')]")
 	@CacheLookup
 	private WebElement paymentTerms;
-	@FindBy(xpath= "//*[@id='mat-select-0']/div/div[1]")
+	@FindBy(xpath= "//div[@class='mat-select-value']")
 	@CacheLookup
 	private WebElement paymentTermsList;
 
@@ -121,7 +121,7 @@ public class ContactsPage {
 	@FindBy(xpath= "//div//i[contains(@class,'fa-times close-button m')]//self::i[1]")
 	@CacheLookup
 	private WebElement cancel;
-	@FindBy(xpath= "//input[@aria-autocomplete='list'])[1]")
+	@FindBy(xpath= "//input[@id='mat-input-3']")
 	@CacheLookup
 	private WebElement accountPayable;
 	@FindBy(xpath="//input[@id='mat-input-4']")
@@ -146,7 +146,7 @@ public class ContactsPage {
 	@FindBy(xpath="//div[contains(text(),'Tax Number')]/following-sibling::div[@class='field-value']")
 	@CacheLookup
 	private WebElement tax;
-	@FindBy(xpath= "//div[contains(text(),'Account Payable')]/following-sibling::div[@class='field-value']")
+	@FindBy(xpath= "//div[contains(text(),'Purchase Account')]/following-sibling::div[@class='field-value']")
 	@CacheLookup
 	private WebElement accPayable;
 	@FindBy(xpath= "//div[contains(text(),'Sales Account')]/following-sibling::div[@class='field-value']")
@@ -157,7 +157,7 @@ public class ContactsPage {
 	@FindBy(xpath= "//div[contains(text(),'Edward')]")
 	@CacheLookup
 	private WebElement enteredContactName;
-	@FindBy(xpath= "//mat-cell[text()='Updated_Edward']")
+	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/mat-table/mat-row[1]/mat-cell[3]")
 	@CacheLookup
 	private WebElement enteredName;
 	
@@ -205,10 +205,6 @@ public class ContactsPage {
 	@CacheLookup
 	private WebElement allSummaryCount;
 	
-	@FindBy(xpath= "//mat-cell[text()='Updated_Edward']")
-	@CacheLookup
-	private WebElement enteredName1;
-	
 	/******************************* Contacts Object Manipulation Methods *******************/
 	@Step("Open URl")
 	public void openURL(String URL) {
@@ -233,6 +229,7 @@ public class ContactsPage {
 		WDWait(contactsButton);
 		contactsButton.click(); 
 		clickPopup();
+		//Thread.sleep(3000);
 	}
 	@Step("close popup on contacts page")
 	public void clickPopup() throws InterruptedException{	
@@ -326,9 +323,7 @@ public class ContactsPage {
 		
 		WDWait(accountPayable);
 		accountPayable.isDisplayed();
-		
 		buyAccount=accountPayable.getAttribute("value");
-		//System.out.println(accountPayable.getAttribute("value"));
 		Assert.assertEquals(accountPayable.getAttribute("value"), "Accounts Payable");
 		
 		WDWait(accountReceivable);
@@ -376,23 +371,17 @@ public class ContactsPage {
 		WDWait(searchRecord);
 		searchRecord.click();
 		searchRecord.sendKeys(cName);
-		Thread.sleep(5000);
-		/*Actions action = new Actions(driver);
-		action.sendKeys(Keys.ENTER).build().perform();*/
+		Thread.sleep(2000);
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.ENTER).build().perform();
 		
-		//wait.until(ExpectedConditions.elementToBeClickable(enteredName1));
-		WDWait(enteredName1);
-		Assert.assertEquals(enteredName1.getText(), cName);
-		
-		wait.until(ExpectedConditions.elementToBeClickable(enteredName1));
-		Thread.sleep(5000);
-		//enteredName.isDisplayed();
-		enteredName1.click();
+		WDWait(enteredName);
+		Assert.assertEquals(enteredName.getText(), cName);
+		enteredName.click();
 		
 		Assert.assertEquals(contactName.getText(), cName);
 		Assert.assertEquals(uENnumber.getText(), UENNumber);
 		Assert.assertEquals(tax.getText(), TAXNumber);
-		
 		scrollToElement(accPayable);
 		wait.until(ExpectedConditions.visibilityOf(accPayable));
 		Assert.assertEquals(accPayable.getText(), buyAccount);
@@ -406,9 +395,12 @@ public class ContactsPage {
 		WDWait(customCancelButton);
 		customCancelButton.isDisplayed();
 		customCancelButton.click();
-		
+		//enteredNumber.isDisplayed();
+		//enteredUEN.isDisplayed();
 		enteredCurrency.isDisplayed();
 		enteredTaxNumber.isDisplayed();
+		//enteredpurchaseAccount.isDisplayed();
+		//enteredPaymentTerms.isDisplayed();
 		contactBackButton.isDisplayed();
 		contactBackButton.click();
 	}

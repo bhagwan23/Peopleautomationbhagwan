@@ -1,7 +1,6 @@
 package deskera.web.automation.erp.bvtSG.pages;
 
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -29,10 +28,10 @@ public class EditContactPage {
 	}
 
 	/******************************* EDIT CONTACT PAGE ELEMENTS LOCATORS *******************/
-	@FindBy(xpath = "//mat-row[1]//mat-cell[8]//button[1]//mat-icon[1]")
+	@FindBy(xpath = "//mat-icon[@class='mat-icon notranslate material-icons mat-icon-no-color']")
 	@CacheLookup
 	private WebElement contextMenuIcon;
-	@FindBy(xpath= "//button[contains(text(),'Edit')]")
+	@FindBy(xpath= "//*[@id='cdk-overlay-2']/div/div/button[1]")
 	@CacheLookup
 	private WebElement editButton;
 	@FindBy(id= "mat-input-1")
@@ -47,7 +46,7 @@ public class EditContactPage {
 	@FindBy(xpath= "//input[@id='mat-input-6']")
 	@CacheLookup
 	private WebElement taxNumber;
-
+	
 	@FindBy(xpath= "//div[contains(text(),'Address')]")
 	@CacheLookup
 	private WebElement address;
@@ -66,22 +65,22 @@ public class EditContactPage {
 	@FindBy(xpath= "//input[@id='mat-input-11']")
 	@CacheLookup
 	private WebElement country;
-
+	
 	@FindBy(xpath= "//span[contains(text(),'Save Changes')]")
 	@CacheLookup
 	private WebElement saveChangeButton;
-
+	
 	@FindBy(xpath= "//span[text()='Contact is successfully Updated']")
 	@CacheLookup
 	private WebElement updateContactSuccessMessage;
-
+	
 	@FindBy(xpath= "//input[@placeholder='Search Records']")
 	@CacheLookup
 	private WebElement searchRecord;
-	@FindBy(xpath= "//mat-cell[text()='Updated_Edward']")
+	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/mat-table/mat-row[1]/mat-cell[3]")
 	@CacheLookup
 	private WebElement enteredName;
-
+	
 	/*******************************Edit Contacts Object Manipulation Methods *******************/
 	@Step("Open URL")
 	public void openURL(String URL) {
@@ -90,55 +89,46 @@ public class EditContactPage {
 	public void WDWait(WebElement we) {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
-	
 	@Step("Search contact to edit")
 	public void searchRecord(String cName) throws InterruptedException{
 		WDWait(searchRecord);
 		searchRecord.click();
 		searchRecord.sendKeys(cName);
-		Thread.sleep(5000);
-		/*Actions action = new Actions(driver);
-		action.sendKeys(Keys.ENTER).build().perform();*/
-
+		Thread.sleep(2000);
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.ENTER).build().perform();
+		
 	}
 	@Step("Click on Context Menu icon")
 	public void clickContextMenuIcon() throws InterruptedException{
 		WDWait(contextMenuIcon);
-		wait.until(ExpectedConditions.elementToBeClickable(contextMenuIcon));
-		//Thread.sleep(2000);
-		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);				
+		wait.until(ExpectedConditions.visibilityOf(contextMenuIcon));
 		contextMenuIcon.isDisplayed();
-		//Thread.sleep(2000);
 		contextMenuIcon.click();
 	}
 	@Step("Click on Edit button")
-	public void clickEditButton() throws InterruptedException{
-
+	public void clickEditButton(){
+		
 		WDWait(editButton);
-		wait.until(ExpectedConditions.elementToBeClickable(editButton));
-		//wait.until(ExpectedConditions.visibilityOf(editButton));
-		//Thread.sleep(2000);
-		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);				
+		wait.until(ExpectedConditions.visibilityOf(editButton));
 		editButton.isDisplayed();
-		//Thread.sleep(2000);
 		editButton.click();	
-
+		
 	}
 	@Step("Enter new general info")
 	public void editGeneralInfo(String cname,String email, String uenno, String taxno){
-
 		WDWait(name);
 		name.clear();
 		name.sendKeys(cname);
-
+		
 		WDWait(emailAddress);
 		emailAddress.clear();
 		emailAddress.sendKeys(email);
-
+		
 		WDWait(contactUEN);
 		contactUEN.clear();
 		contactUEN.sendKeys(uenno);
-
+		
 		WDWait(taxNumber);
 		taxNumber.clear();
 		taxNumber.sendKeys(taxno);
@@ -148,23 +138,23 @@ public class EditContactPage {
 		WDWait(address);
 		address.isDisplayed();
 		address.click();
-
+		
 		WDWait(enterAddress);
 		enterAddress.clear();
 		enterAddress.sendKeys(addr);
-
+		
 		WDWait(state);
 		state.clear();
 		state.sendKeys(state1);
-
+		
 		WDWait(postalCode);
 		postalCode.clear();
 		postalCode.sendKeys(postal);
-
+		
 		WDWait(city);
 		city.clear();
 		city.sendKeys(city1);
-
+		
 		WDWait(country);
 		country.clear();
 		country.sendKeys(country1);
@@ -180,5 +170,5 @@ public class EditContactPage {
 		WDWait(updateContactSuccessMessage);
 		updateContactSuccessMessage.isDisplayed();
 	}
-
+	
 }

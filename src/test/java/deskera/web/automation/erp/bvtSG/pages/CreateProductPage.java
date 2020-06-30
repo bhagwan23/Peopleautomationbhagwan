@@ -198,21 +198,19 @@ public class CreateProductPage {
 	@FindBy(xpath = "//div[contains(text(),' + Add an Additional Cost ')]")
 	@CacheLookup
 	private WebElement addAdditionalCostButton;
-	@FindBy(xpath = "(//input[contains(@placeholder,'Select Product')])[1]")
+	@FindBy(xpath = "//input[@placeholder='Type here']")
 	@CacheLookup
 	private WebElement componentProduct1TextBox;
-	@FindBy(xpath = "//mat-option//span[@class='mat-option-text']")
+	
+	
+	@FindBy(xpath = "//span[@class='mat-option-text']")
+	@CacheLookup
+	private WebElement dropDownSelectProduct;
+	
+	
+	@FindBy(xpath = "//input[@placeholder='Quantity']")
 	@CacheLookup
 	private WebElement componentProduct1Value;
-	@FindBy(xpath = "(//input[contains(@placeholder,'Select Product')])[1]")
-	@CacheLookup
-	private WebElement componentProduct1;
-	@FindBy(xpath = "(//input[contains(@placeholder,'Quantity')])[1]")
-	@CacheLookup
-	private WebElement component1Quantity;
-	@FindBy(xpath = "(//input[contains(@placeholder,'Select Product')])[2]")
-	@CacheLookup
-	private WebElement componentProduct2TextBox;
 	@FindBy(xpath = "//mat-option//span[2][@class='mat-option-text']")
 	@CacheLookup
 	private WebElement componentProduct2Value;
@@ -427,6 +425,33 @@ public class CreateProductPage {
 			Thread.sleep(1000);
 		}
 		newProductButton.click();
+	}
+	
+	@Step("close popup on contacts page")
+	public void clickPopup() throws InterruptedException{	
+		//driver.get("https://reality-qa.deskera.xyz/book-keeper/client");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()=' Contacts ']"))); // Contact // link                                                                                                            // or                                                                                                            // Produ                                                                                                            // link
+		driver.findElement(By.xpath("//span[text()=' Contacts ']")).click();
+		Thread.sleep(3000); // THis is important because popup gets loaded and then disappears
+		// driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click();
+		for (int second = 0; second <= 15; second++) {
+			if (second == 15) {
+				System.out.println("Popup Not found clickin on new Contact Button");
+				break;
+			}
+			try {
+				if (driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).isDisplayed()) {
+					System.out.println("closig popup now 1");
+					driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click(); //popup close button
+					System.out.println("closed popup  1");
+					break;
+				}
+			} catch (Exception e) {
+			}
+			Thread.sleep(1000);
+		}
+		// driver.findElement(By.xpath("//button[3]/span")).click(); // Create new contact button
+
 	}
 
 	@Step("Verify Create New Product Page")
@@ -645,14 +670,18 @@ public class CreateProductPage {
 	}
 
 	@Step("Enter BOM Details")
-	public void enterBOMDetails(String quantity1, String quantity2) {
+	public void enterBOMDetails(String trackedProduct, String quantity) {
 		WDWait(addComponentProductButton);
 		addComponentProductButton.click();
 		WDWait(componentProduct1TextBox);
 		componentProduct1TextBox.click();
+		componentProduct1TextBox.sendKeys(trackedProduct);
+		WDWait(dropDownSelectProduct);
+		dropDownSelectProduct.click();
+		
 		WDWait(componentProduct1Value);
 		componentProduct1Value.click();
-		component1Quantity.sendKeys(quantity1);
+		componentProduct1Value.sendKeys(quantity);
 	}
 
 	@Step("Click On Save Button")
@@ -867,19 +896,22 @@ public class CreateProductPage {
 	}
 
 	@Step("Click Three Dots On Non Tracked Product")
-	public void clickThreeDotsOnNonTrackedProduct() {
+	public void clickThreeDotsOnNonTrackedProduct() throws InterruptedException {
+		clickPopup();
 		WDWait(threeDotsOnNonTrackedProduct);
 		threeDotsOnNonTrackedProduct.click();
 	}
 	
 	@Step("Click Three Dots On Tracked Product")
-	public void clickThreeDotsOnTrackedProduct() {
+	public void clickThreeDotsOnTrackedProduct() throws InterruptedException {
+		clickPopup();
 		WDWait(threeDotsOnTrackedProduct);
 		threeDotsOnTrackedProduct.click();
 	}
 	
 	@Step("Click Three Dots On BOM Product")
-	public void clickThreeDotsOnBOMProduct() {
+	public void clickThreeDotsOnBOMProduct() throws InterruptedException {
+		clickPopup();
 		WDWait(threeDotsOnBOMProduct);
 		threeDotsOnBOMProduct.click();
 	}

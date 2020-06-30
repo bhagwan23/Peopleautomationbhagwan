@@ -40,6 +40,14 @@ public class SignUpPage {
 	}
 
 	/******************************* PAGE ELEMENTS LOCATORS *******************/
+	
+	
+	
+	@FindBy(xpath = "//div[1]/button[1]/span[1]/span[contains(text(),'SIGN UP Now')]")
+	@CacheLookup
+	private WebElement SignUpNow;
+	
+	
 	@FindBy(name = "email")
 	@CacheLookup
 	private WebElement userSignupEmail;
@@ -61,13 +69,13 @@ public class SignUpPage {
 	@FindBy(xpath = "//div[@class='cdk-overlay-container']//button//div[contains(text(),'India') and contains(text(),'+91')]")
 	@CacheLookup
 	private WebElement INCode;
-	@FindBy(xpath = "//span[contains(text(),'Are you a bookkeeper?')]/../span[contains(text(),'Sign up for Deskera Bookkeeper')]")
+	@FindBy(xpath = "//span[contains(text(),'Are you a book-keeper?')]/../span[contains(text(),'Sign up for Deskera Book-keeper')]")
 	@CacheLookup
 	private WebElement bookkeeperLink;
-	@FindBy(xpath = "//span[contains(text(),'Already have an account ?')]/../span[contains(text(),'Sign in')]")
+	@FindBy(xpath = "//span[contains(text(),'Already have an account ?')]/../span[contains(text(),'SIGN IN')]")
 	@CacheLookup
 	private WebElement alreadyHaveAccount;
-	@FindBy(xpath = "//span[contains(text(),'Sign up')]/../span[contains(text(),' for Deskera')]")
+	@FindBy(xpath = "//span[contains(text(),'Already have an account ?')]/../span[contains(text(),'SIGN IN')]")
 	@CacheLookup
 	private WebElement signUpForBookkeeper;
 	@FindBy(xpath = "//span[contains(text(),'Not a bookkeeper?')]/../span[contains(text(),'Sign up for regular account')]")
@@ -189,12 +197,20 @@ public class SignUpPage {
 
 	@Step("Verify Sign Up Page Elements")
 	public void verifySignUpPageElements() {
+		
+		WDWait(SignUpNow);
+		wait.until(ExpectedConditions.elementToBeClickable(SignUpNow));
+		SignUpNow.click();
 		WDWait(userSignupEmail);
 		userSignupEmail.isDisplayed();
 		userSignupPhone.isDisplayed();
+		WDWait(alreadyHaveAccount);
 		alreadyHaveAccount.isDisplayed();
+		WDWait(createAccountButton);
 		createAccountButton.isDisplayed();
+		WDWait(countryCodeSelector);
 		countryCodeSelector.isDisplayed();
+		WDWait(bookkeeperLink);
 		bookkeeperLink.isDisplayed();
 	}
 

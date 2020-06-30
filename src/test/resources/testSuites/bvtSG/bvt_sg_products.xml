@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite thread-count="1" name="Go.Deskera Web BVT Products Suite" parallel="false" preserve-order="true">
+<suite thread-count="1" name="Go.Deskera Web BVT Products Suite"
+	parallel="false" preserve-order="true">
 
 	<listeners>
 		<listener
@@ -9,21 +10,20 @@
 		</listener>
 	</listeners>
 	<parameter name="browser" value="chrome"></parameter>
-	<parameter name="url"
+	<!-- <parameter name="url"
 		value="https://auth-qa.deskera.xyz/auth/signin?redirectUrl=https:%2F%2Freality-qa.deskera.xyz"></parameter>
-
+ -->
 	<!-- System config for framework -->
 	<parameter name="envConf"
 		value="src/test/resources/systemConfig/environment.config"></parameter>
 
-	<parameter name="singUpUrl"
-		value="https://auth-qa.deskera.xyz/auth/signup"></parameter>
+	<!-- <parameter name="singUpUrl"
+		value="https://auth-qa.deskera.xyz/auth/signup"></parameter> -->
 
 	<!-- Run Test Cases -->
 	<parameter name="conf"
 		value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
 
-		
 	<test name=" 1 Sign Up without Phone Number test" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
@@ -32,69 +32,80 @@
 				</methods>
 			</class>
 		</classes>
-	</test>  
-	
-	<test name=" 2 Create Organization" parallel="false">		
+	</test>
+	<test name=" 2 Create Organization" parallel="false">
 		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
 			</class>
 		</classes>
-	</test> 
-
-    <test name=" 3 C20263 Add Non Tracked Product" parallel="false">
+	</test>
+	
+	<test name=" 3 C20263 Add Non Tracked Product" parallel="false">
 		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.AddNonTrackedProductTest">
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.AddNonTrackedProductTest">
 			</class>
 		</classes>
-	</test> 
-	
+	</test>
 	<test name=" 4 Edit Product" parallel="false">
 		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.EditProductTest">
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.EditProductTest">
 			</class>
 		</classes>
-	</test> 
-	
-    <test name=" 5 C20262 Add Tracked Product" parallel="false">
+	</test>
+	<test name=" 5 C20262 Add Tracked Product" parallel="false">
 		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.AddTrackedProductTest">
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.AddTrackedProductTest">
+			</class>
+		</classes>
+	</test>
+	<test name=" 6 Copy Product" parallel="false">
+		<classes>
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.CopyProductTest">
+			</class>
+		</classes>
+	</test>
+	<test name=" 7 C21022 Add Bills Of Material Product"
+		parallel="false">
+		<classes>
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.AddBOMProductTest">
+			</class>
+		</classes>
+	</test>
+	<test name=" 8 Delete Product" parallel="false">
+		<classes>
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.DeleteProductTest">
+			</class>
+		</classes>
+	</test>
+	<test name=" 9 C20425 Add Demo Company" parallel="false">
+		<classes>
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.AddDemoCompanyTest">
+			</class>
+		</classes>
+	</test>
+	<test name="10 Create Custom Number Format" parallel="false">
+		<classes>
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.CreateCustomNumberFormat">
 			</class>
 		</classes>
 	</test>
 
-    <test name=" 6 Copy Product" parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.CopyProductTest">
-			</class>
-		</classes>
-	</test> 
-	
-	<test name=" 7 C21022 Add Bills Of Material Product" parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.AddBOMProductTest">
-			</class>
-		</classes>
-	</test>
 
-    <test name=" 8 Delete Product" parallel="false">
+	<!-- <test name="11 Check multi assert failure" parallel="false">
 		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.DeleteProductTest">
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.MultiAssertTest">
 			</class>
 		</classes>
-	</test>
- 
-    <test name=" 9 C20425 Add Demo Company" parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.AddDemoCompanyTest">
-			</class>
-		</classes>
-	</test> 
-	
-	<test name="10 Create Custom Number Format" parallel="false">		
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.CreateCustomNumberFormat">
-			</class>
-		</classes>
-	</test>
-
+	</test> -->
+	 
 </suite> 

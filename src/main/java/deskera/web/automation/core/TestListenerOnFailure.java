@@ -45,10 +45,19 @@ public class TestListenerOnFailure extends DriverFactory implements ITestListene
 	}
 
 
-	@Attachment(value = "Page screenshot", type = "image/png") public byte[]
-			saveScreenshotPNG(WebDriver sdriver) { return ((TakesScreenshot)
-					sdriver).getScreenshotAs(OutputType.BYTES); }
+	/*
+	 * @Attachment(value = "Page screenshot", type = "image/png") public byte[]
+	 * saveScreenshotPNG(WebDriver sdriver) { return ((TakesScreenshot)
+	 * sdriver).getScreenshotAs(OutputType.BYTES); }
+	 */
 
+	 @Attachment(value = "Failed Page screenshot", type = "image/png")
+	    public byte[] saveScreenshot() {
+	        byte[] screenshot = null;
+	        screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+	        return screenshot;
+	    }
+	
 	@Attachment(value = " Text assertion Error ", type = "text/plain") // attach cause of failure to allure report
 	public static String SaveTextLog(String message) {
 		return message;
@@ -71,8 +80,12 @@ public class TestListenerOnFailure extends DriverFactory implements ITestListene
 		FailedTest = getCurrentTestName(result);
 		// take screenshot on failure
 		System.out.println("Taking screenshot for failed test " + FailedTest);
+	//	byte[] screenShot = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
+	//	Allure.getLifecycle().addAttachment(result.getName()+LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MMM-yy_hh:mm:ss")), "image/png", "png", screenShot);
+		saveTextLogs(FailedTest + " Failed Test Screenshot!");
+		saveScreenshot();
 		// Object testClass = result.getInstance();
-	//	System.out.println("Current Driver ----->" + getDriver());
+		//	System.out.println("Current Driver ----->" + getDriver());
 		// if (dr.getDriver() != null) {
 		// try {
 		/*
@@ -123,15 +136,13 @@ public class TestListenerOnFailure extends DriverFactory implements ITestListene
 		String testResult = "{\"status_id\":5,\"comment\":\"This test Failed during AUTOMATED TEST due to "
 				+ failureReason.toString() + "\"}";
 
-		//System.out.println("failureReason---->" + failureReason);
+		System.out.println("Failure Reason---->" + result.getThrowable().toString());
 		resultupdate.UpdateTestCaseResult(testResult, TestID.toString(), "" + trun + "");
 
-		byte[] screenShot = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
-		Allure.getLifecycle().addAttachment(result.getName()+LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MMM-yy_hh:mm:ss")), "image/png", "png", screenShot);
-		saveTextLogs(FailedTest + " Failed Test Screenshot!");
+
 	}
 
-	
+
 
 	@Override
 	public void onFinish(ITestContext arg0) {
@@ -175,13 +186,13 @@ public class TestListenerOnFailure extends DriverFactory implements ITestListene
 		String testResult = "{\"status_id\":1,\"comment\":\"This test case is Passed by AUTOMATED TEST\"}";
 
 		resultupdate.UpdateTestCaseResult(testResult, TestID.toString(), "" + trun + "");
-		
+
 
 	}
 
 	@Override
 	public void onTestStart(ITestResult result) {
-		
+
 		System.out.println("Test ->"+result.getName()+" execution started");
 	}
 

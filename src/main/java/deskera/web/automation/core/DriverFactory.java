@@ -37,7 +37,7 @@ public class DriverFactory {
 	protected static WebDriverWait wait;
 	protected static String tRuId;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
-
+	protected SoftAssertListner sAssert;
 	public static WebDriverWait getWait() {
 		return wait;
 	}
@@ -91,6 +91,7 @@ public class DriverFactory {
 		wait = (new WebDriverWait(getDriver(), Duration.ofSeconds(60)));
 		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 		setTRunId(testRunId);
+		sAssert = new SoftAssertListner();
 	}
 
 	public String getTRunId() {

@@ -24,7 +24,7 @@ public class AddBOMProductTest extends DriverFactory {
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "url" })
+	@Parameters({ "conf", "environment" })
 	public void getConf(String conf, String URL) {
 		confPath = conf;
 		url = URL;
@@ -44,7 +44,8 @@ public class AddBOMProductTest extends DriverFactory {
 		String openingQuanity = ReadPropertyUtil.readProperty("openingQuanity", confPath);	
 		String openingValuation = ReadPropertyUtil.readProperty("openingValuation", confPath);	
 		String quantity1 = ReadPropertyUtil.readProperty("quantity1", confPath);	
-		String quantity2 = ReadPropertyUtil.readProperty("quantity2", confPath);
+		String trackedProductName = ReadPropertyUtil.readProperty("trackedProductName", confPath);	
+
 		String defaultPurchaseAccount = ReadPropertyUtil.readProperty("defaultPurchaseAccount", confPath);	
 		String defaultPurchaseTax = ReadPropertyUtil.readProperty("defaultPurchaseTax", confPath);
 		String defaultSalesAccount = ReadPropertyUtil.readProperty("defaultSalesAccount", confPath);	
@@ -84,7 +85,7 @@ public class AddBOMProductTest extends DriverFactory {
 		createProductPage.enterOpeningBalanceDetails(openingQuanity, openingValuation);
 		createProductPage.clickBillOfMaterialTab();
 		createProductPage.verifyBillOfMaterialTab();
-		createProductPage.enterBOMDetails(quantity1, quantity2);
+		createProductPage.enterBOMDetails(trackedProductName,quantity1);
 		Thread.sleep(2000);
 		createProductPage.clickSaveButton();
 		createProductPage.verifyCreateProductSuccessMessage();

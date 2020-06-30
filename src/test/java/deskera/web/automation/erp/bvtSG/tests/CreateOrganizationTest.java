@@ -22,7 +22,7 @@ public class CreateOrganizationTest extends DriverFactory{
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "url" })
+	@Parameters({ "conf", "environment" })
 	public void getConf(String conf, String URL) {
 		confPath = conf;
 		url = URL;

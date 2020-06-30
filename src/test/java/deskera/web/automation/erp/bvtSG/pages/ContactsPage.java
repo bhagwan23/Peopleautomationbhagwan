@@ -64,7 +64,7 @@ public class ContactsPage {
 	@FindBy(xpath= "//input[@id='mat-input-6']")
 	@CacheLookup
 	private WebElement taxNumber;
-	@FindBy(xpath= "//div[@class='currency-select-trigger']")
+	@FindBy(xpath= "//div[@class='currency-dropdown-code']")
 	@CacheLookup
 	private WebElement currency;
 	@FindBy(xpath= "//input[@name='sequenceValue']")
@@ -77,7 +77,7 @@ public class ContactsPage {
 	@FindBy(xpath= "//p[contains(text(),'Payment Terms')]")
 	@CacheLookup
 	private WebElement paymentTerms;
-	@FindBy(xpath= "//div[@class='mat-select-value']")
+	@FindBy(xpath= "//div[@class='mat-form-field-infix']/mat-select[@formcontrolname='paymentTermCode']")
 	@CacheLookup
 	private WebElement paymentTermsList;
 

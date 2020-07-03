@@ -33,15 +33,15 @@
 			</class>
 		</classes>
 	</test>
-	<test name=" 2 Create Organization" parallel="false">
+	<!-- <test name=" 2 Create Organization" parallel="false">
 		<classes>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
 			</class>
 		</classes>
-	</test>
+	</test> -->
 	
-	<test name=" 3 C20263 Add Non Tracked Product" parallel="false">
+	<!-- <test name=" 3 C20263 Add Non Tracked Product" parallel="false">
 		<classes>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.AddNonTrackedProductTest">
@@ -99,7 +99,7 @@
 		</classes>
 	</test>
 
-
+ -->
 	<!-- <test name="11 Check multi assert failure" parallel="false">
 		<classes>
 			<class

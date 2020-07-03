@@ -24,17 +24,17 @@
 		value="src/test/resources/bvtSGConfig/TestDataContactSG.config"></parameter>
 		
 		
-	<!-- <test name=" Sign Up test" parallel="false">
+	<test name=" Sign Up test" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
 				<methods>
-					<include name="testSignUpPage"></include>
+					<include name="testSignUpWithoutPhoneNumber"></include>
 				</methods>
 			</class>
 		</classes>
-	</test> -->
+	</test>
 	
-	<!--  <test name="Sign Up as Bookkeeper test" parallel="false">
+	 <test name="Sign Up as Bookkeeper test" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
 				<methods>
@@ -42,10 +42,10 @@
 				</methods>
 			</class>
 		</classes>
-	</test> -->
+	</test>
 
 
-<!--  
+ 
 	<test name="Sign Up without Phone Number test" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
@@ -73,7 +73,7 @@
 		</classes>
 
 	</test> 
-  -->
+ 
    
 <test name="C20261 Add Contacts"  parallel="false">
 		<classes>

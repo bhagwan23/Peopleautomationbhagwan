@@ -74,18 +74,18 @@
 
 	</test> 
   -->
-   
+      
 <test name="C20261 Add Contacts"  parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.ContactsTest">
 				<methods>
 					<include name="addContacts"></include>
-					<include name="addContacts1"></include>
+				     <include name="addContacts1"></include>
 
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> 
 
 	<test name="C20261 Edit Contacts" parallel="false">
 		<classes>
@@ -96,7 +96,8 @@
 			</class>
 		</classes>
 	</test>
-
+ 
+ 
 	<test name="C20261 Copy Contacts" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.CopyContactTest">
@@ -106,7 +107,6 @@
 			</class>
 		</classes>
 	</test>
-  	  
 	<test name="C20261 Delete Contacts" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.DeleteContactTest">
@@ -116,7 +116,7 @@
 			</class>
 		</classes>
 	</test>
-
+	
 
 
 

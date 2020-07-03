@@ -52,16 +52,16 @@ public class ContactsPage {
 	@FindBy(xpath= "//div[contains(text(),'General Info')]")
 	@CacheLookup
 	private WebElement generalInfotab;
-	@FindBy(id= "mat-input-1")
+	@FindBy(xpath= "//input[@formcontrolname='name']")
 	@CacheLookup
 	private WebElement name;
-	@FindBy(xpath= "//input[@id='mat-input-2']")
+	@FindBy(xpath= "//input[@formcontrolname='email']")
 	@CacheLookup
 	private WebElement emailAddress;
-	@FindBy(xpath= "//input[@id='mat-input-5']")
+	@FindBy(xpath= "//input[@formcontrolname='uen']")
 	@CacheLookup
 	private WebElement contactUEN;
-	@FindBy(xpath= "//input[@id='mat-input-6']")
+	@FindBy(xpath= "//input[@formcontrolname='tax']")
 	@CacheLookup
 	private WebElement taxNumber;
 	@FindBy(xpath= "//div[@class='currency-dropdown-code']")
@@ -100,19 +100,19 @@ public class ContactsPage {
 	@FindBy(xpath= "//div[contains(text(),'Address')]")
 	@CacheLookup
 	private WebElement address;
-	@FindBy(xpath= "//textarea[@id='mat-input-7']")
+	@FindBy(xpath= "//textarea[@formcontrolname='address1']")
 	@CacheLookup
 	private WebElement enterAddress;
-	@FindBy(xpath= "//input[@id='mat-input-10']")
+	@FindBy(xpath= "//input[@formcontrolname='state']")
 	@CacheLookup
 	private WebElement state;
-	@FindBy(xpath= "//input[@id='mat-input-8']")
+	@FindBy(xpath= "//input[@formcontrolname='postalCode']")
 	@CacheLookup
 	private WebElement postalCode;
-	@FindBy(xpath= "//input[@id='mat-input-9']")
+	@FindBy(xpath= "//input[@formcontrolname='city']")
 	@CacheLookup
 	private WebElement city;
-	@FindBy(xpath= "//input[@id='mat-input-11']")
+	@FindBy(xpath= "//input[@formcontrolname='country']")
 	@CacheLookup
 	private WebElement country;
 	@FindBy(xpath= "//button[@class='mat-flat-button mat-button-base mat-primary']")
@@ -121,10 +121,10 @@ public class ContactsPage {
 	@FindBy(xpath= "//div//i[contains(@class,'fa-times close-button m')]//self::i[1]")
 	@CacheLookup
 	private WebElement cancel;
-	@FindBy(xpath= "//input[@id='mat-input-3']")
+	@FindBy(xpath= "(//input[@aria-autocomplete='list'])[1]")
 	@CacheLookup
 	private WebElement accountPayable;
-	@FindBy(xpath="//input[@id='mat-input-4']")
+	@FindBy(xpath="(//input[@aria-autocomplete='list'])[2]")
 	@CacheLookup
 	private WebElement accountReceivable;
 	
@@ -288,6 +288,7 @@ public class ContactsPage {
 	@Step("Enter general info")
 	public void enterGeneralInfo(String Cname, String email, String UEN, String tax){
 		WDWait(name);
+		//wait.until(ExpectedConditions.elementToBeClickable(name));
 		name.isDisplayed();
 		name.sendKeys(Cname);
 		WDWait(emailAddress);
@@ -371,22 +372,26 @@ public class ContactsPage {
 		WDWait(searchRecord);
 		searchRecord.click();
 		searchRecord.sendKeys(cName);
-		Thread.sleep(2000);
+		/*Thread.sleep(2000);
 		Actions action = new Actions(driver);
-		action.sendKeys(Keys.ENTER).build().perform();
+		action.sendKeys(Keys.ENTER).build().perform();*/
 		
 		WDWait(enteredName);
+		wait.until(ExpectedConditions.elementToBeClickable(enteredName));
 		Assert.assertEquals(enteredName.getText(), cName);
 		enteredName.click();
-		
 		Assert.assertEquals(contactName.getText(), cName);
 		Assert.assertEquals(uENnumber.getText(), UENNumber);
 		Assert.assertEquals(tax.getText(), TAXNumber);
+		
 		scrollToElement(accPayable);
 		wait.until(ExpectedConditions.visibilityOf(accPayable));
+		Thread.sleep(4000);
 		Assert.assertEquals(accPayable.getText(), buyAccount);
-		scrollToElement(accountReceivable);
-		Assert.assertEquals(accountReceivable.getText(), sellAccount);
+		scrollToElement(accReceivable);
+		wait.until(ExpectedConditions.visibilityOf(accReceivable));
+		Thread.sleep(4000);
+		Assert.assertEquals(accReceivable.getText(), sellAccount);
 		
 		contactOrg.isDisplayed();
 		WDWait(customField);

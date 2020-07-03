@@ -31,38 +31,38 @@ public class EditContactPage {
 	@FindBy(xpath = "//mat-icon[@class='mat-icon notranslate material-icons mat-icon-no-color']")
 	@CacheLookup
 	private WebElement contextMenuIcon;
-	@FindBy(xpath= "//*[@id='cdk-overlay-2']/div/div/button[1]")
+	@FindBy(xpath= "//button[contains(text(),'Edit')]")
 	@CacheLookup
 	private WebElement editButton;
-	@FindBy(id= "mat-input-1")
+	@FindBy(xpath= "//input[@formcontrolname='name']")
 	@CacheLookup
 	private WebElement name;
-	@FindBy(xpath= "//input[@id='mat-input-2']")
+	@FindBy(xpath= "//input[@formcontrolname='email']")
 	@CacheLookup
 	private WebElement emailAddress;
-	@FindBy(xpath= "//input[@id='mat-input-5']")
+	@FindBy(xpath= "//input[@formcontrolname='uen']")
 	@CacheLookup
 	private WebElement contactUEN;
-	@FindBy(xpath= "//input[@id='mat-input-6']")
+	@FindBy(xpath= "//input[@formcontrolname='tax']")
 	@CacheLookup
 	private WebElement taxNumber;
 	
 	@FindBy(xpath= "//div[contains(text(),'Address')]")
 	@CacheLookup
 	private WebElement address;
-	@FindBy(xpath= "//textarea[@id='mat-input-7']")
+	@FindBy(xpath= "//textarea[@formcontrolname='address1']")
 	@CacheLookup
 	private WebElement enterAddress;
-	@FindBy(xpath= "//input[@id='mat-input-10']")
+	@FindBy(xpath= "//input[@formcontrolname='state']")
 	@CacheLookup
 	private WebElement state;
-	@FindBy(xpath= "//input[@id='mat-input-8']")
+	@FindBy(xpath= "//input[@formcontrolname='postalCode']")
 	@CacheLookup
 	private WebElement postalCode;
-	@FindBy(xpath= "//input[@id='mat-input-9']")
+	@FindBy(xpath= "//input[@formcontrolname='city']")
 	@CacheLookup
 	private WebElement city;
-	@FindBy(xpath= "//input[@id='mat-input-11']")
+	@FindBy(xpath= "//input[@formcontrolname='country']")
 	@CacheLookup
 	private WebElement country;
 	
@@ -102,7 +102,7 @@ public class EditContactPage {
 	@Step("Click on Context Menu icon")
 	public void clickContextMenuIcon() throws InterruptedException{
 		WDWait(contextMenuIcon);
-		wait.until(ExpectedConditions.visibilityOf(contextMenuIcon));
+		wait.until(ExpectedConditions.elementToBeClickable(contextMenuIcon));
 		contextMenuIcon.isDisplayed();
 		contextMenuIcon.click();
 	}
@@ -110,7 +110,7 @@ public class EditContactPage {
 	public void clickEditButton(){
 		
 		WDWait(editButton);
-		wait.until(ExpectedConditions.visibilityOf(editButton));
+		wait.until(ExpectedConditions.elementToBeClickable(editButton));
 		editButton.isDisplayed();
 		editButton.click();	
 		

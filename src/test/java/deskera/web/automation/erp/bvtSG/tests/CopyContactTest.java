@@ -59,7 +59,7 @@ public class CopyContactTest extends DriverFactory {
 		CopyContactPage copycontact= new CopyContactPage(driver, wait);
 		copycontact.clickContextMenuIcon();
 		copycontact.clickCopyButton();
-		editcontact.editGeneralInfo(name, email, UENNumber, TAXNumber);
+		//editcontact.editGeneralInfo(name, email, UENNumber, TAXNumber);
 		copycontact.clickSaveButton();
 		copycontact.verifysuccessmessage();
 		contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber);

@@ -12,6 +12,7 @@ import org.testng.asserts.SoftAssert;
 import deskera.web.automation.core.DriverFactory;
 import deskera.web.automation.core.SoftAssertListner;
 import deskera.web.automation.core.TestRailId;
+import deskera.web.automation.erp.bvtSG.pages.GoDashboardPage;
 import deskera.web.automation.erp.bvtSG.pages.LoginPage;
 import deskera.web.automation.erp.bvtSG.pages.SignUpPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
@@ -53,6 +54,7 @@ public class SignUpTest extends DriverFactory {
 		String company = ReadPropertyUtil.readProperty("company", confPath);
 		// Create Page Object instance
 		SignUpPage signUpPage = new SignUpPage(driver, wait);
+		GoDashboardPage gDashboardPage = new GoDashboardPage(driver, wait);
 		// Access Test methods
 		signUpPage.openURL(url);
 		signUpPage.verifyPageTitle();
@@ -68,6 +70,19 @@ public class SignUpTest extends DriverFactory {
 		signUpPage.verifySuccessPageElements(emailAddress);
 		signUpPage.clickResentEmailButton();
 		signUpPage.verifyPageElementsAfterResentEmail(emailAddress);
+		
+		
+		System.out.println("First Time Login Email Address ----->"+emailAddress);
+		// Create Page Object instance
+		LoginPage loginPage = new LoginPage(driver, wait);
+		
+		// Access Test methods
+		loginPage.openURL(url);
+		loginPage.verifyPageTitle();
+		loginPage.verifyLoginPageElements();
+		loginPage.enterEmailandPassword(emailAddress, passWord);
+		loginPage.clickSignInFirstTime();
+		gDashboardPage.clickStartBooksTrial();
 	}
 
 	@TestRailId(testRailId = 20565)
@@ -85,6 +100,8 @@ public class SignUpTest extends DriverFactory {
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		// Create Page Object instance
 		SignUpPage signUpPage = new SignUpPage(driver, wait);
+		GoDashboardPage gDashboardPage = new GoDashboardPage(driver, wait);
+
 		// Access Test methods
 		signUpPage.openURL(url);
 		signUpPage.verifyPageTitle();
@@ -100,6 +117,19 @@ public class SignUpTest extends DriverFactory {
 		signUpPage.verifySuccessPageElements(emailAddress);
 		signUpPage.clickResentEmailButton();
 		signUpPage.verifyPageElementsAfterResentEmail(emailAddress);
+		
+
+		System.out.println("First Time Login Email Address ----->"+emailAddress);
+		// Create Page Object instance
+		LoginPage loginPage = new LoginPage(driver, wait);
+		
+		// Access Test methods
+		loginPage.openURL(url);
+		loginPage.verifyPageTitle();
+		loginPage.verifyLoginPageElements();
+		loginPage.enterEmailandPassword(emailAddress, passWord);
+		loginPage.clickSignInFirstTime();
+		gDashboardPage.clickStartBooksTrial();
 	}
 
 	@TestRailId(testRailId = 20566)

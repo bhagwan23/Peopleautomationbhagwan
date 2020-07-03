@@ -23,18 +23,16 @@ public class LoginPage {
 	public LoginPage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;
-		PageFactory.initElements(driver, this);	
+		PageFactory.initElements(driver, this);
 	}
 
-	/******************************* LOGIN PAGE ELEMENTS LOCATORS *******************/
-
-
+	/*******************************
+	 * LOGIN PAGE ELEMENTS LOCATORS
+	 *******************/
 	@FindBy(xpath = "//span[contains(text(),'Deskera Books')]")
 	@CacheLookup
 	private WebElement goToDeskeraBooksCard;
-
-
-	@FindBy(xpath = "//*[@id='wtf2-input-2']") 
+	@FindBy(xpath = "//*[@id='wtf2-input-2']")
 	@CacheLookup
 	private WebElement userLoginEmail;
 	@FindBy(xpath = "//*[@id='wtf2-input-3']")
@@ -49,14 +47,12 @@ public class LoginPage {
 	@FindBy(xpath = "//span[contains(.,'Forgot Password')]")
 	@CacheLookup
 	private WebElement forgotPasswordLink;
-
 	@FindBy(xpath = "(//span[contains(.,'SIGN IN')])[2]")
 	@CacheLookup
 	private WebElement signInButton;
 	@FindBy(xpath = "(//span[contains(.,'Sign in using Google')])[1]")
 	@CacheLookup
 	private WebElement signInUsingGoogle;
-
 	@FindBy(xpath = "(//span[contains(.,'SIGN UP Now')])[2]")
 	@CacheLookup
 	private WebElement signUpNowLink;
@@ -64,9 +60,9 @@ public class LoginPage {
 	@CacheLookup
 	private WebElement dashboardHeading;
 	private static String pageTitleText = "Deskera SSO";
-
-	/******************************* Sign Using Google PAGE ELEMENTS LOCATORS *******************/
-
+	/*******************************
+	 * Sign Using Google PAGE ELEMENTS LOCATORS
+	 *******************/
 	@FindBy(xpath = "//input[@aria-label='Email or phone']")
 	@CacheLookup
 	private WebElement googleEmailOrPhone;
@@ -79,8 +75,6 @@ public class LoginPage {
 	@FindBy(xpath = "//span[@class='CwaK9']/span[contains(text(),'Next')]")
 	@CacheLookup
 	private WebElement PasswordNextButton;
-
-
 
 	/***********************************
 	 * 
@@ -101,6 +95,10 @@ public class LoginPage {
 	// Common util for webdriver wait
 	public void WDWait(WebElement we) {
 		wait.until(ExpectedConditions.visibilityOf(we));
+	}
+
+	public void WDWaitClickable(WebElement we) {
+		wait.until(ExpectedConditions.elementToBeClickable(we));
 	}
 
 	@Step("Verify Login Page Elements")
@@ -130,21 +128,22 @@ public class LoginPage {
 		WDWait(signInButton);
 		signInButton.click();
 		goToDeskeraBooks();
-		//WDWait(dashboardHeading);
-		//dashboardHeading.isDisplayed();
+		// WDWait(dashboardHeading);
+		// dashboardHeading.isDisplayed();
 	}
 
-
+	@Step("Click Sign In First Time")
+	public void clickSignInFirstTime() {
+		WDWait(signInButton);
+		signInButton.click();
+	}
 
 	@Step("Go to Deskera books from GO")
-	public void goToDeskeraBooks()
-
-	{
+	public void goToDeskeraBooks() {
 		WDWait(goToDeskeraBooksCard);
+		WDWaitClickable(goToDeskeraBooksCard);
 		goToDeskeraBooksCard.click();
-
-		ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
-
+		ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
 		driver.switchTo().window(tabs.get(1));
 	}
 
@@ -154,13 +153,10 @@ public class LoginPage {
 	}
 
 	@Step("Enter Google Email Password")
-	public void enterGoogleEmailPassword(String email ,String password) {
+	public void enterGoogleEmailPassword(String email, String password) {
 		googleEmailOrPhone.sendKeys(email);
 		nextButton.click();
 		googlePassword.sendKeys(password);
-		PasswordNextButton.click();	
+		PasswordNextButton.click();
 	}
-
 }
-
-

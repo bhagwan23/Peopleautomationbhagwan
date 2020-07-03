@@ -24,7 +24,7 @@
 	<parameter name="conf"
 		value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
 
-	<test name=" 1 Sign Up without Phone Number test" parallel="false">
+	  <test name=" 1 Sign Up without Phone Number test" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
 				<methods>
@@ -32,22 +32,23 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
-	<test name=" 2 Create Organization" parallel="false">
+	</test>  
+	   <test name=" 2 Create Organization" parallel="false">
 		<classes>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
 			</class>
 		</classes>
 	</test>
-	
+	 
 	<test name=" 3 C20263 Add Non Tracked Product" parallel="false">
 		<classes>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.AddNonTrackedProductTest">
 			</class>
 		</classes>
-	</test>
+	</test> 
+
 	<test name=" 4 Edit Product" parallel="false">
 		<classes>
 			<class
@@ -77,27 +78,28 @@
 			</class>
 		</classes>
 	</test>
-	<test name=" 8 Delete Product" parallel="false">
+   <test name=" 8 Delete Product" parallel="false">
 		<classes>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.DeleteProductTest">
 			</class>
 		</classes>
 	</test>
-	<test name=" 9 C20425 Add Demo Company" parallel="false">
-		<classes>
-			<class
-				name="deskera.web.automation.erp.bvtSG.tests.AddDemoCompanyTest">
-			</class>
-		</classes>
-	</test>
-	<test name="10 Create Custom Number Format" parallel="false">
+ 	 <test name=" 9 Create Custom Number Format" parallel="false">
 		<classes>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.CreateCustomNumberFormat">
 			</class>
 		</classes>
 	</test>
+	  <test name=" 10 C20425 Add Demo Company" parallel="false">
+		<classes>
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.AddDemoCompanyTest">
+			</class>
+		</classes>
+	</test>
+	
 
 
 	<!-- <test name="11 Check multi assert failure" parallel="false">

@@ -126,7 +126,7 @@ public class LoginPage {
 	}
 
 	@Step("Click Sign In")
-	public void clickSignIn() {
+	public void clickSignIn() throws InterruptedException {
 		WDWait(signInButton);
 		signInButton.click();
 		goToDeskeraBooks();
@@ -137,10 +137,12 @@ public class LoginPage {
 
 
 	@Step("Go to Deskera books from GO")
-	public void goToDeskeraBooks()
+	public void goToDeskeraBooks() throws InterruptedException
 
 	{
 		WDWait(goToDeskeraBooksCard);
+		wait.until(ExpectedConditions.elementToBeClickable(goToDeskeraBooksCard));
+		Thread.sleep(3000);
 		goToDeskeraBooksCard.click();
 
 		ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());

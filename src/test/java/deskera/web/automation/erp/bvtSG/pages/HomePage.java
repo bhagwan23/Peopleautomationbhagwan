@@ -4,8 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -86,6 +84,10 @@ public class HomePage {
 	
 	
 	/******************************* HOMEPAGE ELEMENTS LOCATORS *******************/
+	@FindBy(xpath = "//span[@class='ng-star-inserted'][contains(.,'Sell')]")
+	@CacheLookup
+	private WebElement sellTab;
+	
 	@FindBy(xpath = "//span[contains(.,'Products')]")
 	@CacheLookup
 	private WebElement productsTab;
@@ -97,8 +99,6 @@ public class HomePage {
 	private WebElement usersTab;
 	
 	
-	
-	
 
 	/***********************************
 	 * 
@@ -108,7 +108,7 @@ public class HomePage {
 	@Step("Verify Home Page Title")
 	public void verifyPageTitle() throws InterruptedException {
 		Thread.sleep(3000);
-//		Assert.assertEquals(driver.getTitle(), pageTitleText);
+		Assert.assertEquals(driver.getTitle(), pageTitleText);
 	}
 
 	// Common util for webdriver wait
@@ -173,7 +173,6 @@ public class HomePage {
 	public void clickProductsTab(){
 		WDWait(productsTab);
 		productsTab.click();
-		
 	}
 	
 	@Step("Click On Getting Started Button")
@@ -239,6 +238,37 @@ public class HomePage {
 	public void clickUsersTab(){
 		WDWait(usersTab);
 		usersTab.click();
+	}
+	
+	@Step("Click On Sell Tab")
+	public void clickSellTab() throws InterruptedException{
+		WDWait(sellTab);
+        sellTab.click();
+        
+		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Products')]")));
+		// driver.findElement(By.xpath("//div[@id='container-1']/dt-navbar/div/ul/li[10]/a/span")).click();
+		Thread.sleep(3000); // THis is important because popup gets loaded and
+							// then disappears
+		// driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click();
+		for (int second = 0; second <= 10; second++) {
+			if (second == 10) {
+				System.out.println("Popup Not found clickin on new Contact Button");
+				break;
+			}
+			try {
+				if (driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).isDisplayed()) {
+					System.out.println("closig popup now 1");
+					driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click(); // popup
+																									// close
+																									// button
+					System.out.println("closed popup  1");
+					break;
+				}
+			} catch (Exception e) {
+			}
+			Thread.sleep(1000);
+		}
+			
 	}
 	
 }

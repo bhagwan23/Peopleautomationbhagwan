@@ -124,7 +124,7 @@ public class LoginPage {
 	}
 
 	@Step("Click Sign In")
-	public void clickSignIn() {
+	public void clickSignIn() throws InterruptedException {
 		WDWait(signInButton);
 		signInButton.click();
 		goToDeskeraBooks();

@@ -198,7 +198,7 @@ public class CreateProductPage {
 	@FindBy(xpath = "//div[contains(text(),' + Add an Additional Cost ')]")
 	@CacheLookup
 	private WebElement addAdditionalCostButton;
-	@FindBy(xpath = "//input[@placeholder='Type here']")
+	@FindBy(xpath = "//input[@placeholder='Type here' or contains(@role,'combobox')]")
 	@CacheLookup
 	private WebElement componentProduct1TextBox;
 	
@@ -430,8 +430,8 @@ public class CreateProductPage {
 	@Step("close popup on contacts page")
 	public void clickPopup() throws InterruptedException{	
 		//driver.get("https://reality-qa.deskera.xyz/book-keeper/client");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()=' Contacts ']"))); // Contact // link                                                                                                            // or                                                                                                            // Produ                                                                                                            // link
-		driver.findElement(By.xpath("//span[text()=' Contacts ']")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Products')]"))); // Contact // link                                                                                                            // or                                                                                                            // Produ                                                                                                            // link
+		driver.findElement(By.xpath("//span[contains(.,'Products')]")).click();
 		Thread.sleep(3000); // THis is important because popup gets loaded and then disappears
 		// driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click();
 		for (int second = 0; second <= 15; second++) {
@@ -670,10 +670,11 @@ public class CreateProductPage {
 	}
 
 	@Step("Enter BOM Details")
-	public void enterBOMDetails(String trackedProduct, String quantity) {
-		WDWait(addComponentProductButton);
-		addComponentProductButton.click();
-		WDWait(componentProduct1TextBox);
+	public void enterBOMDetails(String trackedProduct, String quantity) throws InterruptedException {
+		//addComponentProductButton.click();
+	//	WDWait(componentProduct1TextBox);
+	//	wait.until(ExpectedConditions.elementToBeClickable(componentProduct1TextBox));
+		Thread.sleep(4000);
 		componentProduct1TextBox.click();
 		componentProduct1TextBox.sendKeys(trackedProduct);
 		WDWait(dropDownSelectProduct);
@@ -681,6 +682,7 @@ public class CreateProductPage {
 		
 		WDWait(componentProduct1Value);
 		componentProduct1Value.click();
+		componentProduct1Value.clear();
 		componentProduct1Value.sendKeys(quantity);
 	}
 
@@ -997,6 +999,7 @@ public class CreateProductPage {
 		Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER).build().perform();
 		// WDWait(searchedRecord);
+		wait.until(ExpectedConditions.elementToBeClickable(searchedRecord));
 		searchedRecord.click();
 		WDWait(displayedProducName);
 		Assert.assertEquals(displayedProducName.getText(), productname);

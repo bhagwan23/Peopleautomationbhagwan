@@ -22,6 +22,8 @@
 		value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
 
 	  <test name=" 1 Sign Up without Phone Number test" parallel="false">
+	  	<parameter name="conf"
+		value="src/test/resources/bvtSGConfig/Common.config"></parameter>
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
 				<methods>
@@ -96,15 +98,5 @@
 			</class>
 		</classes>
 	</test>
-	
-
-
-	<test name="11 Check multi assert failure" parallel="false">
-		<classes>
-			<class
-				name="deskera.web.automation.erp.bvtSG.tests.MultiAssertTest">
-			</class>
-		</classes>
-	</test>
-
+		
 </suite> 

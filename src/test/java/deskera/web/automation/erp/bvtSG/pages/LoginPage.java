@@ -139,10 +139,12 @@ public class LoginPage {
 	}
 
 	@Step("Go to Deskera books from GO")
-	public void goToDeskeraBooks() {
+	public void goToDeskeraBooks() throws InterruptedException {
 		WDWait(goToDeskeraBooksCard);
+		Thread.sleep(3000);
 		WDWaitClickable(goToDeskeraBooksCard);
 		goToDeskeraBooksCard.click();
+		Thread.sleep(3000);
 		ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
 		driver.switchTo().window(tabs.get(1));
 	}

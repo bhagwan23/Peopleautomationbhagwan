@@ -35,8 +35,10 @@ public class CopyContactTest extends DriverFactory {
 	@Description(value = "C20261 To verify that user is able to Copy contact")
 
 	public void copyContacts() throws InterruptedException{
-		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
+		/*
+		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
+		 */
 		
 		String name= ReadPropertyUtil.readProperty("UpdatedContactName", confPath);
 		String UENNumber= ReadPropertyUtil.readProperty("UpdatedUEN_Number", confPath);
@@ -44,11 +46,11 @@ public class CopyContactTest extends DriverFactory {
 		String email= ReadPropertyUtil.readProperty("UpdatedcontactMail1", confPath);
 
 		// Create login Page Object instance
-		LoginPage loginPage = new LoginPage(driver, wait);
-		loginPage.openURL(url);
-		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
-
+		/*
+		 * LoginPage loginPage = new LoginPage(driver, wait); loginPage.openURL(url);
+		 * loginPage.enterEmailandPassword(emailAddress, passWord);
+		 * loginPage.clickSignIn();
+		 */
 		//Create Contact page object instance
 		ContactsPage contactsPage = new ContactsPage(driver, wait);
 		contactsPage.clickContactsButton();

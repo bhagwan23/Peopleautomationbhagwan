@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import deskera.web.automation.core.SoftAssertListner;
 import io.qameta.allure.Step;
 
 public class CopyContactPage {
@@ -17,15 +18,18 @@ public class CopyContactPage {
 	private WebDriver driver;
 	private int timeout = 15;
 	private WebDriverWait wait;
+	private SoftAssertListner sAssert;
+
 
 	public CopyContactPage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;
 		PageFactory.initElements(driver, this);	
+		sAssert = new SoftAssertListner(driver);
 	}
 
 	/******************************* COPY CONTACT PAGE ELEMENTS LOCATORS *******************/
-	
+
 	@FindBy(xpath = "//mat-row[1]//mat-cell[8]//button[1]//mat-icon[1]")
 	@CacheLookup
 	private WebElement contextMenuIcon;
@@ -38,7 +42,7 @@ public class CopyContactPage {
 	@FindBy(xpath= "//span[text()='Contact Successfuly Added']")
 	@CacheLookup
 	private WebElement copyContactSuccessMessage;
-	
+
 	/*******************************Edit Contacts Object Manipulation Methods *******************/
 	@Step("Open URL")
 	public void openURL(String URL) {
@@ -50,25 +54,35 @@ public class CopyContactPage {
 	@Step("Click on Context menu icon")
 	public void clickContextMenuIcon(){
 		WDWait(contextMenuIcon);
-		contextMenuIcon.isDisplayed();
+		sAssert.assertTrue(contextMenuIcon.isDisplayed(),"Verify Context menu for contact");
 		contextMenuIcon.click();
+		sAssert.assertAll();
+
 	}
 	@Step("Click on copy button")
 	public void clickCopyButton(){
 		WDWait(copyButton);
-		copyButton.isDisplayed();
+		sAssert.assertTrue(copyButton.isDisplayed(),"Verify Copy button");
 		copyButton.click();
+		sAssert.assertAll();
+
 	}
 	@Step("Click on Save button")
 	public void clickSaveButton(){
 		WDWait(saveButton);
-		saveButton.isDisplayed();
+		sAssert.assertTrue(saveButton.isDisplayed(),"Verify Save button");
 		saveButton.click();
+		sAssert.assertAll();
+
 	}
 	@Step("Verify success message")
 	public void verifysuccessmessage(){
 		WDWait(copyContactSuccessMessage);
-		copyContactSuccessMessage.isDisplayed();
+		sAssert.assertTrue(copyContactSuccessMessage.isDisplayed(),"Verify Success message for Contact creation");
+		sAssert.assertAll();
+
 	}
 	
+	
+
 }

@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import deskera.web.automation.core.SoftAssertListner;
 import io.qameta.allure.Step;
 
 public class DeleteContactPage {
@@ -20,11 +21,15 @@ public class DeleteContactPage {
 	private WebDriver driver;
 	private int timeout = 15;
 	private WebDriverWait wait;
+	private SoftAssertListner sAssert;
+
 
 	public DeleteContactPage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;
 		PageFactory.initElements(driver, this);	
+		sAssert = new SoftAssertListner(driver);
+
 	}
 
 	/******************************* DELETE CONTACTS PAGE ELEMENTS LOCATORS *******************/
@@ -89,6 +94,7 @@ public class DeleteContactPage {
 	public void verifysummarycount(){
 		WDWait(allSummaryCount);
 		allSummaryCount.isDisplayed();
-		Assert.assertEquals(allSummaryCount.getText(), "0");
+		sAssert.assertEquals(allSummaryCount.getText(), "0");
+		sAssert.assertAll();
 	}
 }

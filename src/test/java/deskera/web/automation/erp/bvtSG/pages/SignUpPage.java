@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import deskera.web.automation.core.SoftAssertListner;
 import io.qameta.allure.Step;
 
 import org.openqa.selenium.By;
@@ -32,22 +33,19 @@ public class SignUpPage {
 	private WebDriver driver;
 	private int timeout = 15;
 	private WebDriverWait wait;
+	private SoftAssertListner sAssert;
 
 	public SignUpPage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;
 		PageFactory.initElements(driver, this);
+		sAssert = new SoftAssertListner(driver);
 	}
 
 	/******************************* PAGE ELEMENTS LOCATORS *******************/
-	
-	
-	
 	@FindBy(xpath = "//div[1]/button[1]/span[1]/span[contains(text(),'SIGN UP Now')]")
 	@CacheLookup
 	private WebElement SignUpNow;
-	
-	
 	@FindBy(name = "email")
 	@CacheLookup
 	private WebElement userSignupEmail;
@@ -82,11 +80,9 @@ public class SignUpPage {
 	@CacheLookup
 	private WebElement regularAccountLink;
 	private static String pageTitleText = "Deskera SSO";
-	
-
-
-	/******************************* Account PAGE ELEMENTS LOCATORS *******************/
-
+	/*******************************
+	 * Account PAGE ELEMENTS LOCATORS
+	 *******************/
 	@FindBy(xpath = "//img[contains(@src,'/assets/images/logos/deskera-logo.svg')]")
 	@CacheLookup
 	private WebElement deskeraLogo;
@@ -114,9 +110,9 @@ public class SignUpPage {
 	@FindBy(xpath = "//span[text()=' NEXT ']")
 	@CacheLookup
 	private WebElement next;
-
-	/******************************* Personalize your account PAGE ELEMENTS LOCATORS *******************/
-
+	/*******************************
+	 * Personalize your account PAGE ELEMENTS LOCATORS
+	 *******************/
 	@FindBy(xpath = "//span[text()='Personalize your']//following::span[text()=' account ']")
 	@CacheLookup
 	private WebElement personalizeAccount;
@@ -144,10 +140,9 @@ public class SignUpPage {
 	@FindBy(xpath = "//span[text()=' SKIP ']")
 	@CacheLookup
 	private WebElement skipButton;
-
-
-	/******************************* Success PAGE ELEMENTS LOCATORS *******************/
-
+	/*******************************
+	 * Success PAGE ELEMENTS LOCATORS
+	 *******************/
 	@FindBy(xpath = "//h5[contains(text(),'Please verify your email address')]")
 	@CacheLookup
 	private WebElement verifyYourEmailAddress;
@@ -170,10 +165,6 @@ public class SignUpPage {
 	@CacheLookup
 	private WebElement weHaveResentVerification;
 
-
-
-
-
 	/***********************************
 	 * 
 	 * Page objects manipulation methods
@@ -186,7 +177,7 @@ public class SignUpPage {
 
 	@Step("Verify Page Title")
 	public void verifyPageTitle() {
-		Assert.assertEquals(driver.getTitle(), pageTitleText);
+		sAssert.assertEquals(driver.getTitle(), pageTitleText);
 	}
 
 	// Common util for webdriver wait
@@ -197,7 +188,6 @@ public class SignUpPage {
 
 	@Step("Verify Sign Up Page Elements")
 	public void verifySignUpPageElements() {
-		
 		WDWait(SignUpNow);
 		wait.until(ExpectedConditions.elementToBeClickable(SignUpNow));
 		SignUpNow.click();
@@ -216,6 +206,7 @@ public class SignUpPage {
 
 	@Step("Click on SignUp for Bookkeper ")
 	public void clickSignUpForBookkeeper() {
+		WDWait(bookkeeperLink);
 		bookkeeperLink.click();
 	}
 
@@ -233,15 +224,16 @@ public class SignUpPage {
 
 	@Step("Click on Create Account Button")
 	public void clickCreateACcountButton() {
+		WDWait(createAccountButton);
 		createAccountButton.click();
 	}
 
 	@Step("Enter Email and Phone Number")
 	public void enterEmailandPhone(String email, String countryCode, String phoneNumber) {
 		WDWait(userSignupEmail);
-		//userSignupEmail.sendKeys(email);
-		//DateFormat df = new SimpleDateFormat("ddMMyyHHmmss");
-		//Date dateobj = new Date();
+		// userSignupEmail.sendKeys(email);
+		// DateFormat df = new SimpleDateFormat("ddMMyyHHmmss");
+		// Date dateobj = new Date();
 		userSignupEmail.sendKeys(email);
 		WDWait(userSignupPhone);
 		countryCodeSelector.click();
@@ -251,7 +243,7 @@ public class SignUpPage {
 			SGCode.click();
 			Random rand = new Random();
 			String id = String.format("%04d", rand.nextInt(10000));
-			userSignupPhone.sendKeys("9988"+id);
+			userSignupPhone.sendKeys("9988" + id);
 		}
 		if (countryCode.equalsIgnoreCase("US")) {
 			WDWait(USCode);
@@ -261,23 +253,22 @@ public class SignUpPage {
 		if (countryCode.equalsIgnoreCase("IN")) {
 			WDWait(INCode);
 			INCode.click();
-			//userSignupPhone.sendKeys(phoneNumber);
+			// userSignupPhone.sendKeys(phoneNumber);
 			Random rand = new Random();
 			String id = String.format("%04d", rand.nextInt(10000));
-			userSignupPhone.sendKeys("998866"+id);
+			userSignupPhone.sendKeys("998866" + id);
 		}
-		
 	}
+
 	@Step("Enter Email")
 	public void enterEmailId(String email) {
 		WDWait(userSignupEmail);
 		userSignupEmail.sendKeys(email);
 	}
 
-
 	/***********************************
 	 * 
-	 * Account Details Page  manipulation methods
+	 * Account Details Page manipulation methods
 	 * 
 	 *********************************/
 	@Step("Verify Account Details Page Elements")
@@ -296,13 +287,11 @@ public class SignUpPage {
 	}
 
 	@Step("Enter Account Details")
-	public void enterAccountDetails(String userFirstName,String passWord,String companyname){
+	public void enterAccountDetails(String userFirstName, String passWord, String companyname) {
 		name.sendKeys(userFirstName);
 		password.sendKeys(passWord);
 		companyName.sendKeys(companyname);
-
-		if(!checkbox.isSelected())
-		{
+		if (!checkbox.isSelected()) {
 			WDWait(checkbox);
 			checkbox.click();
 		}
@@ -315,7 +304,7 @@ public class SignUpPage {
 
 	/***********************************
 	 * 
-	 * Personalize your account Page  manipulation methods
+	 * Personalize your account Page manipulation methods
 	 * 
 	 *********************************/
 	@Step("Verify Personalize Account Page Elements")
@@ -328,12 +317,11 @@ public class SignUpPage {
 		companySize100.isDisplayed();
 		mainThingUsingDeskeraApp.isDisplayed();
 		nextButton.isDisplayed();
-		skipButton.isDisplayed();	
+		skipButton.isDisplayed();
 	}
 
 	@Step("Enter Personalize Account Details")
-	public void enterPersonalizeAccountDetails(){
-		
+	public void enterPersonalizeAccountDetails() {
 		WDWait(industryType);
 		industryType.click();
 		ITserviceIndustryType.click();
@@ -341,66 +329,56 @@ public class SignUpPage {
 		WDWait(mainThingUsingDeskeraApp);
 		Actions actions = new Actions(driver);
 		actions.moveToElement(mainThingUsingDeskeraApp).click().perform();
-		actions.moveToElement(otherPurpose).click().perform();	
+		actions.moveToElement(otherPurpose).click().perform();
 	}
 
-	@Step("Click on Next Button")	
+	@Step("Click on Next Button")
 	public void clickNext() throws InterruptedException {
-
-		//wait.until(ExpectedConditions.visibilityOf(nextButton));
+		// wait.until(ExpectedConditions.visibilityOf(nextButton));
 		/*
 		 * Actions action = new Actions(driver); action.moveToElement(nextButton);
 		 */
-		
-		
 		wait.until(ExpectedConditions.elementToBeClickable(nextButton));
 		nextButton.click();
 	}
 
-
 	/***********************************
 	 * 
-	 * Success  Page  manipulation methods
+	 * Success Page manipulation methods
 	 * 
 	 *********************************/
-	@Step("Verify Success Page Elements")	
-	public void verifySuccessPageElements(String email){
+	@Step("Verify Success Page Elements")
+	public void verifySuccessPageElements(String email) {
 		WDWait(verifyYourEmailAddress);
 		verifyYourEmailAddress.isDisplayed();
 		thanksForSigningUp.isDisplayed();
-		Assert.assertEquals(weHaveSentEmailTo.getText(), email);
+		sAssert.assertEquals(weHaveSentEmailTo.getText(), email);
 		justClickOnTheLink.isDisplayed();
 		cantFindEmail.isDisplayed();
 		resendEmailButton.isDisplayed();
 	}
 
-	@Step("Click Resent Email Button")	
-	public void clickResentEmailButton(){
+	@Step("Click Resent Email Button")
+	public void clickResentEmailButton() {
 		resendEmailButton.click();
 	}
 
-	@Step("Verify Page Elements After Resent Email")	
-	public void verifyPageElementsAfterResentEmail(String email){
+	@Step("Verify Page Elements After Resent Email")
+	public void verifyPageElementsAfterResentEmail(String email) {
 		WDWait(verifyYourEmailAddress);
 		verifyYourEmailAddress.isDisplayed();
 		weHaveResentVerification.isDisplayed();
-		Assert.assertEquals(weHaveSentEmailTo.getText(),email);
+		sAssert.assertEquals(weHaveSentEmailTo.getText(), email);
 		WDWait(justClickOnTheLink);
 		justClickOnTheLink.isDisplayed();
 		cantFindEmail.isDisplayed();
 		resendEmailButton.isDisplayed();
 	}
 
-
-	@Step("Zoom Out")	
-	public void zoomOut() throws InterruptedException
-	{
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
+	@Step("Zoom Out")
+	public void zoomOut() throws InterruptedException {
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("document.body.style.zoom = '0.90'");
 		Thread.sleep(3000);
 	}
-
-
 }
-
-

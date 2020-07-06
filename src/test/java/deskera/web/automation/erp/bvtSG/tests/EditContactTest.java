@@ -35,8 +35,10 @@ public class EditContactTest extends DriverFactory {
 	@Description(value = "C20261 To verify that user is able to Edit contact")
 
 	public void editContacts() throws InterruptedException{
-		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
+		/*
+		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
+		 */
 		
 		String cEdit= ReadPropertyUtil.readProperty("ContactName1", confPath);
 
@@ -53,11 +55,11 @@ public class EditContactTest extends DriverFactory {
 
 		
 		// Create login Page Object instance
-		LoginPage loginPage = new LoginPage(driver, wait);
-		loginPage.openURL(url);
-		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
-
+		/*
+		 * LoginPage loginPage = new LoginPage(driver, wait); loginPage.openURL(url);
+		 * loginPage.enterEmailandPassword(emailAddress, passWord);
+		 * loginPage.clickSignIn();
+		 */
 		//Create Contact page object instance
 		ContactsPage contactsPage = new ContactsPage(driver, wait);
 		contactsPage.clickContactsButton();

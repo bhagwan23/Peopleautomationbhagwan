@@ -34,8 +34,10 @@ public class AddBOMProductTest extends DriverFactory {
 	@Description(value = "C21022 Create BOM Product ")
 	public void addBOMProductTest() throws InterruptedException {
 		// Read test specific data from config
-		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
+		/*
+		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
+		 */
 		String BOMProductName = ReadPropertyUtil.readProperty("BOMProductName", confPath);	
 		String description = ReadPropertyUtil.readProperty("description", confPath);	
 		Random random = new Random();
@@ -58,16 +60,16 @@ public class AddBOMProductTest extends DriverFactory {
 		String defaultWarehouseCode = ReadPropertyUtil.readProperty("defaultWarehouseCode", confPath);
 		
 		// Create Page Object instance
-		LoginPage loginPage = new LoginPage(driver, wait);
+		/* LoginPage loginPage = new LoginPage(driver, wait); */
 		HomePage homePage=new HomePage(driver, wait);
 		CreateProductPage createProductPage=new CreateProductPage(driver,wait);
 		// Access Test methods
-		loginPage.openURL(url);
-		loginPage.verifyPageTitle();
-		loginPage.verifyLoginPageElements();
-		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
-		homePage.verifyPageTitle();
+		/*
+		 * loginPage.openURL(url); loginPage.verifyPageTitle();
+		 * loginPage.verifyLoginPageElements();
+		 * loginPage.enterEmailandPassword(emailAddress, passWord);
+		 * loginPage.clickSignIn();
+		 */
 		homePage.clickProductsTab();
 		createProductPage.clickNewProductButton();
 		createProductPage.verifyPageTitle();

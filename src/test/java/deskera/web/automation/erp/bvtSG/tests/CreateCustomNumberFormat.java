@@ -36,8 +36,10 @@ public class CreateCustomNumberFormat extends DriverFactory{
 	@Description(value = "Create Custom Number Format")
 	public void createCustomNumberFormat() throws InterruptedException {
 		// Read test specific data from config
-		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
+		/*
+		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
+		 */
 		String nonTrackedProductName = ReadPropertyUtil.readProperty("nonTrackedProductName", confPath);	
 		//String barcode = ReadPropertyUtil.readProperty("barcode", confPath);	
 		String description = ReadPropertyUtil.readProperty("description", confPath);
@@ -54,16 +56,17 @@ public class CreateCustomNumberFormat extends DriverFactory{
 		String defaultUnitOfMeasurement = ReadPropertyUtil.readProperty("defaultUnitOfMeasurement", confPath);	
 		
 		// Create Page Object instance
-		LoginPage loginPage = new LoginPage(driver, wait);
+		//LoginPage loginPage = new LoginPage(driver, wait);
 		HomePage homePage=new HomePage(driver, wait);
 		CreateProductPage createProductPage=new CreateProductPage(driver,wait);
 		// Access Test methods
-		loginPage.openURL(url);
-		loginPage.verifyPageTitle();
-		loginPage.verifyLoginPageElements();
-		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
-		homePage.verifyPageTitle();
+		/*
+		 * loginPage.openURL(url); loginPage.verifyPageTitle();
+		 * loginPage.verifyLoginPageElements();
+		 * loginPage.enterEmailandPassword(emailAddress, passWord);
+		 * loginPage.clickSignIn();
+		 */
+		//homePage.verifyPageTitle();
 		homePage.clickProductsTab();
 		createProductPage.clickNewProductButton();
 		createProductPage.verifyPageTitle();

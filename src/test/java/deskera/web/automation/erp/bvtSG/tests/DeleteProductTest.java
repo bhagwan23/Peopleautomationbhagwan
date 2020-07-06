@@ -36,20 +36,24 @@ public class DeleteProductTest extends DriverFactory{
 	@Description(value = "Delete Product ")
 	public void deleteProductTest() throws InterruptedException {
 		// Read test specific data from config
-		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
+		/*
+		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
+		 */
+		
 		String BOMProductName = ReadPropertyUtil.readProperty("BOMProductName", confPath);						
 		// Create Page Object instance
-		LoginPage loginPage = new LoginPage(driver, wait);
+	//	LoginPage loginPage = new LoginPage(driver, wait);
 		HomePage homePage=new HomePage(driver, wait);
 		CreateProductPage createProductPage=new CreateProductPage(driver,wait);
 		// Access Test methods
-		loginPage.openURL(url);
-		loginPage.verifyPageTitle();
-		loginPage.verifyLoginPageElements();
-		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
-		homePage.verifyPageTitle();
+		/*
+		 * loginPage.openURL(url); loginPage.verifyPageTitle();
+		 * loginPage.verifyLoginPageElements();
+		 * loginPage.enterEmailandPassword(emailAddress, passWord);
+		 * loginPage.clickSignIn();
+		 */
+	//	homePage.verifyPageTitle();
 		homePage.clickProductsTab();
 		createProductPage.clickThreeDotsOnBOMProduct();
 		createProductPage.clickDeleteButton();

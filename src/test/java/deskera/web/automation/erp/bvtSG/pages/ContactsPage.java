@@ -17,6 +17,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import deskera.web.automation.core.SoftAssertListner;
 import io.qameta.allure.Step;
 
 public class ContactsPage {
@@ -24,11 +25,13 @@ public class ContactsPage {
 	private WebDriver driver;
 	private int timeout = 15;
 	private WebDriverWait wait;
+	private SoftAssertListner sAssert;
 
 	public ContactsPage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;
 		PageFactory.initElements(driver, this);	
+		sAssert = new SoftAssertListner(driver);
 	}
 
 	/******************************* CONTACTS PAGE ELEMENTS LOCATORS *******************/
@@ -46,6 +49,11 @@ public class ContactsPage {
 	private List<WebElement> startByAddingOrImportingYourContacts;
 
 	private static String pageTitleText = "Deskera Books";
+	
+	@FindBy(css = "	i.fas.fa-times.close-button.mt-2")
+	@CacheLookup
+	private WebElement closeOverlayPopup;
+	
 
 
 	/******************************* ADD CONTACT PAGE ELEMENTS LOCATORS *******************/
@@ -127,11 +135,11 @@ public class ContactsPage {
 	@FindBy(xpath="(//input[@aria-autocomplete='list'])[2]")
 	@CacheLookup
 	private WebElement accountReceivable;
-	
+
 	@FindBy(xpath= "//span[text()='Contact Successfuly Added']")
 	@CacheLookup
 	private WebElement createContactSuccessMessage;
-	
+
 	/******************************* Verify Added contacts elements *******************/
 
 	@FindBy(xpath= "//mat-cell[contains(text(),'Edward')]")
@@ -160,7 +168,7 @@ public class ContactsPage {
 	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/mat-table/mat-row[1]/mat-cell[3]")
 	@CacheLookup
 	private WebElement enteredName;
-	
+
 	@FindBy(xpath= "//span[@class='menu-label ng-star-inserted'][contains(text(),'Custom Fields')]")
 	@CacheLookup
 	private WebElement customField;
@@ -173,7 +181,7 @@ public class ContactsPage {
 	@FindBy(xpath= "//span[contains(text(),'Cancel')]")
 	@CacheLookup
 	private WebElement cusomNumberFormatCancelButton;
-	
+
 	@FindBy(xpath= "//div[@class='field-value'][contains(text(),'desk')]")
 	@CacheLookup
 	private WebElement contactOrg;
@@ -197,14 +205,14 @@ public class ContactsPage {
 	@FindBy(xpath= "//input[@placeholder='Search Records']")
 	@CacheLookup
 	private WebElement searchRecord;
-	
+
 	@FindBy(xpath= "//button[@class='cancel-btn mat-icon-button mat-button-base mat-primary']//mat-icon[@class='mat-icon notranslate mat-icon-no-color']//*[local-name()='svg']")
 	@CacheLookup
 	private WebElement contactBackButton;
 	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/div[2]/div[2]/div[1]/span[2]")
 	@CacheLookup
 	private WebElement allSummaryCount;
-	
+
 	/******************************* Contacts Object Manipulation Methods *******************/
 	@Step("Open URl")
 	public void openURL(String URL) {
@@ -221,7 +229,7 @@ public class ContactsPage {
 	@Step("verify contact elements")
 	public void verifyContactElements(){
 		WDWait(contactsButton);
-		contactsButton.isDisplayed();
+		sAssert.assertTrue(contactsButton.isDisplayed(),"Verify Contact Section link");
 
 	}
 	@Step("Click on contact button")
@@ -234,19 +242,21 @@ public class ContactsPage {
 	@Step("close popup on contacts page")
 	public void clickPopup() throws InterruptedException{	
 		//driver.get("https://reality-qa.deskera.xyz/book-keeper/client");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()=' Contacts ']"))); // Contact // link                                                                                                            // or                                                                                                            // Produ                                                                                                            // link
-		driver.findElement(By.xpath("//span[text()=' Contacts ']")).click();
+		WDWait(contactsButton);
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()=' Contacts ']"))); // Contact // link                                                                                                            // or                                                                                                            // Produ                                                                                                            // link
+		//driver.findElement(By.xpath("//span[text()=' Contacts ']")).click();
+		contactsButton.click();
 		Thread.sleep(3000); // THis is important because popup gets loaded and then disappears
 		// driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click();
 		for (int second = 0; second <= 15; second++) {
 			if (second == 15) {
-				System.out.println("Popup Not found clickin on new Contact Button");
+				System.out.println("Popup Not found!");
 				break;
 			}
 			try {
-				if (driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).isDisplayed()) {
+				if (closeOverlayPopup.isDisplayed()) {
 					System.out.println("closig popup now 1");
-					driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click(); //popup close button
+					closeOverlayPopup.click(); //popup close button
 					System.out.println("closed popup  1");
 					break;
 				}
@@ -260,36 +270,38 @@ public class ContactsPage {
 	@Step("click on new contact button")
 	public void clickAddContactButton(){
 		WDWait(newContactButton);
-		newContactButton.isDisplayed();
+		sAssert.assertTrue(newContactButton.isDisplayed(),"Verify New Contact Button");
 		newContactButton.click();
-		
+
 		WDWait(customNumberFormat);
-		customNumberFormat.isDisplayed();
+		sAssert.assertTrue(customNumberFormat.isDisplayed(),"Verify Custom Number format option");
 		customNumberFormat.click();
 		WDWait(cusomNumberFormatCancelButton);
-		cusomNumberFormatCancelButton.isDisplayed();
+		sAssert.assertTrue(cusomNumberFormatCancelButton.isDisplayed(),"");
 		cusomNumberFormatCancelButton.click();
 		WDWait(customField);
-		customField.isDisplayed();
+		sAssert.assertTrue(customField.isDisplayed(),"Verify Custom filed option");
 		customField.click();
 		WDWait(customCancelButton);
 		customCancelButton.isDisplayed();
 		customCancelButton.click();
-		
+
 		/*WDWait(addContactButton);   //Add contacts through Add Contact button
 		addContactButton.isDisplayed();
 		addContactButton.click();*/
-		
+
 		WDWait(generalInfotab);
-		generalInfotab.isDisplayed();
+		sAssert.assertTrue(generalInfotab.isDisplayed(),"Veify generalInfotab");
 		generalInfotab.click();
+		
+		sAssert.assertAll();
 
 	}
 	@Step("Enter general info")
 	public void enterGeneralInfo(String Cname, String email, String UEN, String tax){
 		WDWait(name);
 		//wait.until(ExpectedConditions.elementToBeClickable(name));
-		name.isDisplayed();
+		sAssert.assertTrue(name.isDisplayed(),"");
 		name.sendKeys(Cname);
 		WDWait(emailAddress);
 		emailAddress.sendKeys(email);
@@ -297,23 +309,25 @@ public class ContactsPage {
 		contactUEN.sendKeys(UEN);		
 		WDWait(taxNumber);
 		taxNumber.sendKeys(tax);
-		currency.isDisplayed();
+		sAssert.assertTrue(currency.isDisplayed(),"Verify currency");
 		Assert.assertEquals(currency.getText(), "Singapore Dollar (SGD)");
-		autoNumberingFormat.isDisplayed();
+		sAssert.assertTrue(autoNumberingFormat.isDisplayed(),"Verify autoNumberingFormat");
 
 		WDWait(saveButton);
-		saveButton.isDisplayed();
+		sAssert.assertTrue(saveButton.isDisplayed(),"Verify saveButton");
+		sAssert.assertAll();
+
 	}
 	@Step("Enter account details")
 	public void enterAccountingDetails(){
 		WDWait(accountingtab);
-		accountingtab.isDisplayed();
+		sAssert.assertTrue(accountingtab.isDisplayed(),"Verify accountingtab");
 		accountingtab.click();
-		paymentTerms.isDisplayed();
-		Assert.assertEquals(paymentTermsList.getText(), "NET 30");
+		sAssert.assertTrue(paymentTerms.isDisplayed(),"Verify paymentTerms");
+		sAssert.assertEquals(paymentTermsList.getText(), "NET 30");
 
 		WDWait(paymentTermsList);
-		paymentTermsList.isDisplayed();
+		sAssert.assertTrue(paymentTermsList.isDisplayed(),"Verify paymentTermsList");
 		paymentTermsList.click();
 		selectNET0.isDisplayed();
 		selectNET10.isDisplayed();
@@ -321,16 +335,19 @@ public class ContactsPage {
 		selectNET45.isDisplayed();
 		selectNET30.isDisplayed();
 		selectNET30.click();
-		
+
 		WDWait(accountPayable);
 		accountPayable.isDisplayed();
 		buyAccount=accountPayable.getAttribute("value");
 		Assert.assertEquals(accountPayable.getAttribute("value"), "Accounts Payable");
-		
+
 		WDWait(accountReceivable);
 		accountReceivable.isDisplayed();
 		sellAccount=accountReceivable.getAttribute("value");
 		Assert.assertEquals(accountReceivable.getAttribute("value"), "Accounts Receivable");
+		
+		sAssert.assertAll();
+
 
 	}
 	@Step("Verify address details")
@@ -343,6 +360,9 @@ public class ContactsPage {
 		postalCode.isDisplayed();
 		city.isDisplayed();
 		country.isDisplayed();
+		
+		sAssert.assertAll();
+
 	}
 	@Step("Enter address details")
 	public void addAddressDetail(String addr, String state1,String postal, String city1, String country1){ 
@@ -356,6 +376,9 @@ public class ContactsPage {
 		city.sendKeys(city1);
 		WDWait(country);
 		country.sendKeys(country1);
+		
+		sAssert.assertAll();
+
 	}
 	@Step("Click on save button")
 	public void clickSaveButton(){
@@ -375,7 +398,7 @@ public class ContactsPage {
 		/*Thread.sleep(2000);
 		Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER).build().perform();*/
-		
+
 		WDWait(enteredName);
 		wait.until(ExpectedConditions.elementToBeClickable(enteredName));
 		Assert.assertEquals(enteredName.getText(), cName);
@@ -383,44 +406,53 @@ public class ContactsPage {
 		Assert.assertEquals(contactName.getText(), cName);
 		Assert.assertEquals(uENnumber.getText(), UENNumber);
 		Assert.assertEquals(tax.getText(), TAXNumber);
-		
+
 		scrollToElement(accPayable);
-		wait.until(ExpectedConditions.visibilityOf(accPayable));
 		Thread.sleep(4000);
+		wait.until(ExpectedConditions.visibilityOf(accPayable));
 		Assert.assertEquals(accPayable.getText(), buyAccount);
 		scrollToElement(accReceivable);
-		wait.until(ExpectedConditions.visibilityOf(accReceivable));
 		Thread.sleep(4000);
+		wait.until(ExpectedConditions.visibilityOf(accReceivable));
 		Assert.assertEquals(accReceivable.getText(), sellAccount);
-		
-		contactOrg.isDisplayed();
-		WDWait(customField);
-		customField.isDisplayed();
-		customField.click();
-		WDWait(customCancelButton);
-		customCancelButton.isDisplayed();
-		customCancelButton.click();
+
+		/*
+		 * contactOrg.isDisplayed(); WDWait(customField); customField.isDisplayed();
+		 * customField.click(); WDWait(customCancelButton);
+		 * customCancelButton.isDisplayed(); customCancelButton.click();
+		 */
+
+
 		//enteredNumber.isDisplayed();
 		//enteredUEN.isDisplayed();
 		enteredCurrency.isDisplayed();
 		enteredTaxNumber.isDisplayed();
 		//enteredpurchaseAccount.isDisplayed();
 		//enteredPaymentTerms.isDisplayed();
-		contactBackButton.isDisplayed();
-		contactBackButton.click();
+		/*
+		 * contactBackButton.isDisplayed(); scrollToElement(contactBackButton);
+		 * contactBackButton.click();
+		 */
+		
+		sAssert.assertAll();
+
 	}
 	@Step("Verify success message")
 	public void verifyContactCreatedSucessMessage(){
 		WDWait(createContactSuccessMessage);
 		createContactSuccessMessage.isDisplayed();
-        wait.until(ExpectedConditions.invisibilityOf(createContactSuccessMessage));
+		wait.until(ExpectedConditions.invisibilityOf(createContactSuccessMessage));
+		sAssert.assertAll();
+
 
 	}
 	@Step("Verify summary count")
 	public void allSummaryCount(){
 		WDWait(allSummaryCount);
-		allSummaryCount.isDisplayed();
-	    Assert.assertEquals(allSummaryCount.getText(), "2");
+		sAssert.assertTrue(allSummaryCount.isDisplayed());
+		sAssert.assertEquals(allSummaryCount.getText(), "2","Verify count of 2 contacts displayed for All Summary");
+		sAssert.assertAll();
+		
 
 	}
 	@Step("Scroll page")
@@ -429,4 +461,6 @@ public class ContactsPage {
 
 		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
 	}
+	
+	
 }

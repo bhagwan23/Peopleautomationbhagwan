@@ -7,7 +7,7 @@
 	<suite-files>
 		<suite-file
 			path="src/test/resources/testsuites/bvtSG/bvt_sg_contacts.xml"></suite-file>
-		<suite-file
-			path="src/test/resources/testsuites/bvtSG/bvt_sg_products.xml"></suite-file>
+	<!--  	<suite-file
+			path="src/test/resources/testsuites/bvtSG/bvt_sg_products.xml"></suite-file>-->
 	</suite-files>
 </suite> 

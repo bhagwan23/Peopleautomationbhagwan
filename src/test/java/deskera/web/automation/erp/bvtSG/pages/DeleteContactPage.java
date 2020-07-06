@@ -56,11 +56,15 @@ public class DeleteContactPage {
 	public void WDWait(WebElement we) {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
+	
 	@Step("Click on Context menu icon")
-	public void clickContextMenuIcon(){
+	public void clickContextMenuIcon() throws InterruptedException{
 		WDWait(contextMenuIcon);
 		contextMenuIcon.isDisplayed();
-		contextMenuIcon.click();
+        Thread.sleep(3000);
+        wait.until(ExpectedConditions.elementToBeClickable(contextMenuIcon));
+        contextMenuIcon.click();
+		
 		WDWait(deleteButton);
 		deleteButton.isDisplayed();
 		deleteButton.click();
@@ -71,14 +75,14 @@ public class DeleteContactPage {
 		deleteSucessMessage.isDisplayed();
         wait.until(ExpectedConditions.invisibilityOf(deleteSucessMessage));
 	}
-	@Step("Search deleted contact")
-	public void searchdeletedRecord(String cName) throws InterruptedException{
+	@Step("Search contact before/after delete contact")
+	public void searchRecord(String cName) throws InterruptedException{
 		WDWait(searchRecord);
 		searchRecord.click();
 		searchRecord.sendKeys(cName);
 		Thread.sleep(2000);
-		Actions action = new Actions(driver);
-		action.sendKeys(Keys.ENTER).build().perform();
+		/*Actions action = new Actions(driver);
+		action.sendKeys(Keys.ENTER).build().perform();*/
 	}
 	@Step("Verify deleted contacts")
 	public void verifyDeletedContact(){

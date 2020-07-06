@@ -2,6 +2,7 @@ package deskera.web.automation.erp.bvtSG.pages;
 
 import java.util.Map;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import io.qameta.allure.Step;
 
@@ -28,7 +30,7 @@ public class EditContactPage {
 	}
 
 	/******************************* EDIT CONTACT PAGE ELEMENTS LOCATORS *******************/
-	@FindBy(xpath = "//mat-icon[@class='mat-icon notranslate material-icons mat-icon-no-color']")
+	@FindBy(xpath = "//mat-row[1]//mat-cell[8]//button[1]//mat-icon[1]")
 	@CacheLookup
 	private WebElement contextMenuIcon;
 	@FindBy(xpath= "//button[contains(text(),'Edit')]")
@@ -66,6 +68,18 @@ public class EditContactPage {
 	@CacheLookup
 	private WebElement country;
 	
+	@FindBy(xpath= "//span[@class='field-value add-address']")
+	@CacheLookup
+	private WebElement addAnotherAddress;
+
+	@FindBy(xpath= "//div[contains(text(),'Current Billing Address')]")
+	@CacheLookup
+	private WebElement currentBillingAddress;
+
+	@FindBy(xpath= "//div[contains(text(),'Current Shipping Address')]")
+	@CacheLookup
+	private WebElement currentShippingAddress;
+	
 	@FindBy(xpath= "//span[contains(text(),'Save Changes')]")
 	@CacheLookup
 	private WebElement saveChangeButton;
@@ -74,13 +88,46 @@ public class EditContactPage {
 	@CacheLookup
 	private WebElement updateContactSuccessMessage;
 	
+	/******************************* Verify edited contact objects *******************/
+	
 	@FindBy(xpath= "//input[@placeholder='Search Records']")
 	@CacheLookup
 	private WebElement searchRecord;
-	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/mat-table/mat-row[1]/mat-cell[3]")
+	@FindBy(xpath= "//mat-table//mat-row[@class='mat-row ng-star-inserted']//mat-cell[3]")
 	@CacheLookup
 	private WebElement enteredName;
-	
+	@FindBy(xpath= "//div[contains(text(),'Contact Name')]/following-sibling::div[@class='field-value']")
+	@CacheLookup
+	private WebElement contactName;
+	@FindBy(xpath= "//div[contains(text(),'Contact UEN')]/following-sibling::div[@class='field-value']")
+	@CacheLookup
+	private WebElement uENnumber;
+	@FindBy(xpath="//div[contains(text(),'Tax Number')]/following-sibling::div[@class='field-value']")
+	@CacheLookup
+	private WebElement tax;
+	@FindBy(xpath="//div[contains(text(),'Currency')]/following-sibling::div[@class='field-value']")
+	@CacheLookup
+	private WebElement contactCurrency;
+	@FindBy(xpath= "//div[contains(text(),'Purchase Account')]/following-sibling::div[@class='field-value']")
+	@CacheLookup
+	private WebElement accPayable;
+	@FindBy(xpath= "//div[contains(text(),'Sales Account')]/following-sibling::div[@class='field-value']")
+	@CacheLookup
+	private WebElement accReceivable;
+	@FindBy(xpath="//div[@class='section-container py-4']//div[4]//div[1]/following-sibling::div[@class='field-value']")
+	@CacheLookup
+	private WebElement buyPaymentTerm;
+	@FindBy(xpath="//div[@class='section-container py-4']//div[7]//div[1]/following-sibling::div[@class='field-value']")
+	@CacheLookup
+	private WebElement sellPaymentTerm;
+	@FindBy(xpath="//*[@id='container-1']/dt-navbar/div/div[1]/button/div/span")
+	@CacheLookup
+	private WebElement companyOrg;
+	@FindBy(xpath="//div[contains(text(),'Contact Organisation')]/following-sibling::div[@class='field-value']")
+	@CacheLookup
+	private WebElement contactOrg;
+	String organization;
+
 	/*******************************Edit Contacts Object Manipulation Methods *******************/
 	@Step("Open URL")
 	public void openURL(String URL) {
@@ -94,24 +141,27 @@ public class EditContactPage {
 		WDWait(searchRecord);
 		searchRecord.click();
 		searchRecord.sendKeys(cName);
-		Thread.sleep(2000);
-		Actions action = new Actions(driver);
-		action.sendKeys(Keys.ENTER).build().perform();
+		Thread.sleep(3000);
+		/*Actions action = new Actions(driver);
+		action.sendKeys(Keys.ENTER).build().perform();*/
 		
 	}
 	@Step("Click on Context Menu icon")
 	public void clickContextMenuIcon() throws InterruptedException{
 		WDWait(contextMenuIcon);
-		wait.until(ExpectedConditions.elementToBeClickable(contextMenuIcon));
 		contextMenuIcon.isDisplayed();
+		wait.until(ExpectedConditions.elementToBeClickable(contextMenuIcon));
+		Thread.sleep(3000);
 		contextMenuIcon.click();
+		Thread.sleep(4000);
 	}
 	@Step("Click on Edit button")
-	public void clickEditButton(){
+	public void clickEditButton() throws InterruptedException{
 		
 		WDWait(editButton);
-		wait.until(ExpectedConditions.elementToBeClickable(editButton));
 		editButton.isDisplayed();
+		wait.until(ExpectedConditions.elementToBeClickable(editButton));
+		Thread.sleep(3000);
 		editButton.click();	
 		
 	}
@@ -158,6 +208,16 @@ public class EditContactPage {
 		WDWait(country);
 		country.clear();
 		country.sendKeys(country1);
+		
+		WDWait(addAnotherAddress);
+		addAnotherAddress.isDisplayed();
+		
+		WDWait(currentBillingAddress);
+		currentBillingAddress.isDisplayed();
+		
+		WDWait(currentShippingAddress);
+		currentShippingAddress.isDisplayed();
+
 	}
 	@Step("Click on save and change button")
 	public void clickSaveChangeButton(){
@@ -169,6 +229,48 @@ public class EditContactPage {
 	public void verifysuccessmessage(){
 		WDWait(updateContactSuccessMessage);
 		updateContactSuccessMessage.isDisplayed();
+        wait.until(ExpectedConditions.invisibilityOf(updateContactSuccessMessage));
+
 	}
+	@Step("Verify copied contact")
+	public void verifyEditedContact(String cName, String UENNumber, String TAXNumber, String currency, String paymentTerms) throws InterruptedException{
+		WDWait(searchRecord);
+		searchRecord.click();
+		searchRecord.sendKeys(cName);
+		
+		WDWait(enteredName);
+		wait.until(ExpectedConditions.elementToBeClickable(enteredName));
+		Assert.assertEquals(enteredName.getText(), cName);
+		enteredName.click();
+		
+		Assert.assertEquals(contactName.getText(), cName);
+		Assert.assertEquals(uENnumber.getText(), UENNumber);
+		Assert.assertEquals(tax.getText(), TAXNumber);
+		Assert.assertEquals(contactCurrency.getText(), currency);
+		organization= companyOrg.getText();
+		Assert.assertEquals(contactOrg.getText(),organization);
+
+
+		scrollToElement(accPayable);
+		wait.until(ExpectedConditions.visibilityOf(accPayable));
+		Thread.sleep(5000);
+		Assert.assertEquals(accPayable.getText(), "Accounts Payable");
+		
+		scrollToElement(accReceivable);
+		wait.until(ExpectedConditions.visibilityOf(accReceivable));
+		Thread.sleep(5000);
+		Assert.assertEquals(accReceivable.getText(), "Accounts Receivable");
+
+		Assert.assertEquals(buyPaymentTerm.getText(), paymentTerms);
+		Assert.assertEquals(sellPaymentTerm.getText(), paymentTerms);
+
+	}
+	@Step("Scroll page")
+	public void scrollToElement(WebElement element)
+	{
+
+		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
+	}
+	
 	
 }

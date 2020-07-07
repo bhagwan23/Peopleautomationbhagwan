@@ -61,7 +61,7 @@
 		</classes>
 	</test>
 
-	<test name=" 4 Edit Product" parallel="false">
+	<!-- <test name=" 4 Edit Product" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -157,6 +157,6 @@
 				name="deskera.web.automation.erp.bvtSG.tests.AddDemoCompanyTest">
 			</class>
 		</classes>
-	</test>
+	</test> -->
 
 </suite> 

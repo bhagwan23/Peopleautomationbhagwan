@@ -3,6 +3,7 @@ package deskera.web.automation.erp.bvtSG.pages;
 import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -39,7 +40,10 @@ public class BuyPage {
 	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Order Total')]")
 	@CacheLookup
 	private WebElement orderTotal;
-	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Bill Total')]")
+	@FindBy(xpath = "//h5[contains(text(),'1')]")
+	@CacheLookup
+	private WebElement orderTotalCount;
+	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Bills Total')]")
 	@CacheLookup
 	private WebElement billTotal;
 	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Archive Total')]")
@@ -112,12 +116,73 @@ public class BuyPage {
 	@FindBy(xpath = "//input[@formcontrolname='productQuantity']")
 	@CacheLookup
 	private WebElement pQuantity;
-	@FindBy(xpath = "(//input[@aria-autocomplete='list'])[2]")
+	@FindBy(xpath = "(//input[@role='combobox'])[2]")
 	@CacheLookup
 	private WebElement pTax;
+	@FindBy(xpath = "//mat-checkbox[@formcontrolname='unitPriceGstInclusive']")
+	@CacheLookup
+	private WebElement unitPriceIsTaxInclusive;
+	@FindBy(xpath = "//input[@formcontrolname='unitPrice']")
+	@CacheLookup
+	private WebElement unitPriceTextBox;
+	@FindBy(xpath = "//input[@formcontrolname='discountString']")
+	@CacheLookup
+	private WebElement discountTextBox;
+	@FindBy(xpath = "(//div[@class='mat-form-field-infix']//div[@class='mat-input-element read-only-value'])[2]")
+	@CacheLookup
+	private WebElement amountSGD;	
 	@FindBy(xpath= "//span[text()='Order has been saved successfully']")
 	@CacheLookup
 	private WebElement ordercreatedSuccessMessage;
+	
+	
+	/****************************CONVERT ORDER TO BILL PAGE ELEMENTS LOCATORS *******************/
+
+	@FindBy(xpath= "//input[@placeholder='Search Records']")
+	@CacheLookup
+	private WebElement searchRecord;
+	@FindBy(xpath= "//mat-table//mat-row[@class='mat-row ng-star-inserted']//mat-cell[3]")
+	@CacheLookup
+	private WebElement contactName;
+	@FindBy(xpath= "//span[contains(text(),'Convert to Bill')]")
+	@CacheLookup
+	private WebElement convertToBillButton;
+	@FindBy(xpath= "//div[@class='mat-dialog-title']//span[contains(text(),'Convert to Bill')]")
+	@CacheLookup
+	private WebElement convertToBillHeading;
+	@FindBy(xpath= "//span[contains(text(),'Convert (Auto-Received)')]")
+	@CacheLookup
+	private WebElement convertAutoReceivedbutton;
+	@FindBy(xpath="//span[contains(text(),'Convert Only')]")
+	@CacheLookup
+	private WebElement convertOnlyButton;
+	@FindBy(xpath= "//span[contains(text(),'Order is billed successfully')]")
+	@CacheLookup
+	private WebElement convertBillSucessMsg;
+	
+	/****************************CREATE NEW BILL  PAGE ELEMENTS LOCATORS *******************/
+
+	@FindBy(xpath = "//button[contains(.,'New Bill')]")
+	@CacheLookup
+	private WebElement newBillButton;
+	@FindBy(xpath = "//input[@formcontrolname='documentDate']")
+	@CacheLookup
+	private WebElement billDate;
+	@FindBy(xpath = "//h5[contains(.,'Bill Settings')]")
+	@CacheLookup
+	private WebElement billSettingText;
+	@FindBy(xpath = "//div[@class='canvas-title']")
+	@CacheLookup
+	private WebElement billText;
+	@FindBy(xpath= "//span[text()='Bill has been saved successfully']")
+	@CacheLookup
+	private WebElement billcreatedSuccessMessage;
+	@FindBy(xpath = "//h5[contains(text(),'1')]")
+	@CacheLookup
+	private WebElement billTotalCount;
+	@FindBy(xpath = "//div[@class='tab-container activeTab ng-star-inserted']")
+	@CacheLookup
+	private WebElement billCard;
 	/*******************************Buy Object Manipulation Methods *******************/
 	@Step("Open URl")
 	public void openURL(String URL) {
@@ -183,13 +248,18 @@ public class BuyPage {
 		quickAction.isDisplayed();
 	}
 	@Step("Click On Create New Button and then Click on New Order")
-	public void clickOnNewOrder(){
+	public void clickCreatNew(){
 		WDWait(createNewButton);
 		wait.until(ExpectedConditions.elementToBeClickable(createNewButton));
 		createNewButton.click();
+	}
+	@Step(" Click on New Order")
+	public void clickOnNewOrder(){
+		WDWait(newOrderButton);
 		wait.until(ExpectedConditions.elementToBeClickable(newOrderButton));
 		newOrderButton.click();	
 	}
+	
 	@Step("Verify create order page elements")
 	public void verifyCreateOrderElements(){
 		WDWait(saveButton);
@@ -201,8 +271,9 @@ public class BuyPage {
 		orderSettingText.isDisplayed();
 		customizeNumberFormat.isDisplayed();
 		globalCustomFields.isDisplayed();
-		
+		//unitPriceIsTaxInclusive.isDisplayed();
 	}
+	
 	@Step("Add Contact")
 	public void addContact(String cName) {
 		wait.until(ExpectedConditions.elementToBeClickable(addContactButton));
@@ -233,14 +304,62 @@ public class BuyPage {
 		WDWait(pQuantity);
 		pQuantity.isDisplayed();
 		Assert.assertEquals(pQuantity.getAttribute("value"), "1.00");
-		/*WDWait(pTax);
-		pTax.isDisplayed();
-		Assert.assertEquals(pTax.getText(), "TX(7%)");*/
 			
 	}
-	@Step("Verify Total Amount ")
-	public void verifyTotalAmount1() throws InterruptedException {	
+	
+	@Step("Enter Quantity and Discount ")
+	public void enterProductDetails(String quantity, String discount) throws InterruptedException {
+		WDWait(pQuantity);		
+		Thread.sleep(2000);
+		pQuantity.click();
+		pQuantity.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+		pQuantity.clear();
 		
+		pQuantity.sendKeys(quantity);
+		WDWait(discountTextBox);
+		discountTextBox.clear();
+		discountTextBox.sendKeys(discount);
+	}
+	
+	@Step("Verify Total Amount ")
+	public void verifyTotalAmount() throws InterruptedException {	
+		WDWait(pQuantity);
+		
+		String quantity= pQuantity.getAttribute("value");
+		System.out.println("String Quantity="+quantity);
+		double quantity1  = Double.parseDouble(quantity);
+		System.out.println("Double Quantity1 =" +quantity1);
+		
+		String unitPrice=unitPriceTextBox.getAttribute("value");
+		System.out.println("String unitPrice="+unitPrice);
+		double unitPrice1  = Double.parseDouble(unitPrice);
+		System.out.println("Double unitPrice1 =" +unitPrice1);
+		
+		String discount=discountTextBox.getAttribute("value");
+		System.out.println("String discount="+discount);
+		double discount1  = Double.parseDouble(discount);
+		System.out.println("Double discount1 =" +discount1);
+		
+		String tax=pTax.getAttribute("value");
+		System.out.println("String tax="+tax);
+	    String numberOnlytax= tax.replaceAll("[^0-9]", "");
+	    System.out.println("Number only tax =" +numberOnlytax);
+	    double tax1  = Double.parseDouble(numberOnlytax);
+		System.out.println("Double tax1 =" +tax1);
+		
+		Thread.sleep(4000);
+		
+		String amount=amountSGD.getText();
+		System.out.println("displayedTotal="+amount);
+		double amount1  = Double.parseDouble(amount);
+		System.out.println("Double displayedTotal1 =" +amount);
+		
+		double taxAmount=(quantity1*unitPrice1-discount1)*(tax1/100);
+		System.out.println("Total Tax = " +taxAmount);
+		double totalAmount=(quantity1*unitPrice1-discount1)+taxAmount;
+		System.out.println("Total Amount="+totalAmount);
+		
+		Assert.assertEquals(amount1, totalAmount);
 	}
 	@Step("Click on Save Button")
 	public void clickSaveButton() {	
@@ -254,6 +373,96 @@ public class BuyPage {
         wait.until(ExpectedConditions.invisibilityOf(ordercreatedSuccessMessage));
 
 	}
+	@Step("Verify total order count")
+	public void ordetTotalCount(){
+		WDWait(orderTotalCount);
+		orderTotalCount.isDisplayed();
+	    Assert.assertEquals(orderTotalCount.getText(), "1");
+
+	}
+	@Step("Search created order")
+	public void searchCreatedOrder(String cName){
+	WDWait(searchRecord);
+	searchRecord.click();
+	searchRecord.sendKeys(cName);
+	}
+	@Step("Click on searched order")
+	public void clickOnContact(String cName){
+		WDWait(contactName);
+		wait.until(ExpectedConditions.elementToBeClickable(contactName));
+		Assert.assertEquals(contactName.getText(), cName);
+		contactName.click();
+	}
+	@Step("Click on Convert to bill button")
+	public void clickConvertToBillButton(){
+		WDWait(convertToBillButton);
+		convertToBillButton.isDisplayed();
+		convertToBillButton.click();
+	}
+	@Step("Verify convert to bill popup")
+	public void verifyConvertToBillPopupElements(){
+		WDWait(convertToBillHeading);
+		convertToBillHeading.isDisplayed();
+		WDWait(convertAutoReceivedbutton);
+		convertAutoReceivedbutton.isDisplayed();
+		WDWait(convertOnlyButton);
+		convertOnlyButton.isDisplayed();
+	}
+	@Step("Click on convert autoreceived button")
+	public void clickConvertAutoReceivedButton(){
+		WDWait(convertAutoReceivedbutton);
+		convertAutoReceivedbutton.isDisplayed();
+		convertAutoReceivedbutton.click();
+	}
+	@Step("Verify success message")
+	public void verifyConvertBillsuccessmessage(){
+		WDWait(convertBillSucessMsg);
+		convertBillSucessMsg.isDisplayed();
+        wait.until(ExpectedConditions.invisibilityOf(convertBillSucessMsg));
+
+	}
 	
+	/*******************************Create Bill Object Manipulation Methods *******************/
 	
+	@Step(" Click on New Bill button")
+	public void clickOnNewBill(){
+		WDWait(newBillButton);
+		wait.until(ExpectedConditions.elementToBeClickable(newBillButton));
+		newBillButton.click();	
+	}
+	@Step("Verify create order page elements")
+	public void verifyCreateBillElements(){
+		WDWait(saveButton);
+		saveButton.isDisplayed();
+		WDWait(billText);
+		billText.isDisplayed();
+		addContactButton.isDisplayed();
+		billDate.isDisplayed();
+		dueDate.isDisplayed();
+		addLineItemButton.isDisplayed();
+		billSettingText.isDisplayed();
+		customizeNumberFormat.isDisplayed();
+		globalCustomFields.isDisplayed();
+		unitPriceIsTaxInclusive.isDisplayed();
+	}
+	@Step("Verify success message")
+	public void verifybillcreatedsuccessmessage(){
+		WDWait(billcreatedSuccessMessage);
+		billcreatedSuccessMessage.isDisplayed();
+        wait.until(ExpectedConditions.invisibilityOf(billcreatedSuccessMessage));
+
+	}
+	@Step("Verify total bill count")
+	public void billTotalCount(){
+		WDWait(billTotalCount);
+		billTotalCount.isDisplayed();
+	    Assert.assertEquals(billTotalCount.getText(), "1");
+
+	}
+	@Step("Click on Bill Card")
+	public void clickOnBillCard(){
+	WDWait(billCard);
+	billCard.isDisplayed();
+	billCard.click();
+	}
 }

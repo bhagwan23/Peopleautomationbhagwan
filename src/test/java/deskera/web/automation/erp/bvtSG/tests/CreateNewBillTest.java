@@ -12,7 +12,7 @@ import deskera.web.automation.erp.bvtSG.pages.LoginPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
-public class CreateNewOrderTest extends DriverFactory {
+public class CreateNewBillTest extends DriverFactory{
 	String confPath, url;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
 
@@ -32,14 +32,14 @@ public class CreateNewOrderTest extends DriverFactory {
 
 	@TestRailId(testRailId = 20270)
 	@Test()
-	@Description(value = "C21096 To verify that user is able to Create/Receive/Pay - Bill")
-	public void createOrderTest() throws InterruptedException {
+	@Description(value = "C20270 To verify that user is able to Create/Bill/Receive - Order")
+	public void createBillTest() throws InterruptedException {
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
 
 		String contactName = ReadPropertyUtil.readProperty("ContactName", confPath);
 		String productName = ReadPropertyUtil.readProperty("ProductName", confPath);
-
+		
 		String quantity = ReadPropertyUtil.readProperty("quantity", confPath);
 		String discount = ReadPropertyUtil.readProperty("discount", confPath);
 		
@@ -48,15 +48,15 @@ public class CreateNewOrderTest extends DriverFactory {
 		loginPage.openURL(url);
 		loginPage.enterEmailandPassword(emailAddress, passWord);
 		loginPage.clickSignIn();
-		
+
 		// Create buy Page Object instance
 		BuyPage buy= new BuyPage(driver, wait);
 		buy.verifybuytabElements();
 		buy.clickbuytab();
 		buy.verifyBuyPageElement();
 		buy.clickCreatNew();
-		buy.clickOnNewOrder();
-		buy.verifyCreateOrderElements();
+		buy.clickOnNewBill();
+		buy.verifyCreateBillElements();
 		buy.addContact(contactName);
 		buy.verifyMultiCurrencyOptions();
 		buy.addProduct(productName);
@@ -64,15 +64,10 @@ public class CreateNewOrderTest extends DriverFactory {
 		buy.enterProductDetails(quantity, discount);
 		buy.verifyTotalAmount();
 		buy.clickSaveButton();
-		buy.verifysuccessmessage();
-		buy.ordetTotalCount();
+		buy.verifybillcreatedsuccessmessage();
+		//buy.billTotalCount();
+		buy.clickOnBillCard();
 		buy.searchCreatedOrder(contactName);
 		buy.clickOnContact(contactName);
-		buy.clickConvertToBillButton();
-		buy.verifyConvertToBillPopupElements();
-		buy.verifyConvertToBillPopupElements();
-		//buy.clickConvertAutoReceivedButton();
-		//buy.verifyConvertBillsuccessmessage();
-		
 	}
 }

@@ -23,12 +23,48 @@
 	<parameter name="conf"
 		value="src/test/resources/bvtSGConfig/TestDataBuySG.config"></parameter>
 
-		
-	<test name=" 1 Create Order " parallel="false">
+<!--  		
+	<test name="1 Sign Up without Phone Number test" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
+				<methods>
+					<include name="testSignUpWithoutPhoneNumber"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+		<test name="2 Sign In" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+			</class>
+		</classes>
+	</test>
+
+
+	<test name="3 Create Organization" parallel="false">
+		<classes>
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
+			</class>
+		</classes>
+
+	</test>
+	
+	<test name=" 4 Create Order " parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.CreateNewOrderTest">
 			<methods>
 					<include name="createOrderTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test> 
+	-->
+	<test name=" 5 Create Bill " parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.CreateNewBillTest">
+			<methods>
+					<include name="createBillTest"></include>
 				</methods>
 			</class>
 		</classes>

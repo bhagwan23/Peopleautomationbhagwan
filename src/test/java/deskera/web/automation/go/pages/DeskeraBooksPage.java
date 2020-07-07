@@ -22,145 +22,145 @@ public class DeskeraBooksPage {
 	
 	/******************************* Deskera Books  PAGE ELEMENTS LOCATORS *******************/
 	@FindBy(xpath = "(//span[@class='ng-star-inserted'])[2]")
-	@CacheLookup
+	
 	private WebElement companyName;
 	@FindBy(xpath = "//span[text()=' Dashboard ']")
-	@CacheLookup
+	
 	private WebElement dashboardTab;
 	@FindBy(xpath = "//a[contains(.,'Sell')]")
-	@CacheLookup
+	
 	private WebElement sellTab;
 	@FindBy(xpath = "//span[contains(.,'Buy')]")
-	@CacheLookup
+	
 	private WebElement buyTab;
 	@FindBy(xpath = "//span[contains(.,'Pick Pack Ship')]")
-	@CacheLookup
+	
 	private WebElement pickPackShipTab;
 	@FindBy(xpath = "(//span[contains(.,'Products')])[1]")
-	@CacheLookup
+	
 	private WebElement ProductsTab;
 	@FindBy(xpath = "//span[contains(.,'Warehouse')]")
-	@CacheLookup
+	
 	private WebElement warehouseTab;
 	@FindBy(xpath = "(//span[contains(.,'Contacts')])[1]")
-	@CacheLookup
+	
 	private WebElement contactsTab;
 	@FindBy(xpath = "//span[contains(.,'Reports')]")
-	@CacheLookup
+	
 	private WebElement reportsTab;
 	@FindBy(xpath = "//span[contains(.,'Bank')]")
-	@CacheLookup
+	
 	private WebElement bankTab;
 	@FindBy(xpath = "//span[contains(.,'Accounting')]")
-	@CacheLookup
+	
 	private WebElement accountingTab;
 	@FindBy(xpath = "(//span[contains(.,'Apps')])[2]")
-	@CacheLookup
+	
 	private WebElement appsTab;
 	@FindBy(xpath = "//span[contains(.,'Settings')]")
-	@CacheLookup
+	
 	private WebElement settingsTab;
 	@FindBy(xpath = "//span//img[@class='logo']")
-	@CacheLookup
+	
 	private WebElement chatIcon;
 	@FindBy(xpath = "//span//wtf2-icon[text()='home' or @wtf2tooltip='Your Deskera Apps' ]")
-	@CacheLookup
+	
 	private WebElement homeIcon;
 	@FindBy(xpath = "//wtf2-icon[contains(@wtf2tooltip,'Your Connected Apps')]")
-	@CacheLookup
+	
 	private WebElement yourConnectedAppsIcon;
 	@FindBy(xpath = "//wtf2-icon[@role='img' and text()='apps']")
-	@CacheLookup
+	
 	private WebElement switchIcon;
 	@FindBy(xpath = "//span[@class='profile-pic-launchpad']//img")
-	@CacheLookup
+	
 	private WebElement userProfileIcon;
 	@FindBy(xpath = "//div[contains(@class,'user-name')]")
-	@CacheLookup
+	
 	private WebElement welcomeUser;
 	@FindBy(xpath = "//span[contains(.,'Organization check_circle')]")
-	@CacheLookup
+	
 	private WebElement organizationCircle;
 	@FindBy(xpath = "(//span[contains(.,'Financial')])[1]")
-	@CacheLookup
+	
 	private WebElement financialCircle;
 	@FindBy(xpath = "(//span[contains(.,'Address')])[1]")
-	@CacheLookup
+	
 	private WebElement addressCircle;
 	@FindBy(xpath = "//span[contains(.,'Compliance')]")
-	@CacheLookup
+	
 	private WebElement complianceCircle;
 	@FindBy(xpath = "//div[@class='mat-headline']")
-	@CacheLookup
+	
 	private WebElement letsGetStartedText;
 	@FindBy(xpath = "//button[contains(.,'Try a Demo Company')]")
-	@CacheLookup
+	
 	private WebElement tryDemoCompanyButton;
 	@FindBy(xpath = "//div[@class='mat-form-field-infix'][contains(.,'Organization Name')]")
-	@CacheLookup
+	
 	private WebElement organizationNameText;
 	@FindBy(xpath = "//input[@formcontrolname='tenantName']")
-	@CacheLookup
+	
 	private WebElement organizationName;
 	@FindBy(xpath = "//div[@class='mat-form-field-infix'][contains(.,'Tax Residency')]")
-	@CacheLookup
+	
 	private WebElement taxResidencyText;
 	@FindBy(xpath = "//input[@formcontrolname='countryLookupCode']")
-	@CacheLookup
+	
 	private WebElement taxResidencyDropdown;
 	@FindBy(xpath = "//div[@class='headline'][contains(.,'Financial Settings')]")
-	@CacheLookup
+	
 	private WebElement financialSettingText;
 	@FindBy(xpath = "//input[@formcontrolname='financialStartDate']")
-	@CacheLookup
+	
 	private WebElement financialStartDate;
 	@FindBy(xpath = "//input[@formcontrolname='bookBeginningStartDate']")
-	@CacheLookup
+	
 	private WebElement bookBeginningStartDate;
 	@FindBy(xpath = "//div[@class='mat-form-field-infix'][contains(.,'Currency')]")
-	@CacheLookup
+	
 	private WebElement currecnyText;
 	@FindBy(xpath = "//input[@formcontrolname='currencyLookUpCode']")
-	@CacheLookup
+	
 	private WebElement currecnyDropdown;
 	@FindBy(xpath = "//span[contains(.,'Enable Multi-Currency')]")
-	@CacheLookup
+	
 	private WebElement enableMultiCurrency;
 	@FindBy(xpath = "//div[@class='headline'][contains(.,'Address Details')]")
-	@CacheLookup
+	
 	private WebElement addressDetailsText;
 	@FindBy(xpath = "//input[@formcontrolname='address1']")
-	@CacheLookup
+	
 	private WebElement addressLine1;
 	@FindBy(xpath = "//input[@formcontrolname='address2']")
-	@CacheLookup
+	
 	private WebElement addressLine2;
 	@FindBy(xpath = "//input[@formcontrolname='city']")
-	@CacheLookup
+	
 	private WebElement city;
 	@FindBy(xpath = "//input[contains(@formcontrolname,'state')]")
-	@CacheLookup
+	
 	private WebElement state;
 	@FindBy(xpath = "//input[@formcontrolname='postalCode']")
-	@CacheLookup
+	
 	private WebElement zipCode;
 	@FindBy(xpath = "//input[contains(@formcontrolname,'timezoneLookUpCode')]")
-	@CacheLookup
+	
 	private WebElement timezone;
 	@FindBy(xpath = "//div[@class='headline'][contains(.,'Compliance Details')]")
-	@CacheLookup
+	
 	private WebElement complianceDetailsText;
 	@FindBy(xpath = "//div[@class='mat-form-field-infix'][contains(.,'Tax ID No.')]")
-	@CacheLookup
+	
 	private WebElement taxIdNo;
 	@FindBy(xpath = "(//span[@class='mat-checkbox-label'])[2]")
-	@CacheLookup
+	
 	private WebElement iDontCollectTaxes;
 	@FindBy(xpath = "//input[contains(@formcontrolname,'nexus')]")
-	@CacheLookup
+	
 	private WebElement stateWhereCollectTax;
 	@FindBy(xpath = "//button[contains(.,'Save')]")
-	@CacheLookup
+	
 	private WebElement saveButton;
 	private static String pageTitleText = "Deskera Books";
 	

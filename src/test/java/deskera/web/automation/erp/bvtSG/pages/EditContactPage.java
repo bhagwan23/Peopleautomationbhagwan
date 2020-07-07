@@ -35,56 +35,56 @@ public class EditContactPage {
 
 	/******************************* EDIT CONTACT PAGE ELEMENTS LOCATORS *******************/
 	@FindBy(xpath = "//mat-icon[@class='mat-icon notranslate material-icons mat-icon-no-color']")
-	@CacheLookup
+	
 	private WebElement contextMenuIcon;
 	@FindBy(xpath= "//button[contains(text(),'Edit')]")
-	@CacheLookup
+	
 	private WebElement editButton;
 	@FindBy(xpath= "//input[@formcontrolname='name']")
-	@CacheLookup
+	
 	private WebElement name;
 	@FindBy(xpath= "//input[@formcontrolname='email']")
-	@CacheLookup
+	
 	private WebElement emailAddress;
 	@FindBy(xpath= "//input[@formcontrolname='uen']")
-	@CacheLookup
+	
 	private WebElement contactUEN;
 	@FindBy(xpath= "//input[@formcontrolname='tax']")
-	@CacheLookup
+	
 	private WebElement taxNumber;
 	
 	@FindBy(xpath= "//div[contains(text(),'Address')]")
-	@CacheLookup
+	
 	private WebElement address;
 	@FindBy(xpath= "//textarea[@formcontrolname='address1']")
-	@CacheLookup
+	
 	private WebElement enterAddress;
 	@FindBy(xpath= "//input[@formcontrolname='state']")
-	@CacheLookup
+	
 	private WebElement state;
 	@FindBy(xpath= "//input[@formcontrolname='postalCode']")
-	@CacheLookup
+	
 	private WebElement postalCode;
 	@FindBy(xpath= "//input[@formcontrolname='city']")
-	@CacheLookup
+	
 	private WebElement city;
 	@FindBy(xpath= "//input[@formcontrolname='country']")
-	@CacheLookup
+	
 	private WebElement country;
 	
 	@FindBy(xpath= "//span[contains(text(),'Save Changes')]")
-	@CacheLookup
+	
 	private WebElement saveChangeButton;
 	
 	@FindBy(xpath= "//span[text()='Contact is successfully Updated']")
-	@CacheLookup
+	
 	private WebElement updateContactSuccessMessage;
 	
 	@FindBy(xpath= "//input[@placeholder='Search Records']")
-	@CacheLookup
+	
 	private WebElement searchRecord;
 	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/mat-table/mat-row[1]/mat-cell[3]")
-	@CacheLookup
+	
 	private WebElement enteredName;
 	
 	/*******************************Edit Contacts Object Manipulation Methods *******************/

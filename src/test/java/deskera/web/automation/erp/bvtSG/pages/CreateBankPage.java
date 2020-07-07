@@ -26,49 +26,49 @@ public class CreateBankPage {
 
 	/******************************* CREATE BANK PAGE ELEMENTS LOCATORS *******************/
 	@FindBy(xpath = "//*[@id='container-1']/dt-navbar/div/ul/li[9]/a/span")
-	@CacheLookup
+	
 	private WebElement bankButton;
 	@FindBy(xpath= "//span[contains(text(),'ACC10001')]")
-	@CacheLookup
+	
 	private WebElement defaultbankcode;
 	@FindBy(xpath= "//button[@class='wtf2-flat-button text-uppercase wtf2-primary pl-3 wtf2-button']")
-	@CacheLookup
+	
 	private WebElement addBankButton;
 	@FindBy(xpath= "//input[@id='wtf2-input-0']")
-	@CacheLookup
+	
 	private WebElement code;
 	@FindBy(xpath= "//input[@id='wtf2-input-1']")
-	@CacheLookup
+	
 	private WebElement name;
 	@FindBy(xpath= "//input[@id='accdesc']")
-	@CacheLookup
+	
 	private WebElement description;
 	@FindBy(xpath= "//*[@id='cdk-step-content-0-0']/form/div[4]/div/wtf2-form-field/div/div[1]/div[3]")
-	@CacheLookup
+	
 	private WebElement currency;
 	@FindBy(xpath= "//wtf2-split-button-title[@class='wtf2-split-button-title']")
-	@CacheLookup
+	
 	private WebElement	selectAndConnectButton;
 	@FindBy(xpath= "//span[contains(text(),'CANCEL')]")
-	@CacheLookup
+	
 	private WebElement cancelButton;
 	@FindBy(xpath= "//wtf2-icon[@class='wtf2-accent-fg mt-2 wtf2-icon notranslate material-icons wtf2-icon-no-color']")
-	@CacheLookup
+	
 	private WebElement	crossIconButton;
 	@FindBy(xpath= "//wtf2-icon[contains(text(),'keyboard_arrow_down')]")
-	@CacheLookup
+	
 	private WebElement dropDownButton;
 	@FindBy(xpath= "//button[@class='ng-star-inserted']")
-	@CacheLookup
+	
 	private WebElement saveAndCloseButton;
 	@FindBy(xpath= "//*[@id='AccountAccordionGrid']/wtf2-table/wtf2-row[1]/wtf2-cell[2]/span/wtf2-format-value/span")
-	@CacheLookup
+	
 	private WebElement accountHSBC;
 	@FindBy(xpath= "//wtf2-row[1]//wtf2-cell[8]//span[1]//div[1]//button[1]//span[1]//wtf2-icon[1]")
-	@CacheLookup
+	
 	private WebElement accContextMenuButton;
 	@FindBy(xpath= "//div[@class='cdk-overlay-container']//div[5]//button[1]")
-	@CacheLookup
+	
 	private WebElement connectButton;
 	
 	/******************************* Banks Object Manipulation Methods *******************/

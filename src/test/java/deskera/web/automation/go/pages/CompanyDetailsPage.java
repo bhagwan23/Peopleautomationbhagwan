@@ -24,154 +24,154 @@ public class CompanyDetailsPage {
 	/******************************* Company Details  PAGE ELEMENTS LOCATORS *******************/
 
 	@FindBy(xpath = "//img[contains(@class,'logo img-circle ng-star-inserted')]")
-	@CacheLookup
+	
 	private WebElement companyLogo;
 	@FindBy(xpath = "//div[@class='ellipsis company-name']")
-	@CacheLookup
+	
 	private WebElement companyName;
 	@FindBy(xpath = "//wtf2-icon[contains(.,'keyboard_arrow_down')]")
-	@CacheLookup
+	
 	private WebElement companyNameArrow;
 	@FindBy(xpath = "//span[contains(.,'My Account')]")
-	@CacheLookup
+	
 	private WebElement myAccountTab;
 	@FindBy(xpath = "//span[contains(.,'Company Details')]")
-	@CacheLookup
+	
 	private WebElement companyDetailsTab;
 	@FindBy(xpath = "//span[contains(.,'Billing')]")
-	@CacheLookup
+	
 	private WebElement billingTab;
 	@FindBy(xpath = "//span[contains(.,'User Management')]")
-	@CacheLookup
+	
 	private WebElement userManagementTab;
 	@FindBy(xpath = "//wtf2-icon[contains(@wtf2tooltip,'Collapse')]")
-	@CacheLookup
+	
 	private WebElement collapseIcon;
 	@FindBy(xpath = "(//wtf2-icon[contains(.,'home')])[2]")
-	@CacheLookup
+	
 	private WebElement homeIcon_CompanyDetailsPage;
 	@FindBy(xpath = "//li[@aria-current='page'][contains(.,'My Account')]")
-	@CacheLookup
+	
 	private WebElement MyAccountText_CompanyDetailsPage;
 	@FindBy(xpath = "(//h6[contains(text(),'Company Details')])[1]")
-	@CacheLookup
+	
 	private WebElement CompanyDetailsPageHeader;
 	@FindBy(xpath = "//span[contains(text(),'Cancel')]")
-	@CacheLookup
+	
 	private WebElement companyDetailsCancelButton;
 	@FindBy(xpath = "//span[contains(text(),'Save')]")
-	@CacheLookup
+	
 	private WebElement companyDetailsSavelButton;
 	@FindBy(xpath = "//img[@id='company-logo']")
-	@CacheLookup
+	
 	private WebElement AddCompanyLogoIcon;
 	@FindBy(xpath = "//h6[contains(text(),'Company logo')]")
-	@CacheLookup
+	
 	private WebElement CompanyLogoText;
 	@FindBy(xpath = "//span[contains(text(),'Add your company logo here')]")
-	@CacheLookup
+	
 	private WebElement addYourCompanyLogoHereText;
 	
 	/****************** ADD/EDIT Company Details  Section Elements  *******************/
 	
 	@FindBy(xpath = "(//h6[contains(text(),'Company Details')])[2]")
-	@CacheLookup
+	
 	private WebElement CompanyDetailsText;
 	@FindBy(xpath = "//label[contains(text(),' Company Name ')]")
-	@CacheLookup
+	
 	private WebElement companyNameLabel;
 	@FindBy(xpath = "//input[@formcontrolname='name' and @placeholder='Company Name' ]")
-	@CacheLookup
+	
 	private WebElement companyNameInputBox;
 	@FindBy(xpath = "//label[contains(text(),' Address Line 1 ')]")
-	@CacheLookup
+	
 	private WebElement addressLine1Label;
 	@FindBy(xpath = "//input[contains(@formcontrolname,'addressLine1')]")
-	@CacheLookup
+	
 	private WebElement addressLine1InputBox;
 	@FindBy(xpath = "//label[contains(text(),' Address Line 2 ')]")
-	@CacheLookup
+	
 	private WebElement addressLine2Label;
 	@FindBy(xpath = "//input[contains(@formcontrolname,'addressLine2')]")
-	@CacheLookup
+	
 	private WebElement addressLine2InputBox;
 	@FindBy(xpath = "//label[contains(text(),'City')]")
-	@CacheLookup
+	
 	private WebElement cityLabel;
 	@FindBy(xpath = "//input[contains(@formcontrolname,'city')]")
-	@CacheLookup
+	
 	private WebElement cityInputBox;
 	@FindBy(xpath = "//label[contains(text(),'Zipcode')]")
-	@CacheLookup
+	
 	private WebElement zipcodeLabel;
 	@FindBy(xpath = "//input[@formcontrolname='zip']")
-	@CacheLookup
+	
 	private WebElement zipcodeInputBox;
 	@FindBy(xpath = "//label[contains(text(),'State')]")
-	@CacheLookup
+	
 	private WebElement stateLabel;
 	@FindBy(xpath = "//input[@formcontrolname='state']")
-	@CacheLookup
+	
 	private WebElement stateInputBox;
 	@FindBy(xpath = "//label[contains(text(),'Country')]")
-	@CacheLookup
+	
 	private WebElement countryLabel;
 	@FindBy(xpath = "//input[@formcontrolname='country']")
-	@CacheLookup
+	
 	private WebElement countryInputBox;
 	
 	/****************** Contact Information Section Elements  *******************/
 	
 	@FindBy(xpath = "//h6[contains(text(),'Contact Information')]")
-	@CacheLookup
+	
 	private WebElement contactInformationText;
 	@FindBy(xpath = "//label[contains(text(),' Phone Number ')]")
-	@CacheLookup
+	
 	private WebElement phoneNumberLabel;
 	@FindBy(xpath = "//span[@ng-reflect-klass='country-selector-flag flag']")
-	@CacheLookup
+	
 	private WebElement countryFlagIcon;
 	@FindBy(xpath = "//span[@class='country-selector-code']")
-	@CacheLookup
+	
 	private WebElement countryCodeSelector;
 	@FindBy(xpath = "//div[@class='cdk-overlay-container']//button//div[contains(text(),'United States +1')]")
-	@CacheLookup
+	
 	private WebElement USCode;
 	@FindBy(xpath = "//div[@class='cdk-overlay-container']//button//div[contains(text(),'Singapore +65')]")
-	@CacheLookup
+	
 	private WebElement SGCode;
 	@FindBy(xpath = "//div[@class='cdk-overlay-container']//button//div[contains(text(),'India') and contains(text(),'+91')]")
-	@CacheLookup
+	
 	private WebElement INCode;
 	@FindBy(xpath = "//input[contains(@value,'phoneNumber')]")
-	@CacheLookup
+	
 	private WebElement phoneNumberInputBox;
 	@FindBy(xpath = "//label[contains(text(),'Email')]")
-	@CacheLookup
+	
 	private WebElement emailLabel;
 	@FindBy(xpath = "//input[contains(@placeholder,'Email')]")
-	@CacheLookup
+	
 	private WebElement emailInputBox;
 	@FindBy(xpath = "//label[contains(text(),'Fax Number ')]")
-	@CacheLookup
+	
 	private WebElement faxNumberLabel;
 	@FindBy(xpath = "//input[contains(@placeholder,'Fax Number')]")
-	@CacheLookup
+	
 	private WebElement faxNumberInputBox;
 	@FindBy(xpath = "//label[contains(text(),'Website')]")
-	@CacheLookup
+	
 	private WebElement websiteLabel;
 	@FindBy(xpath = "//input[contains(@formcontrolname,'website')]")
-	@CacheLookup
+	
 	private WebElement websiteInputBox;
 	@FindBy(xpath = "//h6[contains(text(),'Change Password')]")
-	@CacheLookup
+	
 	private WebElement changePasswordText;
 	@FindBy(xpath = "//span[contains(text(),'Change Password')]")
-	@CacheLookup
+	
 	private WebElement changePasswordButton;
 	@FindBy(xpath = "//div[@class='toast-top-right toast-container']")
-	@CacheLookup
+	
 	private WebElement addCompanyDetailsSuccessMessage;
 	String successMessageText="Updated company details successfully";
 	
@@ -179,16 +179,16 @@ public class CompanyDetailsPage {
 	
 	/******************************* Home PAGE ELEMENTS LOCATORS *******************/
 	@FindBy(xpath = "//span//img[@class='logo']")
-	@CacheLookup
+	
 	private WebElement chatIcon;
 	@FindBy(xpath = "//span//wtf2-icon[text()='home' or @wtf2tooltip='Your Deskera Apps' ]")
-	@CacheLookup
+	
 	private WebElement homeIcon;
 	@FindBy(xpath = "//wtf2-icon[@role='img' and text()='apps']")
-	@CacheLookup
+	
 	private WebElement switchToIcon;
 	@FindBy(xpath = "//span[@class='profile-pic-launchpad']//img")
-	@CacheLookup
+	
 	private WebElement userProfileIcon;
 	private static String pageTitleText = "Deskera Cloud";
 

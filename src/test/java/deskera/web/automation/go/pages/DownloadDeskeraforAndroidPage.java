@@ -22,25 +22,25 @@ public class DownloadDeskeraforAndroidPage {
 	
 	/******************************* Download Deskera for Android Page PAGE ELEMENTS LOCATORS *******************/
 	@FindBy(xpath = "//img[@src='https://www.gstatic.com/android/market_images/web/play_prism_hlock_2x.png']")
-	@CacheLookup
+	
 	private WebElement googlePlayLogo;
 	@FindBy(xpath = "//input[@aria-label='Search']")
-	@CacheLookup
+	
 	private WebElement searchBox;
 	@FindBy(xpath = "//span[contains(.,'Free Business Accounting (Invoice, Tax, Inventory)')]")
-	@CacheLookup
+	
 	private WebElement freeBusinessAccountingText;
 	@FindBy(xpath = "//a[contains(.,'Free Invoice, Billing, Tax, Accounting & Business')]")
-	@CacheLookup
+	
 	private WebElement freeInvoiceBillingTaxLink;
 	@FindBy(xpath = "//img[contains(@alt,'Cover art')]")
-	@CacheLookup
+	
 	private WebElement coverArtImage;
 	@FindBy(xpath = "//span[@class='O53zde vaqewe']")
-	@CacheLookup
+	
 	private WebElement addToWishlistLink;
 	@FindBy(xpath = "//button[contains(.,'Install')]")
-	@CacheLookup
+	
 	private WebElement installButton;
 	private static String pageTitleText = "Free Business Accounting (Invoice, Tax, Inventory) - Apps on Google Play";
 	

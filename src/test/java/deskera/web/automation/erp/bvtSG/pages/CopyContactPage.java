@@ -31,16 +31,16 @@ public class CopyContactPage {
 	/******************************* COPY CONTACT PAGE ELEMENTS LOCATORS *******************/
 
 	@FindBy(xpath = "//mat-row[1]//mat-cell[8]//button[1]//mat-icon[1]")
-	@CacheLookup
+	
 	private WebElement contextMenuIcon;
 	@FindBy(xpath= "//button[contains(text(),'Copy')]")
-	@CacheLookup
+	
 	private WebElement copyButton;
 	@FindBy(xpath= "//button[@class='mat-flat-button mat-button-base mat-primary']")
-	@CacheLookup
+	
 	private WebElement saveButton;
 	@FindBy(xpath= "//span[text()='Contact Successfuly Added']")
-	@CacheLookup
+	
 	private WebElement copyContactSuccessMessage;
 
 	/*******************************Edit Contacts Object Manipulation Methods *******************/

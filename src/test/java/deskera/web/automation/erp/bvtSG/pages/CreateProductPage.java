@@ -38,349 +38,349 @@ public class CreateProductPage {
 	 * Create New Product PAGE ELEMENTS LOCATORS
 	 *******************/
 	@FindBy(xpath = "//span[contains(.,'Products')]")
-	@CacheLookup
+	
 	private WebElement productsTab;
 	@FindBy(xpath = "//span[contains(.,'Start by Adding or Importing Your Products')]")
-	@CacheLookup
+	
 	private List<WebElement> startByAddingOrImportingYourProducsText;
 	@FindBy(xpath = "//i[contains(@class,'fa-times close-button m')]//self::i[1]")
-	@CacheLookup
+	
 	private WebElement closeIcon;
 	@FindBy(xpath = "//span[@class='action-button-text'][contains(.,'Create Product')]")
-	@CacheLookup
+	
 	private WebElement createProductButton;
 	@FindBy(xpath = "//span[contains(text(),'New Product')]")
-	@CacheLookup
+	
 	private WebElement newProductButton;
 	@FindBy(xpath = "//span[@class='ng-star-inserted'][contains(.,'Create New Product')]")
-	@CacheLookup
+	
 	private WebElement createNewProductText;
 	@FindBy(xpath = "//div[@class='image-container d-flex']")
-	@CacheLookup
+	
 	private WebElement addImage;
 	@FindBy(xpath = "//div[contains(text(),' General Info ')]")
-	@CacheLookup
+	
 	private WebElement generalInfoTab;
 	@FindBy(xpath = "//div[contains(text(),' Accounting ')]")
-	@CacheLookup
+	
 	private WebElement accountingTab;
 	@FindBy(xpath = "//div[contains(text(),'Inventory')]")
-	@CacheLookup
+	
 	private WebElement inventoryTab;
 	@FindBy(xpath = "//div[contains(text(),' Bill of Materials')]")
-	@CacheLookup
+	
 	private WebElement billsOfMaterialTab;
 	@FindBy(xpath = "//mat-icon[@ng-reflect-message='Info']")
-	@CacheLookup
+	
 	private WebElement infoIcon;
 	@FindBy(xpath = "//mat-icon[@ng-reflect-message='Chat']")
-	@CacheLookup
+	
 	private WebElement chatIcon;
 	@FindBy(xpath = "//mat-icon[@ng-reflect-svg-icon='notification']")
-	@CacheLookup
+	
 	private WebElement notificationIcon;
 	@FindBy(xpath = "//h5[contains(.,'Quick Actions')]")
-	@CacheLookup
+	
 	private WebElement quickActionsText;
 	@FindBy(xpath = "//span[contains(.,'Custom Number Format')]")
-	@CacheLookup
+	
 	private WebElement customNumberFormat;
 	@FindBy(xpath = "(//span[contains(.,'Custom Fields')])[2]")
-	@CacheLookup
+	
 	private WebElement customFields;
 	@FindBy(xpath = "//div[contains(@class,'image-container d-flex')]")
-	@CacheLookup
+	
 	private WebElement addImageArea;
 	@FindBy(xpath = "//div[@class='mat-select-arrow-wrapper']")
-	@CacheLookup
+	
 	private WebElement productTypedropdown;
 	@FindBy(xpath = "//span[@class='mat-option-text'][contains(.,'Non-Tracked')]")
-	@CacheLookup
+	
 	private WebElement nonTrackedProductType;
 	@FindBy(xpath = "//span[@class='mat-option-text'][text()='Tracked']")
-	@CacheLookup
+	
 	private WebElement trackedProductType;
 	@FindBy(xpath = "//span[@class='mat-option-text'][text()='Bill of Materials']")
-	@CacheLookup
+	
 	private WebElement billsOfMaterialProductType;
 	@FindBy(xpath = "//input[contains(@placeholder,'Product Number')]")
-	@CacheLookup
+	
 	private WebElement productNumber;
 	@FindBy(xpath = "//input[@formcontrolname='name']")
-	@CacheLookup
+	
 	private WebElement ProductNameInputBox;
 	@FindBy(xpath = "//input[@formcontrolname='barcode']")
-	@CacheLookup
+	
 	private WebElement barcodeInputBox;
 	@FindBy(xpath = "//textarea[@formcontrolname='description']")
-	@CacheLookup
+	
 	private WebElement descriptionInputBox;
 	private static String pageTitleText = "Deskera Books";
 
 	@FindBy(css = "	i.fas.fa-times.close-button.mt-2")
-	@CacheLookup
+	
 	private WebElement closeOverlayPopup;
 	/*************** Accounting tab ******************************************/
 	@FindBy(xpath = "//p[text()='Buy']")
-	@CacheLookup
+	
 	private WebElement buyText;
 	@FindBy(xpath = "//mat-label[contains(text(),'Purchase Account ')]/parent::label/parent::span/parent::div/input")
-	@CacheLookup
+	
 	private WebElement purchaseAccount;
 	@FindBy(xpath = "//span[contains(.,'Purchase Return')]")
-	@CacheLookup
+	
 	private WebElement purchaseReturnPurchaseAccount;
 	@FindBy(xpath = "//div[@class='cdk-overlay-pane mat-autocomplete-panel-above']//div//mat-option//span")
-	@CacheLookup
+	
 	private List<WebElement> purchaseAccountDropdownValues;
 	@FindBy(xpath = "//div[@class='cdk-overlay-pane mat-autocomplete-panel-above']//div//mat-option//span")
-	@CacheLookup
+	
 	private List<WebElement> salesAccountDropdownValues;
 	@FindBy(xpath = "//mat-label[contains(text(),'Purchase Price')]/parent::label/parent::span/parent::div/input")
-	@CacheLookup
+	
 	private WebElement purchasePrice;
 	@FindBy(xpath = "//mat-label[contains(text(),' Purchase Tax ')]/parent::label/parent::span/parent::div/input")
-	@CacheLookup
+	
 	private WebElement purchaseTax;
 	@FindBy(xpath = "(//div[@class='mat-checkbox-mixedmark']//following::span[text()='Price is tax inclusive'])[1]")
-	@CacheLookup
+	
 	private WebElement priceIsTaxInclusiveCheckBox_Buy;
 	@FindBy(xpath = "(//div[@class='mat-checkbox-mixedmark']//following::span[text()='Price is tax inclusive'])[2]")
-	@CacheLookup
+	
 	private WebElement priceIsTaxInclusiveCheckBox_Sell;
 	@FindBy(xpath = "//p[text()='Sell']")
-	@CacheLookup
+	
 	private WebElement sellText;
 	@FindBy(xpath = "//mat-label[contains(text(),' Sales Account ')]/parent::label/parent::span/parent::div/input")
-	@CacheLookup
+	
 	private WebElement salesAccount;
 	@FindBy(xpath = "//span[contains(.,'Sales Return')]")
-	@CacheLookup
+	
 	private WebElement salesReturnSalesAccount;
 	@FindBy(xpath = "//mat-label[contains(text(),'Sales Price')]/parent::label/parent::span/parent::div/input")
-	@CacheLookup
+	
 	private WebElement salesPrice;
 	@FindBy(xpath = "//mat-label[contains(text(),' Sales Tax ')]/parent::label/parent::span/parent::div/input")
-	@CacheLookup
+	
 	private WebElement salesTax;
 	/*************** Inventory tab ******************************************/
 	@FindBy(xpath = "//mat-label[contains(text(),'Unit of Measurement')]/parent::label/parent::span/parent::div/mat-select")
-	@CacheLookup
+	
 	private WebElement unitOfMeasurement;
 	@FindBy(xpath = "//span[contains(.,'Pieces')]")
-	@CacheLookup
+	
 	private WebElement piecesUnitOfMeasurement;
 	@FindBy(xpath = "//mat-label[contains(text(),' Cost of Goods Sold Account ')]/parent::label/parent::span/parent::div/input")
-	@CacheLookup
+	
 	private WebElement costOfGoodsSoldAccount;
 	@FindBy(xpath = "//mat-label[contains(text(),' Inventory Account ')]/parent::label/parent::span/parent::div/input")
-	@CacheLookup
+	
 	private WebElement inventoryAccount;
 	@FindBy(xpath = "//span[contains(.,'Manufacturing cost')]")
-	@CacheLookup
+	
 	private WebElement manufacturingCostInventoryAccount;
 	@FindBy(xpath = "//mat-label[contains(text(),' Stock Adjustment Account ')]/parent::label/parent::span/parent::div/input")
-	@CacheLookup
+	
 	private WebElement stockAdjustmentAccount;
 	@FindBy(xpath = "//mat-label[contains(text(),' Manufacturing Account ')]/parent::label/parent::span/parent::div/input")
-	@CacheLookup
+	
 	private WebElement manufacturingAccount;
 	@FindBy(xpath = "//mat-label[contains(text(),'Opening Quantity')]/parent::label/parent::span/parent::div/input")
-	@CacheLookup
+	
 	private WebElement openingQuanity;
 	@FindBy(xpath = "//mat-label[contains(text(),'Opening Valuation')]/parent::label/parent::span/parent::div/input")
-	@CacheLookup
+	
 	private WebElement openingValuation;
 	@FindBy(xpath = "//mat-label[contains(text(),'Warehouse')]/parent::label/parent::span/parent::div/mat-select/div/div/span/span")
-	@CacheLookup
+	
 	private WebElement warehouse;
 	@FindBy(xpath = "//button[contains(.,'Save')]")
-	@CacheLookup
+	
 	private WebElement saveButton;
 	@FindBy(xpath = "//span[text()='Product has been saved successfully']")
-	@CacheLookup
+	
 	private WebElement createProductSuccessMessage;
 	/***************
 	 * Bill Of Material tab
 	 ******************************************/
 	@FindBy(xpath = "//div[contains(text(),'+ Add a Component Product')]")
-	@CacheLookup
+	
 	private WebElement addComponentProductButton;
 	@FindBy(xpath = "//div[contains(text(),' + Add an Additional Cost ')]")
-	@CacheLookup
+	
 	private WebElement addAdditionalCostButton;
 	@FindBy(xpath = "//input[@placeholder='Type here' or contains(@role,'combobox')]")
-	@CacheLookup
+	
 	private WebElement componentProduct1TextBox;
 	@FindBy(xpath = "//span[@class='mat-option-text']")
-	@CacheLookup
+	
 	private WebElement dropDownSelectProduct;
 	@FindBy(xpath = "//input[@placeholder='Quantity']")
-	@CacheLookup
+	
 	private WebElement componentProduct1Value;
 	@FindBy(xpath = "//mat-option//span[2][@class='mat-option-text']")
-	@CacheLookup
+	
 	private WebElement componentProduct2Value;
 	@FindBy(xpath = "(//input[contains(@placeholder,'Quantity')])[2]")
-	@CacheLookup
+	
 	private WebElement component2Quantity;
 	/**************************** Created Product Verification Elements ***********/
 	@FindBy(xpath = "//span[text()='Non-Tracked']//following::span[1][@class='count']")
-	@CacheLookup
+	
 	private WebElement nonTrackedProductCount;
 	@FindBy(xpath = "//span[text()='Tracked Inventory']//following::span[1][@class='count']")
-	@CacheLookup
+	
 	private WebElement trackedProductCount;
 	@FindBy(xpath = "//span[text()='Bill of Materials']//following::span[1][@class='count']")
-	@CacheLookup
+	
 	private WebElement BOMProductCount;
 	@FindBy(xpath = "//span[contains(text(),'0')]//following::span[text()='Item with No Stock']")
-	@CacheLookup
+	
 	private WebElement zeroItemWithNoStock;
 	@FindBy(xpath = "//input[contains(@placeholder,'SEARCH_RECORDS') or contains(@ng-reflect-placeholder,'Search Records')]")
-	@CacheLookup
+	
 	private WebElement searchRecordsBox;
 	@FindBy(xpath = "//mat-table//mat-row[@class='mat-row ng-star-inserted']//mat-cell[3]//span[1]")
-	@CacheLookup
+	
 	private WebElement searchedRecord;
 	@FindBy(xpath = "//div[text()='Product Name']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedProducName;
 	@FindBy(xpath = "//div[text()='Product Number']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedProductNumber;
 	@FindBy(xpath = "//div[text()='Product Type']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedProducType;
 	@FindBy(xpath = "//div[text()='Barcode']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedBarcode;
 	@FindBy(xpath = "//div[text()='Description']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedDescription;
 	@FindBy(xpath = "//div[text()='Purchase Account']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedPurchaseAccount;
 	@FindBy(xpath = "//div[text()='Product Price']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedPurchasePrice;
 	@FindBy(xpath = "//div[text()='Purchase Tax']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedPurchaseTax;
 	@FindBy(xpath = "//div[text()='Sales Account']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedSalesAccount;
 	@FindBy(xpath = "//div[text()='Sales Price']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedSalesPrice;
 	@FindBy(xpath = "//div[text()='Sales Tax']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedSalesTax;
 	@FindBy(xpath = "(//span[contains(.,'Price is tax inclusive')]//ancestor::div[1]//input[@type='checkbox' and @aria-checked='false' ])[1]")
-	@CacheLookup
+	
 	private WebElement uncheckedPriceIsTaxInclusiveCheckbox_Buy;
 	@FindBy(xpath = "(//span[contains(.,'Price is tax inclusive')]//ancestor::div[1]//input[@type='checkbox' and @aria-checked='false' ])[2]")
-	@CacheLookup
+	
 	private WebElement uncheckedPriceIsTaxInclusiveCheckbox_Sell;
 	@FindBy(xpath = "//div[text()=' Unit of Measurement ']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedUnitOfMeasurement;
 	@FindBy(xpath = "//div[text()=' Cost of Goods Account ']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedCostOfGoodsAccount;
 	@FindBy(xpath = "//div[text()='Inventory Account']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedInventoryAccount;
 	@FindBy(xpath = "//div[text()=' Stock Adjustment Account ']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedStockAdjustmentAccount;
 	@FindBy(xpath = "//div[text()='Warehouse']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedWarehouse;
 	@FindBy(xpath = "//div[text()='Opening Quantity']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedOpeningQuantity;
 	@FindBy(xpath = "//div[text()='Opening Valuation']//following::div[@class='field-value'][1]")
-	@CacheLookup
+	
 	private WebElement displayedOpeningValuation;
 	@FindBy(xpath = "//mat-table[contains(@class,'deskera-grid deskera-grid-products')]//following::mat-cell[2]//span[@class='text-elipsis']")
-	@CacheLookup
+	
 	private WebElement firstProduct;
 	@FindBy(xpath = "//mat-cell[text()=' Non-Tracked ']//following::mat-icon[contains(.,'more_vert')]")
-	@CacheLookup
+	
 	private WebElement threeDotsOnNonTrackedProduct;
 	@FindBy(xpath = "//mat-cell[text()=' Tracked ']//following::mat-icon[contains(.,'more_vert')]")
-	@CacheLookup
+	
 	private WebElement threeDotsOnTrackedProduct;
 	@FindBy(xpath = "//mat-cell[text()=' Bill of Materials ']//following::mat-icon[contains(.,'more_vert')]")
-	@CacheLookup
+	
 	private WebElement threeDotsOnBOMProduct;
 	@FindBy(xpath = "//button[contains(.,'Edit')]")
-	@CacheLookup
+	
 	private WebElement editButton;
 	@FindBy(xpath = "//button[contains(.,'Copy')]")
-	@CacheLookup
+	
 	private WebElement copyButton;
 	@FindBy(xpath = "//button[contains(.,'Delete')]")
-	@CacheLookup
+	
 	private WebElement deleteButton;
 	@FindBy(xpath = "//span[@class='ng-star-inserted'][contains(.,'Save Changes')]")
-	@CacheLookup
+	
 	private WebElement saveChangesButton;
 	@FindBy(xpath = "//span[text()='Product has been updated successfully']")
-	@CacheLookup
+	
 	private WebElement editSuccessMessage;
 	@FindBy(xpath = "//div[contains(text(),'Are you sure you want to delete this product?')]")
-	@CacheLookup
+	
 	private WebElement deleteConfirmationMessage;
 	@FindBy(xpath = "//button[contains(.,'No')]")
-	@CacheLookup
+	
 	private WebElement noButtonOnDeleteConfirmation;
 	@FindBy(xpath = "//span[contains(.,'Yes')]")
-	@CacheLookup
+	
 	private WebElement yesButtonOnDeleteConfirmation;
 	@FindBy(xpath = "//span[text()='Product has been deleted successfully']")
-	@CacheLookup
+	
 	private WebElement deleteSuccessMessage;
 	/**************************** Custom Number Format Elements ***********/
 	@FindBy(xpath = "//mat-label[contains(.,'Preview')]")
-	@CacheLookup
+	
 	private WebElement previewText;
 	@FindBy(xpath = "//div//div[contains(@class,'result mt')]")
-	@CacheLookup
+	
 	private WebElement previewResultBox;
 	@FindBy(xpath = "//input[@placeholder='Enter prefix']")
-	@CacheLookup
+	
 	private WebElement prefixTextBox;
 	@FindBy(xpath = "(//div[@class='mat-select-arrow'])[2]")
-	@CacheLookup
+	
 	private WebElement separatorDropdown;
 	@FindBy(xpath = "//span[@class='mat-option-text'][contains(.,'-')]")
-	@CacheLookup
+	
 	private WebElement hypenSeparator;
 	@FindBy(xpath = "//span[@class='mat-option-text'][contains(.,'-')]")
-	@CacheLookup
+	
 	private WebElement hypenSeparatorAfterDigits;
 	@FindBy(xpath = "//input[@placeholder='Enter display digits']")
-	@CacheLookup
+	
 	private WebElement digitsTextBox;
 	@FindBy(xpath = "(//div[@class='mat-select-arrow'])[3]")
-	@CacheLookup
+	
 	private WebElement separatorDropdownAfterDigits;
 	@FindBy(xpath = "//input[contains(@placeholder,'Enter suffix')]")
-	@CacheLookup
+	
 	private WebElement suffixTextBox;
 	@FindBy(xpath = "//div[@class='mat-checkbox-inner-container']//following::span[contains(.,'Set as Default ')]")
-	@CacheLookup
+	
 	private WebElement setAsDefaultCheckBox;
 	@FindBy(xpath = "//span[contains(.,'Cancel')]")
-	@CacheLookup
+	
 	private WebElement cancelCustomNumberFormat;
 	@FindBy(xpath = "(//button[contains(.,'Save')])[2]")
-	@CacheLookup
+	
 	private WebElement saveCustomNumberFormat;
 	@FindBy(xpath = "//div[contains(text(),'is saved successfully')]")
-	@CacheLookup
+	
 	private WebElement createCustomNumberFormatSuccessMessage;
 	String customProductNumber = "G-0001-A";
 

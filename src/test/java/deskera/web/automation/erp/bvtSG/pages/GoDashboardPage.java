@@ -35,13 +35,13 @@ public class GoDashboardPage {
 	 * GO DASHBOARD PAGE ELEMENTS LOCATORS
 	 *******************/
 	@FindBy(xpath = "//button[@class='wtf2-primary mr-3 wtf2-flat-button']/span/span[contains(text(),'START TRIAL')]")
-	@CacheLookup
+	
 	private WebElement startTrialBooksPopupButton;
 	@FindBy(xpath = "//button[@class='wtf2-primary wtf2-stroked-button']/span[contains(text(),'CANCEL')]")
-	@CacheLookup
+	
 	private WebElement cancelTrialBooksPopupButton;
 	@FindBy(xpath = "//span[contains(text(),'Deskera Books')]")
-	@CacheLookup
+	
 	private WebElement goToDeskeraBooksCard;
 
 	/***********************************

@@ -38,37 +38,37 @@ public class SignUpPage {
 
 	/******************************* PAGE ELEMENTS LOCATORS *******************/
 	@FindBy(name = "email")
-	@CacheLookup
+	
 	private WebElement userSignupEmail;
 	@FindBy(id = "phone")
-	@CacheLookup
+	
 	private WebElement userSignupPhone;
 	@FindBy(xpath = "//span[contains(text(),'CREATE ACCOUNT')]")
-	@CacheLookup
+	
 	private WebElement createAccountButton;
 	@FindBy(xpath = "//div[@class='col-4 country-flag-col']")
-	@CacheLookup
+	
 	private WebElement countryCodeSelector;
 	@FindBy(xpath = "//div[@class='cdk-overlay-container']//button//div[contains(text(),'United States +1')]")
-	@CacheLookup
+	
 	private WebElement USCode;
 	@FindBy(xpath = "//div[@class='cdk-overlay-container']//button//div[contains(text(),'Singapore +65')]")
-	@CacheLookup
+	
 	private WebElement SGCode;
 	@FindBy(xpath = "//div[@class='cdk-overlay-container']//button//div[contains(text(),'India') and contains(text(),'+91')]")
-	@CacheLookup
+	
 	private WebElement INCode;
 	@FindBy(xpath = "//span[contains(text(),'Are you a bookkeeper?')]/../span[contains(text(),'Sign up for Deskera Bookkeeper')]")
-	@CacheLookup
+	
 	private WebElement bookkeeperLink;
 	@FindBy(xpath = "//span[contains(text(),'Already have an account ?')]/../span[contains(text(),'Sign in')]")
-	@CacheLookup
+	
 	private WebElement alreadyHaveAccount;
 	@FindBy(xpath = "//span[contains(text(),'Sign up')]/../span[contains(text(),' for Deskera')]")
-	@CacheLookup
+	
 	private WebElement signUpForBookkeeper;
 	@FindBy(xpath = "//span[contains(text(),'Not a bookkeeper?')]/../span[contains(text(),'Sign up for regular account')]")
-	@CacheLookup
+	
 	private WebElement regularAccountLink;
 	private static String pageTitleText = "Deskera SSO";
 	private static String enteredSignUpEmail="";
@@ -77,86 +77,86 @@ public class SignUpPage {
 	/******************************* Account PAGE ELEMENTS LOCATORS *******************/
 
 	@FindBy(xpath = "//img[contains(@src,'/assets/images/logos/deskera-logo.svg')]")
-	@CacheLookup
+	
 	private WebElement deskeraLogo;
 	@FindBy(xpath = "//span[contains(text(),'account details')]")
-	@CacheLookup
+	
 	private WebElement accountDetails;
 	@FindBy(name = "name")
-	@CacheLookup
+	
 	private WebElement name;
 	@FindBy(name = "password")
-	@CacheLookup
+	
 	private WebElement password;
 	@FindBy(xpath = "//wtf2-icon[contains(.,'visibility_off')]")
-	@CacheLookup
+	
 	private WebElement eyeIcon;
 	@FindBy(xpath = "//input[@formcontrolname='companyname']")
-	@CacheLookup
+	
 	private WebElement companyName;
 	@FindBy(xpath = "//wtf2-checkbox[@id='wtf2-checkbox-3']/label/div")
-	@CacheLookup
+	
 	private WebElement checkbox;
 	@FindBy(xpath = "//wtf2-label[contains(text(),'I agree to the')]")
-	@CacheLookup
+	
 	private WebElement iAgreeTheTerms;
 	@FindBy(xpath = "//span[text()=' NEXT ']")
-	@CacheLookup
+	
 	private WebElement next;
 
 	/******************************* Personalize your account PAGE ELEMENTS LOCATORS *******************/
 
 	@FindBy(xpath = "//span[text()='Personalize your']//following::span[text()=' account ']")
-	@CacheLookup
+	
 	private WebElement personalizeAccount;
 	@FindBy(xpath = "//wtf2-select[@formcontrolname='industryType']")
-	@CacheLookup
+	
 	private WebElement industryType;
 	@FindBy(xpath = "//span[text()='IT Service']")
-	@CacheLookup
+	
 	private WebElement ITserviceIndustryType;
 	@FindBy(xpath = "//wtf2-label[contains(text(),'What is your Company Size')]")
-	@CacheLookup
+	
 	private WebElement whatIsCompanySize;
 	@FindBy(xpath = "//wtf2-button-toggle-group[@formcontrolname='companySize']//wtf2-button-toggle[5]")
-	@CacheLookup
+	
 	private WebElement companySize100;
 	@FindBy(xpath = "//wtf2-label[contains(text(),'What is the main thing you want to manage using Deskera')]")
-	@CacheLookup
+	
 	private WebElement mainThingUsingDeskeraApp;
 	@FindBy(xpath = "//span[text()='Others']")
-	@CacheLookup
+	
 	private WebElement otherPurpose;
 	@FindBy(xpath = "//span[text()=' NEXT ']")
-	@CacheLookup
+	
 	private WebElement nextButton;
 	@FindBy(xpath = "//span[text()=' SKIP ']")
-	@CacheLookup
+	
 	private WebElement skipButton;
 
 
 	/******************************* Success PAGE ELEMENTS LOCATORS *******************/
 
 	@FindBy(xpath = "//h5[contains(text(),'Please verify your email address')]")
-	@CacheLookup
+	
 	private WebElement verifyYourEmailAddress;
 	@FindBy(xpath = "//p[contains(.,', thanks for signing up. We have sent an email to ')]")
-	@CacheLookup
+	
 	private WebElement thanksForSigningUp;
 	@FindBy(xpath = "//p[@class='p1']/a")
-	@CacheLookup
+	
 	private WebElement weHaveSentEmailTo;
 	@FindBy(xpath = "(//p[contains(@class,'p1')])[3]")
-	@CacheLookup
+	
 	private WebElement justClickOnTheLink;
 	@FindBy(xpath = "//div/p[contains(text(),'Still can')]")
-	@CacheLookup
+	
 	private WebElement cantFindEmail;
 	@FindBy(xpath = "//span[text()=' Resend Email ']")
-	@CacheLookup
+	
 	private WebElement resendEmailButton;
 	@FindBy(xpath = "(//p[contains(@class,'p1')])[1]")
-	@CacheLookup
+	
 	private WebElement weHaveResentVerification;
 
 

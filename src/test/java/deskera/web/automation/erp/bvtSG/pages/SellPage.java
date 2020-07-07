@@ -32,46 +32,46 @@ public class SellPage {
 	/******************************* Sell  PAGE ELEMENTS LOCATORS *******************/
 
 	@FindBy(xpath = "//h1[contains(.,'Sell Records')]")
-	@CacheLookup
+	
 	private WebElement sellRecordsText;
 	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Quote Total')]")
-	@CacheLookup
+	
 	private WebElement quoteTotalButton;
 	@FindBy(xpath = "//h5[contains(.,'Invoice')]")
-	@CacheLookup
+	
 	private WebElement invoiceTotalButton;
 	@FindBy(xpath = "//h5[contains(.,'Archive')]")
-	@CacheLookup
+	
 	private WebElement archiveTotalButton;
 	@FindBy(xpath = "//button[contains(.,'Create New')]")
-	@CacheLookup
+	
 	private WebElement exportButton;
 	@FindBy(xpath = "//button[contains(.,'Create New')]")
-	@CacheLookup
+	
 	private WebElement createNewButton;
 	@FindBy(xpath = "//button[contains(.,'New Quote')]")
-	@CacheLookup
+	
 	private WebElement newQuoteButton;
 	@FindBy(xpath = "//button[contains(.,'New Invoice')]")
-	@CacheLookup
+	
 	private WebElement newInvoiceButton;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Number arrow_drop')]")
-	@CacheLookup
+	
 	private WebElement numberColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Contact arrow_drop')]")
-	@CacheLookup
+	
 	private WebElement contactColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Due Date arrow_drop')]")
-	@CacheLookup
+	
 	private WebElement dueDateColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Total Amount')]")
-	@CacheLookup
+	
 	private WebElement totalAmountColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Fulfillment')]")
-	@CacheLookup
+	
 	private WebElement fullfillmentColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Quick Actions')]")
-	@CacheLookup
+	
 	private WebElement quickActionsColumn;
 	private static String pageTitleText = "Deskera Books";
 	
@@ -79,55 +79,55 @@ public class SellPage {
 	/******************************* Create New Quote/Invoice  PAGE ELEMENTS LOCATORS *******************/
 
 	@FindBy(xpath = "//button[contains(.,'Save')]")
-	@CacheLookup
+	
 	private WebElement saveButton;
 	@FindBy(xpath = "//h5[contains(.,'Quote Settings')]")
-	@CacheLookup
+	
 	private WebElement quoteSettingText;
 	@FindBy(xpath = "//span[contains(.,'Customize Number Format')]")
-	@CacheLookup
+	
 	private WebElement customizeNumberFormat;
 	@FindBy(xpath = "//span[contains(.,'Global Custom Fields')]")
-	@CacheLookup
+	
 	private WebElement globalCustomFields;
 	@FindBy(xpath = "//span[contains(.,'+ Add a contact')]")
-	@CacheLookup
+	
 	private WebElement addContactButton;
 	@FindBy(xpath = "//input[@formcontrolname='documentDate']")
-	@CacheLookup
+	
 	private WebElement quoteDate;
 	@FindBy(xpath = "//input[@formcontrolname='fulfillmentDate']")
-	@CacheLookup
+	
 	private WebElement receivedInDate;
 	@FindBy(xpath = "//input[@formcontrolname='validTillDate']")
-	@CacheLookup
+	
 	private WebElement dueDate;
 	@FindBy(xpath = "(//span[@class='mat-option-text'])[2]")
-	@CacheLookup
+	
 	private WebElement firstContact;
 	@FindBy(xpath = "//span[contains(.,'+ Add a Line Item')]")
-	@CacheLookup
+	
 	private WebElement addLineItemButton;
 	@FindBy(xpath = "(//span[contains(@class,'mat-option-text')])[1]")
-	@CacheLookup
+	
 	private WebElement firstProduct;
 	@FindBy(xpath = "//textarea[@placeholder='Description Optional']")
-	@CacheLookup
+	
 	private WebElement descriptionTextArea;
 	@FindBy(xpath = "//input[@formcontrolname='productQuantity']")
-	@CacheLookup
+	
 	private WebElement quantityTextBox;
 	@FindBy(xpath = "//input[@formcontrolname='unitPrice']")
-	@CacheLookup
+	
 	private WebElement unitPriceTextBox;
 	@FindBy(xpath = "//input[@formcontrolname='discountString']")
-	@CacheLookup
+	
 	private WebElement discountTextBox;
 	@FindBy(xpath = "(//input[@role='combobox'])[2]")
-	@CacheLookup
+	
 	private WebElement taxTextBox;
 	@FindBy(xpath = "(//div[@class='mat-form-field-infix']//div[@class='mat-input-element read-only-value'])[2]")
-	@CacheLookup
+	
 	private WebElement totalAmount;
 	
 	

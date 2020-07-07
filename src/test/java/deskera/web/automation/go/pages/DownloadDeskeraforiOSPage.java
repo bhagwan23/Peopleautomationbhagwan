@@ -22,22 +22,22 @@ public class DownloadDeskeraforiOSPage {
 
 	/******************************* Download Deskera for iOS Page PAGE ELEMENTS LOCATORS *******************/
 	@FindBy(xpath = "//span[contains(.,'App Store')]")
-	@CacheLookup
+	
 	private WebElement appStoreLink;
 	@FindBy(xpath = "//span[contains(.,'App Store')]//following::span[contains(text(),'Preview')]")
-	@CacheLookup
+	
 	private WebElement previewText;
 	@FindBy(xpath = "//*[contains(@class,'artwork we-artwork--fullwidth we-artwork--ios-app-icon')]")
-	@CacheLookup
+	
 	private WebElement coverArtImage;
 	@FindBy(xpath = "//h1[@class='product-header__title app-header__title'][contains(.,'Deskera: Business & Accounting')]")
-	@CacheLookup
+	
 	private WebElement productHeader;
 	@FindBy(xpath = "//h2[contains(.,'Invoices, Taxes, & Accounting')]")
-	@CacheLookup
+	
 	private WebElement invoiceTaxesAccountingText;
 	@FindBy(xpath = "//a[contains(.,'Deskera Holdings Ltd.')]")
-	@CacheLookup
+	
 	private WebElement deskeraHoldingLtdLink;
 	private static String pageTitleText = "Deskera: Business & Accounting on the App Store";
 	

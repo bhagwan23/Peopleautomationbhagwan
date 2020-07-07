@@ -27,75 +27,75 @@ public class HomePage {
 	/******************************* Create Org  PAGE ELEMENTS LOCATORS *******************/
 
 	@FindBy(xpath = "//button[contains(.,'Getting Started')]")
-	@CacheLookup
+	
 	private WebElement gettingStartedButton;
 	@FindBy(xpath = "//button[contains(text(),'Demo Company')]")
-	@CacheLookup
+	
 	private WebElement demoCompanyButton;
 	@FindBy(xpath = "//span[text()='Switched to Demo Organization']")
-	@CacheLookup
+	
 	private WebElement switchedToDemoCompanySuccessMessage;
 	@FindBy(xpath = "//span[text()='Demo Company(SG)']")
-	@CacheLookup
+	
 	private WebElement demoCompanyName;
 	@FindBy(xpath = "//input[contains(@formcontrolname,'countryLookupCode')]")
-	@CacheLookup
+	
 	private WebElement taxResidency;
 	@FindBy(xpath = "//span[contains(.,'Singapore')]")
-	@CacheLookup
+	
 	private WebElement singaporeTaxResidency;
 	@FindBy(xpath = "//input[@formcontrolname='financialStartDate']")
-	@CacheLookup
+	
 	private WebElement financialStartDate;
 	@FindBy(xpath = "//input[@formcontrolname='bookBeginningStartDate']")
-	@CacheLookup
+	
 	private WebElement bookBeginningDate;
 	@FindBy(xpath = "//input[contains(@formcontrolname,'address1')]")
-	@CacheLookup
+	
 	private WebElement addressLine1;
 	@FindBy(xpath = "//input[@formcontrolname='address2']")
-	@CacheLookup
+	
 	private WebElement addressLine2;
 	@FindBy(xpath = "//input[@formcontrolname='city']")
-	@CacheLookup
+	
 	private WebElement city;
 	@FindBy(xpath = "//input[@formcontrolname='state']")
-	@CacheLookup
+	
 	private WebElement state;
 	@FindBy(xpath = "//input[@placeholder='Zip Code']")
-	@CacheLookup
+	
 	private WebElement zipcode;
 	@FindBy(xpath = "//input[@formcontrolname='gstNo']")
-	@CacheLookup
+	
 	private WebElement gstNo;
 	@FindBy(xpath = "//input[@formcontrolname='uenNo']")
-	@CacheLookup
+	
 	private WebElement uenNo;
 	@FindBy(xpath = "//button[contains(.,'Save')]")
-	@CacheLookup
+	
 	private WebElement saveButton;
 	@FindBy(xpath = "//span[contains(text(),'Organization Added Successfully')]")
-	@CacheLookup
+	
 	private WebElement OrgCreationSuccessMessage;	
 	@FindBy(xpath = "(//button[contains(.,'Skip')])[2]")
-	@CacheLookup
+	
 	private WebElement skipButton;	
 	private static String pageTitleText = "Deskera Books";
 	
 	
 	/******************************* HOMEPAGE ELEMENTS LOCATORS *******************/
 	@FindBy(xpath = "//span[@class='ng-star-inserted'][contains(.,'Sell')]")
-	@CacheLookup
+	
 	private WebElement sellTab;
 	
 	@FindBy(xpath = "//span[contains(.,'Products')]")
-	@CacheLookup
+	
 	private WebElement productsTab;
 	@FindBy(xpath = "//span[contains(text(),'Settings')]")
-	@CacheLookup
+	
 	private WebElement settingTab;
 	@FindBy(xpath = "//span[contains(.,'Users')]")
-	@CacheLookup
+	
 	private WebElement usersTab;
 	
 	

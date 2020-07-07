@@ -46,7 +46,7 @@
 		</classes>
 	</test>
 
-	<!-- <test name=" 3 C20263 Add Non Tracked Product" parallel="false">
+	<test name=" 3 C20263 Add Non Tracked Product" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -59,9 +59,9 @@
 					value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
 			</class>
 		</classes>
-	</test> -->
+	</test>
 
-	<!-- <test name=" 4 Edit Product" parallel="false">
+	<test name=" 4 Edit Product" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -157,6 +157,6 @@
 				name="deskera.web.automation.erp.bvtSG.tests.AddDemoCompanyTest">
 			</class>
 		</classes>
-	</test> -->
+	</test>
 
 </suite> 

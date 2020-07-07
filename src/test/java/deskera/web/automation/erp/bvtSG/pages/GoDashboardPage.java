@@ -85,5 +85,6 @@ public class GoDashboardPage {
 		WDWait(startTrialBooksPopupButton);
 		WDWaitClickable(startTrialBooksPopupButton);
 		startTrialBooksPopupButton.click();
+		Thread.sleep(5000);
 	}
 }

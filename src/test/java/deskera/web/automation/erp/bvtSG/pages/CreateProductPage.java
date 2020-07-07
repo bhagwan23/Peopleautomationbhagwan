@@ -514,11 +514,11 @@ public class CreateProductPage {
 				|| System.getProperty("os.name").toLowerCase().contains("linux")) {
 			Thread.sleep(2000);
 
-			rob.keyPress(KeyEvent.VK_CONTROL);
-			rob.keyPress(KeyEvent.VK_L);
-			Thread.sleep(2000);
-			rob.keyRelease(KeyEvent.VK_CONTROL);
-			rob.keyRelease(KeyEvent.VK_L);
+			/*
+			 * rob.keyPress(KeyEvent.VK_CONTROL); rob.keyPress(KeyEvent.VK_L);
+			 * Thread.sleep(2000); rob.keyRelease(KeyEvent.VK_CONTROL);
+			 * rob.keyRelease(KeyEvent.VK_L);
+			 */
 		}
 		Thread.sleep(2000);
 		rob.keyPress(KeyEvent.VK_CONTROL);

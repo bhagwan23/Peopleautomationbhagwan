@@ -269,10 +269,12 @@ public class SignUpPage {
 	/***********************************
 	 * 
 	 * Account Details Page manipulation methods
+	 * @throws InterruptedException 
 	 * 
 	 *********************************/
 	@Step("Verify Account Details Page Elements")
-	public void verifyAccountDetailsPageElements() {
+	public void verifyAccountDetailsPageElements() throws InterruptedException {
+		Thread.sleep(3000);
 		WDWait(deskeraLogo);
 		deskeraLogo.isDisplayed();
 		WDWait(accountDetails);

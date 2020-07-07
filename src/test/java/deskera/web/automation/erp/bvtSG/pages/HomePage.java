@@ -11,17 +11,22 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import deskera.web.automation.core.SoftAssertListner;
 import io.qameta.allure.Step;
 
 public class HomePage {
 	
 	private WebDriver driver;
 	private WebDriverWait wait;
+	private SoftAssertListner sAssert;
+
 	
 	public HomePage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;
 		PageFactory.initElements(driver, this);	
+		sAssert = new SoftAssertListner(driver);
+
 	}
 	
 	/******************************* Create Org  PAGE ELEMENTS LOCATORS *******************/
@@ -160,7 +165,7 @@ public class HomePage {
 	public void verifyCreateOrgSuccessMessage(){
 		WDWait(OrgCreationSuccessMessage);
 		OrgCreationSuccessMessage.isDisplayed();
-		wait.until(ExpectedConditions.invisibilityOf(OrgCreationSuccessMessage));
+		sAssert.assertTrue(wait.until(ExpectedConditions.invisibilityOf(OrgCreationSuccessMessage)));
 	}
 	
 	@Step("Click On Skip Button")

@@ -32,355 +32,241 @@ public class CreateProductPage {
 		PageFactory.initElements(driver, this);
 		sAssert = new SoftAssertListner(driver);
 	}
-	
 
 	/*******************************
 	 * Create New Product PAGE ELEMENTS LOCATORS
 	 *******************/
 	@FindBy(xpath = "//span[contains(.,'Products')]")
-	
 	private WebElement productsTab;
 	@FindBy(xpath = "//span[contains(.,'Start by Adding or Importing Your Products')]")
-	
 	private List<WebElement> startByAddingOrImportingYourProducsText;
 	@FindBy(xpath = "//i[contains(@class,'fa-times close-button m')]//self::i[1]")
-	
 	private WebElement closeIcon;
 	@FindBy(xpath = "//span[@class='action-button-text'][contains(.,'Create Product')]")
-	
 	private WebElement createProductButton;
 	@FindBy(xpath = "//span[contains(text(),'New Product')]")
-	
 	private WebElement newProductButton;
 	@FindBy(xpath = "//span[@class='ng-star-inserted'][contains(.,'Create New Product')]")
-	
 	private WebElement createNewProductText;
 	@FindBy(xpath = "//div[@class='image-container d-flex']")
-	
 	private WebElement addImage;
 	@FindBy(xpath = "//div[contains(text(),' General Info ')]")
-	
 	private WebElement generalInfoTab;
 	@FindBy(xpath = "//div[contains(text(),' Accounting ')]")
-	
 	private WebElement accountingTab;
 	@FindBy(xpath = "//div[contains(text(),'Inventory')]")
-	
 	private WebElement inventoryTab;
 	@FindBy(xpath = "//div[contains(text(),' Bill of Materials')]")
-	
 	private WebElement billsOfMaterialTab;
 	@FindBy(xpath = "//mat-icon[@ng-reflect-message='Info']")
-	
 	private WebElement infoIcon;
 	@FindBy(xpath = "//mat-icon[@ng-reflect-message='Chat']")
-	
 	private WebElement chatIcon;
 	@FindBy(xpath = "//mat-icon[@ng-reflect-svg-icon='notification']")
-	
 	private WebElement notificationIcon;
 	@FindBy(xpath = "//h5[contains(.,'Quick Actions')]")
-	
 	private WebElement quickActionsText;
 	@FindBy(xpath = "//span[contains(.,'Custom Number Format')]")
-	
 	private WebElement customNumberFormat;
 	@FindBy(xpath = "(//span[contains(.,'Custom Fields')])[2]")
-	
 	private WebElement customFields;
 	@FindBy(xpath = "//div[contains(@class,'image-container d-flex')]")
-	
 	private WebElement addImageArea;
 	@FindBy(xpath = "//div[@class='mat-select-arrow-wrapper']")
-	
 	private WebElement productTypedropdown;
 	@FindBy(xpath = "//span[@class='mat-option-text'][contains(.,'Non-Tracked')]")
-	
 	private WebElement nonTrackedProductType;
 	@FindBy(xpath = "//span[@class='mat-option-text'][text()='Tracked']")
-	
 	private WebElement trackedProductType;
 	@FindBy(xpath = "//span[@class='mat-option-text'][text()='Bill of Materials']")
-	
 	private WebElement billsOfMaterialProductType;
 	@FindBy(xpath = "//input[contains(@placeholder,'Product Number')]")
-	
 	private WebElement productNumber;
 	@FindBy(xpath = "//input[@formcontrolname='name']")
-	
 	private WebElement ProductNameInputBox;
 	@FindBy(xpath = "//input[@formcontrolname='barcode']")
-	
 	private WebElement barcodeInputBox;
 	@FindBy(xpath = "//textarea[@formcontrolname='description']")
-	
 	private WebElement descriptionInputBox;
 	private static String pageTitleText = "Deskera Books";
-
 	@FindBy(css = "	i.fas.fa-times.close-button.mt-2")
-	
 	private WebElement closeOverlayPopup;
 	/*************** Accounting tab ******************************************/
 	@FindBy(xpath = "//p[text()='Buy']")
-	
 	private WebElement buyText;
 	@FindBy(xpath = "//mat-label[contains(text(),'Purchase Account ')]/parent::label/parent::span/parent::div/input")
-	
 	private WebElement purchaseAccount;
 	@FindBy(xpath = "//span[contains(.,'Purchase Return')]")
-	
 	private WebElement purchaseReturnPurchaseAccount;
 	@FindBy(xpath = "//div[@class='cdk-overlay-pane mat-autocomplete-panel-above']//div//mat-option//span")
-	
 	private List<WebElement> purchaseAccountDropdownValues;
 	@FindBy(xpath = "//div[@class='cdk-overlay-pane mat-autocomplete-panel-above']//div//mat-option//span")
-	
 	private List<WebElement> salesAccountDropdownValues;
 	@FindBy(xpath = "//mat-label[contains(text(),'Purchase Price')]/parent::label/parent::span/parent::div/input")
-	
 	private WebElement purchasePrice;
 	@FindBy(xpath = "//mat-label[contains(text(),' Purchase Tax ')]/parent::label/parent::span/parent::div/input")
-	
 	private WebElement purchaseTax;
 	@FindBy(xpath = "(//div[@class='mat-checkbox-mixedmark']//following::span[text()='Price is tax inclusive'])[1]")
-	
 	private WebElement priceIsTaxInclusiveCheckBox_Buy;
 	@FindBy(xpath = "(//div[@class='mat-checkbox-mixedmark']//following::span[text()='Price is tax inclusive'])[2]")
-	
 	private WebElement priceIsTaxInclusiveCheckBox_Sell;
 	@FindBy(xpath = "//p[text()='Sell']")
-	
 	private WebElement sellText;
 	@FindBy(xpath = "//mat-label[contains(text(),' Sales Account ')]/parent::label/parent::span/parent::div/input")
-	
 	private WebElement salesAccount;
 	@FindBy(xpath = "//span[contains(.,'Sales Return')]")
-	
 	private WebElement salesReturnSalesAccount;
 	@FindBy(xpath = "//mat-label[contains(text(),'Sales Price')]/parent::label/parent::span/parent::div/input")
-	
 	private WebElement salesPrice;
 	@FindBy(xpath = "//mat-label[contains(text(),' Sales Tax ')]/parent::label/parent::span/parent::div/input")
-	
 	private WebElement salesTax;
 	/*************** Inventory tab ******************************************/
 	@FindBy(xpath = "//mat-label[contains(text(),'Unit of Measurement')]/parent::label/parent::span/parent::div/mat-select")
-	
 	private WebElement unitOfMeasurement;
 	@FindBy(xpath = "//span[contains(.,'Pieces')]")
-	
 	private WebElement piecesUnitOfMeasurement;
 	@FindBy(xpath = "//mat-label[contains(text(),' Cost of Goods Sold Account ')]/parent::label/parent::span/parent::div/input")
-	
 	private WebElement costOfGoodsSoldAccount;
 	@FindBy(xpath = "//mat-label[contains(text(),' Inventory Account ')]/parent::label/parent::span/parent::div/input")
-	
 	private WebElement inventoryAccount;
 	@FindBy(xpath = "//span[contains(.,'Manufacturing cost')]")
-	
 	private WebElement manufacturingCostInventoryAccount;
 	@FindBy(xpath = "//mat-label[contains(text(),' Stock Adjustment Account ')]/parent::label/parent::span/parent::div/input")
-	
 	private WebElement stockAdjustmentAccount;
 	@FindBy(xpath = "//mat-label[contains(text(),' Manufacturing Account ')]/parent::label/parent::span/parent::div/input")
-	
 	private WebElement manufacturingAccount;
 	@FindBy(xpath = "//mat-label[contains(text(),'Opening Quantity')]/parent::label/parent::span/parent::div/input")
-	
 	private WebElement openingQuanity;
 	@FindBy(xpath = "//mat-label[contains(text(),'Opening Valuation')]/parent::label/parent::span/parent::div/input")
-	
 	private WebElement openingValuation;
 	@FindBy(xpath = "//mat-label[contains(text(),'Warehouse')]/parent::label/parent::span/parent::div/mat-select/div/div/span/span")
-	
 	private WebElement warehouse;
 	@FindBy(xpath = "//button[contains(.,'Save')]")
-	
 	private WebElement saveButton;
 	@FindBy(xpath = "//span[text()='Product has been saved successfully']")
-	
 	private WebElement createProductSuccessMessage;
 	/***************
 	 * Bill Of Material tab
 	 ******************************************/
 	@FindBy(xpath = "//div[contains(text(),'+ Add a Component Product')]")
-	
 	private WebElement addComponentProductButton;
 	@FindBy(xpath = "//div[contains(text(),' + Add an Additional Cost ')]")
-	
 	private WebElement addAdditionalCostButton;
 	@FindBy(xpath = "//input[@placeholder='Type here' or contains(@role,'combobox')]")
-	
 	private WebElement componentProduct1TextBox;
 	@FindBy(xpath = "//span[@class='mat-option-text']")
-	
 	private WebElement dropDownSelectProduct;
 	@FindBy(xpath = "//input[@placeholder='Quantity']")
-	
 	private WebElement componentProduct1Value;
 	@FindBy(xpath = "//mat-option//span[2][@class='mat-option-text']")
-	
 	private WebElement componentProduct2Value;
 	@FindBy(xpath = "(//input[contains(@placeholder,'Quantity')])[2]")
-	
 	private WebElement component2Quantity;
 	/**************************** Created Product Verification Elements ***********/
 	@FindBy(xpath = "//span[text()='Non-Tracked']//following::span[1][@class='count']")
-	
 	private WebElement nonTrackedProductCount;
 	@FindBy(xpath = "//span[text()='Tracked Inventory']//following::span[1][@class='count']")
-	
 	private WebElement trackedProductCount;
 	@FindBy(xpath = "//span[text()='Bill of Materials']//following::span[1][@class='count']")
-	
 	private WebElement BOMProductCount;
 	@FindBy(xpath = "//span[contains(text(),'0')]//following::span[text()='Item with No Stock']")
-	
 	private WebElement zeroItemWithNoStock;
 	@FindBy(xpath = "//input[contains(@placeholder,'SEARCH_RECORDS') or contains(@ng-reflect-placeholder,'Search Records')]")
-	
 	private WebElement searchRecordsBox;
 	@FindBy(xpath = "//mat-table//mat-row[@class='mat-row ng-star-inserted']//mat-cell[3]//span[1]")
-	
 	private WebElement searchedRecord;
 	@FindBy(xpath = "//div[text()='Product Name']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedProducName;
 	@FindBy(xpath = "//div[text()='Product Number']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedProductNumber;
 	@FindBy(xpath = "//div[text()='Product Type']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedProducType;
 	@FindBy(xpath = "//div[text()='Barcode']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedBarcode;
 	@FindBy(xpath = "//div[text()='Description']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedDescription;
 	@FindBy(xpath = "//div[text()='Purchase Account']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedPurchaseAccount;
 	@FindBy(xpath = "//div[text()='Product Price']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedPurchasePrice;
 	@FindBy(xpath = "//div[text()='Purchase Tax']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedPurchaseTax;
 	@FindBy(xpath = "//div[text()='Sales Account']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedSalesAccount;
 	@FindBy(xpath = "//div[text()='Sales Price']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedSalesPrice;
 	@FindBy(xpath = "//div[text()='Sales Tax']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedSalesTax;
 	@FindBy(xpath = "(//span[contains(.,'Price is tax inclusive')]//ancestor::div[1]//input[@type='checkbox' and @aria-checked='false' ])[1]")
-	
 	private WebElement uncheckedPriceIsTaxInclusiveCheckbox_Buy;
 	@FindBy(xpath = "(//span[contains(.,'Price is tax inclusive')]//ancestor::div[1]//input[@type='checkbox' and @aria-checked='false' ])[2]")
-	
 	private WebElement uncheckedPriceIsTaxInclusiveCheckbox_Sell;
 	@FindBy(xpath = "//div[text()=' Unit of Measurement ']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedUnitOfMeasurement;
 	@FindBy(xpath = "//div[text()=' Cost of Goods Account ']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedCostOfGoodsAccount;
 	@FindBy(xpath = "//div[text()='Inventory Account']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedInventoryAccount;
 	@FindBy(xpath = "//div[text()=' Stock Adjustment Account ']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedStockAdjustmentAccount;
 	@FindBy(xpath = "//div[text()='Warehouse']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedWarehouse;
 	@FindBy(xpath = "//div[text()='Opening Quantity']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedOpeningQuantity;
 	@FindBy(xpath = "//div[text()='Opening Valuation']//following::div[@class='field-value'][1]")
-	
 	private WebElement displayedOpeningValuation;
 	@FindBy(xpath = "//mat-table[contains(@class,'deskera-grid deskera-grid-products')]//following::mat-cell[2]//span[@class='text-elipsis']")
-	
 	private WebElement firstProduct;
 	@FindBy(xpath = "//mat-cell[text()=' Non-Tracked ']//following::mat-icon[contains(.,'more_vert')]")
-	
 	private WebElement threeDotsOnNonTrackedProduct;
 	@FindBy(xpath = "//mat-cell[text()=' Tracked ']//following::mat-icon[contains(.,'more_vert')]")
-	
 	private WebElement threeDotsOnTrackedProduct;
 	@FindBy(xpath = "//mat-cell[text()=' Bill of Materials ']//following::mat-icon[contains(.,'more_vert')]")
-	
 	private WebElement threeDotsOnBOMProduct;
 	@FindBy(xpath = "//button[contains(.,'Edit')]")
-	
 	private WebElement editButton;
 	@FindBy(xpath = "//button[contains(.,'Copy')]")
-	
 	private WebElement copyButton;
 	@FindBy(xpath = "//button[contains(.,'Delete')]")
-	
 	private WebElement deleteButton;
 	@FindBy(xpath = "//span[@class='ng-star-inserted'][contains(.,'Save Changes')]")
-	
 	private WebElement saveChangesButton;
 	@FindBy(xpath = "//span[text()='Product has been updated successfully']")
-	
 	private WebElement editSuccessMessage;
 	@FindBy(xpath = "//div[contains(text(),'Are you sure you want to delete this product?')]")
-	
 	private WebElement deleteConfirmationMessage;
 	@FindBy(xpath = "//button[contains(.,'No')]")
-	
 	private WebElement noButtonOnDeleteConfirmation;
 	@FindBy(xpath = "//span[contains(.,'Yes')]")
-	
 	private WebElement yesButtonOnDeleteConfirmation;
 	@FindBy(xpath = "//span[text()='Product has been deleted successfully']")
-	
 	private WebElement deleteSuccessMessage;
 	/**************************** Custom Number Format Elements ***********/
 	@FindBy(xpath = "//mat-label[contains(.,'Preview')]")
-	
 	private WebElement previewText;
 	@FindBy(xpath = "//div//div[contains(@class,'result mt')]")
-	
 	private WebElement previewResultBox;
 	@FindBy(xpath = "//input[@placeholder='Enter prefix']")
-	
 	private WebElement prefixTextBox;
 	@FindBy(xpath = "(//div[@class='mat-select-arrow'])[2]")
-	
 	private WebElement separatorDropdown;
 	@FindBy(xpath = "//span[@class='mat-option-text'][contains(.,'-')]")
-	
 	private WebElement hypenSeparator;
 	@FindBy(xpath = "//span[@class='mat-option-text'][contains(.,'-')]")
-	
 	private WebElement hypenSeparatorAfterDigits;
 	@FindBy(xpath = "//input[@placeholder='Enter display digits']")
-	
 	private WebElement digitsTextBox;
 	@FindBy(xpath = "(//div[@class='mat-select-arrow'])[3]")
-	
 	private WebElement separatorDropdownAfterDigits;
 	@FindBy(xpath = "//input[contains(@placeholder,'Enter suffix')]")
-	
 	private WebElement suffixTextBox;
 	@FindBy(xpath = "//div[@class='mat-checkbox-inner-container']//following::span[contains(.,'Set as Default ')]")
-	
 	private WebElement setAsDefaultCheckBox;
 	@FindBy(xpath = "//span[contains(.,'Cancel')]")
-	
 	private WebElement cancelCustomNumberFormat;
 	@FindBy(xpath = "(//button[contains(.,'Save')])[2]")
-	
 	private WebElement saveCustomNumberFormat;
 	@FindBy(xpath = "//div[contains(text(),'is saved successfully')]")
-	
 	private WebElement createCustomNumberFormatSuccessMessage;
 	String customProductNumber = "G-0001-A";
 
@@ -432,7 +318,8 @@ public class CreateProductPage {
 	public void clickPopup() throws InterruptedException {
 		// driver.get("https://reality-qa.deskera.xyz/book-keeper/client");
 		WDWait(productsTab);
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Products')]"))); // Contact
+		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Products')]")));
+		// // Contact
 		// //
 		// link
 		// // or
@@ -440,7 +327,7 @@ public class CreateProductPage {
 		// Produ
 		// //
 		// link
-		//driver.findElement(By.xpath("//span[contains(.,'Products')]")).click();
+		// driver.findElement(By.xpath("//span[contains(.,'Products')]")).click();
 		productsTab.click();
 		Thread.sleep(3000); // THis is important because popup gets loaded and then disappears
 		// driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click();
@@ -468,68 +355,66 @@ public class CreateProductPage {
 	@Step("Verify Create New Product Page")
 	public void verifyCreateNewProductPage() {
 		WDWait(createNewProductText);
-		sAssert.assertTrue(createNewProductText.isDisplayed(),"");
-		sAssert.assertTrue(generalInfoTab.isDisplayed(),"Verify generalInfoTab");
-		sAssert.assertTrue(accountingTab.isDisplayed(),"Verify accountingTab");
-		sAssert.assertTrue(inventoryTab.isDisplayed(),"Verify inventoryTab");
-		sAssert.assertTrue(infoIcon.isDisplayed(),"Verify infoIcon");
-		sAssert.assertTrue(chatIcon.isDisplayed(),"");
-		sAssert.assertTrue(notificationIcon.isDisplayed(),"");
-		sAssert.assertTrue(quickActionsText.isDisplayed(),"");
-		sAssert.assertTrue(customNumberFormat.isDisplayed(),"");
-		sAssert.assertTrue(customFields.isDisplayed(),"");
-		sAssert.assertTrue(addImageArea.isDisplayed(),"");
-		sAssert.assertTrue(productTypedropdown.isDisplayed(),"");
-		sAssert.assertTrue(productNumber.isDisplayed(),"");
-		sAssert.assertTrue(ProductNameInputBox.isDisplayed(),"");
-		sAssert.assertTrue(barcodeInputBox.isDisplayed(),"");
-		sAssert.assertTrue(descriptionInputBox.isDisplayed(),"");
-		sAssert.assertTrue(saveButton.isDisplayed(),"");
+		sAssert.assertTrue(createNewProductText.isDisplayed(), "");
+		sAssert.assertTrue(generalInfoTab.isDisplayed(), "Verify generalInfoTab");
+		sAssert.assertTrue(accountingTab.isDisplayed(), "Verify accountingTab");
+		sAssert.assertTrue(inventoryTab.isDisplayed(), "Verify inventoryTab");
+		sAssert.assertTrue(infoIcon.isDisplayed(), "Verify infoIcon");
+		sAssert.assertTrue(chatIcon.isDisplayed(), "");
+		sAssert.assertTrue(notificationIcon.isDisplayed(), "");
+		sAssert.assertTrue(quickActionsText.isDisplayed(), "");
+		sAssert.assertTrue(customNumberFormat.isDisplayed(), "");
+		sAssert.assertTrue(customFields.isDisplayed(), "");
+		sAssert.assertTrue(addImageArea.isDisplayed(), "");
+		sAssert.assertTrue(productTypedropdown.isDisplayed(), "");
+		sAssert.assertTrue(productNumber.isDisplayed(), "");
+		sAssert.assertTrue(ProductNameInputBox.isDisplayed(), "");
+		sAssert.assertTrue(barcodeInputBox.isDisplayed(), "");
+		sAssert.assertTrue(descriptionInputBox.isDisplayed(), "");
+		sAssert.assertTrue(saveButton.isDisplayed(), "");
 		sAssert.assertAll();
 	}
 
 	@Step("Select Non Tracked Product from Dropdown")
 	public void selectNonTrackedProduct() {
-		wait.until(ExpectedConditions.elementToBeClickable(productTypedropdown));
+		sAssert.assertTrue(wait.until(ExpectedConditions.elementToBeClickable(productTypedropdown)) != null,"Verify productTypedropdown");
 		productTypedropdown.click();
 		nonTrackedProductType.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Select Tracked Product from Dropdown")
 	public void selectTrackedProduct() {
-		WDWait(productTypedropdown);
+		sAssert.assertTrue(wait.until(ExpectedConditions.visibilityOf(productTypedropdown)) != null,"Wait for productTypedropdown");
 		productTypedropdown.click();
 		trackedProductType.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Upload Image for Product")
 	public void uploadImageProduct() throws InterruptedException, AWTException {
-		WDWait(addImage);
-		addImage.click();
-		Robot rob = new Robot();
-		StringSelection str = new StringSelection(System.getProperty("user.dir")+"\\Product.jpg");
-		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
-		Thread.sleep(2000);
-		if (System.getProperty("os.name").toLowerCase().contains("unix")
-				|| System.getProperty("os.name").toLowerCase().contains("linux")) {
+		// Supported onnly for windows local env
+		if (System.getProperty("os.name").toLowerCase().contains("windows")
+				|| System.getProperty("os.name").toLowerCase().contains("windows")) {
+			WDWait(addImage);
+			addImage.click();
+			Robot rob = new Robot();
+			StringSelection str = new StringSelection(System.getProperty("user.dir") + "\\Product.jpg");
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
 			Thread.sleep(2000);
-
-			/*
-			 * rob.keyPress(KeyEvent.VK_CONTROL); rob.keyPress(KeyEvent.VK_L);
-			 * Thread.sleep(2000); rob.keyRelease(KeyEvent.VK_CONTROL);
-			 * rob.keyRelease(KeyEvent.VK_L);
-			 */
+			Thread.sleep(2000);
+			rob.keyPress(KeyEvent.VK_CONTROL);
+			rob.keyPress(KeyEvent.VK_V);
+			Thread.sleep(2000);
+			rob.keyRelease(KeyEvent.VK_CONTROL);
+			rob.keyRelease(KeyEvent.VK_V);
+			Thread.sleep(2000);
+			rob.keyPress(KeyEvent.VK_ENTER);
+			rob.keyRelease(KeyEvent.VK_ENTER);
+			Thread.sleep(2000);
 		}
-		Thread.sleep(2000);
-		rob.keyPress(KeyEvent.VK_CONTROL);
-		rob.keyPress(KeyEvent.VK_V);
-		Thread.sleep(2000);
-		rob.keyRelease(KeyEvent.VK_CONTROL);
-		rob.keyRelease(KeyEvent.VK_V);
-		Thread.sleep(2000);
-		rob.keyPress(KeyEvent.VK_ENTER);
-		rob.keyRelease(KeyEvent.VK_ENTER);
-		Thread.sleep(2000);
 	}
 
 	@Step("Select BOM Product from Dropdown")
@@ -559,7 +444,6 @@ public class CreateProductPage {
 	 */
 	@Step("Verify Purchase Account Dropdown Values")
 	public void verifyPurchaseAccountDropdownValues() {
-		
 		WDWait(purchaseAccount);
 		wait.until(ExpectedConditions.elementToBeClickable(purchaseAccount));
 		purchaseAccount.click();
@@ -592,17 +476,18 @@ public class CreateProductPage {
 			String defaultPurchaseTax, String defaultSalesAccount, String defaultSalesPrice, String defaultSalesTax) {
 		WDWait(buyText);
 		buyText.isDisplayed();
-		sAssert.assertEquals(purchaseAccount.getAttribute("value"), defaultPurchaseAccount,"Verify defaultPurchaseAccount");
-		sAssert.assertEquals(purchasePrice.getAttribute("value"), defaultPurchasePrice,"Verify defaultPurchasePrice");
-		sAssert.assertTrue(purchaseTax.isDisplayed(),"");
-		sAssert.assertEquals(purchaseTax.getAttribute("value"), defaultPurchaseTax,"Verify defaultPurchaseTax");
-		sAssert.assertTrue(priceIsTaxInclusiveCheckBox_Buy.isDisplayed(),"");
-		sAssert.assertTrue(sellText.isDisplayed(),"");
-		sAssert.assertEquals(salesAccount.getAttribute("value"), defaultSalesAccount,"Verify defaultSalesAccount");
-		sAssert.assertEquals(salesPrice.getAttribute("value"), defaultSalesPrice,"Verify defaultSalesPrice");
-		sAssert.assertTrue(salesTax.isDisplayed(),"");
-		sAssert.assertEquals(salesTax.getAttribute("value"), defaultSalesTax,"Verify defaultSalesTax");
-		sAssert.assertTrue(priceIsTaxInclusiveCheckBox_Sell.isDisplayed(),"");
+		sAssert.assertEquals(purchaseAccount.getAttribute("value"), defaultPurchaseAccount,
+				"Verify defaultPurchaseAccount");
+		sAssert.assertEquals(purchasePrice.getAttribute("value"), defaultPurchasePrice, "Verify defaultPurchasePrice");
+		sAssert.assertTrue(purchaseTax.isDisplayed(), "");
+		sAssert.assertEquals(purchaseTax.getAttribute("value"), defaultPurchaseTax, "Verify defaultPurchaseTax");
+		sAssert.assertTrue(priceIsTaxInclusiveCheckBox_Buy.isDisplayed(), "");
+		sAssert.assertTrue(sellText.isDisplayed(), "");
+		sAssert.assertEquals(salesAccount.getAttribute("value"), defaultSalesAccount, "Verify defaultSalesAccount");
+		sAssert.assertEquals(salesPrice.getAttribute("value"), defaultSalesPrice, "Verify defaultSalesPrice");
+		sAssert.assertTrue(salesTax.isDisplayed(), "");
+		sAssert.assertEquals(salesTax.getAttribute("value"), defaultSalesTax, "Verify defaultSalesTax");
+		sAssert.assertTrue(priceIsTaxInclusiveCheckBox_Sell.isDisplayed(), "");
 		sAssert.assertAll();
 	}
 
@@ -672,7 +557,6 @@ public class CreateProductPage {
 		warehouse.isDisplayed();
 		sAssert.assertEquals(warehouse.getText(), "Primary Warehouse");
 		sAssert.assertAll();
-
 	}
 
 	@Step("Verify Inventory Tab For BOM Product")
@@ -694,7 +578,6 @@ public class CreateProductPage {
 		warehouse.isDisplayed();
 		sAssert.assertEquals(warehouse.getText(), "Primary Warehouse");
 		sAssert.assertAll();
-
 	}
 
 	@Step("Select Inventory Account")
@@ -753,7 +636,9 @@ public class CreateProductPage {
 	public void verifyCreateProductSuccessMessage() {
 		WDWait(createProductSuccessMessage);
 		createProductSuccessMessage.isDisplayed();
-		wait.until(ExpectedConditions.invisibilityOf(createProductSuccessMessage));
+		sAssert.assertTrue(wait.until(ExpectedConditions.invisibilityOf(createProductSuccessMessage)));
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verify Tracked Product Count")
@@ -796,7 +681,6 @@ public class CreateProductPage {
 		sAssert.assertEquals(BOMProductCount.getText(), "1");
 		zeroItemWithNoStock.isDisplayed();
 		sAssert.assertAll();
-
 	}
 
 	@Step("Verify Created Tracked Product")
@@ -832,7 +716,6 @@ public class CreateProductPage {
 		sAssert.assertEquals(displayedSalesTax.getText(), defaultSalesTax);
 		uncheckedPriceIsTaxInclusiveCheckbox_Sell.isDisplayed();
 		sAssert.assertAll();
-
 	}
 
 	@Step("Verify Created Non Tracked Product")
@@ -868,7 +751,6 @@ public class CreateProductPage {
 		sAssert.assertEquals(displayedSalesTax.getText(), defaultSalesTax);
 		uncheckedPriceIsTaxInclusiveCheckbox_Sell.isDisplayed();
 		sAssert.assertAll();
-
 	}
 
 	@Step("Verify Inventory Details For Created Non Tracked Product")
@@ -877,7 +759,6 @@ public class CreateProductPage {
 		action.moveToElement(displayedUnitOfMeasurement).perform();
 		sAssert.assertEquals(displayedUnitOfMeasurement.getText(), defaultUnitOfMeasurement);
 		sAssert.assertAll();
-
 	}
 
 	@Step("Verify Inventory Details For Created Tracked Product")
@@ -900,7 +781,6 @@ public class CreateProductPage {
 		action.moveToElement(displayedOpeningValuation).perform();
 		sAssert.assertEquals(displayedOpeningValuation.getText(), openingValuation);
 		sAssert.assertAll();
-
 	}
 
 	@Step("Verify Created BOM Product")
@@ -934,7 +814,6 @@ public class CreateProductPage {
 		sAssert.assertEquals(displayedSalesTax.getText(), defaultSalesTax);
 		uncheckedPriceIsTaxInclusiveCheckbox_Sell.isDisplayed();
 		sAssert.assertAll();
-
 	}
 
 	@Step("Verify Inventory Details For Created BOM Product")
@@ -957,7 +836,6 @@ public class CreateProductPage {
 		action.moveToElement(displayedOpeningValuation).perform();
 		sAssert.assertEquals(displayedOpeningValuation.getText(), openingValuation);
 		sAssert.assertAll();
-
 	}
 
 	/*****************************
@@ -1106,7 +984,6 @@ public class CreateProductPage {
 		trackedProductCount.isDisplayed();
 		sAssert.assertEquals(trackedProductCount.getText(), "2");
 		sAssert.assertAll();
-
 	}
 
 	@Step("Verify Copied Tracked Product")
@@ -1142,7 +1019,6 @@ public class CreateProductPage {
 		sAssert.assertEquals(displayedSalesTax.getText(), defaultSalesTax);
 		uncheckedPriceIsTaxInclusiveCheckbox_Sell.isDisplayed();
 		sAssert.assertAll();
-
 	}
 
 	@Step("Verify Delete Confirmation")
@@ -1178,7 +1054,6 @@ public class CreateProductPage {
 		BOMProductCount.isDisplayed();
 		sAssert.assertEquals(BOMProductCount.getText(), "0");
 		sAssert.assertAll();
-
 	}
 
 	@Step("Verify Deleted Product")
@@ -1235,7 +1110,6 @@ public class CreateProductPage {
 		WDWait(previewResultBox);
 		sAssert.assertEquals(previewResultBox.getText(), customProductNumber);
 		sAssert.assertAll();
-
 	}
 
 	@Step("Click on Save Button on Custom Number Format Page")
@@ -1251,7 +1125,6 @@ public class CreateProductPage {
 		Thread.sleep(5000);
 		sAssert.assertEquals(productNumber.getAttribute("value"), customProductNumber);
 		sAssert.assertAll();
-
 	}
 
 	@Step("Verify Create Custom Number Format Success Message")
@@ -1268,6 +1141,5 @@ public class CreateProductPage {
 		action.moveToElement(displayedProductNumber).perform();
 		sAssert.assertEquals(displayedProductNumber.getText(), customProductNumber);
 		sAssert.assertAll();
-
 	}
 }

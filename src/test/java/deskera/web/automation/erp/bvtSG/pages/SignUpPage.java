@@ -144,25 +144,20 @@ public class SignUpPage {
 	 * Success PAGE ELEMENTS LOCATORS
 	 *******************/
 	@FindBy(xpath = "//h5[contains(text(),'Please verify your email address')]")
-	@CacheLookup
 	private WebElement verifyYourEmailAddress;
 	@FindBy(xpath = "//p[contains(.,', thanks for signing up. We have sent an email to ')]")
-	@CacheLookup
+	
 	private WebElement thanksForSigningUp;
 	@FindBy(xpath = "//p[@class='p1']/a")
-	@CacheLookup
 	private WebElement weHaveSentEmailTo;
 	@FindBy(xpath = "(//p[contains(@class,'p1')])[3]")
-	@CacheLookup
+	
 	private WebElement justClickOnTheLink;
 	@FindBy(xpath = "//div/p[contains(text(),'Still can')]")
-	@CacheLookup
 	private WebElement cantFindEmail;
 	@FindBy(xpath = "//span[text()=' Resend Email ']")
-	@CacheLookup
 	private WebElement resendEmailButton;
 	@FindBy(xpath = "(//p[contains(@class,'p1')])[1]")
-	@CacheLookup
 	private WebElement weHaveResentVerification;
 
 	/***********************************
@@ -367,7 +362,6 @@ public class SignUpPage {
 
 	@Step("Verify Page Elements After Resent Email")
 	public void verifyPageElementsAfterResentEmail(String email) throws InterruptedException {
-		System.out.println("Pausing for 5 seconds");
 		Thread.sleep(5000);
 		WDWait(verifyYourEmailAddress);
 		sAssert.assertTrue(verifyYourEmailAddress.isDisplayed(),"Verify Email address");

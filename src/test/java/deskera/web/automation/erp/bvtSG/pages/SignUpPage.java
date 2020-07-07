@@ -366,7 +366,8 @@ public class SignUpPage {
 	}
 
 	@Step("Verify Page Elements After Resent Email")
-	public void verifyPageElementsAfterResentEmail(String email) {
+	public void verifyPageElementsAfterResentEmail(String email) throws InterruptedException {
+		Thread.sleep(3000);
 		WDWait(verifyYourEmailAddress);
 		sAssert.assertTrue(verifyYourEmailAddress.isDisplayed(),"Verify Email address");
 		WDWait(weHaveResentVerification);

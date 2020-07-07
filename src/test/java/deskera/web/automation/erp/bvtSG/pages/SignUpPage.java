@@ -369,6 +369,7 @@ public class SignUpPage {
 	public void verifyPageElementsAfterResentEmail(String email) {
 		WDWait(verifyYourEmailAddress);
 		sAssert.assertTrue(verifyYourEmailAddress.isDisplayed(),"Verify Email address");
+		WDWait(weHaveResentVerification);
 		weHaveResentVerification.isDisplayed();
 		sAssert.assertEquals(weHaveSentEmailTo.getText(), email);
 		wait.until(ExpectedConditions.elementToBeClickable(justClickOnTheLink));

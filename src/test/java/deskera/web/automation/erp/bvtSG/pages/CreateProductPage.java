@@ -636,7 +636,7 @@ public class CreateProductPage {
 	public void verifyCreateProductSuccessMessage() {
 		WDWait(createProductSuccessMessage);
 		createProductSuccessMessage.isDisplayed();
-		sAssert.assertTrue(wait.until(ExpectedConditions.invisibilityOf(createProductSuccessMessage)));
+		sAssert.assertTrue(wait.until(ExpectedConditions.visibilityOf(createProductSuccessMessage)) != null);
 		sAssert.assertAll();
 
 	}

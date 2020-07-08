@@ -187,8 +187,8 @@ public class SignUpPage {
 		wait.until(ExpectedConditions.elementToBeClickable(SignUpNow));
 		SignUpNow.click();
 		WDWait(userSignupEmail);
-		userSignupEmail.isDisplayed();
-		userSignupPhone.isDisplayed();
+		sAssert.assertTrue(userSignupEmail.isDisplayed(),"Verify userSignupEmail");
+		sAssert.assertTrue(userSignupPhone.isDisplayed());
 		WDWait(alreadyHaveAccount);
 		alreadyHaveAccount.isDisplayed();
 		WDWait(createAccountButton);

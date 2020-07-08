@@ -165,7 +165,7 @@ public class HomePage {
 	public void verifyCreateOrgSuccessMessage(){
 		WDWait(OrgCreationSuccessMessage);
 		OrgCreationSuccessMessage.isDisplayed();
-		sAssert.assertTrue(wait.until(ExpectedConditions.invisibilityOf(OrgCreationSuccessMessage)));
+		sAssert.assertTrue(wait.until(ExpectedConditions.visibilityOf(OrgCreationSuccessMessage)) != null);
 	}
 	
 	@Step("Click On Skip Button")

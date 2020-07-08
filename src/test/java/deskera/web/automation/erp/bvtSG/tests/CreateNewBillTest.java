@@ -69,5 +69,16 @@ public class CreateNewBillTest extends DriverFactory{
 		buy.clickOnBillCard();
 		buy.searchCreatedOrder(contactName);
 		buy.clickOnContact(contactName);
+		buy.clickReceivedGoodsButton();
+		buy.verifyReceivedGoodsElements();
+		buy.clickReceiveButton();
+		buy.clickMakePaymentButton();
+		buy.verifyMakePaymentElement();
+		buy.clickPayFormDropDown();
+		buy.verifyCurrency();
+		buy.clickOnNext();
+		buy.verifyConfirmPaymentElements();
+		buy.ClickOnCloseButton();
+		buy.verifyPaymentReceivedsuccessmessage();
 	}
 }

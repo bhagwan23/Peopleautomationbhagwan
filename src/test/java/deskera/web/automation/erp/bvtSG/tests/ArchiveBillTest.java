@@ -12,7 +12,7 @@ import deskera.web.automation.erp.bvtSG.pages.LoginPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
-public class CreateNewOrderTest extends DriverFactory {
+public class ArchiveBillTest extends DriverFactory{
 	String confPath, url;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
 
@@ -30,10 +30,10 @@ public class CreateNewOrderTest extends DriverFactory {
 	}
 
 
-	@TestRailId(testRailId = 20270)
+	@TestRailId(testRailId = 20299)
 	@Test()
-	@Description(value = "C21096 To verify that user is able to Create/Receive/Pay - Bill")
-	public void createOrderTest() throws InterruptedException {
+	@Description(value = "C20299 To verify user should be able to Archive/Reopen Order or Bill")
+	public void archiveBillTest() throws InterruptedException {
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
 
@@ -42,43 +42,36 @@ public class CreateNewOrderTest extends DriverFactory {
 
 		String quantity = ReadPropertyUtil.readProperty("quantity", confPath);
 		String discount = ReadPropertyUtil.readProperty("discount", confPath);
-		
+
 		// Create login Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
 		loginPage.openURL(url);
 		loginPage.enterEmailandPassword(emailAddress, passWord);
 		loginPage.clickSignIn();
-		
+
 		// Create buy Page Object instance
 		BuyPage buy= new BuyPage(driver, wait);
 		buy.verifybuytabElements();
 		buy.clickbuytab();
 		buy.verifyBuyPageElement();
 		buy.clickCreatNew();
-		buy.clickOnNewOrder();
-		buy.verifyCreateOrderElements();
+		buy.clickOnNewBill();
+		buy.verifyCreateBillElements();
 		buy.addContact(contactName);
 		buy.verifyMultiCurrencyOptions();
 		buy.addProduct(productName);
 		buy.verifydefaultQuantityAndTax();
-		//buy.clickSaveButton();
-		
 		buy.enterProductDetails(quantity, discount);
 		buy.verifyTotalAmount();
 		buy.clickSaveButton();
-		buy.verifysuccessmessage();
-		buy.ordetTotalCount();
+		buy.verifybillcreatedsuccessmessage();
+		buy.clickOnBillCard();
 		buy.searchCreatedOrder(contactName);
-		buy.clickOnContact(contactName);
-
-		buy.clickReceivedGoodsButton();
-		buy.verifyReceivedGoodsElements();
-		buy.clickReceiveButton();
 		
-		buy.clickConvertToBillButton();
-		/*buy.verifyConvertToBillPopupElements();
-		buy.clickConvertAutoReceivedButton();
-		//buy.verifyConvertBillsuccessmessage();*/
+		//Click on Context Menu Icon
+		buy.clickContextMenuIcon();
+		buy.clickOnArchiveBillButton();
+		buy.archiveTotalCount();
 		
 	}
 }

@@ -160,6 +160,7 @@ public class BuyPage {
 	@CacheLookup
 	private WebElement convertBillSucessMsg;
 	
+	
 	/****************************CREATE NEW BILL  PAGE ELEMENTS LOCATORS *******************/
 
 	@FindBy(xpath = "//button[contains(.,'New Bill')]")
@@ -183,6 +184,96 @@ public class BuyPage {
 	@FindBy(xpath = "//div[@class='tab-container activeTab ng-star-inserted']")
 	@CacheLookup
 	private WebElement billCard;
+	
+	@FindBy(xpath= "//span[contains(text(),'Receive Goods')]")
+	@CacheLookup
+	private WebElement receivedGoodsButton;
+	@FindBy(xpath= "//input[@formcontrolname='receiptQuantity']")
+	@CacheLookup
+	private WebElement receivingTextBox;
+	@FindBy(xpath= "//span[contains(text(),'Cancel')]")
+	@CacheLookup
+	private WebElement cancelButton;
+	@FindBy(xpath= "//span[@class='mat-button-wrapper'][contains(text(),'Receive')]")
+	@CacheLookup
+	private WebElement receiveButton;
+	@FindBy(xpath= "//span[contains(text(),'Make Payment')]")
+	@CacheLookup
+	private WebElement makePaymentButton;
+	@FindBy(xpath= "//div[@class='mat-dialog-title'][contains(.,'Make Payment')]")
+	@CacheLookup
+	private WebElement makePaymentHeading;
+	@FindBy(xpath= "//div[contains(text(),'General')]")
+	@CacheLookup
+	private WebElement generalTab;
+	@FindBy(xpath= "//div[contains(text(),'Confirm')]")
+	@CacheLookup
+	private WebElement confirmTab;
+	@FindBy(xpath= "//div[contains(text(),'Current Outstanding')]")
+	@CacheLookup
+	private WebElement currentOustandingText;
+	@FindBy(xpath= "//span[@class='statusBadge due-in']")
+	@CacheLookup
+	private WebElement dueInLabel;
+	@FindBy(xpath="//span[@class='dueAmount']//span[contains(text(),'SGD')]")
+	@CacheLookup
+	private WebElement sgdCurrency;
+	@FindBy(xpath="//span[@class='dueAmount']")
+	@CacheLookup
+	private WebElement displayedAmount;
+	@FindBy(xpath="//input[@formcontrolname='documentDate']")
+	@CacheLookup
+	private WebElement paymentDate;
+	@FindBy(xpath="//div[@class='currency-dropdown-code']")
+	@CacheLookup
+	private WebElement currencyDropdown;
+	@FindBy(xpath="//div[@class='amount']//input[@inputtype='decimal']")
+	@CacheLookup
+	private WebElement paymentAndCurrencyAmount;
+	@FindBy(xpath="//div[@class='mat-select-value']//span[contains(.,'Pay From')]")
+	@CacheLookup
+	private WebElement payFromDropDown;
+	@FindBy(xpath="//span[contains(text(),'Cash')]")
+	@CacheLookup
+	private WebElement clickOnCash;
+	@FindBy(xpath="//span[contains(text(),'Next')]")
+	@CacheLookup
+	private WebElement nextButton;
+	@FindBy(xpath="//div[@class='payment-preview-title']")
+	@CacheLookup
+	private WebElement confirmPaymentMadeText;
+	@FindBy(xpath="//div[contains(text(),'Pay From')]/following-sibling::div")
+	@CacheLookup
+	private WebElement payfromCash;
+	@FindBy(xpath="//span[contains(text(),'Back')]")
+	@CacheLookup
+	private WebElement backButton;
+	@FindBy(xpath="//button[@class='mat-flat-button mat-stroked-button mat-button-base mat-primary ng-star-inserted']//span[@class='mat-button-wrapper'][contains(text(),'Pay')]")
+	@CacheLookup
+	private WebElement payButton;
+	@FindBy(xpath="//span[contains(text(),'Close')]")
+	@CacheLookup
+	private WebElement closeButton;
+	@FindBy(xpath="//span[@class='mat-button-wrapper'][contains(text(),'Print')]")
+	@CacheLookup
+	private WebElement printButton;
+	@FindBy(xpath= "//span[text()='1 Payment Received']")
+	@CacheLookup
+	private WebElement paymentReceivedSuccessMessage;
+	
+	
+	/******************************* Archive Bill Page Element Locators *******************/
+	
+	@FindBy(xpath = "//mat-row[1]//mat-cell[8]//button[2]//span[1]//mat-icon[1]")
+	@CacheLookup
+	private WebElement contextMenuIcon;
+	@FindBy(xpath = "//button[contains(text(),'Archive Bill')]")
+	@CacheLookup
+	private WebElement archiveBillButton;
+	@FindBy(xpath = "//h5[contains(text(),'1')]")
+	@CacheLookup
+	private WebElement archiveTotalCount;
+	
 	/*******************************Buy Object Manipulation Methods *******************/
 	@Step("Open URl")
 	public void openURL(String URL) {
@@ -362,8 +453,9 @@ public class BuyPage {
 		Assert.assertEquals(amount1, totalAmount);
 	}
 	@Step("Click on Save Button")
-	public void clickSaveButton() {	
+	public void clickSaveButton() throws InterruptedException {	
 		WDWait(saveButton);
+		//Thread.sleep(3000);
 		saveButton.click();
 	}
 	@Step("Verify success message")
@@ -394,7 +486,8 @@ public class BuyPage {
 		contactName.click();
 	}
 	@Step("Click on Convert to bill button")
-	public void clickConvertToBillButton(){
+	public void clickConvertToBillButton() throws InterruptedException{
+		
 		WDWait(convertToBillButton);
 		convertToBillButton.isDisplayed();
 		convertToBillButton.click();
@@ -464,5 +557,131 @@ public class BuyPage {
 	WDWait(billCard);
 	billCard.isDisplayed();
 	billCard.click();
+	}
+	@Step("Click on Received Goods button")
+	public void clickReceivedGoodsButton(){
+		WDWait(receivedGoodsButton);
+		receivedGoodsButton.isDisplayed();
+		receivedGoodsButton.click();
+	}
+	@Step("Verify receive goods elements ")
+	public void verifyReceivedGoodsElements(){
+		WDWait(receivingTextBox);
+		receivingTextBox.isDisplayed();
+		WDWait(cancelButton);
+		cancelButton.isDisplayed();
+		WDWait(receiveButton);
+		receiveButton.isDisplayed();
+		
+	}
+	@Step("Click on Receive button")
+	public void clickReceiveButton() throws InterruptedException{
+		WDWait(receiveButton);
+		receiveButton.isDisplayed();
+		receiveButton.click();
+		Thread.sleep(3000);
+	}
+	@Step("Click on Make Payment button")
+	public void clickMakePaymentButton(){
+		WDWait(makePaymentButton);
+		makePaymentButton.isDisplayed();
+		makePaymentButton.click();
+	}
+	@Step("Verify make payment page element")
+	public void verifyMakePaymentElement(){
+		WDWait(makePaymentHeading);
+		makePaymentHeading.isDisplayed();
+		WDWait(generalTab);
+		generalTab.isDisplayed();
+		WDWait(confirmTab);
+		confirmTab.isDisplayed();
+		WDWait(currentOustandingText);
+		currentOustandingText.isDisplayed();
+		WDWait(dueInLabel);
+		dueInLabel.isDisplayed();
+		WDWait(sgdCurrency);
+		sgdCurrency.isDisplayed();
+		WDWait(displayedAmount);
+		displayedAmount.isDisplayed();
+		WDWait(paymentDate);
+		paymentDate.isDisplayed();
+		WDWait(currencyDropdown);
+		currencyDropdown.isDisplayed();
+		WDWait(paymentAndCurrencyAmount);
+		paymentAndCurrencyAmount.isDisplayed();
+		
+	}
+	@Step("Click on Pay Form Drop down")
+	public void clickPayFormDropDown() throws InterruptedException{
+		WDWait(payFromDropDown);
+		payFromDropDown.isDisplayed();
+		wait.until(ExpectedConditions.elementToBeClickable(payFromDropDown));
+		payFromDropDown.click();
+		WDWait(clickOnCash);
+		clickOnCash.isDisplayed();
+		clickOnCash.click();
+	}
+	@Step("Verify default currency in Payment and amount")
+	public void verifyCurrency(){
+		WDWait(sgdCurrency);
+		Assert.assertEquals(sgdCurrency.getText(), "SGD");
+	}
+	@Step("Click on Next button")
+	public void clickOnNext(){
+		WDWait(nextButton);
+		nextButton.isDisplayed();
+		nextButton.click();
+	}
+	@Step("Verify Confirm payment made page elements")
+	public void verifyConfirmPaymentElements(){
+		WDWait(confirmPaymentMadeText);
+		confirmPaymentMadeText.isDisplayed();
+		WDWait(payfromCash);
+		payfromCash.isDisplayed();
+		Assert.assertEquals(payfromCash.getText(), "Cash");
+		WDWait(backButton);
+		backButton.isDisplayed();
+		WDWait(payButton);
+		payButton.isDisplayed();
+		payButton.click();
+	}
+	@Step("Click on Close button")
+	public void ClickOnCloseButton(){
+		WDWait(printButton);
+		printButton.isDisplayed();
+		WDWait(closeButton);
+		closeButton.isDisplayed();
+		closeButton.click();
+	}
+	@Step("Verify payment received success message")
+	public void verifyPaymentReceivedsuccessmessage(){
+		WDWait(paymentReceivedSuccessMessage);
+		paymentReceivedSuccessMessage.isDisplayed();
+        wait.until(ExpectedConditions.invisibilityOf(paymentReceivedSuccessMessage));
+	}
+	
+	/****************************** Archive bill Object Manipulation Methods *******************/
+
+	@Step("Click on Context Menu icon")
+	public void clickContextMenuIcon() throws InterruptedException{
+		WDWait(contextMenuIcon);
+		contextMenuIcon.isDisplayed();
+		wait.until(ExpectedConditions.elementToBeClickable(contextMenuIcon));
+		//Thread.sleep(3000);
+		contextMenuIcon.click();
+		//Thread.sleep(4000);
+	}
+	@Step("Click on Archive Bill button")
+	public void clickOnArchiveBillButton(){
+		WDWait(archiveBillButton);
+		archiveBillButton.isDisplayed();
+		archiveBillButton.click();
+	}
+	@Step("Verify total archive count")
+	public void archiveTotalCount(){
+		WDWait(archiveTotalCount);
+		archiveTotalCount.isDisplayed();
+	    Assert.assertEquals(archiveTotalCount.getText(), "1");
+
 	}
 }

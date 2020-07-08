@@ -53,7 +53,7 @@
 
 	</test>
  --> 
- <!--
+ 
 	<test name="4 C20261 Add Contacts" parallel="false">
 		<classes>
 			<class
@@ -110,14 +110,6 @@
 			</class>
 		</classes>
 	</test>
- -->
- <test name=" 1 Create Order " parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.CreateNewOrderTest">
-			<methods>
-					<include name="createQuoteTest"></include>
-				</methods>
-			</class>
-		</classes>
-	</test>  
+
+ 
 </suite> 

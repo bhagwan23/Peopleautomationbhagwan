@@ -12,7 +12,7 @@ import deskera.web.automation.erp.bvtSG.pages.LoginPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
-public class CreateNewBillTest extends DriverFactory{
+public class ArchiveOrderTest extends DriverFactory {
 	String confPath, url;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
 
@@ -29,20 +29,19 @@ public class CreateNewBillTest extends DriverFactory{
 		url = URL;
 	}
 
-
-	@TestRailId(testRailId = 20270)
+	@TestRailId(testRailId = 20299)
 	@Test()
-	@Description(value = "C20270 To verify that user is able to Create/Bill/Receive - Order")
-	public void createBillTest() throws InterruptedException {
+	@Description(value = "C20299 To verify user should be able to Archive/Reopen Order or Bill")
+	public void archiveOrderTest() throws InterruptedException {
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
 
 		String contactName = ReadPropertyUtil.readProperty("ContactName", confPath);
 		String productName = ReadPropertyUtil.readProperty("ProductName", confPath);
-		
+
 		String quantity = ReadPropertyUtil.readProperty("quantity", confPath);
 		String discount = ReadPropertyUtil.readProperty("discount", confPath);
-		
+
 		// Create login Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
 		loginPage.openURL(url);
@@ -50,13 +49,13 @@ public class CreateNewBillTest extends DriverFactory{
 		loginPage.clickSignIn();
 
 		// Create buy Page Object instance
-		BuyPage buy= new BuyPage(driver, wait);
+		BuyPage buy = new BuyPage(driver, wait);
 		buy.verifybuytabElements();
 		buy.clickbuytab();
 		buy.verifyBuyPageElement();
 		buy.clickCreatNew();
-		buy.clickOnNewBill();
-		buy.verifyCreateBillElements();
+		buy.clickOnNewOrder();
+		buy.verifyCreateOrderElements();
 		buy.addContact(contactName);
 		buy.verifyMultiCurrencyOptions();
 		buy.addProduct(productName);
@@ -64,27 +63,20 @@ public class CreateNewBillTest extends DriverFactory{
 		buy.enterProductDetails(quantity, discount);
 		buy.verifyTotalAmount();
 		buy.clickSaveButton();
-		buy.verifybillcreatedsuccessmessage();
-		buy.verifyamountInGrid();
-		//buy.billTotalCount();
-		
-		
-		//Receive bills
-		buy.clickOnBillCard();
+		buy.verifysuccessmessage();
 		buy.searchCreatedOrder(contactName);
-		buy.clickOnContact(contactName);
-		buy.clickReceivedGoodsButton();
-		buy.verifyReceivedGoodsElements();
-		buy.clickReceiveButton();
-		
-		//Pay Bills
-		buy.clickMakePaymentButton();
-		buy.verifyMakePaymentElement();
-		buy.clickPayFormDropDown();
-		buy.verifyCurrency();
-		buy.clickOnNext();
-		buy.verifyConfirmPaymentElements();
-		buy.ClickOnCloseButton();
-		buy.verifyPaymentReceivedsuccessmessage();
+
+		buy.clickOrderContextMenuIcon();
+		buy.clickOnArchiveOrderButton();
+		Thread.sleep(4000);
+		buy.clickOnArchiveCard();
+		//buy.searchCreatedOrder(contactName);	
+		buy.archiveTotalCount();
+		buy.verifyCancelledStatus();
+
+		//Reopen order
+		buy.clickOnContextMenuOnArchivePage();
+		buy.clickOnReopen();
+		buy.noMatchingRecord();
 	}
 }

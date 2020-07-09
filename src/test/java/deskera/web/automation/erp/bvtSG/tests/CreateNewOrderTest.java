@@ -67,14 +67,16 @@ public class CreateNewOrderTest extends DriverFactory {
 		buy.verifyTotalAmount();
 		buy.clickSaveButton();
 		buy.verifysuccessmessage();
+		buy.verifyamountInGrid();
 		buy.ordetTotalCount();
+		
+		
+		//Receive goods for orders
 		buy.searchCreatedOrder(contactName);
 		buy.clickOnContact(contactName);
-
 		buy.clickReceivedGoodsButton();
 		buy.verifyReceivedGoodsElements();
-		buy.clickReceiveButton();
-		
+		buy.clickReceiveButton();	
 		buy.clickConvertToBillButton();
 		/*buy.verifyConvertToBillPopupElements();
 		buy.clickConvertAutoReceivedButton();

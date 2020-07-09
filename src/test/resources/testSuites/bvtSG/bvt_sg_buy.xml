@@ -23,8 +23,8 @@
 	<parameter name="conf"
 		value="src/test/resources/bvtSGConfig/TestDataBuySG.config"></parameter>
 
-
-	<!--  
+  <!--  
+	
 	<test name=" 1 Create Order " parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.CreateNewOrderTest">
@@ -34,7 +34,7 @@
 			</class>
 		</classes>
 	</test> 
-	
+-->
  	
 	<test name=" 2 Create Bill " parallel="false">
 		<classes>
@@ -45,8 +45,8 @@
 			</class>
 		</classes>
 	</test>  
-	-->
 	
+  	
 	<test name=" 3 Archive Bill " parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.ArchiveBillTest">
@@ -56,6 +56,15 @@
 			</class>
 		</classes>
 	</test> 
-	
-	
+<!-- 
+	<test name=" 4 Archive Order " parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.ArchiveOrderTest">
+			<methods>
+					<include name="archiveOrderTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+ -->
 </suite> 

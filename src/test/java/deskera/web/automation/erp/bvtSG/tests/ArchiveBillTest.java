@@ -12,7 +12,7 @@ import deskera.web.automation.erp.bvtSG.pages.LoginPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
-public class ArchiveBillTest extends DriverFactory{
+public class ArchiveBillTest extends DriverFactory {
 	String confPath, url;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
 
@@ -28,7 +28,6 @@ public class ArchiveBillTest extends DriverFactory{
 		confPath = conf;
 		url = URL;
 	}
-
 
 	@TestRailId(testRailId = 20299)
 	@Test()
@@ -50,7 +49,7 @@ public class ArchiveBillTest extends DriverFactory{
 		loginPage.clickSignIn();
 
 		// Create buy Page Object instance
-		BuyPage buy= new BuyPage(driver, wait);
+		BuyPage buy = new BuyPage(driver, wait);
 		buy.verifybuytabElements();
 		buy.clickbuytab();
 		buy.verifyBuyPageElement();
@@ -67,11 +66,20 @@ public class ArchiveBillTest extends DriverFactory{
 		buy.verifybillcreatedsuccessmessage();
 		buy.clickOnBillCard();
 		buy.searchCreatedOrder(contactName);
-		
-		//Click on Context Menu Icon
+
+		// Click on Context Menu Icon
 		buy.clickContextMenuIcon();
 		buy.clickOnArchiveBillButton();
+		Thread.sleep(4000);
+		buy.clickOnArchiveCard();
 		buy.archiveTotalCount();
+		buy.verifyCancelledStatus();
 		
+		//Reopen bills
+		buy.clickOnContextMenuOnArchivePage();
+		buy.clickOnReopen();
+		
+		buy.noMatchingRecord();
+
 	}
 }

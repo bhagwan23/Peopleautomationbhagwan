@@ -32,11 +32,17 @@ public class ChartOfAccountsPage {
 		sAssert = new SoftAssertListner(driver);
 	}
 	
+	@FindBy(xpath = "//span[@class='ng-star-inserted'][contains(text(),'Accounting')]")	
+	private WebElement accountingButton;
+	
+	@FindBy(xpath = "//div[contains(@class,'row ng-star-inserted')]//div[1]//wtf2-card[1]")
+	private WebElement coaCard;
+
 	private static String pageTitleText = "Chart of Accounts";
-	@FindBy(xpath = "//span[text()='Chart of Accounts']")
+	@FindBy(xpath = "//h1[contains(text(),'Chart of Accounts')]")
 	
 	private WebElement welcomeCOA;
-	@FindBy(xpath = "//span[text()='Add']")
+	@FindBy(xpath = "//span[@class='mat-button-wrapper'][contains(text(),'Add')]")
 
 	private WebElement addCOAbutton;
 	@FindBy(xpath = "//span[text()='Accounts:']")
@@ -49,8 +55,8 @@ public class ChartOfAccountsPage {
 
 	private WebElement summary;
 	
-	@FindBy(xpath = "//mat-checkbox[@id='mat-checkbox-321']")
-	private WebElement selectAllCheckbox;
+//	@FindBy(xpath = "//mat-checkbox[@id='mat-checkbox-321']")
+//	private WebElement selectAllCheckbox;
 	
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Number')]")
 	private WebElement numberHeaderCell;
@@ -73,20 +79,57 @@ public class ChartOfAccountsPage {
 	@FindBy(xpath = "//h3[contains(text(),'Account Details')]")
 	private WebElement accountDetailsLabel;
 	
-	@FindBy(xpath = "//input[@id='mat-input-19']")
+	@FindBy(xpath = "//input[@placeholder='Type here']")
 	private WebElement accountType;
 	
-	@FindBy(xpath = "//mat-label[contains(text(),'Code')]")
+	@FindBy(xpath = "//input[@formcontrolname='accountCode']")
 	private WebElement accountCode;
 	
-	@FindBy(xpath = "//input[@id='mat-input-17']")
+	@FindBy(xpath = "//input[@formcontrolname='name']")
 	private WebElement accountName;
 	
-	@FindBy(xpath = "//textarea[@id='mat-input-18']")
+	@FindBy(xpath = "//textarea[@formcontrolname='description']")
 	private WebElement description;
 	
 	@FindBy(xpath = "//button[@class='mat-flat-button mat-button-base mat-primary']//span[@class='mat-button-wrapper']")
 	private WebElement saveButton;
+	
+	@FindBy(xpath = "//span[@class='mat-option-text'][contains(text(),'Bank')]")
+	private WebElement bank;
+	
+//	@FindBy(xpath = "//span[contains(text(),'Cash')]")
+//	private WebElement cash;
+//	
+//	@FindBy(xpath = "//span[contains(text(),'Cost of Goods Sold')]")
+//	private WebElement costOfGoodsSold;
+//	
+//	@FindBy(xpath = "//span[contains(text(),'Current Assets')]")
+//	private WebElement currentAssets;
+//	
+//	@FindBy(xpath = "//span[contains(text(),'Current Liabilities')]")
+//	private WebElement currentLiabilities;
+//	
+//	@FindBy(xpath = "//span[contains(text(),'Equity')]")
+//	private WebElement equity;
+//	
+//	@FindBy(xpath = "//mat-option[@id='mat-option-198']//span[@class='mat-option-text'][contains(text(),'Expenses')]")
+//	private WebElement expenses;
+//	
+//	@FindBy(xpath = "//mat-option[@id='mat-option-199']//span[@class='mat-option-text'][contains(text(),'Income')]")
+//	private WebElement income;
+//	
+//	@FindBy(xpath = "//span[contains(text(),'Non-current Assets')]")
+//	private WebElement nonCurrentAssets;
+//	
+//	@FindBy(xpath = "//span[contains(text(),'Non-current Liabilities')]")
+//	private WebElement nonCurrentLiabilities;
+//	
+//	@FindBy(xpath = "//span[contains(text(),'Other Expenses')]")
+	private WebElement otherExpenses;
+	
+	@FindBy(xpath= "//span[text()='Account is successfully created.']")
+	@CacheLookup
+	private WebElement createCOASuccessMessage;
 	
 	@Step("Open URl")
 	public void openURL(String URL) {
@@ -104,15 +147,31 @@ public class ChartOfAccountsPage {
 		wait.until(ExpectedConditions.visibilityOf(we));
 	}
 	
-	@Step("Verify page wlwmwnts")
-	public void verifyCOAPageElements() {
+	@Step("Click on accounting button")
+	public void clickAccountingButton() throws InterruptedException{
+		WDWait(accountingButton);
+		accountingButton.click(); 
+		//Thread.sleep(3000);
+	}
+	
+	@Step("Click on Chart Of Accounts card")
+	public void clickChartOfAccountsCard() throws InterruptedException{
+		WDWait(coaCard);
+		coaCard.click(); 
+		Thread.sleep(2000);
+	}
+	
+	@Step("Verify page elements")
+	public void verifyCOAPageElements() throws InterruptedException {
 		WDWait(welcomeCOA);
 		welcomeCOA.isDisplayed();
+//		Thread.sleep(1000);
+//		wait.until(ExpectedConditions.elementToBeClickable(welcomeCOA));
 		addCOAbutton.isDisplayed();
 		accountsLabel.isDisplayed();
 		filters.isDisplayed();
 		summary.isDisplayed();
-		selectAllCheckbox.isDisplayed();
+//		selectAllCheckbox.isDisplayed();
 		numberHeaderCell.isDisplayed();
 		nameHeaderCell.isDisplayed();
 		typeBalHeaderCell.isDisplayed();
@@ -135,19 +194,44 @@ public class ChartOfAccountsPage {
 	}
 	
 	@Step("Enter account details")
-	public void enterAccountDetails(String name, String code, String type, String desc) {
+	public void enterAccountDetails(String name, String code, String type, String desc) throws InterruptedException {
 		WDWait(accountType);
 		accountType.sendKeys(type);
+		sAssert.assertTrue(accountType.isDisplayed(),"Verify account type list");
+		Thread.sleep(2000);
+//		accountType.click();
+		bank.isDisplayed();
+//		cash.isDisplayed();
+//		costOfGoodsSold.isDisplayed();
+//		nonCurrentAssets.isDisplayed();
+//		nonCurrentLiabilities.isDisplayed();
+//		income.isDisplayed();
+//		currentAssets.isDisplayed();
+//		currentLiabilities.isDisplayed();
+//		equity.isDisplayed();
+//		expenses.isDisplayed();
+//		otherExpenses.isDisplayed();
+		bank.click();
 		accountCode.sendKeys(code);
 		accountName.sendKeys(name);
 		description.sendKeys(desc);
 	}
 
 	@Step("Click On Save Button")
-	public void clickSaveButton() {
+	public void clickSaveButton() throws InterruptedException {
 		WDWait(saveButton);
 		wait.until(ExpectedConditions.elementToBeClickable(saveButton));
 		saveButton.click();
+		
+	}
+	
+	@Step("Verify success message")
+	public void verifyCOACreatedSucessMessage() throws InterruptedException {
+		WDWait(createCOASuccessMessage);
+//		createCOASuccessMessage.isDisplayed();
+		wait.until(ExpectedConditions.visibilityOf(createCOASuccessMessage));
+		createCOASuccessMessage.isDisplayed();
+
 	}
 	
 }

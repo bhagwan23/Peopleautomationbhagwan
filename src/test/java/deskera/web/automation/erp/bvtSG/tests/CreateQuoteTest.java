@@ -25,13 +25,12 @@ public class CreateQuoteTest extends DriverFactory{
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "url" })
+	@Parameters({ "conf", "environment" })
 	public void getConf(String conf, String URL) {
 		confPath = conf;
 		url = URL;
 	}
 	
-
 	@TestRailId(testRailId = 21099)
 	@Test()
 	@Description(value = "C21099 To verify that user is able to Create/Fulfill/Invoice/ - Quote")
@@ -65,7 +64,9 @@ public class CreateQuoteTest extends DriverFactory{
 		
 		//sellPage.verifyTotalAmount();
 		sellPage.verifyTotalAmount1();
-		sellPage.clickSaveButtont();
+		sellPage.clickSaveButton();
+		sellPage.verifyCreateQuoteSuccessMessage();
+		sellPage.verifyCreatedQuote();
 	
 		
 		

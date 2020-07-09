@@ -26,47 +26,47 @@ public class UsersPage {
 		/******************************* Users  PAGE ELEMENTS LOCATORS *******************/
 
 	@FindBy(xpath = "//button[contains(.,'addADD USER')]")
-	@CacheLookup
+	
 	private WebElement addUsersButton;	
 	@FindBy(xpath = "(//button[text()=' Name '])[1]")
-	@CacheLookup
+	
 	private WebElement nameColumn;	
 	@FindBy(xpath = "(//button[text()=' Email '])[1]")
-	@CacheLookup
+	
 	private WebElement emailColumn;	
 	@FindBy(xpath = "(//button[text()=' Role '])[1]")
-	@CacheLookup
+	
 	private WebElement roleColumn;	
 	private static String pageTitleText = "Deskera Books";
 	
 	
 	/******************************* Add User Section  ELEMENTS LOCATORS *******************/
 	@FindBy(xpath = "//input[contains(@placeholder,'First Name')]")
-	@CacheLookup
+	
 	private WebElement firstName;
 	@FindBy(xpath = "//input[@placeholder='Last name']")
-	@CacheLookup
+	
 	private WebElement lastName;
 	@FindBy(xpath = "//input[@placeholder='Email']")
-	@CacheLookup
+	
 	private WebElement email;
 	@FindBy(xpath = "//input[@placeholder='Password']")
-	@CacheLookup
+	
 	private WebElement password;
 	@FindBy(xpath = "//input[@value='phoneNumber']")
-	@CacheLookup
+	
 	private WebElement phoneNumber;
 	@FindBy(xpath = "//div[@class='wtf2-form-field-infix'][contains(.,'Assign Roles  *')]")
-	@CacheLookup
+	
 	private WebElement assignRolesDropdown;
 	@FindBy(xpath = "//span[contains(.,'Business')]")
-	@CacheLookup
+	
 	private WebElement businessRole;
 	@FindBy(xpath = "//span[contains(.,'CANCEL')]")
-	@CacheLookup
+	
 	private WebElement cancelButton;
 	@FindBy(xpath = "//span[contains(text(),'SAVE')]")
-	@CacheLookup
+	
 	private WebElement saveButton;
 	
 

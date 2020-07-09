@@ -32,7 +32,6 @@ public class CreateBankTest extends DriverFactory {
 	@TestRailId(testRailId = 20274)
 	@Test
 	@Description(value = "C20274 To verify that user is able to Create/Connect - Bank")
-
 	public void addCreateBankTestBank() throws InterruptedException{
 		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
 		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	

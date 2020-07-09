@@ -36,8 +36,10 @@ public class CopyProductTest extends DriverFactory {
 	@Description(value = "Copy Product ")
 	public void copyProductTest() throws InterruptedException {
 		// Read test specific data from config
-		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
+		/*
+		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
+		 */
 		String trackedProductName1 = ReadPropertyUtil.readProperty("trackedProductName1", confPath);	
 		//String barcode = ReadPropertyUtil.readProperty("barcode", confPath);	
 		String description1 = ReadPropertyUtil.readProperty("description1", confPath);
@@ -57,16 +59,18 @@ public class CopyProductTest extends DriverFactory {
 		String openingQuanity = ReadPropertyUtil.readProperty("openingQuanity", confPath);	
 		String openingValuation = ReadPropertyUtil.readProperty("openingValuation", confPath);			
 		// Create Page Object instance
-		LoginPage loginPage = new LoginPage(driver, wait);
+	//	LoginPage loginPage = new LoginPage(driver, wait);
 		HomePage homePage=new HomePage(driver, wait);
 		CreateProductPage createProductPage=new CreateProductPage(driver,wait);
 		// Access Test methods
-		loginPage.openURL(url);
-		loginPage.verifyPageTitle();
-		loginPage.verifyLoginPageElements();
-		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
-		homePage.verifyPageTitle();
+		/*
+		 * loginPage.openURL(url); loginPage.verifyPageTitle();
+		 * loginPage.verifyLoginPageElements();
+		 * loginPage.enterEmailandPassword(emailAddress, passWord);
+		 * loginPage.clickSignIn();
+		 */
+		
+		//homePage.verifyPageTitle();
 		homePage.clickProductsTab();
 		createProductPage.clickThreeDotsOnTrackedProduct();
 		createProductPage.clickCopyButton();

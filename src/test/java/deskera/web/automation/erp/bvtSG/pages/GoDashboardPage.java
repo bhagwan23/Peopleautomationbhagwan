@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import deskera.web.automation.core.SoftAssertListner;
 import io.qameta.allure.Step;
 
 public class GoDashboardPage {
@@ -19,24 +20,28 @@ public class GoDashboardPage {
 	private WebDriver driver;
 	private int timeout = 15;
 	private WebDriverWait wait;
+	private SoftAssertListner sAssert;
+
 
 	public GoDashboardPage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;
 		PageFactory.initElements(driver, this);
+		sAssert = new SoftAssertListner(driver);
+
 	}
 
 	/*******************************
 	 * GO DASHBOARD PAGE ELEMENTS LOCATORS
 	 *******************/
 	@FindBy(xpath = "//button[@class='wtf2-primary mr-3 wtf2-flat-button']/span/span[contains(text(),'START TRIAL')]")
-	@CacheLookup
+	
 	private WebElement startTrialBooksPopupButton;
 	@FindBy(xpath = "//button[@class='wtf2-primary wtf2-stroked-button']/span[contains(text(),'CANCEL')]")
-	@CacheLookup
+	
 	private WebElement cancelTrialBooksPopupButton;
 	@FindBy(xpath = "//span[contains(text(),'Deskera Books')]")
-	@CacheLookup
+	
 	private WebElement goToDeskeraBooksCard;
 
 	/***********************************
@@ -80,5 +85,6 @@ public class GoDashboardPage {
 		WDWait(startTrialBooksPopupButton);
 		WDWaitClickable(startTrialBooksPopupButton);
 		startTrialBooksPopupButton.click();
+		Thread.sleep(5000);
 	}
 }

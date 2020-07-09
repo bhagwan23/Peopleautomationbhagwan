@@ -37,7 +37,6 @@ public class SellPage {
 	 *******************/
 
 	@FindBy(xpath = "//h1[contains(.,'Sell Records')]")
-
 	private WebElement sellRecordsText;
 	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Quote Total')]")
 
@@ -74,6 +73,7 @@ public class SellPage {
 	private WebElement fullfillmentColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Quick Actions')]")
 
+
 	private WebElement quickActionsColumn;
 	private static String pageTitleText = "Deskera Books";
 
@@ -82,7 +82,6 @@ public class SellPage {
 	 *******************/
 
 	@FindBy(xpath = "//button[contains(.,'Save')]")
-
 	private WebElement saveButton;
 	@FindBy(xpath = "//h5[contains(.,'Quote Settings')]")
 
@@ -94,10 +93,12 @@ public class SellPage {
 
 	private WebElement globalCustomFields;
 	@FindBy(xpath = "//span[contains(.,'+ Add a contact')]")
+
 	private WebElement addContactButton;
 	@FindBy(xpath = "//input[contains(@placeholder,'Type here')]")
 	private WebElement contactSearchBox;
 	@FindBy(xpath = "//input[@formcontrolname='documentDate']")
+
 
 	private WebElement quoteDate;
 	@FindBy(xpath = "//input[@formcontrolname='fulfillmentDate']")
@@ -109,11 +110,13 @@ public class SellPage {
 	@FindBy(xpath = "(//span[@class='mat-option-text'])[2]")
 	private WebElement firstContact;
 	@FindBy(xpath = "//span[contains(.,'+ Add a Line Item')]")
+
 	private WebElement addLineItemButton;
 	@FindBy(xpath = "(//input[contains(@ng-reflect-placeholder,'Type here')])[1]")
 
 	private WebElement productSearchBox;
 	@FindBy(xpath = "(//span[contains(@class,'mat-option-text')])[1]")
+
 
 	private WebElement firstProduct;
 	@FindBy(xpath = "//textarea[@placeholder='Description Optional']")
@@ -132,6 +135,7 @@ public class SellPage {
 
 	private WebElement taxTextBox;
 	@FindBy(xpath = "(//div[@class='mat-form-field-infix']//div[@class='mat-input-element read-only-value'])[2]")
+
 
 	private WebElement totalAmount;
 	@FindBy(xpath = "//span[text()='Quotation has been saved successfully']")

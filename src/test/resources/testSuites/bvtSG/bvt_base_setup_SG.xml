@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite thread-count="1" name="Go.Deskera Web BVT Products Suite"
-	parallel="false" preserve-order="true">
+<suite thread-count="1"
+	name="Go.Deskera Web BVT Base Setup Test Suite" parallel="false"
+	preserve-order="true">
 
 	<listeners>
 		<listener
 			class-name="deskera.web.automation.core.TestListenerOnFailure">
 		</listener>
 	</listeners>
-
+	
 	<parameter name="browser" value="chrome"></parameter>
 
 	<!-- System config for framework -->
@@ -47,6 +48,7 @@
 	</test>
 
 	<test name=" 3 C20263 Add Non Tracked Product" parallel="false">
+
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -61,21 +63,8 @@
 		</classes>
 	</test>
 
-	<test name=" 4 Edit Product" parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
-				<methods>
-					<include name="loginTest"></include>
-				</methods>
-			</class>
-			<class
-				name="deskera.web.automation.erp.bvtSG.tests.EditProductTest">
-				<parameter name="conf"
-					value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
-			</class>
-		</classes>
-	</test>
-	<test name=" 5 C20262 Add Tracked Product" parallel="false">
+	<test name=" 4 C20262 Add Tracked Product" parallel="false">
+
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -89,22 +78,9 @@
 			</class>
 		</classes>
 	</test>
-	<test name=" 6 Copy Product" parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
-				<methods>
-					<include name="loginTest"></include>
-				</methods>
-			</class>
-			<class
-				name="deskera.web.automation.erp.bvtSG.tests.CopyProductTest">
-				<parameter name="conf"
-					value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
-			</class>
-		</classes>
-	</test>
-	<test name=" 7 C21022 Add Bills Of Material Product"
+	<test name=" 5 C21022 Add Bills Of Material Product"
 		parallel="false">
+
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -118,7 +94,8 @@
 			</class>
 		</classes>
 	</test>
-	<test name=" 8 Delete Product" parallel="false">
+	<test name="6 C20261 Add Contacts" parallel="false">
+
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -126,35 +103,14 @@
 				</methods>
 			</class>
 			<class
-				name="deskera.web.automation.erp.bvtSG.tests.DeleteProductTest">
-				<parameter name="conf"
-					value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
-			</class>
-		</classes>
-	</test>
-	<test name=" 9 Create Custom Number Format" parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				name="deskera.web.automation.erp.bvtSG.tests.ContactsTest">
 				<methods>
-					<include name="loginTest"></include>
+					<parameter name="conf"
+						value="src/test/resources/bvtSGConfig/TestDataContactSG.config"></parameter>
+					<include name="addContacts"></include>
+					<include name="addContacts1"></include>
+
 				</methods>
-			</class>
-			<class
-				name="deskera.web.automation.erp.bvtSG.tests.CreateCustomNumberFormat">
-				<parameter name="conf"
-					value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
-			</class>
-		</classes>
-	</test>
-	<test name=" 10 C20425 Add Demo Company" parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
-				<methods>
-					<include name="loginTest"></include>
-				</methods>
-			</class>
-			<class
-				name="deskera.web.automation.erp.bvtSG.tests.AddDemoCompanyTest">
 			</class>
 		</classes>
 	</test>

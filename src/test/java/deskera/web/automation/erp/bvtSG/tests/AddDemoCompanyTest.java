@@ -42,11 +42,12 @@ public class AddDemoCompanyTest extends DriverFactory {
 		HomePage homePage=new HomePage(driver, wait);
 	
 		// Access Test methods
-		loginPage.openURL(url);
-		loginPage.verifyPageTitle();
-		loginPage.verifyLoginPageElements();
-		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
+		/*
+		 * loginPage.openURL(url); loginPage.verifyPageTitle();
+		 * loginPage.verifyLoginPageElements();
+		 * loginPage.enterEmailandPassword(emailAddress, passWord);
+		 * loginPage.clickSignIn();
+		 */
 		homePage.verifyPageTitle();
 		homePage.clickGettingStartedButton();
 		homePage.clickDemoCompany();

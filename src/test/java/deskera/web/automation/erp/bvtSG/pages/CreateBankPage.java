@@ -33,6 +33,7 @@ public class CreateBankPage {
 		PageFactory.initElements(driver, this);
 	}
 
+
 	/*******************************
 	 * CREATE BANK PAGE ELEMENTS LOCATORS
 	 *******************/

@@ -42,7 +42,7 @@ public class EditChartOfAccountsPage {
 	@FindBy(xpath= "//input[@placeholder='Search Records']")	
 	private WebElement searchRecord;
 
-	@FindBy(xpath = "//mat-row[1]//mat-cell[7]//button[1]//span[1]//mat-icon[1]")
+	@FindBy(xpath = "//mat-table[1]/mat-row[1]//mat-cell[7]//button[1]//span[1]//mat-icon[1]")
 	private WebElement contextMenuIcon;
 	
 	@FindBy(xpath = "//button[contains(text(),'Edit')]")
@@ -126,6 +126,7 @@ public class EditChartOfAccountsPage {
 	
 	@Step("Click on Context Menu icon")
 	public void clickContextMenuIcon() throws InterruptedException{
+		Thread.sleep(1000);
 		WDWait(contextMenuIcon);
 		wait.until(ExpectedConditions.elementToBeClickable(contextMenuIcon));
 		contextMenuIcon.isDisplayed();

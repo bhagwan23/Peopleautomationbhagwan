@@ -34,20 +34,13 @@ public class CreateNewOrderTest extends DriverFactory {
 	@Test()
 	@Description(value = "C21096 To verify that user is able to Create/Receive/Pay - Bill")
 	public void createOrderTest() throws InterruptedException {
-		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
-
+	
 		String contactName = ReadPropertyUtil.readProperty("ContactName", confPath);
 		String productName = ReadPropertyUtil.readProperty("ProductName", confPath);
 
 		String quantity = ReadPropertyUtil.readProperty("quantity", confPath);
 		String discount = ReadPropertyUtil.readProperty("discount", confPath);
 		
-		// Create login Page Object instance
-		LoginPage loginPage = new LoginPage(driver, wait);
-		loginPage.openURL(url);
-		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
 		
 		// Create buy Page Object instance
 		BuyPage buy= new BuyPage(driver, wait);

@@ -37,7 +37,7 @@ public class EditContactPage {
 
 	/******************************* EDIT CONTACT PAGE ELEMENTS LOCATORS *******************/
 	@FindBy(xpath = "//mat-row[1]//mat-cell[8]//button[1]//mat-icon[1]")
-	@CacheLookup
+	
 
 	private WebElement contextMenuIcon;
 	@FindBy(xpath= "//button[contains(text(),'Edit')]")
@@ -76,15 +76,15 @@ public class EditContactPage {
 	private WebElement country;
 	
 	@FindBy(xpath= "//span[@class='field-value add-address']")
-	@CacheLookup
+	
 	private WebElement addAnotherAddress;
 
 	@FindBy(xpath= "//div[contains(text(),'Current Billing Address')]")
-	@CacheLookup
+	
 	private WebElement currentBillingAddress;
 
 	@FindBy(xpath= "//div[contains(text(),'Current Shipping Address')]")
-	@CacheLookup
+	
 	private WebElement currentShippingAddress;
 	
 	@FindBy(xpath= "//span[contains(text(),'Save Changes')]")
@@ -101,38 +101,38 @@ public class EditContactPage {
 	
 	private WebElement searchRecord;
 	@FindBy(xpath= "//mat-table//mat-row[@class='mat-row ng-star-inserted']//mat-cell[3]")
-	@CacheLookup
+	
 
 	private WebElement enteredName;
 	@FindBy(xpath= "//div[contains(text(),'Contact Name')]/following-sibling::div[@class='field-value']")
-	@CacheLookup
+	
 	private WebElement contactName;
 	@FindBy(xpath= "//div[contains(text(),'Contact UEN')]/following-sibling::div[@class='field-value']")
-	@CacheLookup
+	
 	private WebElement uENnumber;
 	@FindBy(xpath="//div[contains(text(),'Tax Number')]/following-sibling::div[@class='field-value']")
-	@CacheLookup
+	
 	private WebElement tax;
 	@FindBy(xpath="//div[contains(text(),'Currency')]/following-sibling::div[@class='field-value']")
-	@CacheLookup
+	
 	private WebElement contactCurrency;
 	@FindBy(xpath= "//div[contains(text(),'Purchase Account')]/following-sibling::div[@class='field-value']")
-	@CacheLookup
+	
 	private WebElement accPayable;
 	@FindBy(xpath= "//div[contains(text(),'Sales Account')]/following-sibling::div[@class='field-value']")
-	@CacheLookup
+	
 	private WebElement accReceivable;
 	@FindBy(xpath="//div[@class='section-container py-4']//div[4]//div[1]/following-sibling::div[@class='field-value']")
-	@CacheLookup
+	
 	private WebElement buyPaymentTerm;
 	@FindBy(xpath="//div[@class='section-container py-4']//div[7]//div[1]/following-sibling::div[@class='field-value']")
-	@CacheLookup
+	
 	private WebElement sellPaymentTerm;
 	@FindBy(xpath="//*[@id='container-1']/dt-navbar/div/div[1]/button/div/span")
-	@CacheLookup
+	
 	private WebElement companyOrg;
 	@FindBy(xpath="//div[contains(text(),'Contact Organisation')]/following-sibling::div[@class='field-value']")
-	@CacheLookup
+	
 	private WebElement contactOrg;
 	String organization;
 

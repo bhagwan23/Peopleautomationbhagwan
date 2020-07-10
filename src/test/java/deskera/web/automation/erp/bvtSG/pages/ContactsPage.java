@@ -125,13 +125,13 @@ public class ContactsPage {
 	
 	private WebElement country;
 	@FindBy(xpath="//div[contains(text(),'Set as Current Billing Address')]")
-	@CacheLookup	
+		
 	private WebElement setAsCurrentBillingAddress;
 	@FindBy(xpath="//div[contains(text(),'Set as Current Shipping Address')]")
-	@CacheLookup
+	
 	private WebElement setAsCurrentShippingAddress;
 	@FindBy(xpath="//span[@class='field-value add-address']")
-	@CacheLookup
+	
 	private WebElement addAnotherAddress;
 	@FindBy(xpath= "//button[@class='mat-flat-button mat-button-base mat-primary']")
 	
@@ -166,7 +166,7 @@ public class ContactsPage {
 	
 	private WebElement tax;
 	@FindBy(xpath="//div[contains(text(),'Currency')]/following-sibling::div[@class='field-value']")
-	@CacheLookup
+	
 	private WebElement contactCurrency;
 	@FindBy(xpath= "//div[contains(text(),'Purchase Account')]/following-sibling::div[@class='field-value']")
 	
@@ -175,37 +175,37 @@ public class ContactsPage {
 	
 	private WebElement accReceivable;
 	@FindBy(xpath="//div[@class='section-container py-4']//div[4]//div[1]/following-sibling::div[@class='field-value']")
-	@CacheLookup
+	
 	private WebElement buyPaymentTerm;
 	@FindBy(xpath="//div[@class='section-container py-4']//div[7]//div[1]/following-sibling::div[@class='field-value']")
-	@CacheLookup
+	
 	private WebElement sellPaymentTerm;
 
 	@FindBy(xpath= "//mat-table//mat-row[@class='mat-row ng-star-inserted']//mat-cell[3]")
-	@CacheLookup
+	
 	private WebElement enteredName;
 	
 	@FindBy(xpath="//*[@id='container-1']/dt-navbar/div/div[1]/button/div/span")
-	@CacheLookup
+	
 	private WebElement companyOrg;
 	@FindBy(xpath="//div[contains(text(),'Contact Organisation')]/following-sibling::div[@class='field-value']")
-	@CacheLookup
+	
 	private WebElement contactOrg;
 	
 	@FindBy(xpath="//div[contains(text(),'Accounts Receivable')]")
-	@CacheLookup
+	
 	private WebElement enteredpurchaseAccount;
 	@FindBy(xpath= "//div[@class='section-container py-4']//div[4]//div[2]")
-	@CacheLookup
+	
 	private WebElement enteredPaymentTerms;
 	String buyAccount,sellAccount;
 
 	@FindBy(xpath= "//input[@placeholder='Search Records']")
-	@CacheLookup
+	
 	private WebElement searchRecord;
 	
 	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/div[2]/div[2]/div[1]/span[2]")
-	@CacheLookup
+	
 	private WebElement allSummaryCount;
 	
 	String organization;
@@ -223,46 +223,46 @@ public class ContactsPage {
 	private WebElement customNumberFormat;
 
 	@FindBy(xpath = "//mat-label[contains(.,'Preview')]")
-	@CacheLookup
+	
 	private WebElement previewLabel;
 	@FindBy(xpath = "//div//div[contains(@class,'result mt')]")
-	@CacheLookup
+	
 	private WebElement previewBox;
 	@FindBy(xpath = "//input[@placeholder='Enter prefix']")
-	@CacheLookup
+	
 	private WebElement prefixTextBox;
 	@FindBy(xpath = "(//div[@class='mat-select-arrow'])[2]")
-	@CacheLookup
+	
 	private WebElement separatorDropdown;
 	@FindBy(xpath = "//input[@placeholder='Enter display digits']")
-	@CacheLookup
+	
 	private WebElement displayDigits;
 	@FindBy(xpath = "(//div[@class='mat-select-arrow'])[3]")
-	@CacheLookup
+	
 	private WebElement separatorDropdownAfterDigits;
 	@FindBy(xpath = "//input[contains(@placeholder,'Enter suffix')]")
-	@CacheLookup
+	
 	private WebElement suffixTextBox;
 	@FindBy(xpath = "//div[@class='mat-checkbox-inner-container']//following::span[contains(.,'Set as Default ')]")
-	@CacheLookup
+	
 	private WebElement setAsDefault;
 	@FindBy(xpath= "//span[contains(text(),'Cancel')]")
-	@CacheLookup
+	
 	private WebElement cusomNumberFormatCancelButton;
 	@FindBy(xpath = "(//button[contains(.,'Save')])[2]")
-	@CacheLookup
+	
 	private WebElement customNumberFormatSaveButton;
 	@FindBy(xpath = "//span[@class='mat-option-text'][contains(.,'-')]")
-	@CacheLookup
+	
 	private WebElement hyphen;
 	@FindBy(xpath = "//span[@class='mat-option-text'][contains(.,'-')]")
-	@CacheLookup
+	
 	private WebElement hypenAfterDigits;
 	@FindBy(xpath = "//input[contains(@placeholder,'Auto-Numbering Format')]")
-	@CacheLookup
+	
 	private WebElement autoNumberingformat;
 	@FindBy(xpath = "//div[@class='section-container pb-4']//div[3]//div[1]/following-sibling::div[@class='field-value']")
-	@CacheLookup
+	
 	private WebElement displayedNumber;
 	String customFormatNumber="U-0001-R";
 

@@ -33,20 +33,14 @@ public class ArchiveOrderTest extends DriverFactory {
 	@Test()
 	@Description(value = "C20299 To verify user should be able to Archive/Reopen Order or Bill")
 	public void archiveOrderTest() throws InterruptedException {
-		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
-
+		
 		String contactName = ReadPropertyUtil.readProperty("ContactName", confPath);
 		String productName = ReadPropertyUtil.readProperty("ProductName", confPath);
 
 		String quantity = ReadPropertyUtil.readProperty("quantity", confPath);
 		String discount = ReadPropertyUtil.readProperty("discount", confPath);
 
-		// Create login Page Object instance
-		LoginPage loginPage = new LoginPage(driver, wait);
-		loginPage.openURL(url);
-		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
+		
 
 		// Create buy Page Object instance
 		BuyPage buy = new BuyPage(driver, wait);

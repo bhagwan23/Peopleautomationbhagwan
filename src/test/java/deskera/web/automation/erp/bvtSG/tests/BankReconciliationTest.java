@@ -17,7 +17,7 @@ import io.qameta.allure.Description;
 
 public class BankReconciliationTest extends DriverFactory {
 
-	String confPath, url;
+	String confPath, url,confProductsPath,confContactsPath;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
 
 	/**
@@ -27,10 +27,12 @@ public class BankReconciliationTest extends DriverFactory {
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "environment" })
-	public void getConf(String conf, String URL) {
+	@Parameters({ "conf", "environment","confProducts","confContacts"})
+	public void getConf(String conf, String URL,String confProducts,String confContacts) {
 		confPath = conf;
 		url = URL;
+		confProductsPath=confProducts;
+		confContactsPath=confContacts;
 	}
 
 	@TestRailId(testRailId = 20274)
@@ -41,31 +43,35 @@ public class BankReconciliationTest extends DriverFactory {
 		String unitPrice = ReadPropertyUtil.readProperty("unitPrice", confPath);
 		String firstTransactionDate = ReadPropertyUtil.readProperty("firstTransactionDate", confPath);
 		String secondTransactionDate = ReadPropertyUtil.readProperty("secondTransactionDate", confPath);
+		String trackedProductName = ReadPropertyUtil.readProperty("trackedProductName", confProductsPath);	
+		String contactName = ReadPropertyUtil.readProperty("ContactName", confContactsPath);
 		// Create login Page Object instance
 		CreateBankPage bank = new CreateBankPage(driver, wait);
 		HomePage homePage = new HomePage(driver, wait);
 		SellPage sellPage = new SellPage(driver, wait);
-		
 		bank.clickOnBanktab();
 		bank.clickthreeDots();
 		bank.clickreconciliationButton();
 		bank.writeDate(confPath);
 		homePage.clickSellTab();
 		sellPage.clickNewInvoiceButton();
-		sellPage.selectContact();
-		sellPage.selectProduct();
+		sellPage.selectContact(contactName);
+		sellPage.selectProduct(trackedProductName);
 		sellPage.enterProductDetailsForInvoice(unitPrice);
 		sellPage.clickSaveButton();
 		sellPage.verifyCreateInvoiceSuccessMessage();
 		sellPage.clickNewInvoiceButton();
-		sellPage.selectContact();
-		sellPage.selectProduct();
+
+		sellPage.selectContact(contactName);
+		sellPage.selectProduct(trackedProductName);
 		sellPage.enterProductDetailsForInvoice(unitPrice);
 		sellPage.clickSaveButton();
+
 		sellPage.receivePaymentForFirstInvoce(firstTransactionDate);
 		sellPage.clickReceiveButton();
 		sellPage.receivePaymentForSecondInvoce(secondTransactionDate);
 		sellPage.clickReceiveButton();
+
 		bank.clickCollapseIcon();
 		bank.clickOnBanktab();
 		bank.clickthreeDots();
@@ -76,5 +82,8 @@ public class BankReconciliationTest extends DriverFactory {
 		bank.clickMatchButton();
 		bank.clickNextButton();
 		bank.verifyTwoTransactionsOnConfirmPage();
+		bank.clicSaveAndReconcileButton();
+		bank.clicSaveButtonOnConfirmPage();
+		bank.verifyReconcileSuccessMessage();
 	}
 }

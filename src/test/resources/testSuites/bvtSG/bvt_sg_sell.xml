@@ -15,10 +15,45 @@
 		value="src/test/resources/systemConfig/environment.config"></parameter>
 	<parameter name="conf"
 		value="src/test/resources/bvtSGConfig/Common.config"></parameter>
+	<parameter name="confProducts"
+		value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
+	<parameter name="confContacts"
+		value="src/test/resources/bvtSGConfig/TestDataContactSG.config"></parameter>
 
 
 
 	<!-- Run Test Cases -->
+
+		
+	<!--   <test name=" 1 Create Quote " parallel="false">
+		<classes>
+		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+			<class name="deskera.web.automation.erp.bvtSG.tests.CreateQuoteTest">
+			<parameter name="conf"
+					value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
+			</class>
+		</classes>
+	</test>    --> 
+	
+	<!--  <test name=" 2 Create Invoice" parallel="false">
+		<classes>
+		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+			<class name="deskera.web.automation.erp.bvtSG.tests.CreateInvoiceTest">
+			<parameter name="conf"
+					value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
+			</class>
+		</classes>
+	</test>   
+	 -->
+	    
 
 	<!-- <test name=" 1 Create Quote " parallel="false"> <classes> <class name="deskera.web.automation.erp.bvtSG.tests.CreateQuoteTest"> 
 		</class> </classes> </test> -->
@@ -30,7 +65,6 @@
 					<include name="loginTest"></include>
 				</methods>
 			</class>
-
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.CreateBankTest">
 				<parameter name="conf"
@@ -43,21 +77,18 @@
 	<test name="3 Bank Reconciliation" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+
 				<methods>
 					<include name="loginTest"></include>
 				</methods>
 			</class>
 
-			<class
-				name="deskera.web.automation.erp.bvtSG.tests.BankReconciliationTest">
-				<parameter name="conf"
+			<class name="deskera.web.automation.erp.bvtSG.tests.BankReconciliationTest">
+			<parameter name="conf"
 					value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
-
 			</class>
 		</classes>
 	</test>
-
-
 
 
 </suite> 

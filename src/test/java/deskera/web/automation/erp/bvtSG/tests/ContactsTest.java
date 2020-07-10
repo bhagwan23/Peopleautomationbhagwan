@@ -32,6 +32,7 @@ public class ContactsTest extends DriverFactory {
 	@TestRailId(testRailId = 20261)
 	@Test
 	@Description(value = "C20261 To verify that user is able to Add contacts")
+
 	public void addContacts() throws InterruptedException {
 		/*
 		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
@@ -41,6 +42,9 @@ public class ContactsTest extends DriverFactory {
 		String contactMail = ReadPropertyUtil.readProperty("contactMail", confPath);
 		String UENNumber = ReadPropertyUtil.readProperty("UEN_Number", confPath);
 		String TAXNumber = ReadPropertyUtil.readProperty("TAX_Number", confPath);
+		String currency= ReadPropertyUtil.readProperty("currency", confPath);
+		String paymentTerms= ReadPropertyUtil.readProperty("paymentTerms", confPath);
+
 		String address = ReadPropertyUtil.readProperty("address", confPath);
 		String state = ReadPropertyUtil.readProperty("state", confPath);
 		String postal = ReadPropertyUtil.readProperty("postal", confPath);
@@ -58,6 +62,7 @@ public class ContactsTest extends DriverFactory {
 		// contactsPage.verifyPageTitle();
 		contactsPage.verifyContactElements();
 		contactsPage.clickContactsButton();
+
 		// contactsPage.clickPopup();
 		contactsPage.clickAddContactButton();
 		contactsPage.enterGeneralInfo(name, contactMail, UENNumber, TAXNumber);
@@ -67,8 +72,11 @@ public class ContactsTest extends DriverFactory {
 		contactsPage.clickSaveButton();
 		contactsPage.verifyContactCreatedSucessMessage();
 		contactsPage.clickContactsButton();
-		contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber);
-		// contactsPage.allSummaryCount();
+		contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber,currency, paymentTerms);
+		contactsPage.clickContactsButton();
+		contactsPage.allSummaryCountForFirstContact();
+
+
 	}
 
 	@TestRailId(testRailId = 20261)
@@ -80,8 +88,10 @@ public class ContactsTest extends DriverFactory {
 		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
 		 */
 		// Create login Page Object instance
+
 		/*
-		 * LoginPage loginPage = new LoginPage(driver, wait); loginPage.openURL(url);
+		 * LoginPage loginPage = new LoginPage(driver, wait); 
+		 * loginPage.openURL(url);
 		 * loginPage.enterEmailandPassword(emailAddress, passWord);
 		 * loginPage.clickSignIn();
 		 */
@@ -89,6 +99,9 @@ public class ContactsTest extends DriverFactory {
 		String contactMail = ReadPropertyUtil.readProperty("contactMail1", confPath);
 		String UENNumber = ReadPropertyUtil.readProperty("UEN_Number", confPath);
 		String TAXNumber = ReadPropertyUtil.readProperty("TAX_Number", confPath);
+		String currency= ReadPropertyUtil.readProperty("currency", confPath);
+		String paymentTerms= ReadPropertyUtil.readProperty("paymentTerms", confPath);
+		
 		String address = ReadPropertyUtil.readProperty("address", confPath);
 		String state = ReadPropertyUtil.readProperty("state", confPath);
 		String postal = ReadPropertyUtil.readProperty("postal", confPath);
@@ -104,8 +117,10 @@ public class ContactsTest extends DriverFactory {
 		contactsPage.clickSaveButton();
 		contactsPage.verifyContactCreatedSucessMessage();
 		contactsPage.clickContactsButton();
-		contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber);
+		contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber,currency, paymentTerms);
 		contactsPage.clickContactsButton();
-		contactsPage.allSummaryCount();
-	}
-}
+		contactsPage.allSummaryCountForSecondContact();
+
+
+	}}
+

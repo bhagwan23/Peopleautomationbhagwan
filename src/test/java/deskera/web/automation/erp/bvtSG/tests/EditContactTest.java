@@ -46,6 +46,8 @@ public class EditContactTest extends DriverFactory {
 		String UENNumber= ReadPropertyUtil.readProperty("UpdatedUEN_Number", confPath);
 		String TAXNumber= ReadPropertyUtil.readProperty("UpdatedTAX_Number", confPath);
 		String email= ReadPropertyUtil.readProperty("UpdatedcontactMail1", confPath);
+		String currency= ReadPropertyUtil.readProperty("currency", confPath);
+		String paymentTerms= ReadPropertyUtil.readProperty("paymentTerms", confPath);
 		
 		String address= ReadPropertyUtil.readProperty("Updatedaddress", confPath);
 		String state= ReadPropertyUtil.readProperty("Updatedstate", confPath);
@@ -73,6 +75,9 @@ public class EditContactTest extends DriverFactory {
 		editcontact.editAddressInfo(address, state, postal, city, country);
 		editcontact.clickSaveChangeButton();
 		editcontact.verifysuccessmessage();
-		contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber);
+		//contactsPage.clickContactsButton();
+		Thread.sleep(3000);
+		editcontact.verifyEditedContact(name, UENNumber, TAXNumber, currency, paymentTerms);
+		//contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber,currency, paymentTerms);
 	}
 }

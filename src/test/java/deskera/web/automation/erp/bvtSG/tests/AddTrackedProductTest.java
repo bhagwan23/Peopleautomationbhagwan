@@ -49,7 +49,7 @@ public class AddTrackedProductTest extends DriverFactory{
 		String salesPrice = ReadPropertyUtil.readProperty("salesPrice", confPath);	
 		String openingQuanity = ReadPropertyUtil.readProperty("openingQuanity", confPath);	
 		String openingValuation = ReadPropertyUtil.readProperty("openingValuation", confPath);
-		String defaultPurchaseAccount = ReadPropertyUtil.readProperty("defaultPurchaseAccount", confPath);	
+		String defaultPurchaseAccount_Tracked = ReadPropertyUtil.readProperty("defaultPurchaseAccount_Tracked", confPath);	
 		String defaultPurchasePrice = ReadPropertyUtil.readProperty("defaultPurchasePrice", confPath);	
 		String defaultPurchaseTax = ReadPropertyUtil.readProperty("defaultPurchaseTax", confPath);	
 		String defaultSalesAccount = ReadPropertyUtil.readProperty("defaultSalesAccount", confPath);	
@@ -88,7 +88,7 @@ public class AddTrackedProductTest extends DriverFactory{
 		createProductPage.clickAccountingTab();
 		createProductPage.verifyPurchaseAccountDropdownValues();
 		createProductPage.verifySalesAccountDropdownValues();
-		createProductPage.verifyAccountingTab(defaultPurchaseAccount,defaultPurchasePrice,defaultPurchaseTax, defaultSalesAccount, defaultSalesPrice,defaultSalesTax);
+		createProductPage.verifyAccountingTab(defaultPurchaseAccount_Tracked,defaultPurchasePrice,defaultPurchaseTax, defaultSalesAccount, defaultSalesPrice,defaultSalesTax);
 		createProductPage.enterAccountingInfo(purchasePrice, salesPrice);
 		createProductPage.clickInventoryTab();
 		createProductPage.verifyInventoryTabForTrackedProduct(defaultUnitOfMeasurement,defaultCostOfGoodSoldAccount,defaultInventoryAccount,defaultStockAdjustmentAccount);
@@ -96,7 +96,7 @@ public class AddTrackedProductTest extends DriverFactory{
 		createProductPage.clickSaveButton();
 		createProductPage.verifyCreateProductSuccessMessage();
 		createProductPage.verifyTrackedProductCount();
-		createProductPage.verifyCreatedTrackedProduct(trackedProductName, description,barcode,defaultPurchaseAccount,purchasePrice,defaultSalesAccount,salesPrice,defaultPurchaseTax,defaultSalesTax);
+		createProductPage.verifyCreatedTrackedProduct(trackedProductName, description,barcode,defaultPurchaseAccount_Tracked,purchasePrice,defaultSalesAccount,salesPrice,defaultPurchaseTax,defaultSalesTax);
 		createProductPage.verifyInventoryDetailsForCreatedTrackedProduct(defaultUnitOfMeasurement, defaultCostOfGoodSoldAccount, defaultInventoryAccount, defaultStockAdjustmentAccount, defaultWarehouseCode, openingQuanity, openingValuation);
  }
 }

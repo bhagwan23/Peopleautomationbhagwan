@@ -52,9 +52,23 @@
 		</classes>
 	</test>
 
+ 	<test name="2 Edit COA" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
 
-
-
-
+			<class
+				name="deskera.web.automation.erp.coa.tests.EditChartOfAccountsTest">
+				<methods>
+				<parameter name="conf"
+						value="src/test/resources/bvtSGConfig/TestDataCOASG.config"></parameter>
+					<include name="editChartOfAccounts"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
 
 </suite> 

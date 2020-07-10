@@ -26,7 +26,7 @@ public class AppStorePage {
 
 	/******************************* CREATE BANK PAGE ELEMENTS LOCATORS *******************/
 	@FindBy(xpath= "//*[@id='container-1']/dt-navbar/div/ul/li[12]/a")
-	@CacheLookup
+	
 	private WebElement appsTab;
 	private static String pageTitleText = "Deskera - App Store";
 

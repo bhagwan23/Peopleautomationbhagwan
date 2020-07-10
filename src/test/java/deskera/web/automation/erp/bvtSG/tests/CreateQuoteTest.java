@@ -25,34 +25,36 @@ public class CreateQuoteTest extends DriverFactory{
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "url" })
+	@Parameters({ "conf", "environment" })
 	public void getConf(String conf, String URL) {
 		confPath = conf;
 		url = URL;
 	}
 	
-
 	@TestRailId(testRailId = 21099)
 	@Test()
 	@Description(value = "C21099 To verify that user is able to Create/Fulfill/Invoice/ - Quote")
 	public void createQuoteTest() throws InterruptedException {
 		// Read test specific data from config
-		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
+		/*
+		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
+		 */
 		String quantity = ReadPropertyUtil.readProperty("quantity", confPath);
 		String discount = ReadPropertyUtil.readProperty("discount", confPath);
 		// Create Page Object instance
-		LoginPage loginPage = new LoginPage(driver, wait);
+	//	LoginPage loginPage = new LoginPage(driver, wait);
 		HomePage homePage=new HomePage(driver, wait);
 		SellPage sellPage=new SellPage(driver, wait);
 		
 		// Access Test methods
-		loginPage.openURL(url);
-		loginPage.verifyPageTitle();
-		loginPage.verifyLoginPageElements();
-		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
-		homePage.verifyPageTitle();
+		/*
+		 * loginPage.openURL(url); loginPage.verifyPageTitle();
+		 * loginPage.verifyLoginPageElements();
+		 * loginPage.enterEmailandPassword(emailAddress, passWord);
+		 * loginPage.clickSignIn();
+		 */
+	//	homePage.verifyPageTitle();
 		homePage.clickSellTab();
 		sellPage.verifyPageTitle();
 		sellPage.verifySellPageElements();
@@ -65,7 +67,9 @@ public class CreateQuoteTest extends DriverFactory{
 		
 		//sellPage.verifyTotalAmount();
 		sellPage.verifyTotalAmount1();
-		sellPage.clickSaveButtont();
+		sellPage.clickSaveButton();
+		sellPage.verifyCreateQuoteSuccessMessage();
+		sellPage.verifyCreatedQuote();
 	
 		
 		

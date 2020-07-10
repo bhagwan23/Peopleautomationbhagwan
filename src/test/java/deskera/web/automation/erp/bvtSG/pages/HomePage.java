@@ -11,91 +11,96 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import deskera.web.automation.core.SoftAssertListner;
 import io.qameta.allure.Step;
 
 public class HomePage {
 	
 	private WebDriver driver;
 	private WebDriverWait wait;
+	private SoftAssertListner sAssert;
+
 	
 	public HomePage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;
 		PageFactory.initElements(driver, this);	
+		sAssert = new SoftAssertListner(driver);
+
 	}
 	
 	/******************************* Create Org  PAGE ELEMENTS LOCATORS *******************/
 
 	@FindBy(xpath = "//button[contains(.,'Getting Started')]")
-	@CacheLookup
+	
 	private WebElement gettingStartedButton;
 	@FindBy(xpath = "//button[contains(text(),'Demo Company')]")
-	@CacheLookup
+	
 	private WebElement demoCompanyButton;
 	@FindBy(xpath = "//span[text()='Switched to Demo Organization']")
-	@CacheLookup
+	
 	private WebElement switchedToDemoCompanySuccessMessage;
 	@FindBy(xpath = "//span[text()='Demo Company(SG)']")
-	@CacheLookup
+	
 	private WebElement demoCompanyName;
 	@FindBy(xpath = "//input[contains(@formcontrolname,'countryLookupCode')]")
-	@CacheLookup
+	
 	private WebElement taxResidency;
 	@FindBy(xpath = "//span[contains(.,'Singapore')]")
-	@CacheLookup
+	
 	private WebElement singaporeTaxResidency;
 	@FindBy(xpath = "//input[@formcontrolname='financialStartDate']")
-	@CacheLookup
+	
 	private WebElement financialStartDate;
 	@FindBy(xpath = "//input[@formcontrolname='bookBeginningStartDate']")
-	@CacheLookup
+	
 	private WebElement bookBeginningDate;
 	@FindBy(xpath = "//input[contains(@formcontrolname,'address1')]")
-	@CacheLookup
+	
 	private WebElement addressLine1;
 	@FindBy(xpath = "//input[@formcontrolname='address2']")
-	@CacheLookup
+	
 	private WebElement addressLine2;
 	@FindBy(xpath = "//input[@formcontrolname='city']")
-	@CacheLookup
+	
 	private WebElement city;
 	@FindBy(xpath = "//input[@formcontrolname='state']")
-	@CacheLookup
+	
 	private WebElement state;
 	@FindBy(xpath = "//input[@placeholder='Zip Code']")
-	@CacheLookup
+	
 	private WebElement zipcode;
 	@FindBy(xpath = "//input[@formcontrolname='gstNo']")
-	@CacheLookup
+	
 	private WebElement gstNo;
 	@FindBy(xpath = "//input[@formcontrolname='uenNo']")
-	@CacheLookup
+	
 	private WebElement uenNo;
 	@FindBy(xpath = "//button[contains(.,'Save')]")
-	@CacheLookup
+	
 	private WebElement saveButton;
 	@FindBy(xpath = "//span[contains(text(),'Organization Added Successfully')]")
-	@CacheLookup
+	
 	private WebElement OrgCreationSuccessMessage;	
 	@FindBy(xpath = "(//button[contains(.,'Skip')])[2]")
-	@CacheLookup
+	
 	private WebElement skipButton;	
 	private static String pageTitleText = "Deskera Books";
 	
 	
 	/******************************* HOMEPAGE ELEMENTS LOCATORS *******************/
 	@FindBy(xpath = "//span[@class='ng-star-inserted'][contains(.,'Sell')]")
-	@CacheLookup
+	
 	private WebElement sellTab;
 	
 	@FindBy(xpath = "//span[contains(.,'Products')]")
-	@CacheLookup
+	
 	private WebElement productsTab;
 	@FindBy(xpath = "//span[contains(text(),'Settings')]")
-	@CacheLookup
+	
 	private WebElement settingTab;
 	@FindBy(xpath = "//span[contains(.,'Users')]")
-	@CacheLookup
+	
 	private WebElement usersTab;
 	
 	
@@ -160,7 +165,7 @@ public class HomePage {
 	public void verifyCreateOrgSuccessMessage(){
 		WDWait(OrgCreationSuccessMessage);
 		OrgCreationSuccessMessage.isDisplayed();
-		wait.until(ExpectedConditions.invisibilityOf(OrgCreationSuccessMessage));
+		sAssert.assertTrue(wait.until(ExpectedConditions.visibilityOf(OrgCreationSuccessMessage)) != null);
 	}
 	
 	@Step("Click On Skip Button")
@@ -250,9 +255,10 @@ public class HomePage {
 		Thread.sleep(3000); // THis is important because popup gets loaded and
 							// then disappears
 		// driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click();
-		for (int second = 0; second <= 10; second++) {
-			if (second == 10) {
+		for (int second = 0; second <= 5; second++) {
+			if (second == 5) {
 				System.out.println("Popup Not found clickin on new Contact Button");
+
 				break;
 			}
 			try {

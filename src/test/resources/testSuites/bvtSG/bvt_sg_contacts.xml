@@ -19,19 +19,34 @@
 	<!-- <parameter name="singUpUrl" value="https://auth-qa.deskera.xyz/auth/signup"></parameter> -->
 	<!-- Run Test Cases -->
 	<parameter name="conf"
+		value="src/test/resources/bvtSGConfig/Common.config"></parameter>
 
-		value="src/test/resources/bvtSGConfig/TestDataContactSG.config"></parameter>
 
 
+<<<<<<< HEAD
 	  
 <!--  
 	<test name="1 Sign Up without Phone Number test" parallel="false">
+=======
+
+	<!-- <test name="1 Sign Up without Phone Number test" parallel="false"> 
+		<classes> <class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest"> 
+		<methods> <include name="testSignUpWithoutPhoneNumber"></include> </methods> 
+		</class> </classes> </test> <test name="2 Sign In" parallel="false"> <classes> 
+		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest"> </class> 
+		</classes> </test> <test name="3 Create Organization" parallel="false"> <classes> 
+		<class name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest"> 
+		</class> </classes> </test> -->
+	<test name="1 C20261 Add Contacts" parallel="false">
+
+>>>>>>> master
 		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
-					<include name="testSignUpWithoutPhoneNumber"></include>
+					<include name="loginTest"></include>
 				</methods>
 			</class>
+<<<<<<< HEAD
 		</classes>
 	</test>
 
@@ -61,14 +76,34 @@
 				<methods>
 					  <include name="addContacts"></include>
 					  <include name="addContacts1"></include>
+=======
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.ContactsTest">
+				<methods>
+					<parameter name="conf"
+						value="src/test/resources/bvtSGConfig/TestDataContactSG.config"></parameter>
+					<include name="addContacts"></include>
+					<include name="addContacts1"></include>
+>>>>>>> master
 
 				</methods>
 			</class>
 		</classes>
 	</test>
+<<<<<<< HEAD
   
 	<test name="5 C20261 Edit Contacts" parallel="false">
+=======
+
+	<test name="2 C20261 Edit Contacts" parallel="false">
+>>>>>>> master
 		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.EditContactTest">
 				<methods>
@@ -77,9 +112,20 @@
 			</class>
 		</classes>
 	</test>
+<<<<<<< HEAD
   
 	<test name="6 C20261 Copy Contacts" parallel="false">
+=======
+
+
+	<test name="3 C20261 Copy Contacts" parallel="false">
+>>>>>>> master
 		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.CopyContactTest">
 				<methods>
@@ -88,9 +134,18 @@
 			</class>
 		</classes>
 	</test>
+<<<<<<< HEAD
 
 	<test name="7 C20261 Delete Contacts" parallel="false">
+=======
+	<test name="4  C20261 Delete Contacts" parallel="false">
+>>>>>>> master
 		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.DeleteContactTest">
 				<methods>

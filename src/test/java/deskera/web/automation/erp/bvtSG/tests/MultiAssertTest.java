@@ -16,16 +16,14 @@ public class MultiAssertTest extends DriverFactory{
 	@Test
 	@Description(value = "Test multi assertFailure")
 	public void multiAssertFailure() throws InterruptedException {
-		System.out.println("Running Sample multiAssert------------------------->");
-		// SoftAssert softAssertion= new SoftAssert();
-		System.out.println("softAssert 1");
-		driver.get("http://www.google.com");
-		Thread.sleep(3000);
-		sAssert.assertTrue(false,"Should be true");
-		System.out.println("softAssert 2");
-		driver.get("http://www.yahoo.com");
-		Thread.sleep(3000);
-		sAssert.assertEquals(1, 2, "Should be 1 =1 ");
-		sAssert.assertAll();
+		/*
+		 * System.out.println("Running Sample multiAssert------------------------->");
+		 * // SoftAssert softAssertion= new SoftAssert();
+		 * System.out.println("softAssert 1"); driver.get("http://www.google.com");
+		 * Thread.sleep(3000); sAssert.assertTrue(false,"Should be true");
+		 * System.out.println("softAssert 2"); driver.get("http://www.yahoo.com");
+		 * Thread.sleep(3000); sAssert.assertEquals(1, 2, "Should be 1 =1 ");
+		 * sAssert.assertAll();
+		 */
 	}
 }

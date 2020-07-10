@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import deskera.web.automation.core.SoftAssertListner;
 import io.qameta.allure.Step;
 
 public class EditContactPage {
@@ -22,50 +23,56 @@ public class EditContactPage {
 	private WebDriver driver;
 	private int timeout = 15;
 	private WebDriverWait wait;
+	private SoftAssertListner sAssert;
+
 
 	public EditContactPage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;
 		PageFactory.initElements(driver, this);	
+		sAssert = new SoftAssertListner(driver);
+
+		
 	}
 
 	/******************************* EDIT CONTACT PAGE ELEMENTS LOCATORS *******************/
 	@FindBy(xpath = "//mat-row[1]//mat-cell[8]//button[1]//mat-icon[1]")
 	@CacheLookup
+
 	private WebElement contextMenuIcon;
 	@FindBy(xpath= "//button[contains(text(),'Edit')]")
-	@CacheLookup
+	
 	private WebElement editButton;
 	@FindBy(xpath= "//input[@formcontrolname='name']")
-	@CacheLookup
+	
 	private WebElement name;
 	@FindBy(xpath= "//input[@formcontrolname='email']")
-	@CacheLookup
+	
 	private WebElement emailAddress;
 	@FindBy(xpath= "//input[@formcontrolname='uen']")
-	@CacheLookup
+	
 	private WebElement contactUEN;
 	@FindBy(xpath= "//input[@formcontrolname='tax']")
-	@CacheLookup
+	
 	private WebElement taxNumber;
 	
 	@FindBy(xpath= "//div[contains(text(),'Address')]")
-	@CacheLookup
+	
 	private WebElement address;
 	@FindBy(xpath= "//textarea[@formcontrolname='address1']")
-	@CacheLookup
+	
 	private WebElement enterAddress;
 	@FindBy(xpath= "//input[@formcontrolname='state']")
-	@CacheLookup
+	
 	private WebElement state;
 	@FindBy(xpath= "//input[@formcontrolname='postalCode']")
-	@CacheLookup
+	
 	private WebElement postalCode;
 	@FindBy(xpath= "//input[@formcontrolname='city']")
-	@CacheLookup
+	
 	private WebElement city;
 	@FindBy(xpath= "//input[@formcontrolname='country']")
-	@CacheLookup
+	
 	private WebElement country;
 	
 	@FindBy(xpath= "//span[@class='field-value add-address']")
@@ -81,20 +88,21 @@ public class EditContactPage {
 	private WebElement currentShippingAddress;
 	
 	@FindBy(xpath= "//span[contains(text(),'Save Changes')]")
-	@CacheLookup
+	
 	private WebElement saveChangeButton;
 	
 	@FindBy(xpath= "//span[text()='Contact is successfully Updated']")
-	@CacheLookup
+	
 	private WebElement updateContactSuccessMessage;
 	
 	/******************************* Verify edited contact objects *******************/
 	
 	@FindBy(xpath= "//input[@placeholder='Search Records']")
-	@CacheLookup
+	
 	private WebElement searchRecord;
 	@FindBy(xpath= "//mat-table//mat-row[@class='mat-row ng-star-inserted']//mat-cell[3]")
 	@CacheLookup
+
 	private WebElement enteredName;
 	@FindBy(xpath= "//div[contains(text(),'Contact Name')]/following-sibling::div[@class='field-value']")
 	@CacheLookup

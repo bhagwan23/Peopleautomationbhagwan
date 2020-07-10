@@ -37,7 +37,7 @@ public class DriverFactory {
 	protected static WebDriverWait wait;
 	protected static String tRuId;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
-	protected SoftAssertListner sAssert;
+	//protected SoftAssertListner sAssert;
 	public static WebDriverWait getWait() {
 		return wait;
 	}
@@ -45,7 +45,7 @@ public class DriverFactory {
 	protected Capabilities capabilities;
 	ChromeOptions coptions = new ChromeOptions();
 
-	@BeforeMethod
+	@BeforeTest
 	@Parameters({ "browser", "testRunId", "envConf" })
 	public void setup(String browser, String testRunId, String confPath) throws MalformedURLException {
 		String execMode = ReadPropertyUtil.readProperty("execMode", confPath);
@@ -91,7 +91,7 @@ public class DriverFactory {
 		wait = (new WebDriverWait(getDriver(), Duration.ofSeconds(60)));
 		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 		setTRunId(testRunId);
-		sAssert = new SoftAssertListner();
+		//sAssert = new SoftAssertListner();
 	}
 
 	public String getTRunId() {
@@ -106,7 +106,7 @@ public class DriverFactory {
 		return driver;
 	}
 
-	@AfterMethod
+	@AfterTest
 	public void tearDown() {
 		driver.quit();
 	}

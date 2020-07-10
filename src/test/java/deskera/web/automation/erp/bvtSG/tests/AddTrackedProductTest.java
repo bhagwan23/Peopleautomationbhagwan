@@ -1,5 +1,6 @@
 package deskera.web.automation.erp.bvtSG.tests;
 
+import java.awt.AWTException;
 import java.util.Random;
 
 import org.testng.annotations.BeforeClass;
@@ -36,8 +37,10 @@ public class AddTrackedProductTest extends DriverFactory{
 	@Description(value = "Add Tracked Product")
 	public void addTrackedProductTest() throws InterruptedException {
 		// Read test specific data from config
-		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
+		/*
+		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
+		 */
 		String trackedProductName = ReadPropertyUtil.readProperty("trackedProductName", confPath);	
 		String description = ReadPropertyUtil.readProperty("description", confPath);	
 		Random rand = new Random();
@@ -59,21 +62,28 @@ public class AddTrackedProductTest extends DriverFactory{
 		String defaultWarehouseCode = ReadPropertyUtil.readProperty("defaultWarehouseCode", confPath);
 		
 		// Create Page Object instance
-		LoginPage loginPage = new LoginPage(driver, wait);
+		//LoginPage loginPage = new LoginPage(driver, wait);
 		HomePage homePage=new HomePage(driver, wait);
 		CreateProductPage createProductPage=new CreateProductPage(driver,wait);
 		// Access Test methods
-		loginPage.openURL(url);
-		loginPage.verifyPageTitle();
-		loginPage.verifyLoginPageElements();
-		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
-		homePage.verifyPageTitle();
+		/*
+		 * loginPage.openURL(url); loginPage.verifyPageTitle();
+		 * loginPage.verifyLoginPageElements();
+		 * loginPage.enterEmailandPassword(emailAddress, passWord);
+		 * loginPage.clickSignIn();
+		 */
+		//homePage.verifyPageTitle();
 		homePage.clickProductsTab();
 		createProductPage.clickNewProductButton();
 		createProductPage.verifyPageTitle();
 		createProductPage.verifyCreateNewProductPage();
 		createProductPage.selectTrackedProduct();
+		try {
+			createProductPage.uploadImageProduct();
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		createProductPage.enterProductDetails(trackedProductName,description,barcode);
 		createProductPage.clickAccountingTab();
 		createProductPage.verifyPurchaseAccountDropdownValues();

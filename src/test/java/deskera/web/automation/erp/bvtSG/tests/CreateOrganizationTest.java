@@ -33,8 +33,10 @@ public class CreateOrganizationTest extends DriverFactory{
 	@Description(value = "Create Organization ")
 	public void createOrganizationTest() throws InterruptedException {
 		// Read test specific data from config
-		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
+		/*
+		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
+		 */
 		String taxResidency = ReadPropertyUtil.readProperty("taxResidency", confPath);	
 		String financialStartDate = ReadPropertyUtil.readProperty("financialStartDate", confPath);	
 		String bookBeginningDate = ReadPropertyUtil.readProperty("bookBeginningDate", confPath);	
@@ -44,16 +46,18 @@ public class CreateOrganizationTest extends DriverFactory{
 		String state = ReadPropertyUtil.readProperty("state", confPath);
 		String zipcode = ReadPropertyUtil.readProperty("zipcode", confPath);
 		// Create Page Object instance
-		LoginPage loginPage = new LoginPage(driver, wait);
+		//LoginPage loginPage = new LoginPage(driver, wait);
 		HomePage homePage=new HomePage(driver, wait);
 		
 		// Access Test methods
-		loginPage.openURL(url);
-		loginPage.verifyPageTitle();
-		loginPage.verifyLoginPageElements();
-		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
-		homePage.verifyPageTitle();
+		/*
+		 * loginPage.openURL(url); loginPage.verifyPageTitle();
+		 * loginPage.verifyLoginPageElements();
+		 * loginPage.enterEmailandPassword(emailAddress, passWord);
+		 * loginPage.clickSignIn();
+		 */
+		
+		//homePage.verifyPageTitle();
 		homePage.verifyorgElements();
 		homePage.enterOrgDetails(taxResidency, financialStartDate, bookBeginningDate, addressLine1, addressLine2, city, state, zipcode);
 		homePage.clickSaveButton();

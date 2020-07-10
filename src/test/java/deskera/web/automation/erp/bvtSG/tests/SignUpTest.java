@@ -70,13 +70,10 @@ public class SignUpTest extends DriverFactory {
 		signUpPage.verifySuccessPageElements(emailAddress);
 		signUpPage.clickResentEmailButton();
 		signUpPage.verifyPageElementsAfterResentEmail(emailAddress);
-		
-		
-		System.out.println("First Time Login Email Address ----->"+emailAddress);
+		System.out.println("First Time Login Email Address ----->" + emailAddress);
 		// Create Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
-		
-		// Access Test methods
+		// Access Test methods and start trial first time
 		loginPage.openURL(url);
 		loginPage.verifyPageTitle();
 		loginPage.verifyLoginPageElements();
@@ -101,7 +98,6 @@ public class SignUpTest extends DriverFactory {
 		// Create Page Object instance
 		SignUpPage signUpPage = new SignUpPage(driver, wait);
 		GoDashboardPage gDashboardPage = new GoDashboardPage(driver, wait);
-
 		// Access Test methods
 		signUpPage.openURL(url);
 		signUpPage.verifyPageTitle();
@@ -117,13 +113,11 @@ public class SignUpTest extends DriverFactory {
 		signUpPage.verifySuccessPageElements(emailAddress);
 		signUpPage.clickResentEmailButton();
 		signUpPage.verifyPageElementsAfterResentEmail(emailAddress);
-		
-
-		System.out.println("First Time Login Email Address ----->"+emailAddress);
+		System.out.println("First Time Login Email Address ----->" + emailAddress);
 		// Create Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
-		
 		// Access Test methods
+		// Access Test methods and start trial first time
 		loginPage.openURL(url);
 		loginPage.verifyPageTitle();
 		loginPage.verifyLoginPageElements();
@@ -166,7 +160,14 @@ public class SignUpTest extends DriverFactory {
 		signUpPage.verifySuccessPageElements(emailAddress);
 		signUpPage.clickResentEmailButton();
 		signUpPage.verifyPageElementsAfterResentEmail(emailAddress);
+		// Access Test methods and start trial first time
+		LoginPage loginPage = new LoginPage(driver, wait);
+		loginPage.openURL(url);
+		loginPage.verifyPageTitle();
+		loginPage.verifyLoginPageElements();
+		loginPage.enterEmailandPassword(emailAddress, passWord);
+		loginPage.clickSignInFirstTime();
+		GoDashboardPage gDashboardPage = new GoDashboardPage(driver, wait);
+		gDashboardPage.clickStartBooksTrial();
 	}
-
-
 }

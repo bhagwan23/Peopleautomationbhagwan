@@ -36,8 +36,10 @@ public class EditProductTest extends DriverFactory{
 	@Description(value = "Edit Product ")
 	public void editProductTest() throws InterruptedException {
 		// Read test specific data from config
-		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
+		/*
+		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
+		 */
 		String nonTrackedProductName1 = ReadPropertyUtil.readProperty("nonTrackedProductName1", confPath);	
 		//String barcode = ReadPropertyUtil.readProperty("barcode", confPath);	
 		String description1 = ReadPropertyUtil.readProperty("description1", confPath);
@@ -55,12 +57,13 @@ public class EditProductTest extends DriverFactory{
 		HomePage homePage=new HomePage(driver, wait);
 		CreateProductPage createProductPage=new CreateProductPage(driver,wait);
 		// Access Test methods
-		loginPage.openURL(url);
-		loginPage.verifyPageTitle();
-		loginPage.verifyLoginPageElements();
-		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
-		homePage.verifyPageTitle();
+		/*
+		 * loginPage.openURL(url); loginPage.verifyPageTitle();
+		 * loginPage.verifyLoginPageElements();
+		 * loginPage.enterEmailandPassword(emailAddress, passWord);
+		 * loginPage.clickSignIn();
+		 */
+	//	homePage.verifyPageTitle();
 		homePage.clickProductsTab();
 		createProductPage.clickThreeDotsOnNonTrackedProduct();
 		createProductPage.clickEditButton();

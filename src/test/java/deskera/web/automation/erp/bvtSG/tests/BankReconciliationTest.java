@@ -38,8 +38,8 @@ public class BankReconciliationTest extends DriverFactory {
 	@Description(value = "C20274 To verify that user is able to Bank Reconcile")
 
 	public void bankReconciliationTest() throws InterruptedException, ParseException {
-		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
+		/*String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);*/
 		String unitPrice = ReadPropertyUtil.readProperty("unitPrice", confPath);
 		String firstTransactionDate = ReadPropertyUtil.readProperty("firstTransactionDate", confPath);
 		String secondTransactionDate = ReadPropertyUtil.readProperty("secondTransactionDate", confPath);
@@ -48,9 +48,9 @@ public class BankReconciliationTest extends DriverFactory {
 		CreateBankPage bank = new CreateBankPage(driver, wait);
 		HomePage homePage = new HomePage(driver, wait);
 		SellPage sellPage = new SellPage(driver, wait);
-		loginPage.openURL(url);
+		/*loginPage.openURL(url);
 		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
+		loginPage.clickSignIn();*/
 		bank.clickOnBanktab();
 		bank.clickthreeDots();
 		bank.clickreconciliationButton();
@@ -81,5 +81,8 @@ public class BankReconciliationTest extends DriverFactory {
 		bank.clickMatchButton();
 		bank.clickNextButton();
 		bank.verifyTwoTransactionsOnConfirmPage();
+		bank.clicSaveAndReconcileButton();
+		bank.clicSaveButtonOnConfirmPage();
+		bank.verifyReconcileSuccessMessage();
 	}
 }

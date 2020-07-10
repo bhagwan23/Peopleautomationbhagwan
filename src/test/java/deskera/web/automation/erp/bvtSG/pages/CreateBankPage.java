@@ -145,6 +145,13 @@ public class CreateBankPage {
 	private WebElement deskeraTransaction1OnConfirmPage;
 	@FindBy(xpath = "(//b[contains(.,'UNMATCH')])[1]//following::wtf2-card[2]//div//div[1]//following::div[1][text()=' Deposit ']")
 	private WebElement deskeraTransaction2OnConfirmPage;
+	@FindBy(xpath = "//span[contains(.,'SAVE AND RECONCILE')]")
+	private WebElement saveAndReconcileButton;
+	@FindBy(xpath = "//span[text()=' SAVE ']")
+	private WebElement saveButtonOnConfirmPage;
+	@FindBy(xpath = "//span[contains(text(),'Data saved successfully')]")
+	private WebElement reconcileSuccesMessage;
+	
 
 	/*******************************
 	 * Banks Object Manipulation Methods
@@ -319,9 +326,10 @@ public class CreateBankPage {
 	}
 
 	@Step("Select Bank and Deskera Transaction 1")
-	public void selectBankAndDeskeraTransaction1() {
+	public void selectBankAndDeskeraTransaction1() throws InterruptedException {
 		wait.until(ExpectedConditions.elementToBeClickable(firstTransactionDate));
 		firstTransactionDate.click();
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.elementToBeClickable(firstDeskeraTransaction));
 		firstDeskeraTransaction.click();
 	}
@@ -334,13 +342,14 @@ public class CreateBankPage {
 	}
 
 	@Step("Select Bank and Deskera Transaction 2")
-	public void selectBankAndDeskeraTransaction2() {
+	public void selectBankAndDeskeraTransaction2() throws InterruptedException {
 		// firstTransactionDate.sendKeys(Keys.chord(Keys.CONTROL, Keys.HOME));
 		// ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",
 		// secondTransactionDate);
 		driver.findElement(By.xpath("//body")).sendKeys(Keys.chord(Keys.CONTROL, Keys.HOME));
 		wait.until(ExpectedConditions.elementToBeClickable(firstTransactionDate));
 		firstTransactionDate.click();
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.elementToBeClickable(firstDeskeraTransaction));
 		firstDeskeraTransaction.click();
 	}
@@ -358,12 +367,32 @@ public class CreateBankPage {
 		unmatchButton1.isDisplayed();
 		WDWait(deskeraTransaction1OnConfirmPage);
 		deskeraTransaction1OnConfirmPage.isDisplayed();
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", unmatchButton2);
+		//((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", unmatchButton2);
+		Actions action = new Actions(driver);
+		action.moveToElement(unmatchButton2).build().perform();
 		WDWait(unmatchButton2);
 		unmatchButton2.isDisplayed();
 		WDWait(bankTransaction1OnConfirmPage);
 		bankTransaction1OnConfirmPage.isDisplayed();
-
 	}
 
+	@Step("Click Save and Reconcile Button")
+	public void clicSaveAndReconcileButton() throws InterruptedException {
+		driver.findElement(By.xpath("//body")).sendKeys(Keys.chord(Keys.CONTROL, Keys.END));
+		wait.until(ExpectedConditions.elementToBeClickable(saveAndReconcileButton));
+		saveAndReconcileButton.click();
+	}
+	
+	@Step("Click Save Button on Confirm page ")
+	public void clicSaveButtonOnConfirmPage() throws InterruptedException {
+		wait.until(ExpectedConditions.elementToBeClickable(saveButtonOnConfirmPage));
+		saveButtonOnConfirmPage.click();
+	}
+	
+	@Step("Verify Reconcile Success Message")
+	public void verifyReconcileSuccessMessage() throws InterruptedException {
+		WDWait(reconcileSuccesMessage);
+		reconcileSuccesMessage.isDisplayed();
+		Thread.sleep(2000);
+	}
 }

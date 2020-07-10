@@ -47,14 +47,13 @@ public class LoginPage {
 	@FindBy(xpath = "//span[contains(.,'Forgot Password')]")
 	
 	private WebElement forgotPasswordLink;
-	@FindBy(xpath = "(//span[contains(.,'Sign in') or contains(.,'SIGN IN')])[2]")
-	
+
+	@FindBy(xpath = "(//span[contains(.,'Sign in') or contains(.,'SIGN IN')])[2]")	
 	private WebElement signInButton;
-	@FindBy(xpath = "(//span[contains(.,'Sign in using Google')])[1]")
+	@FindBy(xpath = "(//span[contains(.,'Google')])[1]")
 	
 	private WebElement signInUsingGoogle;
 	@FindBy(xpath = "(//span[contains(.,'SIGN UP Now') or contains(.,'Sign up Now')])[2]")
-	
 	private WebElement signUpNowLink;
 	@FindBy(xpath = "//h6[@class='m-0 p-0 font-weight-500']")
 	

@@ -49,7 +49,6 @@ public class BankReconciliationTest extends DriverFactory {
 		CreateBankPage bank = new CreateBankPage(driver, wait);
 		HomePage homePage = new HomePage(driver, wait);
 		SellPage sellPage = new SellPage(driver, wait);
-
 		bank.clickOnBanktab();
 		bank.clickthreeDots();
 		bank.clickreconciliationButton();
@@ -83,5 +82,8 @@ public class BankReconciliationTest extends DriverFactory {
 		bank.clickMatchButton();
 		bank.clickNextButton();
 		bank.verifyTwoTransactionsOnConfirmPage();
+		bank.clicSaveAndReconcileButton();
+		bank.clicSaveButtonOnConfirmPage();
+		bank.verifyReconcileSuccessMessage();
 	}
 }

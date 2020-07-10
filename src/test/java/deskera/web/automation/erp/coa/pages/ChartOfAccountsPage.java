@@ -97,38 +97,7 @@ public class ChartOfAccountsPage {
 	@FindBy(xpath = "//span[@class='mat-option-text'][contains(text(),'Bank')]")
 	private WebElement bank;
 	
-//	@FindBy(xpath = "//span[contains(text(),'Cash')]")
-//	private WebElement cash;
-//	
-//	@FindBy(xpath = "//span[contains(text(),'Cost of Goods Sold')]")
-//	private WebElement costOfGoodsSold;
-//	
-//	@FindBy(xpath = "//span[contains(text(),'Current Assets')]")
-//	private WebElement currentAssets;
-//	
-//	@FindBy(xpath = "//span[contains(text(),'Current Liabilities')]")
-//	private WebElement currentLiabilities;
-//	
-//	@FindBy(xpath = "//span[contains(text(),'Equity')]")
-//	private WebElement equity;
-//	
-//	@FindBy(xpath = "//mat-option[@id='mat-option-198']//span[@class='mat-option-text'][contains(text(),'Expenses')]")
-//	private WebElement expenses;
-//	
-//	@FindBy(xpath = "//mat-option[@id='mat-option-199']//span[@class='mat-option-text'][contains(text(),'Income')]")
-//	private WebElement income;
-//	
-//	@FindBy(xpath = "//span[contains(text(),'Non-current Assets')]")
-//	private WebElement nonCurrentAssets;
-//	
-//	@FindBy(xpath = "//span[contains(text(),'Non-current Liabilities')]")
-//	private WebElement nonCurrentLiabilities;
-//	
-//	@FindBy(xpath = "//span[contains(text(),'Other Expenses')]")
-	private WebElement otherExpenses;
-	
 	@FindBy(xpath= "//span[text()='Account is successfully created.']")
-	@CacheLookup
 	private WebElement createCOASuccessMessage;
 	
 	@Step("Open URl")
@@ -165,13 +134,10 @@ public class ChartOfAccountsPage {
 	public void verifyCOAPageElements() throws InterruptedException {
 		WDWait(welcomeCOA);
 		welcomeCOA.isDisplayed();
-//		Thread.sleep(1000);
-//		wait.until(ExpectedConditions.elementToBeClickable(welcomeCOA));
 		addCOAbutton.isDisplayed();
 		accountsLabel.isDisplayed();
 		filters.isDisplayed();
 		summary.isDisplayed();
-//		selectAllCheckbox.isDisplayed();
 		numberHeaderCell.isDisplayed();
 		nameHeaderCell.isDisplayed();
 		typeBalHeaderCell.isDisplayed();
@@ -199,18 +165,7 @@ public class ChartOfAccountsPage {
 		accountType.sendKeys(type);
 		sAssert.assertTrue(accountType.isDisplayed(),"Verify account type list");
 		Thread.sleep(2000);
-//		accountType.click();
 		bank.isDisplayed();
-//		cash.isDisplayed();
-//		costOfGoodsSold.isDisplayed();
-//		nonCurrentAssets.isDisplayed();
-//		nonCurrentLiabilities.isDisplayed();
-//		income.isDisplayed();
-//		currentAssets.isDisplayed();
-//		currentLiabilities.isDisplayed();
-//		equity.isDisplayed();
-//		expenses.isDisplayed();
-//		otherExpenses.isDisplayed();
 		bank.click();
 		accountCode.sendKeys(code);
 		accountName.sendKeys(name);

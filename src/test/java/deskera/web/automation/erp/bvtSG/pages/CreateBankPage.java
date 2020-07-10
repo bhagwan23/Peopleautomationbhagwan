@@ -319,30 +319,35 @@ public class CreateBankPage {
 	}
 
 	@Step("Select Bank and Deskera Transaction 1")
-	public void selectBankAndDeskeraTransaction1() {
+	public void selectBankAndDeskeraTransaction1() throws InterruptedException {
 		wait.until(ExpectedConditions.elementToBeClickable(firstTransactionDate));
 		firstTransactionDate.click();
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.elementToBeClickable(firstDeskeraTransaction));
 		firstDeskeraTransaction.click();
+		Thread.sleep(2000);
 	}
 
 	@Step("Click on Match Button")
-	public void clickMatchButton() {
+	public void clickMatchButton() throws InterruptedException {
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", matchButton);
 		wait.until(ExpectedConditions.elementToBeClickable(matchButton));
 		matchButton.click();
+		Thread.sleep(2000);
 	}
 
 	@Step("Select Bank and Deskera Transaction 2")
-	public void selectBankAndDeskeraTransaction2() {
+	public void selectBankAndDeskeraTransaction2() throws InterruptedException {
 		// firstTransactionDate.sendKeys(Keys.chord(Keys.CONTROL, Keys.HOME));
 		// ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",
 		// secondTransactionDate);
 		driver.findElement(By.xpath("//body")).sendKeys(Keys.chord(Keys.CONTROL, Keys.HOME));
 		wait.until(ExpectedConditions.elementToBeClickable(firstTransactionDate));
 		firstTransactionDate.click();
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.elementToBeClickable(firstDeskeraTransaction));
 		firstDeskeraTransaction.click();
+		Thread.sleep(2000);
 	}
 
 	@Step("Click on Next Button")
@@ -350,6 +355,7 @@ public class CreateBankPage {
 		driver.findElement(By.xpath("//body")).sendKeys(Keys.chord(Keys.CONTROL, Keys.END));
 		wait.until(ExpectedConditions.elementToBeClickable(nextButton));
 		nextButton.click();
+		Thread.sleep(2000);
 	}
 
 	@Step("Verify 2 Transactions on Confirm Page")

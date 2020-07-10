@@ -47,13 +47,13 @@ public class LoginPage {
 	@FindBy(xpath = "//span[contains(.,'Forgot Password')]")
 	
 	private WebElement forgotPasswordLink;
-	@FindBy(xpath = "(//span[contains(.,'SIGN IN')])[2]")
+	@FindBy(xpath = "(//span[contains(.,'Sign in') or contains(.,'SIGN IN')])[2]")
 	
 	private WebElement signInButton;
 	@FindBy(xpath = "(//span[contains(.,'Sign in using Google')])[1]")
 	
 	private WebElement signInUsingGoogle;
-	@FindBy(xpath = "(//span[contains(.,'SIGN UP Now')])[2]")
+	@FindBy(xpath = "(//span[contains(.,'SIGN UP Now') or contains(.,'Sign up Now')])[2]")
 	
 	private WebElement signUpNowLink;
 	@FindBy(xpath = "//h6[@class='m-0 p-0 font-weight-500']")
@@ -140,8 +140,8 @@ public class LoginPage {
 
 	@Step("Go to Deskera books from GO")
 	public void goToDeskeraBooks() throws InterruptedException {
-		WDWait(goToDeskeraBooksCard);
 		Thread.sleep(3000);
+		WDWait(goToDeskeraBooksCard);
 		WDWaitClickable(goToDeskeraBooksCard);
 		goToDeskeraBooksCard.click();
 		Thread.sleep(3000);

@@ -43,7 +43,7 @@ public class SignUpPage {
 	}
 
 	/******************************* PAGE ELEMENTS LOCATORS *******************/
-	@FindBy(xpath = "//div[1]/button[1]/span[1]/span[contains(text(),'SIGN UP Now')]")
+	@FindBy(xpath = "//div[1]/button[1]/span[1]/span[contains(text(),'SIGN UP Now') or contains(text(),'Sign up Now')]")
 	
 	private WebElement SignUpNow;
 	@FindBy(name = "email")
@@ -70,10 +70,10 @@ public class SignUpPage {
 	@FindBy(xpath = "//span[contains(text(),'Are you a book-keeper?')]/../span[contains(text(),'Sign up for Deskera Book-keeper')]")
 	
 	private WebElement bookkeeperLink;
-	@FindBy(xpath = "//span[contains(text(),'Already have an account ?')]/../span[contains(text(),'SIGN IN')]")
+	@FindBy(xpath = "//span[contains(text(),'Already have an account ?')]/../span[contains(text(),'SIGN IN') or contains(text(),'Sign in')]")
 	
 	private WebElement alreadyHaveAccount;
-	@FindBy(xpath = "//span[contains(text(),'Already have an account ?')]/../span[contains(text(),'SIGN IN')]")
+	@FindBy(xpath = "//span[contains(text(),'Already have an account ?')]/../span[contains(text(),'SIGN IN') or contains(text(),'Sign in')]")
 	
 	private WebElement signUpForBookkeeper;
 	@FindBy(xpath = "//span[contains(text(),'Not a bookkeeper?')]/../span[contains(text(),'Sign up for regular account')]")

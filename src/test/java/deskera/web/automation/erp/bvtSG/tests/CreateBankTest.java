@@ -33,19 +33,14 @@ public class CreateBankTest extends DriverFactory {
 	@Test
 	@Description(value = "C20274 To verify that user is able to Create/Connect - Bank")
 	public void addCreateBankTestBank() throws InterruptedException{
-		/*String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);*/	
+
 		String bcode = ReadPropertyUtil.readProperty("bcode", confPath);
 		String bname = ReadPropertyUtil.readProperty("bname", confPath);	
 		String bDesc = ReadPropertyUtil.readProperty("bDesc", confPath);
 		String bankUsername = ReadPropertyUtil.readProperty("bankUsername", confPath);	
 		String bankPassword = ReadPropertyUtil.readProperty("bankPassword", confPath);
 		// Create login Page Object instance
-		LoginPage loginPage = new LoginPage(driver, wait);
 		CreateBankPage bank= new CreateBankPage(driver, wait);		
-		/*loginPage.openURL(url);
-		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();*/
 		bank.clickOnBanktab();
 		bank.verifyDefaultBank();
 		bank.clickAddButton();

@@ -330,10 +330,10 @@ public class SellPage {
 	}
 
 	@Step("Select Contact")
-	public void selectContact() {
+	public void selectContact(String contactName) {
 		wait.until(ExpectedConditions.elementToBeClickable(addContactButton));
 		addContactButton.click();
-		contactSearchBox.sendKeys("contact");
+		contactSearchBox.sendKeys(contactName);
 		WDWait(firstContact);
 		firstContact.click();
 	}
@@ -351,13 +351,13 @@ public class SellPage {
 	}
 
 	@Step("Select Product")
-	public void selectProduct() throws InterruptedException {
+	public void selectProduct(String productName) throws InterruptedException {
 		wait.until(ExpectedConditions.elementToBeClickable(addLineItemButton));
 		addLineItemButton.click();
 		// wait.until(ExpectedConditions.elementToBeClickable(productSearchBox));
 		Thread.sleep(3000);
 		productSearchBox.click();
-		productSearchBox.sendKeys("product");
+		productSearchBox.sendKeys(productName);
 		WDWait(firstProduct);
 		firstProduct.click();
 	}

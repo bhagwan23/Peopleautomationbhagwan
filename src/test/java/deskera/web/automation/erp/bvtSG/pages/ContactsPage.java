@@ -38,6 +38,7 @@ public class ContactsPage {
 	@FindBy(xpath = "//span[text()=' Contacts ']")
 	
 	private WebElement contactsButton;
+
 	@FindBy(xpath ="//span[contains(text(),'Add Contact')]")
 	
 	private WebElement  addContactButton;
@@ -123,6 +124,15 @@ public class ContactsPage {
 	@FindBy(xpath= "//input[@formcontrolname='country']")
 	
 	private WebElement country;
+	@FindBy(xpath="//div[contains(text(),'Set as Current Billing Address')]")
+		
+	private WebElement setAsCurrentBillingAddress;
+	@FindBy(xpath="//div[contains(text(),'Set as Current Shipping Address')]")
+	
+	private WebElement setAsCurrentShippingAddress;
+	@FindBy(xpath="//span[@class='field-value add-address']")
+	
+	private WebElement addAnotherAddress;
 	@FindBy(xpath= "//button[@class='mat-flat-button mat-button-base mat-primary']")
 	
 	private WebElement saveButton;
@@ -142,6 +152,7 @@ public class ContactsPage {
 
 	/******************************* Verify Added contacts elements *******************/
 
+
 	@FindBy(xpath= "//mat-cell[contains(text(),'Edward')]")
 	
 	private WebElement addedContactName;
@@ -154,46 +165,33 @@ public class ContactsPage {
 	@FindBy(xpath="//div[contains(text(),'Tax Number')]/following-sibling::div[@class='field-value']")
 	
 	private WebElement tax;
+	@FindBy(xpath="//div[contains(text(),'Currency')]/following-sibling::div[@class='field-value']")
+	
+	private WebElement contactCurrency;
 	@FindBy(xpath= "//div[contains(text(),'Purchase Account')]/following-sibling::div[@class='field-value']")
 	
 	private WebElement accPayable;
 	@FindBy(xpath= "//div[contains(text(),'Sales Account')]/following-sibling::div[@class='field-value']")
 	
 	private WebElement accReceivable;
-
-
-	@FindBy(xpath= "//div[contains(text(),'Edward')]")
+	@FindBy(xpath="//div[@class='section-container py-4']//div[4]//div[1]/following-sibling::div[@class='field-value']")
 	
-	private WebElement enteredContactName;
-	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/mat-table/mat-row[1]/mat-cell[3]")
+	private WebElement buyPaymentTerm;
+	@FindBy(xpath="//div[@class='section-container py-4']//div[7]//div[1]/following-sibling::div[@class='field-value']")
+	
+	private WebElement sellPaymentTerm;
+
+	@FindBy(xpath= "//mat-table//mat-row[@class='mat-row ng-star-inserted']//mat-cell[3]")
 	
 	private WebElement enteredName;
-
-	@FindBy(xpath= "//span[@class='menu-label ng-star-inserted'][contains(text(),'Custom Fields')]")
 	
-	private WebElement customField;
-	@FindBy(xpath= "//span[contains(text(),'Cancel')]")
+	@FindBy(xpath="//*[@id='container-1']/dt-navbar/div/div[1]/button/div/span")
 	
-	private WebElement customCancelButton;
-	@FindBy(xpath= "//span[contains(text(),'Custom Number Format')]")
-	
-	private WebElement customNumberFormat;
-	@FindBy(xpath= "//span[contains(text(),'Cancel')]")
-	
-	private WebElement cusomNumberFormatCancelButton;
-
-	@FindBy(xpath= "//div[@class='field-value'][contains(text(),'desk')]")
+	private WebElement companyOrg;
+	@FindBy(xpath="//div[contains(text(),'Contact Organisation')]/following-sibling::div[@class='field-value']")
 	
 	private WebElement contactOrg;
-	@FindBy(xpath="//div[contains(text(),'UEN989888898')]")
 	
-	private WebElement enteredUEN;
-	@FindBy(xpath= "//div[contains(text(),'SGD')]")
-	
-	private WebElement enteredCurrency;
-	@FindBy(xpath= "//div[contains(text(),'XYZ1234')]")
-	
-	private WebElement enteredTaxNumber;
 	@FindBy(xpath="//div[contains(text(),'Accounts Receivable')]")
 	
 	private WebElement enteredpurchaseAccount;
@@ -205,13 +203,70 @@ public class ContactsPage {
 	@FindBy(xpath= "//input[@placeholder='Search Records']")
 	
 	private WebElement searchRecord;
-
-	@FindBy(xpath= "//button[@class='cancel-btn mat-icon-button mat-button-base mat-primary']//mat-icon[@class='mat-icon notranslate mat-icon-no-color']//*[local-name()='svg']")
 	
-	private WebElement contactBackButton;
 	@FindBy(xpath= "//*[@id='container-3']/extn-content/ng-contact-list/div/div/div[2]/div[2]/div[1]/span[2]")
 	
 	private WebElement allSummaryCount;
+	
+	String organization;
+	
+	/******************************* Custom Number Format Objects 	*******************************/
+
+	@FindBy(xpath= "//span[@class='menu-label ng-star-inserted'][contains(text(),'Custom Fields')]")
+	
+	private WebElement customField;
+	@FindBy(xpath= "//span[contains(text(),'Cancel')]")
+	
+	private WebElement customCancelButton;
+	@FindBy(xpath= "//span[contains(text(),'Custom Number Format')]")
+	
+	private WebElement customNumberFormat;
+
+	@FindBy(xpath = "//mat-label[contains(.,'Preview')]")
+	
+	private WebElement previewLabel;
+	@FindBy(xpath = "//div//div[contains(@class,'result mt')]")
+	
+	private WebElement previewBox;
+	@FindBy(xpath = "//input[@placeholder='Enter prefix']")
+	
+	private WebElement prefixTextBox;
+	@FindBy(xpath = "(//div[@class='mat-select-arrow'])[2]")
+	
+	private WebElement separatorDropdown;
+	@FindBy(xpath = "//input[@placeholder='Enter display digits']")
+	
+	private WebElement displayDigits;
+	@FindBy(xpath = "(//div[@class='mat-select-arrow'])[3]")
+	
+	private WebElement separatorDropdownAfterDigits;
+	@FindBy(xpath = "//input[contains(@placeholder,'Enter suffix')]")
+	
+	private WebElement suffixTextBox;
+	@FindBy(xpath = "//div[@class='mat-checkbox-inner-container']//following::span[contains(.,'Set as Default ')]")
+	
+	private WebElement setAsDefault;
+	@FindBy(xpath= "//span[contains(text(),'Cancel')]")
+	
+	private WebElement cusomNumberFormatCancelButton;
+	@FindBy(xpath = "(//button[contains(.,'Save')])[2]")
+	
+	private WebElement customNumberFormatSaveButton;
+	@FindBy(xpath = "//span[@class='mat-option-text'][contains(.,'-')]")
+	
+	private WebElement hyphen;
+	@FindBy(xpath = "//span[@class='mat-option-text'][contains(.,'-')]")
+	
+	private WebElement hypenAfterDigits;
+	@FindBy(xpath = "//input[contains(@placeholder,'Auto-Numbering Format')]")
+	
+	private WebElement autoNumberingformat;
+	@FindBy(xpath = "//div[@class='section-container pb-4']//div[3]//div[1]/following-sibling::div[@class='field-value']")
+	
+	private WebElement displayedNumber;
+	String customFormatNumber="U-0001-R";
+
+
 
 	/******************************* Contacts Object Manipulation Methods *******************/
 	@Step("Open URl")
@@ -220,7 +275,7 @@ public class ContactsPage {
 	}
 	@Step("Verify page title")
 	public void verifyPageTitle() {
-		//Assert.assertEquals(driver.getTitle(), pageTitleText);
+	Assert.assertEquals(driver.getTitle(), pageTitleText);
 	}
 	// Common util for webdriver wait
 	public void WDWait(WebElement we) {
@@ -237,7 +292,6 @@ public class ContactsPage {
 		WDWait(contactsButton);
 		contactsButton.click(); 
 		clickPopup();
-		//Thread.sleep(3000);
 	}
 	@Step("close popup on contacts page")
 	public void clickPopup() throws InterruptedException{	
@@ -264,8 +318,6 @@ public class ContactsPage {
 			}
 			Thread.sleep(1000);
 		}
-		// driver.findElement(By.xpath("//button[3]/span")).click(); // Create new contact button
-
 	}
 	@Step("click on new contact button")
 	public void clickAddContactButton(){
@@ -273,9 +325,14 @@ public class ContactsPage {
 		sAssert.assertTrue(newContactButton.isDisplayed(),"Verify New Contact Button");
 		newContactButton.click();
 
+		
+		/*
+=======
+
 		WDWait(customNumberFormat);
 		sAssert.assertTrue(customNumberFormat.isDisplayed(),"Verify Custom Number format option");
 		customNumberFormat.click();
+>>>>>>> master
 		WDWait(cusomNumberFormatCancelButton);
 		sAssert.assertTrue(cusomNumberFormatCancelButton.isDisplayed(),"");
 		cusomNumberFormatCancelButton.click();
@@ -284,11 +341,9 @@ public class ContactsPage {
 		customField.click();
 		WDWait(customCancelButton);
 		customCancelButton.isDisplayed();
-		customCancelButton.click();
-
-		/*WDWait(addContactButton);   //Add contacts through Add Contact button
-		addContactButton.isDisplayed();
-		addContactButton.click();*/
+<<<<<<< HEAD
+		customCancelButton.click();*/
+		
 
 		WDWait(generalInfotab);
 		sAssert.assertTrue(generalInfotab.isDisplayed(),"Veify generalInfotab");
@@ -300,6 +355,7 @@ public class ContactsPage {
 	@Step("Enter general info")
 	public void enterGeneralInfo(String Cname, String email, String UEN, String tax){
 		WDWait(name);
+
 		//wait.until(ExpectedConditions.elementToBeClickable(name));
 		sAssert.assertTrue(name.isDisplayed(),"");
 		name.sendKeys(Cname);
@@ -360,6 +416,10 @@ public class ContactsPage {
 		postalCode.isDisplayed();
 		city.isDisplayed();
 		country.isDisplayed();
+		setAsCurrentBillingAddress.isDisplayed();
+		setAsCurrentShippingAddress.isDisplayed();
+		addAnotherAddress.isDisplayed();
+		
 		
 		sAssert.assertAll();
 
@@ -385,16 +445,12 @@ public class ContactsPage {
 		saveButton.click();
 	}
 	@Step("Verify added contacts")
-	public void verifyAddedContacts(String cName, String UENNumber, String TAXNumber) throws InterruptedException{
-		/*WDWait(addedContactName);
-		addedContactName.isDisplayed();
-		addedContactName.click();
-		enteredContactName.isDisplayed();
-		contactName.isDisplayed();*/
+	public void verifyAddedContacts(String cName, String UENNumber, String TAXNumber,String currency, String paymentTerms) throws InterruptedException{
 
 		WDWait(searchRecord);
 		searchRecord.click();
 		searchRecord.sendKeys(cName);
+
 		/*Thread.sleep(2000);
 		Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER).build().perform();*/
@@ -403,38 +459,35 @@ public class ContactsPage {
 		wait.until(ExpectedConditions.elementToBeClickable(enteredName));
 		Assert.assertEquals(enteredName.getText(), cName);
 		enteredName.click();
+		
 		Assert.assertEquals(contactName.getText(), cName);
 		Assert.assertEquals(uENnumber.getText(), UENNumber);
 		Assert.assertEquals(tax.getText(), TAXNumber);
-
+		Assert.assertEquals(contactCurrency.getText(), currency);
+		organization= companyOrg.getText();
+		Assert.assertEquals(contactOrg.getText(),organization);
+		
 		scrollToElement(accPayable);
-		Thread.sleep(4000);
 		wait.until(ExpectedConditions.visibilityOf(accPayable));
+		Thread.sleep(5000);
 		Assert.assertEquals(accPayable.getText(), buyAccount);
 		scrollToElement(accReceivable);
-		Thread.sleep(4000);
 		wait.until(ExpectedConditions.visibilityOf(accReceivable));
+		Thread.sleep(5000);
 		Assert.assertEquals(accReceivable.getText(), sellAccount);
-
-		/*
-		 * contactOrg.isDisplayed(); WDWait(customField); customField.isDisplayed();
-		 * customField.click(); WDWait(customCancelButton);
-		 * customCancelButton.isDisplayed(); customCancelButton.click();
-		 */
-
-
-		//enteredNumber.isDisplayed();
-		//enteredUEN.isDisplayed();
-		enteredCurrency.isDisplayed();
-		enteredTaxNumber.isDisplayed();
-		//enteredpurchaseAccount.isDisplayed();
-		//enteredPaymentTerms.isDisplayed();
-		/*
-		 * contactBackButton.isDisplayed(); scrollToElement(contactBackButton);
-		 * contactBackButton.click();
-		 */
 		
+		Assert.assertEquals(buyPaymentTerm.getText(), paymentTerms);
+		Assert.assertEquals(sellPaymentTerm.getText(), paymentTerms);
+		
+		
+		/*WDWait(customField);
+		customField.isDisplayed();
+		customField.click();
+		WDWait(customCancelButton);
+		customCancelButton.isDisplayed();
+		customCancelButton.click();*/
 		sAssert.assertAll();
+
 
 	}
 	@Step("Verify success message")
@@ -447,13 +500,81 @@ public class ContactsPage {
 
 	}
 	@Step("Verify summary count")
-	public void allSummaryCount(){
+	public void allSummaryCountForFirstContact(){
+		WDWait(allSummaryCount);
+		allSummaryCount.isDisplayed();
+	    Assert.assertEquals(allSummaryCount.getText(), "1");
+
+	}
+	@Step("Verify summary count")
+	public void allSummaryCountForSecondContact(){
 		WDWait(allSummaryCount);
 		sAssert.assertTrue(allSummaryCount.isDisplayed());
 		sAssert.assertEquals(allSummaryCount.getText(), "2","Verify count of 2 contacts displayed for All Summary");
 		sAssert.assertAll();
 		
 
+	}
+	@Step("Clilck on custom number format link")
+	public void clickCustomNumberFormat(){
+		WDWait(customNumberFormat);
+		customNumberFormat.isDisplayed();
+		customNumberFormat.click();
+	}
+	@Step("Verify Custom Number Format Page Elements ")
+	public void verifyCustomNumberFormatPageElements() {
+		WDWait(previewLabel);
+		previewLabel.isDisplayed();
+		previewBox.isDisplayed();
+		prefixTextBox.isDisplayed();
+		separatorDropdown.isDisplayed();
+		displayDigits.isDisplayed();
+		separatorDropdownAfterDigits.isDisplayed();
+		suffixTextBox.isDisplayed();
+		setAsDefault.isDisplayed();
+		cusomNumberFormatCancelButton.isDisplayed();
+		customNumberFormatSaveButton.isDisplayed();
+	}
+	@Step("Enter Custom Number format details ")
+	public void enterCustomNumberFormatDetails() {
+		WDWait(prefixTextBox);
+		prefixTextBox.sendKeys("U");
+		wait.until(ExpectedConditions.elementToBeClickable(separatorDropdown));
+		separatorDropdown.click();
+		WDWait(hyphen);
+		hyphen.click();
+		displayDigits.clear();
+		displayDigits.sendKeys("4");
+		wait.until(ExpectedConditions.elementToBeClickable(separatorDropdownAfterDigits));
+		separatorDropdownAfterDigits.click();
+		WDWait(hypenAfterDigits);
+		hypenAfterDigits.click();
+		WDWait(suffixTextBox);
+		suffixTextBox.sendKeys("C");	
+	}
+	@Step("Preview Custom Number format")
+	public void previewCustomNumberFormat() {
+		WDWait(previewBox);
+		Assert.assertEquals(previewBox.getText(), customFormatNumber);	
+	}
+	@Step("Click on Save Button on Custom Number Format Page")
+	public void clickSaveCustomNumberFormatButton() throws InterruptedException {
+		WDWait(customNumberFormatSaveButton);
+		customNumberFormatSaveButton.click();
+		//Thread.sleep(4000);
+	}
+	@Step("Verify Custom Number Format In Contact Number")
+	public void verifyCustomNumberFormatInContactNumber() throws InterruptedException {
+		WDWait(autoNumberingformat);
+		Thread.sleep(5000);
+		Assert.assertEquals(autoNumberingformat.getAttribute("value"), customFormatNumber);		
+	}
+	@Step("Verify Contact Number and Format")
+	public void verifyCustomFormatNumber() {
+		WDWait(displayedNumber);
+		Actions action = new Actions(driver);
+		action.moveToElement(displayedNumber).perform();
+        Assert.assertEquals(displayedNumber.getText(), customFormatNumber);
 	}
 	@Step("Scroll page")
 	public void scrollToElement(WebElement element)

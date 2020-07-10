@@ -12,7 +12,7 @@ import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
 public class CreateInvoiceTest extends DriverFactory{
-	String confPath, url;
+	String confPath, url,confProductsPath,confContactsPath;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
 
 	/**
@@ -22,10 +22,12 @@ public class CreateInvoiceTest extends DriverFactory{
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "environment" })
-	public void getConf(String conf, String URL) {
+	@Parameters({ "conf", "environment","confProducts","confContacts"})
+	public void getConf(String conf, String URL,String confProducts,String confContacts) {
 		confPath = conf;
 		url = URL;
+		confProductsPath=confProducts;
+		confContactsPath=confContacts;
 	}
 	
 	@TestRailId(testRailId = 21100)
@@ -35,6 +37,8 @@ public class CreateInvoiceTest extends DriverFactory{
 		// Read test specific data from config
 		String quantity = ReadPropertyUtil.readProperty("quantity", confPath);
 		String discount = ReadPropertyUtil.readProperty("discount", confPath);
+		String trackedProductName = ReadPropertyUtil.readProperty("trackedProductName", confProductsPath);	
+		String contactName = ReadPropertyUtil.readProperty("ContactName", confContactsPath);
 		// Create Page Object instance
 		HomePage homePage=new HomePage(driver, wait);
 		SellPage sellPage=new SellPage(driver, wait);		
@@ -44,9 +48,9 @@ public class CreateInvoiceTest extends DriverFactory{
 		sellPage.verifySellPageElements();
 		sellPage.clickNewInvoiceButton();
 		sellPage.verifyCreateInvoicePageElements();
-		sellPage.selectContact();
+		sellPage.selectContact(contactName);
         sellPage.verifyDisplayedDates();
-		sellPage.selectProduct();		
+		sellPage.selectProduct(trackedProductName);		
 		sellPage.enterProductDetails(quantity, discount);
 		sellPage.verifyTotalAmount();
 		sellPage.clickSaveButton();

@@ -38,19 +38,14 @@ public class BankReconciliationTest extends DriverFactory {
 	@Description(value = "C20274 To verify that user is able to Bank Reconcile")
 
 	public void bankReconciliationTest() throws InterruptedException, ParseException {
-		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
 		String unitPrice = ReadPropertyUtil.readProperty("unitPrice", confPath);
 		String firstTransactionDate = ReadPropertyUtil.readProperty("firstTransactionDate", confPath);
 		String secondTransactionDate = ReadPropertyUtil.readProperty("secondTransactionDate", confPath);
 		// Create login Page Object instance
-		LoginPage loginPage = new LoginPage(driver, wait);
 		CreateBankPage bank = new CreateBankPage(driver, wait);
 		HomePage homePage = new HomePage(driver, wait);
 		SellPage sellPage = new SellPage(driver, wait);
-		loginPage.openURL(url);
-		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
+		
 		bank.clickOnBanktab();
 		bank.clickthreeDots();
 		bank.clickreconciliationButton();

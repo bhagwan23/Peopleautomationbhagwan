@@ -88,8 +88,9 @@ public class DeleteContactPage {
 	public void searchRecord(String cName) throws InterruptedException{
 		WDWait(searchRecord);
 		searchRecord.click();
+		searchRecord.clear();
 		searchRecord.sendKeys(cName);
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		/*Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER).build().perform();*/
 		sAssert.assertAll();

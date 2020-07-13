@@ -71,6 +71,6 @@ public class ArchiveOrderTest extends DriverFactory {
 		//Reopen order
 		buy.clickOnContextMenuOnArchivePage();
 		buy.clickOnReopen();
-		buy.noMatchingRecord();
+		//buy.noMatchingRecord();
 	}
 }

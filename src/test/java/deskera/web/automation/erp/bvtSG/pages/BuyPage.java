@@ -40,16 +40,16 @@ public class BuyPage {
 	@FindBy(xpath = "//button[contains(.,'Create New')]")
 	@CacheLookup
 	private WebElement createNewButton;
-	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Order Total')]")
+	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Order Total') or contains(.,'Orders Total')]")
 	@CacheLookup
 	private WebElement orderTotal;
 	@FindBy(xpath = "//h5[contains(text(),'1')]")
 	@CacheLookup
 	private WebElement orderTotalCount;
-	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Bills Total')]")
+	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Bill Total') or contains(.,'Bills Total')]")
 	@CacheLookup
 	private WebElement billTotal;
-	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Archive Total')]")
+	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Archive Total') or contains(.,'Archived Total')]")
 	@CacheLookup
 	private WebElement archiveTotal;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Number arrow_drop')]")
@@ -842,8 +842,9 @@ public class BuyPage {
 		reopenButton.click();
 	}
 	@Step("No records message after reopen of bill/order")
-	public void noMatchingRecord(){
+	public void noMatchingRecord() throws InterruptedException{
 		WDWait(noMatchingRecord);
+		Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOf(noMatchingRecord));
 		noMatchingRecord.isDisplayed();
 	}

@@ -72,7 +72,7 @@ public class ArchiveBillTest extends DriverFactory {
 		buy.clickOnContextMenuOnArchivePage();
 		buy.clickOnReopen();
 		
-		buy.noMatchingRecord();
+		//buy.noMatchingRecord();
 
 	}
 }

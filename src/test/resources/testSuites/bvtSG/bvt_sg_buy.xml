@@ -24,7 +24,7 @@
 		value="src/test/resources/bvtSGConfig/TestDataBuySG.config"></parameter>
 
 
-
+ 
 	<test name=" 1 Create Order " parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
@@ -56,7 +56,7 @@
 			</class>
 		</classes>
 	</test>
-
+ 
 	<test name=" 3 Create Bill " parallel="false">
 		<classes>
 		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">

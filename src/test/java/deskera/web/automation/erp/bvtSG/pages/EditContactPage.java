@@ -152,6 +152,8 @@ public class EditContactPage {
 		Thread.sleep(3000);
 		/*Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER).build().perform();*/
+		sAssert.assertAll();
+
 		
 	}
 	@Step("Click on Context Menu icon")
@@ -162,6 +164,8 @@ public class EditContactPage {
 		Thread.sleep(3000);
 		contextMenuIcon.click();
 		Thread.sleep(4000);
+		sAssert.assertAll();
+
 	}
 	@Step("Click on Edit button")
 	public void clickEditButton() throws InterruptedException{
@@ -171,6 +175,8 @@ public class EditContactPage {
 		wait.until(ExpectedConditions.elementToBeClickable(editButton));
 		Thread.sleep(3000);
 		editButton.click();	
+		sAssert.assertAll();
+
 		
 	}
 	@Step("Enter new general info")
@@ -190,6 +196,8 @@ public class EditContactPage {
 		WDWait(taxNumber);
 		taxNumber.clear();
 		taxNumber.sendKeys(taxno);
+		sAssert.assertAll();
+
 	}
 	@Step("Enter new address info")
 	public void editAddressInfo(String addr, String state1,String postal, String city1, String country1){ 
@@ -226,18 +234,24 @@ public class EditContactPage {
 		WDWait(currentShippingAddress);
 		currentShippingAddress.isDisplayed();
 
+		sAssert.assertAll();
+
 	}
 	@Step("Click on save and change button")
 	public void clickSaveChangeButton(){
 		WDWait(saveChangeButton);
 		saveChangeButton.isDisplayed();
 		saveChangeButton.click();
+		sAssert.assertAll();
+
 	}
 	@Step("Verify success message")
 	public void verifysuccessmessage(){
 		WDWait(updateContactSuccessMessage);
 		updateContactSuccessMessage.isDisplayed();
-        wait.until(ExpectedConditions.invisibilityOf(updateContactSuccessMessage));
+        wait.until(ExpectedConditions.visibilityOf(updateContactSuccessMessage));
+		sAssert.assertAll();
+
 
 	}
 	@Step("Verify copied contact")
@@ -248,29 +262,31 @@ public class EditContactPage {
 		
 		WDWait(enteredName);
 		wait.until(ExpectedConditions.elementToBeClickable(enteredName));
-		Assert.assertEquals(enteredName.getText(), cName);
+		sAssert.assertEquals(enteredName.getText(), cName);
 		enteredName.click();
 		
-		Assert.assertEquals(contactName.getText(), cName);
-		Assert.assertEquals(uENnumber.getText(), UENNumber);
-		Assert.assertEquals(tax.getText(), TAXNumber);
-		Assert.assertEquals(contactCurrency.getText(), currency);
+		sAssert.assertEquals(contactName.getText(), cName);
+		sAssert.assertEquals(uENnumber.getText(), UENNumber);
+		sAssert.assertEquals(tax.getText(), TAXNumber);
+		sAssert.assertEquals(contactCurrency.getText(), currency);
 		organization= companyOrg.getText();
-		Assert.assertEquals(contactOrg.getText(),organization);
+		sAssert.assertEquals(contactOrg.getText(),organization);
 
 
 		scrollToElement(accPayable);
 		wait.until(ExpectedConditions.visibilityOf(accPayable));
 		Thread.sleep(5000);
-		Assert.assertEquals(accPayable.getText(), "Accounts Payable");
+		sAssert.assertEquals(accPayable.getText(), "Accounts Payable");
 		
 		scrollToElement(accReceivable);
 		wait.until(ExpectedConditions.visibilityOf(accReceivable));
 		Thread.sleep(5000);
-		Assert.assertEquals(accReceivable.getText(), "Accounts Receivable");
+		sAssert.assertEquals(accReceivable.getText(), "Accounts Receivable");
 
-		Assert.assertEquals(buyPaymentTerm.getText(), paymentTerms);
-		Assert.assertEquals(sellPaymentTerm.getText(), paymentTerms);
+		sAssert.assertEquals(buyPaymentTerm.getText(), paymentTerms);
+		sAssert.assertEquals(sellPaymentTerm.getText(), paymentTerms);
+
+		sAssert.assertAll();
 
 	}
 	@Step("Scroll page")
@@ -278,6 +294,8 @@ public class EditContactPage {
 	{
 
 		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
+		sAssert.assertAll();
+
 	}
 	
 	

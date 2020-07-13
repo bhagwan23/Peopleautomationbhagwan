@@ -73,12 +73,16 @@ public class DeleteContactPage {
 		WDWait(deleteButton);
 		deleteButton.isDisplayed();
 		deleteButton.click();
+		sAssert.assertAll();
+
 	}
 	@Step("Verify success message")
 	public void verifySuccessMessageForDelete(){
 		WDWait(deleteSucessMessage);
 		deleteSucessMessage.isDisplayed();
-        wait.until(ExpectedConditions.invisibilityOf(deleteSucessMessage));
+        wait.until(ExpectedConditions.visibilityOf(deleteSucessMessage));
+		sAssert.assertAll();
+
 	}
 	@Step("Search contact before/after delete contact")
 	public void searchRecord(String cName) throws InterruptedException{
@@ -88,11 +92,15 @@ public class DeleteContactPage {
 		Thread.sleep(2000);
 		/*Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER).build().perform();*/
+		sAssert.assertAll();
+
 	}
 	@Step("Verify deleted contacts")
 	public void verifyDeletedContact(){
 		WDWait(thereIsNoMatchingRecords);
 		thereIsNoMatchingRecords.isDisplayed();
+		sAssert.assertAll();
+
 	}
 	@Step("Verify summary count after deletion of contact")
 	public void verifysummarycount(){

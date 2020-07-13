@@ -107,6 +107,8 @@ public class ContactsTest extends DriverFactory {
 		String postal = ReadPropertyUtil.readProperty("postal", confPath);
 		String city = ReadPropertyUtil.readProperty("city", confPath);
 		String country = ReadPropertyUtil.readProperty("country", confPath);
+		
+		//Create contacts page object instance
 		ContactsPage contactsPage = new ContactsPage(driver, wait);
 		contactsPage.clickContactsButton();
 		contactsPage.clickAddContactButton();

@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import deskera.web.automation.core.SoftAssertListner;
 import io.qameta.allure.Step;
 
 public class BuyPage {
@@ -21,11 +22,13 @@ public class BuyPage {
 	private WebDriver driver;
 	private int timeout = 15;
 	private WebDriverWait wait;
+	private SoftAssertListner sAssert;
 
 	public BuyPage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;
 		PageFactory.initElements(driver, this);
+		sAssert = new SoftAssertListner(driver);
 	}
 
 	/*******************************
@@ -339,6 +342,7 @@ public class BuyPage {
 	public void verifybuytabElements() {
 		WDWait(buyTab);
 		buyTab.isDisplayed();
+		sAssert.assertAll();
 
 	}
 
@@ -347,6 +351,8 @@ public class BuyPage {
 		WDWait(buyTab);
 		buyTab.click();
 		clickPopup();
+		sAssert.assertAll();
+
 	}
 
 	@Step("close popup on buy page")
@@ -400,6 +406,9 @@ public class BuyPage {
 		totalAmountColumn.isDisplayed();
 		goodsReceivedColumn.isDisplayed();
 		quickAction.isDisplayed();
+		
+		sAssert.assertAll();
+
 	}
 
 	@Step("Click On Create New Button and then Click on New Order")
@@ -407,6 +416,8 @@ public class BuyPage {
 		WDWait(createNewButton);
 		wait.until(ExpectedConditions.elementToBeClickable(createNewButton));
 		createNewButton.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step(" Click on New Order")
@@ -414,6 +425,8 @@ public class BuyPage {
 		WDWait(newOrderButton);
 		wait.until(ExpectedConditions.elementToBeClickable(newOrderButton));
 		newOrderButton.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verify create order page elements")
@@ -428,6 +441,8 @@ public class BuyPage {
 		customizeNumberFormat.isDisplayed();
 		globalCustomFields.isDisplayed();
 		// unitPriceIsTaxInclusive.isDisplayed();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Add Contact")
@@ -438,12 +453,16 @@ public class BuyPage {
 		typeHere.sendKeys(cName);
 		WDWait(firstContact);
 		firstContact.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verify Multi currency options")
 	public void verifyMultiCurrencyOptions() {
 		WDWait(multiCurrencyOptions);
 		multiCurrencyOptions.isDisplayed();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Add Product")
@@ -455,13 +474,16 @@ public class BuyPage {
 		pTypeHere.sendKeys(pName);
 		WDWait(firstProduct);
 		firstProduct.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verrify default quantity of products")
 	public void verifydefaultQuantityAndTax() {
 		WDWait(pQuantity);
 		pQuantity.isDisplayed();
-		Assert.assertEquals(pQuantity.getAttribute("value"), "1.00");
+		sAssert.assertEquals(pQuantity.getAttribute("value"), "1.00");
+		sAssert.assertAll();
 
 	}
 
@@ -477,6 +499,8 @@ public class BuyPage {
 		WDWait(discountTextBox);
 		discountTextBox.clear();
 		discountTextBox.sendKeys(discount);
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verify Total Amount ")
@@ -517,7 +541,10 @@ public class BuyPage {
 		double totalAmount = (quantity1 * unitPrice1 - discount1) + taxAmount;
 		System.out.println("Total Amount=" + totalAmount);
 
-		Assert.assertEquals(amount1, totalAmount);
+		sAssert.assertEquals(amount1, totalAmount);
+		
+		sAssert.assertAll();
+
 	}
 
 	@Step("Click on Save Button")
@@ -525,13 +552,16 @@ public class BuyPage {
 		WDWait(saveButton);
 		// Thread.sleep(3000);
 		saveButton.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verify success message")
 	public void verifysuccessmessage() {
 		WDWait(ordercreatedSuccessMessage);
 		ordercreatedSuccessMessage.isDisplayed();
-		wait.until(ExpectedConditions.invisibilityOf(ordercreatedSuccessMessage));
+		wait.until(ExpectedConditions.visibilityOf(ordercreatedSuccessMessage));
+		sAssert.assertAll();
 
 	}
 	@Step("Verify total amount in grid")
@@ -539,14 +569,17 @@ public class BuyPage {
 		WDWait(verifyAmountInGrid);
 		verifyAmountInGrid.isDisplayed();
 		
-		Assert.assertEquals(verifyAmountInGrid.getText(), amount);
+		sAssert.assertEquals(verifyAmountInGrid.getText(), amount);
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verify total order count")
 	public void ordetTotalCount() {
 		WDWait(orderTotalCount);
 		orderTotalCount.isDisplayed();
-		Assert.assertEquals(orderTotalCount.getText(), "1");
+		sAssert.assertEquals(orderTotalCount.getText(), "1");
+		sAssert.assertAll();
 
 	}
 
@@ -555,14 +588,18 @@ public class BuyPage {
 		WDWait(searchRecord);
 		searchRecord.click();
 		searchRecord.sendKeys(cName);
+		sAssert.assertAll();
+
 	}
 
 	@Step("Click on searched order")
 	public void clickOnContact(String cName) {
 		WDWait(contactName);
 		wait.until(ExpectedConditions.elementToBeClickable(contactName));
-		Assert.assertEquals(contactName.getText(), cName);
+		sAssert.assertEquals(contactName.getText(), cName);
 		contactName.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Click on Convert to bill button")
@@ -571,6 +608,8 @@ public class BuyPage {
 		WDWait(convertToBillButton);
 		convertToBillButton.isDisplayed();
 		convertToBillButton.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verify convert to bill popup")
@@ -653,6 +692,8 @@ public class BuyPage {
 		WDWait(receivedGoodsButton);
 		receivedGoodsButton.isDisplayed();
 		receivedGoodsButton.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verify receive goods elements ")
@@ -663,6 +704,7 @@ public class BuyPage {
 		cancelButton.isDisplayed();
 		WDWait(receiveButton);
 		receiveButton.isDisplayed();
+		sAssert.assertAll();
 
 	}
 
@@ -672,6 +714,8 @@ public class BuyPage {
 		receiveButton.isDisplayed();
 		receiveButton.click();
 		Thread.sleep(3000);
+		sAssert.assertAll();
+
 	}
 
 	@Step("Click on Make Payment button")

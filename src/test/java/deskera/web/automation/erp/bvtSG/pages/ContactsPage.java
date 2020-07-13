@@ -407,10 +407,11 @@ public class ContactsPage {
 
 	}
 	@Step("Verify address details")
-	public void addressDetails(){
+	public void addressDetails() throws InterruptedException{
 		WDWait(address);
 		sAssert.assertTrue(address.isDisplayed());
 		address.click();
+		Thread.sleep(3000);
 		sAssert.assertTrue(enterAddress.isDisplayed());
 		sAssert.assertTrue(state.isDisplayed());
 		sAssert.assertTrue(postalCode.isDisplayed());

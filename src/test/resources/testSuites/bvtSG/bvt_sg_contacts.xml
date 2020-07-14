@@ -55,7 +55,7 @@
 		</classes>
 	</test>
 
-
+ <!--
 	<test name="2 C20261 Edit Contacts" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
@@ -106,7 +106,7 @@
 			</class>
 		</classes>
 	</test>
-  
+    
 <test name="8 C20261 Create Custom Number Format" parallel="false">
 		<classes>
 			<class
@@ -118,5 +118,5 @@
 		</classes>
 	</test>
 
- 
+ -->
 </suite> 

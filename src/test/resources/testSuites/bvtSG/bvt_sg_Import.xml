@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite thread-count="1" name="Go.Deskera Web BVT Import Product Suite"
+	parallel="false" preserve-order="true">
+
+	<listeners>
+		<listener
+			class-name="deskera.web.automation.core.TestListenerOnFailure">
+		</listener>
+	</listeners>
+	
+	<parameter name="browser" value="chrome"></parameter>
+	
+	
+	<!-- System config for framework -->
+	
+	<parameter name="envConf"
+		value="src/test/resources/systemConfig/environment.config"></parameter>
+	<parameter name="conf"
+		value="src/test/resources/bvtSGConfig/Common.config"></parameter>
+	
+	<!-- Run Test Cases -->
+                <test name=" 1 249082 To verify user should be able to import products" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+			<class
+				name="deskera.web.automation.erp.imports.tests.Importtrackedproducttest">
+				
+			</class>
+		</classes>
+	</test>
+	 <test name=" 2 249082 To verify user should be able to import BOM products" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+			<class
+				name="deskera.web.automation.erp.imports.tests.BomProductImportTest">
+				
+			</class>
+		</classes>
+	</test>
+      
+     <test name=" 3 249080 To verify user should be able to import contacts" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+			<class
+				name="deskera.web.automation.erp.imports.tests.Conactimporttest">
+				
+			</class>
+		</classes>
+	</test>
+	
+	<test name=" 4 249080 To verify user should be able to import Chart of Accounts" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+			<class
+				name="deskera.web.automation.erp.imports.tests.Chartofaccountsimporttest">
+				
+			</class>
+		</classes>
+	</test>
+	
+	
+	
+</suite>

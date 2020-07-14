@@ -32,8 +32,8 @@ public class CustomNumberFormatTest extends DriverFactory{
 	@Test()
 	@Description(value = "Create Custom Number Format")
 	public void customNumberFormat() throws InterruptedException {
-		String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	
+		/*String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		String passWord = ReadPropertyUtil.readProperty("userPass", confPath);	*/
 
 		String name= ReadPropertyUtil.readProperty("ContactName", confPath);
 		String contactMail  = ReadPropertyUtil.readProperty("contactMail", confPath);
@@ -49,11 +49,11 @@ public class CustomNumberFormatTest extends DriverFactory{
 		String city= ReadPropertyUtil.readProperty("city", confPath);
 		String country= ReadPropertyUtil.readProperty("country", confPath);
 		
-		// Create login Page Object instance
+	/*	// Create login Page Object instance
 		LoginPage loginPage = new LoginPage(driver, wait);
 		loginPage.openURL(url);
 		loginPage.enterEmailandPassword(emailAddress, passWord);
-		loginPage.clickSignIn();
+		loginPage.clickSignIn();*/
 
 		// Create Page Object instance
 		ContactsPage contactsPage = new ContactsPage(driver, wait);

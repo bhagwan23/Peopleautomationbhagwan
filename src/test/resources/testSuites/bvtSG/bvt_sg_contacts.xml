@@ -33,7 +33,7 @@
 		</classes> </test> <test name="3 Create Organization" parallel="false"> <classes> 
 		<class name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest"> 
 		</class> </classes> </test> -->
-	
+	 
 	<test name="1 C20261 Add Contacts" parallel="false">
  
 		<classes>
@@ -49,14 +49,14 @@
 					<parameter name="conf"
 						value="src/test/resources/bvtSGConfig/TestDataContactSG.config"></parameter>
 					<include name="addContacts"></include>
-				  	<include name="addContacts1"></include>
+			 	<include name="addContacts1"></include>
 
 				</methods>
 			</class>
 		</classes>
 	</test>
 
-   
+     
 	<test name="2 C20261 Edit Contacts" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
@@ -95,7 +95,7 @@
 			</class>
 		</classes>
 	</test>
- 
+   
 	<test name="4  C20261 Delete Contacts" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">

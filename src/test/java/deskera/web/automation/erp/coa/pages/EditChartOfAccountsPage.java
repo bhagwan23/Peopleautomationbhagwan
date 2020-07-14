@@ -48,6 +48,9 @@ public class EditChartOfAccountsPage {
 	@FindBy(xpath = "//button[contains(text(),'Edit')]")
 	private WebElement editButton;
 	
+	@FindBy(xpath = "//button[contains(text(),'Deactivate')]")
+	private WebElement deactivateButton;
+	
 	@FindBy(xpath = "//label[contains(text(),'Edit Account')]")
 	private WebElement editAccountLabel;
 	
@@ -87,6 +90,13 @@ public class EditChartOfAccountsPage {
 	@FindBy(xpath= "//span[text()='Account is successfully created.']")
 	@CacheLookup
 	private WebElement editCOASuccessMessage;
+	
+	@FindBy(xpath= "//span[text()='Account has been deactivated successfully.']")
+	@CacheLookup
+	private WebElement deactivateCOASuccessMessage;
+	
+	@FindBy(xpath = "*[@id='container-3']/extn-content[1]/dt-chart-of-account-list[1]/div[1]/div[1]/mat-table[1]/mat-row[1]/mat-cell[6]/span[1]/span[1]")
+	private WebElement inactive;
 	
 	@Step("Open URl")
 	public void openURL(String URL) {
@@ -177,6 +187,35 @@ public class EditChartOfAccountsPage {
 		editCOASuccessMessage.isDisplayed();
 		sAssert.assertAll();
 
+	}
+	
+	@Step("Click on Deactivate button")
+	public void clickDeactivateButton(){
+		
+		WDWait(deactivateButton);
+		wait.until(ExpectedConditions.elementToBeClickable(deactivateButton));
+		deactivateButton.isDisplayed();
+		deactivateButton.click();	
+		sAssert.assertAll();
+		
+	}
+	
+	@Step("Verify deactivate COA success message")
+	public void verifyCOAdeactivatedSucessMessage() throws InterruptedException {
+		WDWait(deactivateCOASuccessMessage);
+		wait.until(ExpectedConditions.visibilityOf(deactivateCOASuccessMessage));
+		deactivateCOASuccessMessage.isDisplayed();
+		sAssert.assertAll();
+
+	}
+	
+	@Step("Verify deactivated account")
+	public void verifyDeactivatedAccount(String name) throws InterruptedException {
+		WDWait(inactive);
+		Assert.assertEquals(inactive.getText(), "inactive");
+		Thread.sleep(2000);
+		sAssert.assertAll();
+		
 	}
 	
 }

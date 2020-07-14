@@ -12,8 +12,7 @@ import deskera.web.automation.erp.bvtSG.pages.LoginPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
-public class DeleteProductTest extends DriverFactory{
-
+public class DeleteProductTest extends DriverFactory {
 	String confPath, url;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
 
@@ -24,43 +23,28 @@ public class DeleteProductTest extends DriverFactory{
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "environment" })
+	@Parameters({ "confProducts", "environment" })
 	public void getConf(String conf, String URL) {
 		confPath = conf;
 		url = URL;
 	}
-	
 
 	@TestRailId(testRailId = 20263)
 	@Test()
 	@Description(value = "Delete Product ")
 	public void deleteProductTest() throws InterruptedException {
 		// Read test specific data from config
-		/*
-		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
-		 */
-		
-		String BOMProductName = ReadPropertyUtil.readProperty("BOMProductName", confPath);						
+		String BOMProductName = ReadPropertyUtil.readProperty("BOMProductName", confPath);
 		// Create Page Object instance
-	//	LoginPage loginPage = new LoginPage(driver, wait);
-		HomePage homePage=new HomePage(driver, wait);
-		CreateProductPage createProductPage=new CreateProductPage(driver,wait);
-		// Access Test methods
-		/*
-		 * loginPage.openURL(url); loginPage.verifyPageTitle();
-		 * loginPage.verifyLoginPageElements();
-		 * loginPage.enterEmailandPassword(emailAddress, passWord);
-		 * loginPage.clickSignIn();
-		 */
-	//	homePage.verifyPageTitle();
+		HomePage homePage = new HomePage(driver, wait);
+		CreateProductPage createProductPage = new CreateProductPage(driver, wait);
 		homePage.clickProductsTab();
 		createProductPage.clickThreeDotsOnBOMProduct();
 		createProductPage.clickDeleteButton();
 		createProductPage.verifyDeleteConfirmation();
 		createProductPage.clickYesButtonOnDeleteConfirmation();
 		createProductPage.verifyDeleteProductSuccessMessage();
-	    createProductPage.verifyBOMProductCountAfterDelete();
+		createProductPage.verifyBOMProductCountAfterDelete();
 		createProductPage.verifyDeletedProduct(BOMProductName);
 	}
 }

@@ -17,11 +17,20 @@
 	
 	<parameter name="envConf"
 		value="src/test/resources/systemConfig/environment.config"></parameter>
-	<parameter name="conf"
+	<parameter name="confCommon"
 		value="src/test/resources/bvtSGConfig/Common.config"></parameter>
+	<parameter name="confProducts"
+		value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
+	<parameter name="confContacts"
+		value="src/test/resources/bvtSGConfig/TestDataContactSG.config"></parameter>
+	<parameter name="confBuy"
+		value="src/test/resources/bvtSGConfig/TestDataBuySG.config"></parameter>
+	<parameter name="confSell"
+		value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
+
 	
 	<!-- Run Test Cases -->
-                <test name=" 1 249082 To verify user should be able to import products" parallel="false">
+                <test name=" 1  To verify user should be able to import products" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -29,12 +38,12 @@
 				</methods>
 			</class>
 			<class
-				name="deskera.web.automation.erp.imports.tests.Importtrackedproducttest">
+				name="deskera.web.automation.erp.imports.tests.ImportTrackedProductTest">
 				
 			</class>
 		</classes>
 	</test>
-	 <test name=" 2 249082 To verify user should be able to import BOM products" parallel="false">
+	 <test name=" 2  To verify user should be able to import BOM products" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -42,13 +51,13 @@
 				</methods>
 			</class>
 			<class
-				name="deskera.web.automation.erp.imports.tests.BomProductImportTest">
+				name="deskera.web.automation.erp.imports.tests.ImportBomProductTest">
 				
 			</class>
 		</classes>
 	</test>
       
-     <test name=" 3 249080 To verify user should be able to import contacts" parallel="false">
+     <test name=" 3  To verify user should be able to import contacts" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -56,13 +65,13 @@
 				</methods>
 			</class>
 			<class
-				name="deskera.web.automation.erp.imports.tests.Conactimporttest">
+				name="deskera.web.automation.erp.imports.tests.ImportContactTest">
 				
 			</class>
 		</classes>
 	</test>
 	
-	<test name=" 4 249080 To verify user should be able to import Chart of Accounts" parallel="false">
+	<test name=" 4 To verify user should be able to import Chart of Accounts" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -70,7 +79,7 @@
 				</methods>
 			</class>
 			<class
-				name="deskera.web.automation.erp.imports.tests.Chartofaccountsimporttest">
+				name="deskera.web.automation.erp.imports.tests.ImportChartofAccountsTest">
 				
 			</class>
 		</classes>

@@ -23,7 +23,7 @@ public class CreateNewOrderTest extends DriverFactory {
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "environment" })
+	@Parameters({ "confBuy", "environment" })
 	public void getConf(String conf, String URL) {
 		confPath = conf;
 		url = URL;

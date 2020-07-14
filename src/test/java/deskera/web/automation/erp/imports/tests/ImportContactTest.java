@@ -11,7 +11,7 @@ import deskera.web.automation.erp.imports.pages.ContactimportPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
-public class Conactimporttest extends DriverFactory {
+public class ImportContactTest extends DriverFactory {
 	
 	String confPath, url;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();

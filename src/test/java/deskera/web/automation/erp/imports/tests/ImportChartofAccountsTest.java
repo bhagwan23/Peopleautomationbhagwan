@@ -10,7 +10,7 @@ import deskera.web.automation.erp.imports.pages.Chartofaccountsimportpage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
-public class Chartofaccountsimporttest extends DriverFactory {
+public class ImportChartofAccountsTest extends DriverFactory {
 	
 	
 	String confPath, url;

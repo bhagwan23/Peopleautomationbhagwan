@@ -169,23 +169,36 @@ public class TrackedProductImportPage {
 	@Step("Upload Import file of Product")
 	public void UploadImportProductFile(String filename) throws InterruptedException, AWTException {
 		// Supported onnly for windows local env
-		if (System.getProperty("os.name").toLowerCase().contains("windows")
-				|| System.getProperty("os.name").toLowerCase().contains("windows")) {
-			WDWait(browsebutton);
+		/*
+		 * if (System.getProperty("os.name").toLowerCase().contains("windows") ||
+		 * System.getProperty("os.name").toLowerCase().contains("windows")) {
+		 */		WDWait(browsebutton);
 			browsebutton.click();
-			Robot ro = new Robot();
-			StringSelection str = new StringSelection(System.getProperty("user.dir")+"\\testdata\\imports\\Product\\"+filename);
-			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
+			Robot rob = new Robot();
+			//StringSelection str = new StringSelection(System.getProperty("user.dir")+"\\testdata\\imports\\Product\\"+filename);
+			StringSelection filePath=new StringSelection("/home/seluser/Product/"+filename);
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
 			Thread.sleep(2000);
+			rob.keyPress(KeyEvent.VK_CONTROL);
+			rob.keyPress(KeyEvent.VK_L);
 			Thread.sleep(2000);
-			ro.keyPress(KeyEvent.VK_CONTROL);
-			ro.keyPress(KeyEvent.VK_V);
+			rob.keyRelease(KeyEvent.VK_CONTROL);
+			rob.keyRelease(KeyEvent.VK_L);
 			Thread.sleep(2000);
-			ro.keyRelease(KeyEvent.VK_CONTROL);
-			ro.keyRelease(KeyEvent.VK_V);
+			rob.keyPress(KeyEvent.VK_CONTROL);
+			rob.keyPress(KeyEvent.VK_A);
 			Thread.sleep(2000);
-			ro.keyPress(KeyEvent.VK_ENTER);
-			ro.keyRelease(KeyEvent.VK_ENTER);
+			rob.keyRelease(KeyEvent.VK_CONTROL);
+			rob.keyRelease(KeyEvent.VK_A);
+			Thread.sleep(2000);
+			rob.keyPress(KeyEvent.VK_CONTROL);
+			rob.keyPress(KeyEvent.VK_V);
+			Thread.sleep(2000);
+			rob.keyRelease(KeyEvent.VK_CONTROL);
+			rob.keyRelease(KeyEvent.VK_V);
+			Thread.sleep(2000);
+			rob.keyPress(KeyEvent.VK_ENTER);
+			rob.keyRelease(KeyEvent.VK_ENTER);
 			Thread.sleep(3000);
 			
 			Thread.sleep(2000);
@@ -194,7 +207,7 @@ public class TrackedProductImportPage {
 			
 			sAssert.assertTrue(wait.until(ExpectedConditions.elementToBeClickable(UploadDatatNextButton)) != null,"wait for  Next button");
 			UploadDatatNextButton.click();
-		}
+		//}
 	}
 	
 	@Step("Mapping headers to import products")

@@ -23,9 +23,9 @@ public class ImportChartofAccountsTest extends DriverFactory {
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "environment" })
-	public void getConf(String conf, String URL) {
-		confPath = conf;
+	@Parameters({ "environment" })
+	public void getConf(String URL) {
+		//confPath = conf;
 		url = URL;
 	}
 	@TestRailId(testRailId = 249086)

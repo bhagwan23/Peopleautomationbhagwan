@@ -122,23 +122,35 @@ private WebDriver driver;
 		@Step("Upload Import file of Accounts")
 		public void UploadImportAccountsFile(String filename) throws InterruptedException, AWTException {
 			// Supported onnly for windows local env
-			if (System.getProperty("os.name").toLowerCase().contains("windows")
-					|| System.getProperty("os.name").toLowerCase().contains("windows")) {
-				WDWait(browsebutton);
+		/*
+		 * if (System.getProperty("os.name").toLowerCase().contains("windows") ||
+		 * System.getProperty("os.name").toLowerCase().contains("windows")) {
+		 */		WDWait(browsebutton);
 				browsebutton.click();
-				Robot ro = new Robot();
-				StringSelection str = new StringSelection(System.getProperty("user.dir")+"\\testdata\\imports\\COA\\"+filename);
-				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
+				Robot rob = new Robot();
+				//StringSelection str = new StringSelection(System.getProperty("user.dir")+"\\testdata\\imports\\COA\\"+filename);
+				StringSelection filePath=new StringSelection("/home/seluser/COA/"+filename);
+				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
+				rob.keyPress(KeyEvent.VK_CONTROL);
+				rob.keyPress(KeyEvent.VK_L);
 				Thread.sleep(2000);
+				rob.keyRelease(KeyEvent.VK_CONTROL);
+				rob.keyRelease(KeyEvent.VK_L);
 				Thread.sleep(2000);
-				ro.keyPress(KeyEvent.VK_CONTROL);
-				ro.keyPress(KeyEvent.VK_V);
+				rob.keyPress(KeyEvent.VK_CONTROL);
+				rob.keyPress(KeyEvent.VK_A);
 				Thread.sleep(2000);
-				ro.keyRelease(KeyEvent.VK_CONTROL);
-				ro.keyRelease(KeyEvent.VK_V);
+				rob.keyRelease(KeyEvent.VK_CONTROL);
+				rob.keyRelease(KeyEvent.VK_A);
 				Thread.sleep(2000);
-				ro.keyPress(KeyEvent.VK_ENTER);
-				ro.keyRelease(KeyEvent.VK_ENTER);
+				rob.keyPress(KeyEvent.VK_CONTROL);
+				rob.keyPress(KeyEvent.VK_V);
+				Thread.sleep(2000);
+				rob.keyRelease(KeyEvent.VK_CONTROL);
+				rob.keyRelease(KeyEvent.VK_V);
+				Thread.sleep(2000);
+				rob.keyPress(KeyEvent.VK_ENTER);
+				rob.keyRelease(KeyEvent.VK_ENTER);
 				Thread.sleep(3000);
 				
 				Thread.sleep(2000);
@@ -147,7 +159,7 @@ private WebDriver driver;
 				
 				sAssert.assertTrue(wait.until(ExpectedConditions.elementToBeClickable(UploadDatatNextButton)) != null,"wait for  Next button");
 				UploadDatatNextButton.click();
-			}
+			//}
 		}
 		
 		@Step("Mapping headers to import Accounts")

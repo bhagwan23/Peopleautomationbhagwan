@@ -5,6 +5,7 @@
 	parallel="false" preserve-order="true">
 
 	<suite-files>
+
 		<!-- <suite-file
 			path="src/test/resources/testsuites/bvtSG/bvt_sg_contacts.xml"></suite-file> -->
 		<suite-file

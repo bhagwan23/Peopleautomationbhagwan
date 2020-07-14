@@ -40,10 +40,12 @@ public class CopyContactTest extends DriverFactory {
 		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
 		 */
 		
-		String name= ReadPropertyUtil.readProperty("UpdatedContactName", confPath);
+		String name= ReadPropertyUtil.readProperty("CopiedContactName", confPath);
 		String UENNumber= ReadPropertyUtil.readProperty("UpdatedUEN_Number", confPath);
 		String TAXNumber= ReadPropertyUtil.readProperty("UpdatedTAX_Number", confPath);
-		String email= ReadPropertyUtil.readProperty("UpdatedcontactMail1", confPath);
+		String currency= ReadPropertyUtil.readProperty("currency", confPath);
+		String paymentTerms= ReadPropertyUtil.readProperty("paymentTerms", confPath);
+
 
 		// Create login Page Object instance
 		/*
@@ -61,9 +63,9 @@ public class CopyContactTest extends DriverFactory {
 		CopyContactPage copycontact= new CopyContactPage(driver, wait);
 		copycontact.clickContextMenuIcon();
 		copycontact.clickCopyButton();
-		//editcontact.editGeneralInfo(name, email, UENNumber, TAXNumber);
+		copycontact.changeName(name);
 		copycontact.clickSaveButton();
 		copycontact.verifysuccessmessage();
-		contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber);
+		copycontact.verifyCopiedContact(name, UENNumber, TAXNumber, currency, paymentTerms);
 	}
 }

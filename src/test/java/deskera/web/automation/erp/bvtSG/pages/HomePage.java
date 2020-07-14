@@ -257,9 +257,10 @@ public class HomePage {
 		Thread.sleep(3000); // THis is important because popup gets loaded and
 							// then disappears
 		// driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click();
-		for (int second = 0; second <= 10; second++) {
-			if (second == 10) {
-				System.out.println("Popup Not found!");
+		for (int second = 0; second <= 5; second++) {
+			if (second == 5) {
+				System.out.println("Popup Not found clickin on new Contact Button");
+
 				break;
 			}
 			try {

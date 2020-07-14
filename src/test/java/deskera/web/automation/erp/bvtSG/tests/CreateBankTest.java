@@ -1,5 +1,4 @@
 package deskera.web.automation.erp.bvtSG.tests;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -33,32 +32,25 @@ public class CreateBankTest extends DriverFactory {
 	@TestRailId(testRailId = 20274)
 	@Test
 	@Description(value = "C20274 To verify that user is able to Create/Connect - Bank")
+	public void addCreateBankTestBank() throws InterruptedException{
 
-	public void addBank() throws InterruptedException{
-		/*
-		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
-		 */
-
-		// Create login Page Object instance
-		/*
-		 * LoginPage loginPage = new LoginPage(driver, wait); loginPage.openURL(url);
-		 * loginPage.enterEmailandPassword(emailAddress, passWord);
-		 * loginPage.clickSignIn();
-		 */
 		String bcode = ReadPropertyUtil.readProperty("bcode", confPath);
 		String bname = ReadPropertyUtil.readProperty("bname", confPath);	
-		String bDesc = ReadPropertyUtil.readProperty("bDesc", confPath);	
-
-		
-		CreateBankPage bank= new CreateBankPage(driver, wait);
+		String bDesc = ReadPropertyUtil.readProperty("bDesc", confPath);
+		String bankUsername = ReadPropertyUtil.readProperty("bankUsername", confPath);	
+		String bankPassword = ReadPropertyUtil.readProperty("bankPassword", confPath);
+		// Create login Page Object instance
+		CreateBankPage bank= new CreateBankPage(driver, wait);		
 		bank.clickOnBanktab();
 		bank.verifyDefaultBank();
 		bank.clickAddButton();
 		bank.verifyAccountDetailElements();
 		bank.enterAccountDetails(bcode, bname, bDesc);
-		bank.clickSaveAndCloseButton();
-		bank.verifySavedAccount();
-		bank.clickOnConnectButton();
+		bank.clickSaveAndConnectButton();
+		bank.searchBank();
+		bank.enterBankUsernamePassword(bankUsername, bankPassword);
+		bank.selectAndConnectBankAccount();
+		bank.clickConnectAccountButton();
+		bank.verifyBankConnectSuccessMessage();		
 	}
 }

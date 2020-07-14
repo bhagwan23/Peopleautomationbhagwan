@@ -19,9 +19,9 @@
 	<parameter name="conf"
 		value="src/test/resources/bvtSGConfig/Common.config"></parameter>
 
-
+  
 	<!-- Run Test Cases -->
-
+  
 	<test name=" 1 Sign Up without Phone Number test" parallel="false">
 
 		<classes>
@@ -94,6 +94,7 @@
 			</class>
 		</classes>
 	</test>
+	
 	<test name="6 C20261 Add Contacts" parallel="false">
 
 		<classes>

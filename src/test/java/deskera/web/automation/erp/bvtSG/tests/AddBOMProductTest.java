@@ -47,8 +47,7 @@ public class AddBOMProductTest extends DriverFactory {
 		String openingValuation = ReadPropertyUtil.readProperty("openingValuation", confPath);	
 		String quantity1 = ReadPropertyUtil.readProperty("quantity1", confPath);	
 		String trackedProductName = ReadPropertyUtil.readProperty("trackedProductName", confPath);	
-
-		String defaultPurchaseAccount = ReadPropertyUtil.readProperty("defaultPurchaseAccount", confPath);	
+		String defaultPurchaseAccount_Tracked = ReadPropertyUtil.readProperty("defaultPurchaseAccount_Tracked", confPath);	
 		String defaultPurchaseTax = ReadPropertyUtil.readProperty("defaultPurchaseTax", confPath);
 		String defaultSalesAccount = ReadPropertyUtil.readProperty("defaultSalesAccount", confPath);	
 		String defaultSalesPrice = ReadPropertyUtil.readProperty("defaultSalesPrice", confPath);
@@ -79,7 +78,7 @@ public class AddBOMProductTest extends DriverFactory {
 		createProductPage.clickAccountingTab();
 	    createProductPage.verifyPurchaseAccountDropdownValues();
 		createProductPage.verifySalesAccountDropdownValues();
-		createProductPage.verifyAccountingTabForBOMProduct(defaultPurchaseAccount,defaultPurchaseTax, defaultSalesAccount, defaultSalesPrice,defaultSalesTax);
+		createProductPage.verifyAccountingTabForBOMProduct(defaultPurchaseAccount_Tracked,defaultPurchaseTax, defaultSalesAccount, defaultSalesPrice,defaultSalesTax);
 		createProductPage.enterAccountingInfoForBOMProduct(salesPrice);	
 		createProductPage.clickInventoryTab();
 		createProductPage.verifyInventoryTabForBOMProduct(defaultUnitOfMeasurement,defaultCostOfGoodSoldAccount, defaultManufacturingAccount, defaultStockAdjustmentAccount);
@@ -92,7 +91,7 @@ public class AddBOMProductTest extends DriverFactory {
 		createProductPage.clickSaveButton();
 		createProductPage.verifyCreateProductSuccessMessage();
 		createProductPage.verifyBomProductCount();
-		createProductPage.verifyCreatedBOMProduct(BOMProductName, description,barcode,defaultPurchaseAccount,defaultSalesAccount,salesPrice,defaultPurchaseTax,defaultSalesTax);
+		createProductPage.verifyCreatedBOMProduct(BOMProductName, description,barcode,defaultPurchaseAccount_Tracked,defaultSalesAccount,salesPrice,defaultPurchaseTax,defaultSalesTax);
 		createProductPage.verifyInventoryDetailsForCreatedBOMProduct(defaultUnitOfMeasurement, defaultCostOfGoodSoldAccount,defaultStockAdjustmentAccount, defaultWarehouseCode, openingQuanity, openingValuation);
 
  }

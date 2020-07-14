@@ -264,7 +264,7 @@ public class ContactsPage {
 	@FindBy(xpath = "//div[@class='section-container pb-4']//div[3]//div[1]/following-sibling::div[@class='field-value']")
 	
 	private WebElement displayedNumber;
-	String customFormatNumber="U-0001-R";
+	String customFormatNumber="U-0001-C";
 
 
 

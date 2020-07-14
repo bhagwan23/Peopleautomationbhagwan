@@ -114,8 +114,13 @@
 		</classes>
 	</test>
     
-<test name="8 C20261 Create Custom Number Format" parallel="false">
+<test name="5 C20261 Create Custom Number Format" parallel="false">
 		<classes>
+		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.CustomNumberFormatTest">
 				<methods>

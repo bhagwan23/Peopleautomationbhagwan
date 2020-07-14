@@ -254,7 +254,8 @@ public class BuyPage {
 
 	@Step("Verify page title")
 	public void verifyPageTitle() {
-		Assert.assertEquals(driver.getTitle(), pageTitleText);
+		sAssert.assertEquals(driver.getTitle(), pageTitleText);
+		sAssert.assertAll();
 	}
 
 	// Common util for webdriver wait
@@ -265,7 +266,7 @@ public class BuyPage {
 	@Step("verify buytab elements")
 	public void verifybuytabElements() {
 		WDWait(buyTab);
-		buyTab.isDisplayed();
+		sAssert.assertTrue(buyTab.isDisplayed(), "Verify Buy tab");
 		sAssert.assertAll();
 
 	}
@@ -319,17 +320,17 @@ public class BuyPage {
 	@Step("Verify Buy page elements")
 	public void verifyBuyPageElement() {
 		WDWait(buyRecordHeading);
-		buyRecordHeading.isDisplayed();
-		createNewButton.isDisplayed();
-		orderTotal.isDisplayed();
-		billTotal.isDisplayed();
-		archiveTotal.isDisplayed();
-		numberColumn.isDisplayed();
-		contactColumn.isDisplayed();
-		dueDateColumn.isDisplayed();
-		totalAmountColumn.isDisplayed();
-		goodsReceivedColumn.isDisplayed();
-		quickAction.isDisplayed();
+		sAssert.assertTrue(buyRecordHeading.isDisplayed(),"Verify buy record heading");
+		sAssert.assertTrue(createNewButton.isDisplayed());
+		sAssert.assertTrue(orderTotal.isDisplayed());
+		sAssert.assertTrue(billTotal.isDisplayed());
+		sAssert.assertTrue(archiveTotal.isDisplayed());
+		sAssert.assertTrue(numberColumn.isDisplayed());
+		sAssert.assertTrue(contactColumn.isDisplayed());
+		sAssert.assertTrue(dueDateColumn.isDisplayed());
+		sAssert.assertTrue(totalAmountColumn.isDisplayed());
+		sAssert.assertTrue(goodsReceivedColumn.isDisplayed());
+		sAssert.assertTrue(quickAction.isDisplayed());
 		
 		sAssert.assertAll();
 
@@ -356,14 +357,14 @@ public class BuyPage {
 	@Step("Verify create order page elements")
 	public void verifyCreateOrderElements() {
 		WDWait(saveButton);
-		saveButton.isDisplayed();
-		addContactButton.isDisplayed();
-		orderDate.isDisplayed();
-		dueDate.isDisplayed();
-		addLineItemButton.isDisplayed();
-		orderSettingText.isDisplayed();
-		customizeNumberFormat.isDisplayed();
-		globalCustomFields.isDisplayed();
+		sAssert.assertTrue(saveButton.isDisplayed(),"Verify save button");
+		sAssert.assertTrue(addContactButton.isDisplayed(), "Verify add contact button");
+		sAssert.assertTrue(orderDate.isDisplayed(),"Verify order date");
+		sAssert.assertTrue(dueDate.isDisplayed(),"Verify due date");
+		sAssert.assertTrue(addLineItemButton.isDisplayed(), "Verify add line item button");
+		sAssert.assertTrue(orderSettingText.isDisplayed(),"Verify order setting text");
+		sAssert.assertTrue(customizeNumberFormat.isDisplayed(),"Verify custom number format text");
+		sAssert.assertTrue(globalCustomFields.isDisplayed(), "Verify global custom field text");
 		// unitPriceIsTaxInclusive.isDisplayed();
 		sAssert.assertAll();
 
@@ -384,7 +385,7 @@ public class BuyPage {
 	@Step("Verify Multi currency options")
 	public void verifyMultiCurrencyOptions() {
 		WDWait(multiCurrencyOptions);
-		multiCurrencyOptions.isDisplayed();
+		sAssert.assertTrue(multiCurrencyOptions.isDisplayed(), "Verify multi currency option");
 		sAssert.assertAll();
 
 	}
@@ -405,7 +406,7 @@ public class BuyPage {
 	@Step("Verrify default quantity of products")
 	public void verifydefaultQuantityAndTax() {
 		WDWait(pQuantity);
-		pQuantity.isDisplayed();
+		sAssert.assertTrue(pQuantity.isDisplayed(),"Verify quantity");
 		sAssert.assertEquals(pQuantity.getAttribute("value"), "1.00");
 		sAssert.assertAll();
 
@@ -483,7 +484,7 @@ public class BuyPage {
 	@Step("Verify success message")
 	public void verifysuccessmessage() {
 		WDWait(ordercreatedSuccessMessage);
-		ordercreatedSuccessMessage.isDisplayed();
+		sAssert.assertTrue(ordercreatedSuccessMessage.isDisplayed(), "Verify order created success message");
 		wait.until(ExpectedConditions.visibilityOf(ordercreatedSuccessMessage));
 		sAssert.assertAll();
 
@@ -491,7 +492,7 @@ public class BuyPage {
 	@Step("Verify total amount in grid")
 	public void verifyamountInGrid(){
 		WDWait(verifyAmountInGrid);
-		verifyAmountInGrid.isDisplayed();
+		sAssert.assertTrue(verifyAmountInGrid.isDisplayed(),"Verify amount in grid");
 		
 		sAssert.assertEquals(verifyAmountInGrid.getText(), amount);
 		sAssert.assertAll();
@@ -501,7 +502,7 @@ public class BuyPage {
 	@Step("Verify total order count")
 	public void ordetTotalCount() {
 		WDWait(orderTotalCount);
-		orderTotalCount.isDisplayed();
+		sAssert.assertTrue(orderTotalCount.isDisplayed(),"Verify order count");
 		sAssert.assertEquals(orderTotalCount.getText(), "1");
 		sAssert.assertAll();
 
@@ -530,7 +531,7 @@ public class BuyPage {
 	public void clickConvertToBillButton() throws InterruptedException {
 
 		WDWait(convertToBillButton);
-		convertToBillButton.isDisplayed();
+		sAssert.assertTrue(convertToBillButton.isDisplayed(),"Verify convert to bill button");
 		convertToBillButton.click();
 		sAssert.assertAll();
 
@@ -539,26 +540,28 @@ public class BuyPage {
 	@Step("Verify convert to bill popup")
 	public void verifyConvertToBillPopupElements() {
 		WDWait(convertToBillHeading);
-		convertToBillHeading.isDisplayed();
+		sAssert.assertTrue(convertToBillHeading.isDisplayed(),"Verify convert to bill heading");
 		WDWait(convertAutoReceivedbutton);
-		convertAutoReceivedbutton.isDisplayed();
+		sAssert.assertTrue(convertAutoReceivedbutton.isDisplayed(),"Verify auto receive button");
 		WDWait(convertOnlyButton);
-		convertOnlyButton.isDisplayed();
+		sAssert.assertTrue(convertOnlyButton.isDisplayed(),"Verify convert only button");
+		sAssert.assertAll();
 	}
 
 	@Step("Click on convert autoreceived button")
 	public void clickConvertAutoReceivedButton() {
 		WDWait(convertAutoReceivedbutton);
-		convertAutoReceivedbutton.isDisplayed();
+		sAssert.assertTrue(convertAutoReceivedbutton.isDisplayed(),"Verify convert autoreceive button");
 		convertAutoReceivedbutton.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Verify success message")
 	public void verifyConvertBillsuccessmessage() {
 		WDWait(convertBillSucessMsg);
-		convertBillSucessMsg.isDisplayed();
-		wait.until(ExpectedConditions.invisibilityOf(convertBillSucessMsg));
-
+		sAssert.assertTrue(convertBillSucessMsg.isDisplayed(),"Verify convert bill success message");
+		wait.until(ExpectedConditions.visibilityOf(convertBillSucessMsg));
+		sAssert.assertAll();
 	}
 
 	/*******************************
@@ -570,51 +573,54 @@ public class BuyPage {
 		WDWait(newBillButton);
 		wait.until(ExpectedConditions.elementToBeClickable(newBillButton));
 		newBillButton.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Verify create order page elements")
 	public void verifyCreateBillElements() {
 		WDWait(saveButton);
-		saveButton.isDisplayed();
+		sAssert.assertTrue(saveButton.isDisplayed(),"Verify save button");
 		WDWait(billText);
-		billText.isDisplayed();
-		addContactButton.isDisplayed();
-		billDate.isDisplayed();
-		dueDate.isDisplayed();
-		addLineItemButton.isDisplayed();
-		billSettingText.isDisplayed();
-		customizeNumberFormat.isDisplayed();
-		globalCustomFields.isDisplayed();
-		unitPriceIsTaxInclusive.isDisplayed();
+		sAssert.assertTrue(billText.isDisplayed(),"Verify bill text");
+		sAssert.assertTrue(addContactButton.isDisplayed(),"Verify add contact button");
+		sAssert.assertTrue(billDate.isDisplayed(),"Verify bill date");
+		sAssert.assertTrue(dueDate.isDisplayed(),"Verify due date");
+		sAssert.assertTrue(addLineItemButton.isDisplayed(),"Verify add line item buttom");
+		sAssert.assertTrue(billSettingText.isDisplayed(),"Verify billing setting text");
+		sAssert.assertTrue(customizeNumberFormat.isDisplayed(),"Verify customize number format");
+		sAssert.assertTrue(globalCustomFields.isDisplayed(),"Verify global custom fields");
+		sAssert.assertTrue(unitPriceIsTaxInclusive.isDisplayed(),"Verify unit price is text inclusive button");
+		sAssert.assertAll();
 	}
 
 	@Step("Verify success message")
 	public void verifybillcreatedsuccessmessage() {
 		WDWait(billcreatedSuccessMessage);
-		billcreatedSuccessMessage.isDisplayed();
-		wait.until(ExpectedConditions.invisibilityOf(billcreatedSuccessMessage));
-
+		sAssert.assertTrue(billcreatedSuccessMessage.isDisplayed(),"Verify bill created success message");
+		wait.until(ExpectedConditions.visibilityOf(billcreatedSuccessMessage));
+		sAssert.assertAll();
 	}
 
 	@Step("Verify total bill count")
 	public void billTotalCount() {
 		WDWait(billTotalCount);
-		billTotalCount.isDisplayed();
-		Assert.assertEquals(billTotalCount.getText(), "1");
-
+		sAssert.assertTrue(billTotalCount.isDisplayed(),"Verify bill total count");
+		sAssert.assertEquals(billTotalCount.getText(), "1");
+		sAssert.assertAll();
 	}
 
 	@Step("Click on Bill Card")
 	public void clickOnBillCard() {
 		WDWait(billCard);
-		billCard.isDisplayed();
+		sAssert.assertTrue(billCard.isDisplayed(),"Verify bill card");
 		billCard.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Click on Received Goods button")
 	public void clickReceivedGoodsButton() {
 		WDWait(receivedGoodsButton);
-		receivedGoodsButton.isDisplayed();
+		sAssert.assertTrue(receivedGoodsButton.isDisplayed(),"Verify received goods button");
 		receivedGoodsButton.click();
 		sAssert.assertAll();
 
@@ -623,11 +629,11 @@ public class BuyPage {
 	@Step("Verify receive goods elements ")
 	public void verifyReceivedGoodsElements() {
 		WDWait(receivingTextBox);
-		receivingTextBox.isDisplayed();
+		sAssert.assertTrue(receivingTextBox.isDisplayed(),"Verify receiving text box");
 		WDWait(cancelButton);
-		cancelButton.isDisplayed();
+		sAssert.assertTrue(cancelButton.isDisplayed(),"Verify cancel button");
 		WDWait(receiveButton);
-		receiveButton.isDisplayed();
+		sAssert.assertTrue(receiveButton.isDisplayed(),"Verify receive button");
 		sAssert.assertAll();
 
 	}
@@ -635,7 +641,7 @@ public class BuyPage {
 	@Step("Click on Receive button")
 	public void clickReceiveButton() throws InterruptedException {
 		WDWait(receiveButton);
-		receiveButton.isDisplayed();
+		sAssert.assertTrue(receiveButton.isDisplayed(),"Click receive button");
 		receiveButton.click();
 		Thread.sleep(3000);
 		sAssert.assertAll();
@@ -645,87 +651,94 @@ public class BuyPage {
 	@Step("Click on Make Payment button")
 	public void clickMakePaymentButton() {
 		WDWait(makePaymentButton);
-		makePaymentButton.isDisplayed();
+		sAssert.assertTrue(makePaymentButton.isDisplayed(),"Click make payment button");
 		makePaymentButton.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Verify make payment page element")
 	public void verifyMakePaymentElement() {
 		WDWait(makePaymentHeading);
-		makePaymentHeading.isDisplayed();
+		sAssert.assertTrue(makePaymentHeading.isDisplayed(),"Verify make payment heading");
 		WDWait(generalTab);
-		generalTab.isDisplayed();
+		sAssert.assertTrue(generalTab.isDisplayed(),"Verify general tab");
 		WDWait(confirmTab);
-		confirmTab.isDisplayed();
+		sAssert.assertTrue(confirmTab.isDisplayed(),"Verify confirm tab");
 		WDWait(currentOustandingText);
-		currentOustandingText.isDisplayed();
+		sAssert.assertTrue(currentOustandingText.isDisplayed(),"Verify current outstanding text");
 		WDWait(dueInLabel);
-		dueInLabel.isDisplayed();
+		sAssert.assertTrue(dueInLabel.isDisplayed(),"Verify due in label");
 		WDWait(sgdCurrency);
-		sgdCurrency.isDisplayed();
+		sAssert.assertTrue(sgdCurrency.isDisplayed(),"Verify currency");
 		WDWait(displayedAmount);
-		displayedAmount.isDisplayed();
+		sAssert.assertTrue(displayedAmount.isDisplayed(),"Verify displayed amount");
 		WDWait(paymentDate);
-		paymentDate.isDisplayed();
+		sAssert.assertTrue(paymentDate.isDisplayed(),"Verify payment date");
 		WDWait(currencyDropdown);
-		currencyDropdown.isDisplayed();
+		sAssert.assertTrue(currencyDropdown.isDisplayed(),"Verify currency drop down");
 		WDWait(paymentAndCurrencyAmount);
-		paymentAndCurrencyAmount.isDisplayed();
-
+		sAssert.assertTrue(paymentAndCurrencyAmount.isDisplayed(),"Verify payment and currency field");
+		sAssert.assertAll();
 	}
 
 	@Step("Click on Pay Form Drop down")
 	public void clickPayFormDropDown() throws InterruptedException {
 		WDWait(payFromDropDown);
-		payFromDropDown.isDisplayed();
+		sAssert.assertTrue(payFromDropDown.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(payFromDropDown));
 		payFromDropDown.click();
 		WDWait(clickOnCash);
-		clickOnCash.isDisplayed();
+		sAssert.assertTrue(clickOnCash.isDisplayed());
 		clickOnCash.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Verify default currency in Payment and amount")
 	public void verifyCurrency() {
 		WDWait(sgdCurrency);
-		Assert.assertEquals(sgdCurrency.getText(), "SGD");
+		sAssert.assertEquals(sgdCurrency.getText(), "SGD");
+		sAssert.assertAll();
 	}
 
 	@Step("Click on Next button")
 	public void clickOnNext() {
 		WDWait(nextButton);
-		nextButton.isDisplayed();
+		sAssert.assertTrue(nextButton.isDisplayed());
 		nextButton.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Verify Confirm payment made page elements")
 	public void verifyConfirmPaymentElements() {
 		WDWait(confirmPaymentMadeText);
-		confirmPaymentMadeText.isDisplayed();
+		sAssert.assertTrue(confirmPaymentMadeText.isDisplayed(),"Verify confirm Payment Made Text");
 		WDWait(payfromCash);
-		payfromCash.isDisplayed();
-		Assert.assertEquals(payfromCash.getText(), "Cash");
+		sAssert.assertTrue(payfromCash.isDisplayed(),"Verify pay from cash");
+		sAssert.assertEquals(payfromCash.getText(), "Cash");
 		WDWait(backButton);
-		backButton.isDisplayed();
+		sAssert.assertTrue(backButton.isDisplayed(),"Verify back button");
 		WDWait(payButton);
-		payButton.isDisplayed();
+		sAssert.assertTrue(payButton.isDisplayed(),"Verify pay button");
 		payButton.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Click on Close button")
 	public void ClickOnCloseButton() {
 		WDWait(printButton);
-		printButton.isDisplayed();
+		sAssert.assertTrue(printButton.isDisplayed());
 		WDWait(closeButton);
-		closeButton.isDisplayed();
+		sAssert.assertTrue(closeButton.isDisplayed());
 		closeButton.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Verify payment received success message")
 	public void verifyPaymentReceivedsuccessmessage() {
 		WDWait(paymentReceivedSuccessMessage);
-		paymentReceivedSuccessMessage.isDisplayed();
-		wait.until(ExpectedConditions.invisibilityOf(paymentReceivedSuccessMessage));
+		sAssert.assertTrue(paymentReceivedSuccessMessage.isDisplayed(),"Verify payment received success message");
+		wait.until(ExpectedConditions.visibilityOf(paymentReceivedSuccessMessage));
+		sAssert.assertAll();
 	}
 
 	/******************************
@@ -735,27 +748,29 @@ public class BuyPage {
 	@Step("Click on Context Menu icon")
 	public void clickContextMenuIcon() throws InterruptedException {
 		WDWait(contextMenuIcon);
-		contextMenuIcon.isDisplayed();
+		sAssert.assertTrue(contextMenuIcon.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(contextMenuIcon));
 		// Thread.sleep(3000);
 		contextMenuIcon.click();
 		// Thread.sleep(4000);
+		sAssert.assertAll();
 	}
 
 	@Step("Click on Archive Bill button")
 	public void clickOnArchiveBillButton() {
 		WDWait(archiveBillButton);
-		archiveBillButton.isDisplayed();
+		sAssert.assertTrue(archiveBillButton.isDisplayed());
 		archiveBillButton.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Verify total archive count")
 	public void archiveTotalCount() {
 		WDWait(archiveTotalCount);
-		archiveTotalCount.isDisplayed();
+		sAssert.assertTrue(archiveTotalCount.isDisplayed(),"Verify archive total count");
 		wait.until(ExpectedConditions.visibilityOf(archiveTotalCount));
-		Assert.assertEquals(archiveTotalCount.getText(), "1");
-
+		sAssert.assertEquals(archiveTotalCount.getText(), "1");
+		sAssert.assertAll();
 	}
 	
 	/******************************
@@ -764,32 +779,34 @@ public class BuyPage {
 	@Step("Click on Context Menu icon of Orders")
 	public void clickOrderContextMenuIcon() {
 		WDWait(orderContextMenuIcon);
-		orderContextMenuIcon.isDisplayed();
+		sAssert.assertTrue(orderContextMenuIcon.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(orderContextMenuIcon));
 		orderContextMenuIcon.click();
+		sAssert.assertAll();
 	}
 	@Step("Click on Archive Order button")
 	public void clickOnArchiveOrderButton() {
 		WDWait(archiveOrderButton);
-		archiveOrderButton.isDisplayed();
+		sAssert.assertTrue(archiveOrderButton.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(archiveOrderButton));
 		archiveOrderButton.click();
-
+		sAssert.assertAll();
 	}
 	@Step("Click on Archive card")
 	public void clickOnArchiveCard(){
 		WDWait(archiveCard);
-		archiveCard.isDisplayed();
+		sAssert.assertTrue(archiveCard.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(archiveCard));
 		archiveCard.click();
-		
+		sAssert.assertAll();
 	}
 	@Step("Verify cancelled status of archived record")
 	public void verifyCancelledStatus() throws InterruptedException{
 		WDWait(cancelledStatus);
-		cancelledStatus.isDisplayed();
+		sAssert.assertTrue(cancelledStatus.isDisplayed(),"Verify cancelled status");
 		wait.until(ExpectedConditions.visibilityOf(cancelledStatus));
-		Assert.assertEquals(cancelledStatus.getText(), "Cancelled");
+		sAssert.assertEquals(cancelledStatus.getText(), "Cancelled");
+		sAssert.assertAll();
 	}
 	
 	/******************************
@@ -798,23 +815,26 @@ public class BuyPage {
 	@Step("Click on context menu icon to reopen")
 	public void clickOnContextMenuOnArchivePage(){
 		WDWait(archiveContextMenuIcon);
-		archiveContextMenuIcon.isDisplayed();
+		sAssert.assertTrue(archiveContextMenuIcon.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(archiveContextMenuIcon));
 		archiveContextMenuIcon.click();
+		sAssert.assertAll();
 	}
 	@Step("Click on Reopen button")
 	public void clickOnReopen(){
 		WDWait(reopenButton);
-		reopenButton.isDisplayed();
+		sAssert.assertTrue(reopenButton.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(reopenButton));
 		reopenButton.click();
+		sAssert.assertAll();
 	}
 	@Step("No records message after reopen of bill/order")
 	public void noMatchingRecord() throws InterruptedException{
 		WDWait(noMatchingRecord);
 		Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOf(noMatchingRecord));
-		noMatchingRecord.isDisplayed();
+		sAssert.assertTrue(noMatchingRecord.isDisplayed(),"Verify no matching record text");
+		sAssert.assertAll();
 	}
 	
 	

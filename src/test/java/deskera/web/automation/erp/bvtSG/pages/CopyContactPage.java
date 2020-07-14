@@ -131,7 +131,7 @@ public class CopyContactPage {
 	@Step("Verify success message")
 	public void verifysuccessmessage(){
 		WDWait(copyContactSuccessMessage);
-		copyContactSuccessMessage.isDisplayed();
+		sAssert.assertTrue(copyContactSuccessMessage.isDisplayed(), "Verify copy contact success message");
         wait.until(ExpectedConditions.visibilityOf(copyContactSuccessMessage));
         sAssert.assertAll();
 	}

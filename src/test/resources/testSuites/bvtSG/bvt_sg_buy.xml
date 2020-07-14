@@ -40,7 +40,7 @@
 			</class>
 		</classes>
 	</test>
-<!--  
+  
 	<test name=" 2 Archive Order " parallel="false">
 		<classes>
 		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
@@ -90,6 +90,6 @@
 		</classes>
 	</test>
 
--->
+
 
 </suite> 

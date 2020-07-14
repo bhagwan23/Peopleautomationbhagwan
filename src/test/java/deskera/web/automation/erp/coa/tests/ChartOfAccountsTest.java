@@ -47,15 +47,24 @@ public class ChartOfAccountsTest extends DriverFactory {
 		 */
 		// Create Page Object instance
 		ChartOfAccountsPage coaPage = new ChartOfAccountsPage(driver, wait);
+		// Go to COA grid
 		coaPage.clickAccountingButton();
 		coaPage.clickChartOfAccountsCard();
+		// Check whether the all UI elements are displayed.
 		coaPage.verifyCOAPageElements();
+		// Click to add COA
 		coaPage.clickAddCOAbutton();
+		// ENter account details
 		coaPage.enterAccountDetails(name, code, type, description);
+		// Click to save the COA details
 		coaPage.clickSaveButton();
+		// Check COA is created or not.
 		coaPage.verifyCOACreatedSucessMessage();
+		// Go to the grid
 		coaPage.clickAccountingButton();
 		coaPage.clickChartOfAccountsCard();
+		// Verify added account details.
+		coaPage.verifyAddedAccount(name, code, description);
 	}
 
 }

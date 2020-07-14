@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import deskera.web.automation.core.DriverFactory;
 import deskera.web.automation.core.TestRailId;
+import deskera.web.automation.erp.coa.pages.ChartOfAccountsPage;
 import deskera.web.automation.erp.coa.pages.EditChartOfAccountsPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
@@ -47,15 +48,26 @@ public class EditChartOfAccountsTest extends DriverFactory {
 		 * loginPage.enterEmailandPassword(emailAddress, passWord);
 		 * loginPage.clickSignIn();
 		 */
+		ChartOfAccountsPage coa = new ChartOfAccountsPage(driver, wait);
+		
 		// Create Page Object instance
 		EditChartOfAccountsPage coaPage = new EditChartOfAccountsPage(driver, wait);
+		// Go to COA grid
 		coaPage.clickAccountingButton();
 		coaPage.clickChartOfAccountsCard();
+		// Search account to edit
 		coaPage.searchRecord(cEdit);
+		// click to context menu
 		coaPage.clickContextMenuIcon();
+		// Click on edit button
 		coaPage.clickEditButton();
+		// Edit account details
 		coaPage.editAccountInfo(name, code, description, currency);
 		coaPage.clickSaveChangeButton();
+		// Save the edited details
 		coaPage.verifyCOAeditedSucessMessage();
+		// Verify account details 
+		coa.verifyAddedAccount(name, code, description);
+		
 	}
 }

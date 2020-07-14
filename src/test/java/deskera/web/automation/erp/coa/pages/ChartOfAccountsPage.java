@@ -32,7 +32,7 @@ public class ChartOfAccountsPage {
 		sAssert = new SoftAssertListner(driver);
 	}
 	
-	@FindBy(xpath = "//span[@class='ng-star-inserted'][contains(text(),'Accounting')]")	
+	@FindBy(xpath = "//span[contains(text(),'Accounting')]")	
 	private WebElement accountingButton;
 	
 	@FindBy(xpath = "//div[contains(@class,'row ng-star-inserted')]//div[1]//wtf2-card[1]")
@@ -100,6 +100,24 @@ public class ChartOfAccountsPage {
 	@FindBy(xpath= "//span[text()='Account is successfully created.']")
 	private WebElement createCOASuccessMessage;
 	
+	@FindBy(xpath= "//input[@placeholder='Search Records']")	
+	private WebElement searchRecord;
+	
+	@FindBy(xpath = "//*[@id='container-3']/extn-content[1]/dt-chart-of-account-list[1]/div[1]/div[1]/mat-table[1]/mat-row[1]/mat-cell[3]/span[1]")
+	private WebElement enteredName;
+	
+	@FindBy(xpath = "//vertical-layout-1[@class='ng-star-inserted']//div[3]//div[2]")
+	private WebElement viewCode;
+	
+	@FindBy(xpath = "//*[@id='container-3']/extn-content[1]/dt-add-account[1]/div[1]/div[1]/div[1]/div[2]/dt-add-account-view-form[1]/div[1]/div[1]/div[4]/div[2]")
+	private WebElement viewName;
+	
+	@FindBy(xpath= "//div[contains(text(),'Name')]/following-sibling::div[@class='field-value']")	
+	private WebElement editedName;
+	
+	@FindBy(xpath = "//div[contains(text(),'Account Code')]/following-sibling::div[@class='field-value']")
+	private WebElement editedCode;
+	
 	@Step("Open URl")
 	public void openURL(String URL) {
 		driver.get(URL);
@@ -108,6 +126,7 @@ public class ChartOfAccountsPage {
 	@Step("Verify Page Title")
 	public void verifyPageTitle() {
 		sAssert.assertEquals(driver.getTitle(), pageTitleText);
+		sAssert.assertAll();
 	}
 
 	// Common util for webdriver wait
@@ -120,7 +139,7 @@ public class ChartOfAccountsPage {
 	public void clickAccountingButton() throws InterruptedException{
 		WDWait(accountingButton);
 		accountingButton.click(); 
-		//Thread.sleep(3000);
+		sAssert.assertAll();
 	}
 	
 	@Step("Click on Chart Of Accounts card")
@@ -128,6 +147,7 @@ public class ChartOfAccountsPage {
 		WDWait(coaCard);
 		coaCard.click(); 
 		Thread.sleep(2000);
+		sAssert.assertAll();
 	}
 	
 	@Step("Verify page elements")
@@ -143,6 +163,7 @@ public class ChartOfAccountsPage {
 		typeBalHeaderCell.isDisplayed();
 		reportingBalHeaderCell.isDisplayed();
 		statusHeaderCell.isDisplayed();
+		sAssert.assertAll();
 	}
 	
 	@Step("Click on Add button")
@@ -156,6 +177,7 @@ public class ChartOfAccountsPage {
 		sAssert.assertTrue(accountCode.isDisplayed(), "Account code input box");
 		sAssert.assertTrue(accountName.isDisplayed(), "Account name input box");
 		sAssert.assertTrue(description.isDisplayed(), "Account description");
+		sAssert.assertAll();
 		
 	}
 	
@@ -170,6 +192,7 @@ public class ChartOfAccountsPage {
 		accountCode.sendKeys(code);
 		accountName.sendKeys(name);
 		description.sendKeys(desc);
+		sAssert.assertAll();
 	}
 
 	@Step("Click On Save Button")
@@ -177,7 +200,7 @@ public class ChartOfAccountsPage {
 		WDWait(saveButton);
 		wait.until(ExpectedConditions.elementToBeClickable(saveButton));
 		saveButton.click();
-		
+		sAssert.assertAll();
 	}
 	
 	@Step("Verify success message")
@@ -186,7 +209,24 @@ public class ChartOfAccountsPage {
 //		createCOASuccessMessage.isDisplayed();
 		wait.until(ExpectedConditions.visibilityOf(createCOASuccessMessage));
 		createCOASuccessMessage.isDisplayed();
-
+		sAssert.assertAll();
+	}
+	
+	@Step("Verify added account")
+	public void verifyAddedAccount(String name, String code, String desc) throws InterruptedException {
+		WDWait(searchRecord);
+		searchRecord.click();
+		searchRecord.sendKeys(name);
+		Thread.sleep(2000);
+		WDWait(enteredName);
+		wait.until(ExpectedConditions.elementToBeClickable(enteredName));
+		Assert.assertEquals(enteredName.getText(), name);
+		enteredName.click();
+		
+		Assert.assertEquals(editedName.getText(), name);
+		Assert.assertEquals(editedCode.getText(), code);
+		Thread.sleep(2000);
+		sAssert.assertAll();
 	}
 	
 }

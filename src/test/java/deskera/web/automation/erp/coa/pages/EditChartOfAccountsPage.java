@@ -103,14 +103,14 @@ public class EditChartOfAccountsPage {
 	public void clickAccountingButton() throws InterruptedException{
 		WDWait(accountingButton);
 		accountingButton.click(); 
-		//Thread.sleep(3000);
+		sAssert.assertAll();
 	}
 	
 	@Step("Click on Chart Of Accounts card")
 	public void clickChartOfAccountsCard() throws InterruptedException{
 		WDWait(coaCard);
 		coaCard.click(); 
-		//Thread.sleep(3000);
+		sAssert.assertAll();
 	}
 	
 	@Step("Search coa to edit")
@@ -121,6 +121,7 @@ public class EditChartOfAccountsPage {
 		Thread.sleep(2000);
 		Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER).build().perform();
+		sAssert.assertAll();
 		
 	}
 	
@@ -131,6 +132,7 @@ public class EditChartOfAccountsPage {
 		wait.until(ExpectedConditions.elementToBeClickable(contextMenuIcon));
 		contextMenuIcon.isDisplayed();
 		contextMenuIcon.click();
+		sAssert.assertAll();
 	}
 	
 	@Step("Click on Edit button")
@@ -140,6 +142,7 @@ public class EditChartOfAccountsPage {
 		wait.until(ExpectedConditions.elementToBeClickable(editButton));
 		editButton.isDisplayed();
 		editButton.click();	
+		sAssert.assertAll();
 		
 	}
 	
@@ -156,6 +159,7 @@ public class EditChartOfAccountsPage {
 		WDWait(description);
 		description.clear();
 		description.sendKeys(newDescription);
+		sAssert.assertAll();
 	}
 	
 	@Step("Click on save change button")
@@ -163,6 +167,7 @@ public class EditChartOfAccountsPage {
 		WDWait(saveChangesButton);
 		saveChangesButton.isDisplayed();
 		saveChangesButton.click();
+		sAssert.assertAll();
 	}
 	
 	@Step("Verify success message")
@@ -170,6 +175,7 @@ public class EditChartOfAccountsPage {
 		WDWait(editCOASuccessMessage);
 		wait.until(ExpectedConditions.visibilityOf(editCOASuccessMessage));
 		editCOASuccessMessage.isDisplayed();
+		sAssert.assertAll();
 
 	}
 	

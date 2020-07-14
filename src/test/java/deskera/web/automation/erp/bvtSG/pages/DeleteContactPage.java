@@ -65,13 +65,13 @@ public class DeleteContactPage {
 	@Step("Click on Context menu icon")
 	public void clickContextMenuIcon() throws InterruptedException{
 		WDWait(contextMenuIcon);
-		contextMenuIcon.isDisplayed();
+		sAssert.assertTrue(contextMenuIcon.isDisplayed());
         Thread.sleep(3000);
         wait.until(ExpectedConditions.elementToBeClickable(contextMenuIcon));
         contextMenuIcon.click();
 		
 		WDWait(deleteButton);
-		deleteButton.isDisplayed();
+		sAssert.assertTrue(deleteButton.isDisplayed(), "Verify delete button");
 		deleteButton.click();
 		sAssert.assertAll();
 
@@ -79,7 +79,7 @@ public class DeleteContactPage {
 	@Step("Verify success message")
 	public void verifySuccessMessageForDelete(){
 		WDWait(deleteSucessMessage);
-		deleteSucessMessage.isDisplayed();
+		sAssert.assertTrue(deleteSucessMessage.isDisplayed(), "Verify contact delete success message");
         wait.until(ExpectedConditions.visibilityOf(deleteSucessMessage));
 		sAssert.assertAll();
 
@@ -88,8 +88,9 @@ public class DeleteContactPage {
 	public void searchRecord(String cName) throws InterruptedException{
 		WDWait(searchRecord);
 		searchRecord.click();
+		searchRecord.clear();
 		searchRecord.sendKeys(cName);
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		/*Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER).build().perform();*/
 		sAssert.assertAll();
@@ -98,14 +99,14 @@ public class DeleteContactPage {
 	@Step("Verify deleted contacts")
 	public void verifyDeletedContact(){
 		WDWait(thereIsNoMatchingRecords);
-		thereIsNoMatchingRecords.isDisplayed();
+		sAssert.assertTrue(thereIsNoMatchingRecords.isDisplayed(), "No matching record message");
 		sAssert.assertAll();
 
 	}
 	@Step("Verify summary count after deletion of contact")
 	public void verifysummarycount(){
 		WDWait(allSummaryCount);
-		allSummaryCount.isDisplayed();
+		sAssert.assertTrue(allSummaryCount.isDisplayed(), "Verify total summary count");
 		sAssert.assertEquals(allSummaryCount.getText(), "0");
 		sAssert.assertAll();
 	}

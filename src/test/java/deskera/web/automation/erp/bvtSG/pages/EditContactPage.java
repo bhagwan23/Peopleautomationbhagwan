@@ -159,7 +159,7 @@ public class EditContactPage {
 	@Step("Click on Context Menu icon")
 	public void clickContextMenuIcon() throws InterruptedException{
 		WDWait(contextMenuIcon);
-		contextMenuIcon.isDisplayed();
+		sAssert.assertTrue(contextMenuIcon.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(contextMenuIcon));
 		Thread.sleep(3000);
 		contextMenuIcon.click();
@@ -171,7 +171,7 @@ public class EditContactPage {
 	public void clickEditButton() throws InterruptedException{
 		
 		WDWait(editButton);
-		editButton.isDisplayed();
+		sAssert.assertTrue(editButton.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(editButton));
 		Thread.sleep(3000);
 		editButton.click();	
@@ -202,7 +202,7 @@ public class EditContactPage {
 	@Step("Enter new address info")
 	public void editAddressInfo(String addr, String state1,String postal, String city1, String country1){ 
 		WDWait(address);
-		address.isDisplayed();
+		sAssert.assertTrue(address.isDisplayed(),"Enter address");
 		address.click();
 		
 		WDWait(enterAddress);
@@ -226,13 +226,13 @@ public class EditContactPage {
 		country.sendKeys(country1);
 		
 		WDWait(addAnotherAddress);
-		addAnotherAddress.isDisplayed();
+		sAssert.assertTrue(addAnotherAddress.isDisplayed(), "Verify add another address button");
 		
 		WDWait(currentBillingAddress);
-		currentBillingAddress.isDisplayed();
+		sAssert.assertTrue(currentBillingAddress.isDisplayed(),"Verify billing address");
 		
 		WDWait(currentShippingAddress);
-		currentShippingAddress.isDisplayed();
+		sAssert.assertTrue(currentShippingAddress.isDisplayed(), "verify shipping address buttonss");
 
 		sAssert.assertAll();
 
@@ -240,7 +240,7 @@ public class EditContactPage {
 	@Step("Click on save and change button")
 	public void clickSaveChangeButton(){
 		WDWait(saveChangeButton);
-		saveChangeButton.isDisplayed();
+		sAssert.assertTrue(saveChangeButton.isDisplayed(), "Verify save and change button");
 		saveChangeButton.click();
 		sAssert.assertAll();
 
@@ -248,7 +248,7 @@ public class EditContactPage {
 	@Step("Verify success message")
 	public void verifysuccessmessage(){
 		WDWait(updateContactSuccessMessage);
-		updateContactSuccessMessage.isDisplayed();
+		sAssert.assertTrue(updateContactSuccessMessage.isDisplayed(), "Verify edit contact success message");
         wait.until(ExpectedConditions.visibilityOf(updateContactSuccessMessage));
 		sAssert.assertAll();
 

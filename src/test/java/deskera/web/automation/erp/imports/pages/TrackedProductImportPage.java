@@ -169,15 +169,15 @@ public class TrackedProductImportPage {
 	@Step("Upload Import file of Product")
 	public void UploadImportProductFile(String filename) throws InterruptedException, AWTException {
 		// Supported onnly for windows local env
-		/*
-		 * if (System.getProperty("os.name").toLowerCase().contains("windows") ||
-		 * System.getProperty("os.name").toLowerCase().contains("windows")) {
-		 */		WDWait(browsebutton);
+		
+		  if (System.getProperty("os.name").toLowerCase().contains("windows") ||
+		  System.getProperty("os.name").toLowerCase().contains("windows")) {
+		 		WDWait(browsebutton);
 			browsebutton.click();
 			Robot rob = new Robot();
-			//StringSelection str = new StringSelection(System.getProperty("user.dir")+"\\testdata\\imports\\Product\\"+filename);
-			StringSelection filePath=new StringSelection("/home/seluser/Product/"+filename);
-			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
+			StringSelection str = new StringSelection(System.getProperty("user.dir")+"\\testdata\\imports\\Product\\"+filename);
+			//StringSelection filePath=new StringSelection("/home/seluser/Product/"+filename);
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
 			Thread.sleep(2000);
 			rob.keyPress(KeyEvent.VK_CONTROL);
 			rob.keyPress(KeyEvent.VK_L);
@@ -207,7 +207,7 @@ public class TrackedProductImportPage {
 			
 			sAssert.assertTrue(wait.until(ExpectedConditions.elementToBeClickable(UploadDatatNextButton)) != null,"wait for  Next button");
 			UploadDatatNextButton.click();
-		//}
+		}
 	}
 	
 	@Step("Mapping headers to import products")

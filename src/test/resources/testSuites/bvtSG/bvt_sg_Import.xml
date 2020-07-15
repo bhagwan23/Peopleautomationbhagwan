@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite thread-count="1"
-	name="Go.Deskera Web BVT Base Setup Test Suite" parallel="false"
-	preserve-order="true">
+<suite thread-count="1" name="Go.Deskera Web BVT Import Product Suite"
+	parallel="false" preserve-order="true">
 
 	<listeners>
 		<listener
 			class-name="deskera.web.automation.core.TestListenerOnFailure">
 		</listener>
 	</listeners>
-
+	
 	<parameter name="browser" value="chrome"></parameter>
-
+	
+	
 	<!-- System config for framework -->
+	
 	<parameter name="envConf"
 		value="src/test/resources/systemConfig/environment.config"></parameter>
 	<parameter name="confCommon"
@@ -27,21 +28,9 @@
 	<parameter name="confSell"
 		value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
 
+	
 	<!-- Run Test Cases -->
-
-	<test name=" 1 Sign Up without Phone Number test" parallel="false">
-
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
-				<methods>
-					<include name="testSignUpWithoutPhoneNumber"></include>
-				</methods>
-			</class>
-		</classes>
-	</test>
-
-	<test name=" 2 Create Organization" parallel="false"
-		preserve-order="true">
+                <test name=" 1  To verify user should be able to import products" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -49,43 +38,12 @@
 				</methods>
 			</class>
 			<class
-				name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
-			</class>
-		</classes>
-	</test>
-
-	<test name=" 3 C20263 Add Non Tracked Product" parallel="false">
-
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
-				<methods>
-					<include name="loginTest"></include>
-				</methods>
-			</class>
-			<class
-				name="deskera.web.automation.erp.bvtSG.tests.AddNonTrackedProductTest">
-			
-			</class>
-		</classes>
-	</test>
-
-	<test name=" 4 C20262 Add Tracked Product" parallel="false">
-
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
-				<methods>
-					<include name="loginTest"></include>
-				</methods>
-			</class>
-			<class
-				name="deskera.web.automation.erp.bvtSG.tests.AddTrackedProductTest">
+				name="deskera.web.automation.erp.imports.tests.ImportTrackedProductTest">
 				
 			</class>
 		</classes>
 	</test>
-	<test name=" 5 C21022 Add Bills Of Material Product"
-		parallel="false">
-
+	 <test name=" 2  To verify user should be able to import BOM products" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -93,14 +51,13 @@
 				</methods>
 			</class>
 			<class
-				name="deskera.web.automation.erp.bvtSG.tests.AddBOMProductTest">
+				name="deskera.web.automation.erp.imports.tests.ImportBomProductTest">
 				
 			</class>
 		</classes>
 	</test>
-
-	<test name="6 C20261 Add Contacts" parallel="false">
-
+      
+     <test name=" 3  To verify user should be able to import contacts" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -108,14 +65,26 @@
 				</methods>
 			</class>
 			<class
-				name="deskera.web.automation.erp.bvtSG.tests.ContactsTest">
-				<methods>
-					<include name="addContacts"></include>
-					<include name="addContacts1"></include>
-
-				</methods>
+				name="deskera.web.automation.erp.imports.tests.ImportContactTest">
+				
 			</class>
 		</classes>
 	</test>
-
-</suite> 
+	
+	<test name=" 4 To verify user should be able to import Chart of Accounts" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+			<class
+				name="deskera.web.automation.erp.imports.tests.ImportChartofAccountsTest">
+				
+			</class>
+		</classes>
+	</test>
+	
+	
+	
+</suite>

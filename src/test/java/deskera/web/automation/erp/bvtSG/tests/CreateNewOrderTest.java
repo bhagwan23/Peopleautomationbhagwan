@@ -25,6 +25,7 @@ public class CreateNewOrderTest extends DriverFactory {
 	@BeforeClass
 	@Parameters({ "conf", "environment","confProducts","confContacts" })
 	public void getConf(String conf, String URL, String confProducts,String confContacts) {
+
 		confPath = conf;
 		url = URL;
 		confProductsPath=confProducts;

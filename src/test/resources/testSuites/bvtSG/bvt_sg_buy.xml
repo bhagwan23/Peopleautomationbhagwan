@@ -27,9 +27,7 @@
 	<!-- <parameter name="singUpUrl" value="https://auth-qa.deskera.xyz/auth/signup"></parameter> -->
 
 	<!-- Run Test Cases -->
-
-
-    
+  
 	<test name=" 1 Create Order " parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">

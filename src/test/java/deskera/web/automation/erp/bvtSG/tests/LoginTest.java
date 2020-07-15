@@ -21,7 +21,7 @@ public class LoginTest extends DriverFactory {
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "environment" })
+	@Parameters({ "confCommon", "environment" })
 	public void getConf(String conf, String URL) {
 		confPath = conf;
 		url = URL;

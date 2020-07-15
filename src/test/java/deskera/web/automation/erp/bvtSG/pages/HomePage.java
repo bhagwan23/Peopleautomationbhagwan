@@ -180,6 +180,8 @@ public class HomePage {
 		productsTab.click();
 	}
 	
+	
+	
 	@Step("Click On Getting Started Button")
 	public void clickGettingStartedButton(){
 		WDWait(gettingStartedButton);

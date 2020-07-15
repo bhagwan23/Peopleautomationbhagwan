@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite thread-count="1" name="Go.Deskera Web BVT Import Product Suite"
+<suite thread-count="1" name="ERP Web Import Test Suite"
 	parallel="false" preserve-order="true">
 
 	<listeners>

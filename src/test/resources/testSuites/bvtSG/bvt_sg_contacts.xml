@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 
-<suite thread-count="1" name="Go.Deskera Web BVT Contacts Suite"
+<suite thread-count="1" name="ERP Web COntacts Test Suite"
 	parallel="false" preserve-order="true">
 
 	<listeners>
@@ -44,6 +44,11 @@
 	</test>
 	<test name="3 Create Organization" parallel="false">
 		<classes>
+		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
 			</class>

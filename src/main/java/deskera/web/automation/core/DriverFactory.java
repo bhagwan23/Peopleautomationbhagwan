@@ -88,8 +88,8 @@ public class DriverFactory {
 			driver = new RemoteWebDriver(new URL(RemoteWebDriverURL), capabilities);
 		}
 		System.out.println(driver);
-		wait = (new WebDriverWait(getDriver(), Duration.ofSeconds(60)));
-		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+		wait = (new WebDriverWait(getDriver(), Duration.ofSeconds(120)));
+		driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
 		setTRunId(testRunId);
 		//sAssert = new SoftAssertListner();
 	}

@@ -142,6 +142,7 @@ public class LoginPage {
 		Thread.sleep(3000);
 		WDWait(goToDeskeraBooksCard);
 		WDWaitClickable(goToDeskeraBooksCard);
+		Thread.sleep(3000);
 		goToDeskeraBooksCard.click();
 		Thread.sleep(3000);
 		ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());

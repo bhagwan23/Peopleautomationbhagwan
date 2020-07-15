@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite thread-count="1" name="Go.Deskera Web BVT Sell Suite"
+<suite thread-count="1" name="ERP Web Sell Test Suite"
 	parallel="false" preserve-order="true">
 
 	<listeners>
@@ -47,6 +47,32 @@
 	<!-- <test name=" 1 Create Quote " parallel="false"> <classes> <class name="deskera.web.automation.erp.bvtSG.tests.CreateQuoteTest"> 
 		</class> </classes> </test> -->
 
+
+	<!-- <test name=" 1 Sign Up without Phone Number test" parallel="false">
+
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
+				<methods>
+					<include name="testSignUpWithoutPhoneNumber"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name=" 2 Create Organization" parallel="false"
+		preserve-order="true">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
+			</class>
+		</classes>
+	</test>
+ -->
 	<test name=" 2 Create Bank" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">

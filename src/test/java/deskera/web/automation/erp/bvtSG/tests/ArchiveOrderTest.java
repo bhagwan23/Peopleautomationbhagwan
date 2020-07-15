@@ -23,7 +23,7 @@ public class ArchiveOrderTest extends DriverFactory {
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "environment","confProducts","confContacts" })
+	@Parameters({ "confBuy", "environment","confProducts","confContacts" })
 	public void getConf(String conf, String URL,String confProducts,String confContacts) {
 
 		confPath = conf;

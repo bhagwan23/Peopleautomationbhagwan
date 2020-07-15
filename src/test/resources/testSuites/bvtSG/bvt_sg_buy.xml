@@ -35,7 +35,7 @@
 	<suite-files>
 
 		<suite-file
-			path="src/test/resources/testsuites/bvtSG/bvt_base_setup_SG.xml"></suite-file>
+			path="src/test/resources/testSuites/bvtSG/bvt_base_setup_SG.xml"></suite-file>
 
 	</suite-files>
 

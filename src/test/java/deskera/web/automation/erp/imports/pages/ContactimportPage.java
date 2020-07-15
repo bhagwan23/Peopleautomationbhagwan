@@ -138,19 +138,19 @@ private WebDriver driver;
 	@Step("Upload Import file of Product")
 	public void UploadImportContactFile(String filename) throws AWTException, InterruptedException  {
 		// Supported onnly for windows local env
-		/*
-		 * if (System.getProperty("os.name").toLowerCase().contains("windows") ||
-		 * System.getProperty("os.name").toLowerCase().contains("windows")) {
-		 */		Thread.sleep(3000);
+		
+		  if (System.getProperty("os.name").toLowerCase().contains("windows") ||
+		  System.getProperty("os.name").toLowerCase().contains("windows")) {
+		 		Thread.sleep(3000);
 			WDWait(browsebutton);
 			browsebutton.click();
 			Robot rob = new Robot();
-			//StringSelection str = new StringSelection(System.getProperty("user.dir")+"\\testdata\\imports\\Contact\\"+filename);
-			StringSelection filePath=new StringSelection("/home/seluser/Contact/"+filename);
-			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
+			StringSelection str = new StringSelection(System.getProperty("user.dir")+"\\testdata\\imports\\Contact\\"+filename);
+			//StringSelection filePath=new StringSelection("/home/seluser/Contact/"+filename);
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
 			Thread.sleep(2000);
 			
-			rob.keyPress(KeyEvent.VK_CONTROL);
+			/*rob.keyPress(KeyEvent.VK_CONTROL);
 			rob.keyPress(KeyEvent.VK_L);
 			Thread.sleep(2000);
 			rob.keyRelease(KeyEvent.VK_CONTROL);
@@ -160,7 +160,7 @@ private WebDriver driver;
 			rob.keyPress(KeyEvent.VK_A);
 			Thread.sleep(2000);
 			rob.keyRelease(KeyEvent.VK_CONTROL);
-			rob.keyRelease(KeyEvent.VK_A);
+			rob.keyRelease(KeyEvent.VK_A);*/
 			Thread.sleep(2000);
 			rob.keyPress(KeyEvent.VK_CONTROL);
 			rob.keyPress(KeyEvent.VK_V);
@@ -178,7 +178,7 @@ private WebDriver driver;
 			
 			sAssert.assertTrue(wait.until(ExpectedConditions.elementToBeClickable(uploaddataNextButton)) != null,"wait for  Next button");
 			uploaddataNextButton.click();
-	//	}
+		}
 	}
 	
 	@Step("Mapping headers to import contacts")

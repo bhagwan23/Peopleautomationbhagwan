@@ -13,6 +13,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import deskera.web.automation.core.SoftAssertListner;
 import io.qameta.allure.Step;
@@ -69,7 +70,27 @@ private WebDriver driver;
 	 @FindBy(xpath = "(//span[@class='mat-button-wrapper'][contains(text(),'Cancel')])[3]")
 	 private WebElement ConfirmDatatCancelButton;
 	 @FindBy(xpath = "//span[contains(text(),'The file has been uploaded, Please check the ')]")
-	 private WebElement Confirmationmessage;		 
+	 private WebElement Confirmationmessage;	
+	 /*******************************
+	  Verify imported Data PAGE ELEMENTS LOCATORS
+	  *******************/	 
+	 
+	 @FindBy(xpath= "//input[@placeholder='Search Records']")	
+	 private WebElement searchRecord;
+	 @FindBy(xpath = "//*[@id='container-3']/extn-content[1]/dt-chart-of-account-list[1]/div[1]/div[1]/mat-table[1]/mat-row[1]/mat-cell[3]/span[1]")
+     private WebElement enteredName;
+     @FindBy(xpath = "//vertical-layout-1[@class='ng-star-inserted']//div[3]//div[2]")
+	 private WebElement viewCode;
+	 @FindBy(xpath = "//*[@id='container-3']/extn-content[1]/dt-add-account[1]/div[1]/div[1]/div[1]/div[2]/dt-add-account-view-form[1]/div[1]/div[1]/div[4]/div[2]")
+	 private WebElement viewName;
+	 @FindBy(xpath= "//div[contains(text(),'Name')]/following-sibling::div[@class='field-value']")	
+     private WebElement editedName;
+	 @FindBy(xpath = "//div[contains(text(),'Account Code')]/following-sibling::div[@class='field-value']")
+	 private WebElement editedCode;
+	 @FindBy(xpath = "//mat-row[1]//mat-cell[4]")
+	 private WebElement accType;
+	 
+	
          
 		/***********************************
 		 * 
@@ -122,16 +143,16 @@ private WebDriver driver;
 		@Step("Upload Import file of Accounts")
 		public void UploadImportAccountsFile(String filename) throws InterruptedException, AWTException {
 			// Supported onnly for windows local env
-		/*
-		 * if (System.getProperty("os.name").toLowerCase().contains("windows") ||
-		 * System.getProperty("os.name").toLowerCase().contains("windows")) {
-		 */		WDWait(browsebutton);
+		
+		  if (System.getProperty("os.name").toLowerCase().contains("windows") ||
+		  System.getProperty("os.name").toLowerCase().contains("windows")) {
+			WDWait(browsebutton);
 				browsebutton.click();
 				Robot rob = new Robot();
-				//StringSelection str = new StringSelection(System.getProperty("user.dir")+"\\testdata\\imports\\COA\\"+filename);
-				StringSelection filePath=new StringSelection("/home/seluser/COA/"+filename);
-				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
-				rob.keyPress(KeyEvent.VK_CONTROL);
+				StringSelection str = new StringSelection(System.getProperty("user.dir")+"\\testdata\\imports\\COA\\"+filename);
+				//StringSelection filePath=new StringSelection("/home/seluser/COA/"+filename);
+				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
+				/*rob.keyPress(KeyEvent.VK_CONTROL);
 				rob.keyPress(KeyEvent.VK_L);
 				Thread.sleep(2000);
 				rob.keyRelease(KeyEvent.VK_CONTROL);
@@ -141,7 +162,7 @@ private WebDriver driver;
 				rob.keyPress(KeyEvent.VK_A);
 				Thread.sleep(2000);
 				rob.keyRelease(KeyEvent.VK_CONTROL);
-				rob.keyRelease(KeyEvent.VK_A);
+				rob.keyRelease(KeyEvent.VK_A);*/
 				Thread.sleep(2000);
 				rob.keyPress(KeyEvent.VK_CONTROL);
 				rob.keyPress(KeyEvent.VK_V);
@@ -159,7 +180,7 @@ private WebDriver driver;
 				
 				sAssert.assertTrue(wait.until(ExpectedConditions.elementToBeClickable(UploadDatatNextButton)) != null,"wait for  Next button");
 				UploadDatatNextButton.click();
-			//}
+			}
 		}
 		
 		@Step("Mapping headers to import Accounts")
@@ -192,6 +213,23 @@ private WebDriver driver;
 
 		}	
 		
-		
+		@Step("Verify added account")
+		public void verifyAddedAccount(String name, String code, String desc) throws InterruptedException {
+			WDWait(searchRecord);
+			searchRecord.click();
+			searchRecord.sendKeys(name);
+			Thread.sleep(2000);
+			WDWait(enteredName);
+			wait.until(ExpectedConditions.elementToBeClickable(enteredName));
+			Assert.assertEquals(enteredName.getText(), name);
+			enteredName.click();
+			
+			Assert.assertEquals(editedName.getText(), name);
+			Assert.assertEquals(editedCode.getText(), code);
+			
+			
+			Thread.sleep(2000);
+			sAssert.assertAll();
+		}
 		
 }

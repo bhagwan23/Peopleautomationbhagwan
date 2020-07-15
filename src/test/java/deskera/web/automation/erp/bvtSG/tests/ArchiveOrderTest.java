@@ -13,7 +13,7 @@ import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
 public class ArchiveOrderTest extends DriverFactory {
-	String confPath, url;
+	String confPath, url,confProductsPath,confContactsPath;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
 
 	/**
@@ -23,10 +23,13 @@ public class ArchiveOrderTest extends DriverFactory {
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "confBuy", "environment" })
-	public void getConf(String conf, String URL) {
+	@Parameters({ "conf", "environment","confProducts","confContacts" })
+	public void getConf(String conf, String URL,String confProducts,String confContacts) {
+
 		confPath = conf;
 		url = URL;
+		confProductsPath=confProducts;
+		confContactsPath=confContacts;
 	}
 
 	@TestRailId(testRailId = 20299)
@@ -34,8 +37,8 @@ public class ArchiveOrderTest extends DriverFactory {
 	@Description(value = "C20299 To verify user should be able to Archive/Reopen Order or Bill")
 	public void archiveOrderTest() throws InterruptedException {
 		
-		String contactName = ReadPropertyUtil.readProperty("ContactName", confPath);
-		String productName = ReadPropertyUtil.readProperty("ProductName", confPath);
+		String contactName = ReadPropertyUtil.readProperty("ContactName1", confContactsPath);
+		String productName = ReadPropertyUtil.readProperty("trackedProductName", confProductsPath);
 
 		String quantity = ReadPropertyUtil.readProperty("quantity", confPath);
 		String discount = ReadPropertyUtil.readProperty("discount", confPath);
@@ -58,7 +61,7 @@ public class ArchiveOrderTest extends DriverFactory {
 		buy.verifyTotalAmount();
 		buy.clickSaveButton();
 		buy.verifysuccessmessage();
-		buy.searchCreatedOrder(contactName);
+		buy.searchCreatedRecord(contactName);
 
 		buy.clickOrderContextMenuIcon();
 		buy.clickOnArchiveOrderButton();

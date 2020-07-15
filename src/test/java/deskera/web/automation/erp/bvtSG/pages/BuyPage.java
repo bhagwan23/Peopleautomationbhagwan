@@ -104,7 +104,7 @@ public class BuyPage {
 	private WebElement pQuantity;
 	@FindBy(xpath = "(//input[@role='combobox'])[2]")
 	private WebElement pTax;
-	@FindBy(xpath = "//mat-checkbox[@formcontrolname='unitPriceGstInclusive']")
+	@FindBy(xpath = "//mat-checkbox[@formcontrolname='unitPriceGstInclusive']/label/span[1]")
 	
 	private WebElement unitPriceIsTaxInclusive;
 	@FindBy(xpath = "//input[@formcontrolname='unitPrice']")
@@ -509,9 +509,11 @@ public class BuyPage {
 	}
 
 	@Step("Search created order")
-	public void searchCreatedOrder(String cName) {
+	public void searchCreatedRecord(String cName) throws InterruptedException {
 		WDWait(searchRecord);
+		//wait.until(ExpectedConditions.elementToBeClickable(searchRecord));
 		searchRecord.click();
+		Thread.sleep(4000);
 		searchRecord.sendKeys(cName);
 		sAssert.assertAll();
 
@@ -589,7 +591,8 @@ public class BuyPage {
 		sAssert.assertTrue(billSettingText.isDisplayed(),"Verify billing setting text");
 		sAssert.assertTrue(customizeNumberFormat.isDisplayed(),"Verify customize number format");
 		sAssert.assertTrue(globalCustomFields.isDisplayed(),"Verify global custom fields");
-		sAssert.assertTrue(unitPriceIsTaxInclusive.isDisplayed(),"Verify unit price is text inclusive button");
+		/*wait.until(ExpectedConditions.visibilityOf(unitPriceIsTaxInclusive));
+		sAssert.assertTrue(unitPriceIsTaxInclusive.isDisplayed(),"Verify unit price is tax inclusive button");*/
 		sAssert.assertAll();
 	}
 
@@ -760,6 +763,7 @@ public class BuyPage {
 	public void clickOnArchiveBillButton() {
 		WDWait(archiveBillButton);
 		sAssert.assertTrue(archiveBillButton.isDisplayed());
+		wait.until(ExpectedConditions.elementToBeClickable(archiveBillButton));
 		archiveBillButton.click();
 		sAssert.assertAll();
 	}

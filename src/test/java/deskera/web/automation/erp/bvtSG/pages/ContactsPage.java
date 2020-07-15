@@ -354,7 +354,7 @@ public class ContactsPage {
 
 	}
 	@Step("Enter general info")
-	public void enterGeneralInfo(String Cname, String email, String UEN, String tax){
+	public void enterGeneralInfo(String Cname, String email, String UEN, String tax) throws InterruptedException{
 		WDWait(name);
 
 		//wait.until(ExpectedConditions.elementToBeClickable(name));
@@ -366,6 +366,7 @@ public class ContactsPage {
 		contactUEN.sendKeys(UEN);		
 		WDWait(taxNumber);
 		taxNumber.sendKeys(tax);
+		Thread.sleep(3000);
 		sAssert.assertTrue(currency.isDisplayed(),"Verify currency");
 		sAssert.assertEquals(currency.getText(), "Singapore Dollar (SGD)");
 		sAssert.assertTrue(autoNumberingFormat.isDisplayed(),"Verify autoNumberingFormat");

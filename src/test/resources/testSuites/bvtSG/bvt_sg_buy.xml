@@ -12,23 +12,22 @@
 	<parameter name="browser" value="chrome"></parameter>
 
 
-
 	<!-- System config for framework -->
 	<parameter name="envConf"
 		value="src/test/resources/systemConfig/environment.config"></parameter>
-	<parameter name="confCommon"
+		<parameter name="conf"
 		value="src/test/resources/bvtSGConfig/Common.config"></parameter>
-	<parameter name="confProducts"
-		value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
+		<parameter name="confProducts"
+		value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>		
 	<parameter name="confContacts"
 		value="src/test/resources/bvtSGConfig/TestDataContactSG.config"></parameter>
-	<parameter name="confBuy"
-		value="src/test/resources/bvtSGConfig/TestDataBuySG.config"></parameter>
-	<parameter name="confSell"
-		value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
+		
+		
 
+	<!-- <parameter name="singUpUrl" value="https://auth-qa.deskera.xyz/auth/signup"></parameter> -->
 
- 
+	<!-- Run Test Cases -->
+  
 	<test name=" 1 Create Order " parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
@@ -38,12 +37,16 @@
 			</class>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.CreateNewOrderTest">
+				
 				<methods>
+				<parameter name="conf"
+		value="src/test/resources/bvtSGConfig/TestDataBuySG.config"></parameter>
 					<include name="createOrderTest"></include>
 				</methods>
 			</class>
 		</classes>
 	</test>
+	
   
 	<test name=" 2 Archive Order " parallel="false">
 		<classes>
@@ -55,12 +58,15 @@
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.ArchiveOrderTest">
 				<methods>
+				<parameter name="conf"
+		value="src/test/resources/bvtSGConfig/TestDataBuySG.config"></parameter>
 					<include name="archiveOrderTest"></include>
 				</methods>
 			</class>
 		</classes>
 	</test>
- 
+	
+   
 	<test name=" 3 Create Bill " parallel="false">
 		<classes>
 		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
@@ -71,13 +77,15 @@
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.CreateNewBillTest">
 				<methods>
+				<parameter name="conf"
+		value="src/test/resources/bvtSGConfig/TestDataBuySG.config"></parameter>
 					<include name="createBillTest"></include>
 				</methods>
 			</class>
 		</classes>
 	</test>
 
-
+   
 	<test name=" 4 Archive Bill " parallel="false">
 		<classes>
 		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
@@ -88,6 +96,8 @@
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.ArchiveBillTest">
 				<methods>
+				<parameter name="conf"
+		value="src/test/resources/bvtSGConfig/TestDataBuySG.config"></parameter>
 					<include name="archiveBillTest"></include>
 				</methods>
 			</class>

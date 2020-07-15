@@ -13,7 +13,7 @@ import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
 public class CreateNewBillTest extends DriverFactory{
-	String confPath, url;
+	String confPath, url,confProductsPath,confContactsPath;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
 
 	/**
@@ -23,10 +23,12 @@ public class CreateNewBillTest extends DriverFactory{
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "environment" })
-	public void getConf(String conf, String URL) {
+	@Parameters({ "conf", "environment","confProducts","confContacts" })
+	public void getConf(String conf, String URL,String confProducts,String confContacts) {
 		confPath = conf;
 		url = URL;
+		confProductsPath=confProducts;
+		confContactsPath=confContacts;
 	}
 
 
@@ -34,8 +36,8 @@ public class CreateNewBillTest extends DriverFactory{
 	@Test()
 	@Description(value = "C20270 To verify that user is able to Create/Bill/Receive - Order")
 	public void createBillTest() throws InterruptedException {
-		String contactName = ReadPropertyUtil.readProperty("ContactName", confPath);
-		String productName = ReadPropertyUtil.readProperty("ProductName", confPath);
+		String contactName = ReadPropertyUtil.readProperty("ContactName1", confContactsPath);
+		String productName = ReadPropertyUtil.readProperty("trackedProductName", confProductsPath);
 		
 		String quantity = ReadPropertyUtil.readProperty("quantity", confPath);
 		String discount = ReadPropertyUtil.readProperty("discount", confPath);
@@ -63,7 +65,7 @@ public class CreateNewBillTest extends DriverFactory{
 		
 		//Receive bills
 		buy.clickOnBillCard();
-		buy.searchCreatedOrder(contactName);
+		buy.searchCreatedRecord(contactName);
 		buy.clickOnContact(contactName);
 		buy.clickReceivedGoodsButton();
 		buy.verifyReceivedGoodsElements();

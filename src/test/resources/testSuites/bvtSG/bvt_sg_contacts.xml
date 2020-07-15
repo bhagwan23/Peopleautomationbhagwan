@@ -50,6 +50,7 @@
 		</classes>
 	</test>
 
+
 	<test name="1 C20261 Add Contacts" parallel="false">
 
 		<classes>
@@ -64,12 +65,10 @@
 				<methods>
 					<include name="addContacts"></include>
 					<include name="addContacts1"></include>
-
 				</methods>
 			</class>
 		</classes>
 	</test>
-
 
 	<test name="2 C20261 Edit Contacts" parallel="false">
 		<classes>

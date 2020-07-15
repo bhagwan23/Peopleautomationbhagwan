@@ -39,6 +39,11 @@ public class ChartOfAccountsTest extends DriverFactory {
 		String type = ReadPropertyUtil.readProperty("Type", confPath);
 		String code = ReadPropertyUtil.readProperty("Code", confPath);
 		String description = ReadPropertyUtil.readProperty("Description", confPath);
+		
+		String cashAccName = ReadPropertyUtil.readProperty("CashAccName", confPath);
+		String cashType = ReadPropertyUtil.readProperty("CashType", confPath);
+		String cashAccCode = ReadPropertyUtil.readProperty("CashCode", confPath);
+		String cashAccDescription = ReadPropertyUtil.readProperty("CashAccDescription", confPath);
 		// Create login Page Object instance
 		/*
 		 * LoginPage loginPage = new LoginPage(driver, wait); loginPage.openURL(url);
@@ -56,6 +61,22 @@ public class ChartOfAccountsTest extends DriverFactory {
 		coaPage.clickAddCOAbutton();
 		// ENter account details
 		coaPage.enterAccountDetails(name, code, type, description);
+		// Click to save the COA details
+		coaPage.clickSaveButton();
+		// Check COA is created or not.
+		coaPage.verifyCOACreatedSucessMessage();
+		// Go to the grid
+		coaPage.clickAccountingButton();
+		coaPage.clickChartOfAccountsCard();
+		// Verify added account details.
+		coaPage.verifyAddedAccount(name, code, description);
+		// Go to COA grid
+		coaPage.clickAccountingButton();
+		coaPage.clickChartOfAccountsCard();
+		// Click to add COA
+		coaPage.clickAddCOAbutton();
+		// ENter account details
+		coaPage.enterAccountDetail(cashAccName, cashAccCode, cashType, cashAccDescription);
 		// Click to save the COA details
 		coaPage.clickSaveButton();
 		// Check COA is created or not.

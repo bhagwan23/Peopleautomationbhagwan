@@ -70,4 +70,32 @@ public class EditChartOfAccountsTest extends DriverFactory {
 		coa.verifyAddedAccount(name, code, description);
 		
 	}
+	
+	@TestRailId(testRailId = 20213)
+	@Test
+	@Description(value = "To verify that user is able to edit accounts")
+	public void searchChartOfAccounts() throws InterruptedException {
+		/*
+		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
+		 */
+		
+		String cEdit= ReadPropertyUtil.readProperty("Name2", confPath);
+		String accountCode= ReadPropertyUtil.readProperty("Code1", confPath);
+		
+		
+		// Create Page Object instance
+		EditChartOfAccountsPage coaPage = new EditChartOfAccountsPage(driver, wait);
+		// Go to COA grid
+		coaPage.clickAccountingButton();
+		coaPage.clickChartOfAccountsCard();
+		// Search account on name
+		coaPage.searchRecord(cEdit);
+		// Go to COA grid
+		coaPage.clickAccountingButton();
+		coaPage.clickChartOfAccountsCard();
+		// Search account on code
+		coaPage.searchRecord(accountCode);
+		
+	}
 }

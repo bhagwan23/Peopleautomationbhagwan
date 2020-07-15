@@ -39,8 +39,6 @@ public class DeactivateChartOfAccountsTest extends DriverFactory {
 		
 		String cEdit= ReadPropertyUtil.readProperty("Name2", confPath);
 		
-		ChartOfAccountsPage coa = new ChartOfAccountsPage(driver, wait);
-		
 		// Create Page Object instance
 		EditChartOfAccountsPage coaPage = new EditChartOfAccountsPage(driver, wait);
 		// Go to COA grid
@@ -54,6 +52,33 @@ public class DeactivateChartOfAccountsTest extends DriverFactory {
 		coaPage.clickDeactivateButton();
 		// verify deactivated message
 		coaPage.verifyCOAdeactivatedSucessMessage();
+		
+	}
+	
+	@TestRailId(testRailId = 20212)
+	@Test
+	@Description(value = "To verify that user is able to deactivate accounts")
+	public void activateChartOfAccounts() throws InterruptedException {
+		/*
+		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
+		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
+		 */
+		
+		String cEdit= ReadPropertyUtil.readProperty("Name2", confPath);
+		
+		// Create Page Object instance
+		EditChartOfAccountsPage coaPage = new EditChartOfAccountsPage(driver, wait);
+		// Go to COA grid
+		coaPage.clickAccountingButton();
+		coaPage.clickChartOfAccountsCard();
+		// Search account to deactivate
+		coaPage.searchRecord(cEdit);
+		// click to context menu
+		coaPage.clickContextMenuIcon();
+		// Click on deactivate button
+		coaPage.clickActivateButton();
+		// verify deactivated message
+		coaPage.verifyCOAActivatedSucessMessage();
 		
 	}
 }

@@ -24,7 +24,7 @@
 
 
 
-  <!--  
+ <!--   
 	 <test name="1 Sign Up without Phone Number test" parallel="false"> 
 		<classes> <class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest"> 
 		<methods> <include name="testSignUpWithoutPhoneNumber"></include> </methods> 

@@ -23,15 +23,18 @@ public class ImportChartofAccountsTest extends DriverFactory {
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "environment" })
-	public void getConf(String URL) {
-		//confPath = conf;
+	@Parameters({ "conf", "environment" })
+	public void getConf(String conf,String URL) {
+		confPath = conf;
 		url = URL;
 	}
 	@TestRailId(testRailId = 249086)
 	@Test()
 	@Description(value = "Import Chart of Accounts using xlsx file")
 	public void Importxlsxfileofcoa() throws InterruptedException, AWTException {
+		String name = ReadPropertyUtil.readProperty("Name", confPath);
+		String code = ReadPropertyUtil.readProperty("Code", confPath);
+		String description = ReadPropertyUtil.readProperty("Description", confPath);
 		
 		Chartofaccountsimportpage Chartofaccountsimportpage=new Chartofaccountsimportpage(driver,wait);
 		Chartofaccountsimportpage.ClickOnAccountingButton();
@@ -41,6 +44,9 @@ public class ImportChartofAccountsTest extends DriverFactory {
 		Chartofaccountsimportpage.MapheadersToImportAccounts();
 		Chartofaccountsimportpage.ConfirmDataToImportAccounts();
 		Chartofaccountsimportpage.verifyAccountsImportSuccessMessage();
+		Chartofaccountsimportpage.ClickOnAccountingButton();
+		Chartofaccountsimportpage.ClickOnCOAButton();
+		Chartofaccountsimportpage.verifyAddedAccount(name, code, description);
 		
 	}
 	
@@ -48,7 +54,9 @@ public class ImportChartofAccountsTest extends DriverFactory {
 	@Test()
 	@Description(value = "Import Chart of Accounts using csv file")
 	public void Importcsvfileofcoa() throws InterruptedException, AWTException {
-		
+		String name = ReadPropertyUtil.readProperty("UpdatedName", confPath);
+		String code = ReadPropertyUtil.readProperty("UpdatedCode", confPath);
+		String description = ReadPropertyUtil.readProperty("UpdatedDescription", confPath);
 		Chartofaccountsimportpage Chartofaccountsimportpage=new Chartofaccountsimportpage(driver,wait);
 		Chartofaccountsimportpage.ClickOnAccountingButton();
 		Chartofaccountsimportpage.ClickOnCOAButton();
@@ -57,7 +65,9 @@ public class ImportChartofAccountsTest extends DriverFactory {
 		Chartofaccountsimportpage.MapheadersToImportAccounts();
 		Chartofaccountsimportpage.ConfirmDataToImportAccounts();
 		Chartofaccountsimportpage.verifyAccountsImportSuccessMessage();
-		
+		Chartofaccountsimportpage.ClickOnAccountingButton();
+		Chartofaccountsimportpage.ClickOnCOAButton();
+		Chartofaccountsimportpage.verifyAddedAccount(name, code, description);
 	}
 
 }

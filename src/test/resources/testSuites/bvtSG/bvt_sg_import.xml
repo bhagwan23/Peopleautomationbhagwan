@@ -27,10 +27,12 @@
 		value="src/test/resources/bvtSGConfig/TestDataBuySG.config"></parameter>
 	<parameter name="confSell"
 		value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
+    <parameter name="conf"
+        value="src/test/resources/bvtSGConfig/TestDataCOASG.config"></parameter>		
 
 	
 	<!-- Run Test Cases -->
-                <test name=" 1  To verify user should be able to import products" parallel="false">
+               <!--  <test name=" 1  To verify user should be able to import products" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -55,9 +57,9 @@
 				
 			</class>
 		</classes>
-	</test>
+	</test> -->
       
-     <test name=" 3  To verify user should be able to import contacts" parallel="false">
+    <!--  <test name=" 3  To verify user should be able to import contacts" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -69,7 +71,7 @@
 				
 			</class>
 		</classes>
-	</test>
+	</test> -->
 	
 	<test name=" 4 To verify user should be able to import Chart of Accounts" parallel="false">
 		<classes>

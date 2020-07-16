@@ -32,14 +32,7 @@
 			</methods>
 		</class>
 	</classes>
-</test>
-	<test name="2 Sign In" parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
-			</class>
-		</classes>
-	</test>
-	<test name="3 Create Organization" parallel="false">
+	<test name="2 Create Organization" parallel="false">
 		<classes>
 		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -51,7 +44,7 @@
 			</class>
 		</classes>
 	</test>
-	<test name="1 Add COA" parallel="false">
+	<test name="3 Add COA" parallel="false">
 
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
@@ -71,7 +64,7 @@
 		</classes>
 	</test>
 
- 	<test name="2 Edit COA" parallel="false">
+ 	<test name="4 Edit COA" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -90,7 +83,7 @@
 		</classes>
 	</test>
 	
-	<test name="2 Deactiavate COA" parallel="false">
+	<test name="5 Deactiavate COA" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>

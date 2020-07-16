@@ -126,6 +126,7 @@ public class LoginPage {
 	public void clickSignIn() throws InterruptedException {
 		WDWait(signInButton);
 		signInButton.click();
+		Thread.sleep(3000);
 		goToDeskeraBooks();
 		// WDWait(dashboardHeading);
 		// dashboardHeading.isDisplayed();

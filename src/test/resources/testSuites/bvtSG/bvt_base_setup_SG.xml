@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite thread-count="1"
-	name="Go.Deskera Web BVT Base Setup Test Suite" parallel="false"
+	name="ERP Web BVT Base Setup Test Suite" parallel="false"
 	preserve-order="true">
 
 	<listeners>

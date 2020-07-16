@@ -12,12 +12,13 @@
 			path="src/test/resources/testSuites/bvtSG/bvt_sg_products.xml"></suite-file>
 		<suite-file
 			path="src/test/resources/testSuites/bvtSG/bvt_sg_buy.xml"></suite-file>
-			<suite-file
-			path="src/test/resources/testSuites/bvtSG/bvt_sg_coa.xml"></suite-file>
-			<suite-file
+		<suite-file
 			path="src/test/resources/testSuites/bvtSG/bvt_sg_sell.xml"></suite-file>
-			<suite-file
+		<suite-file
 			path="src/test/resources/testSuites/bvtSG/bvt_sg_import.xml"></suite-file>
+		<suite-file
+			path="src/test/resources/testSuites/bvtSG/bvt_sg_coa.xml"></suite-file>
 	</suite-files>
+
 
 </suite> 

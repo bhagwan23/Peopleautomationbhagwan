@@ -41,6 +41,11 @@
 	</test>
 	<test name="3 Create Organization" parallel="false">
 		<classes>
+		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
 			</class>

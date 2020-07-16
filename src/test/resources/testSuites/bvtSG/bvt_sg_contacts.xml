@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 
-<suite thread-count="1" name="ERP Web COntacts Test Suite"
+<suite thread-count="1" name="ERP Web Contacts Test Suite"
 	parallel="false" preserve-order="true">
 
 	<listeners>

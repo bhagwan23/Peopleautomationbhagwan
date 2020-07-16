@@ -32,7 +32,32 @@
 
 	
 	<!-- Run Test Cases -->
-               <!--  <test name=" 1  To verify user should be able to import products" parallel="false">
+	
+	<test name=" 1 Sign Up without Phone Number test" parallel="false">
+
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
+				<methods>
+					<include name="testSignUpWithoutPhoneNumber"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name=" 2 Create Organization" parallel="false"
+		preserve-order="true">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
+			</class>
+		</classes>
+	</test>
+                <test name=" 3  To verify user should be able to import products" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -45,7 +70,7 @@
 			</class>
 		</classes>
 	</test>
-	 <test name=" 2  To verify user should be able to import BOM products" parallel="false">
+	 <test name=" 4  To verify user should be able to import BOM products" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -57,9 +82,9 @@
 				
 			</class>
 		</classes>
-	</test> -->
+	</test>
       
-    <!--  <test name=" 3  To verify user should be able to import contacts" parallel="false">
+     <test name=" 5 To verify user should be able to import contacts" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -71,9 +96,9 @@
 				
 			</class>
 		</classes>
-	</test> -->
+	</test>
 	
-	<test name=" 4 To verify user should be able to import Chart of Accounts" parallel="false">
+	<test name=" 6 To verify user should be able to import Chart of Accounts" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>

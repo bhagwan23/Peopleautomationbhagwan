@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -29,50 +30,50 @@ public class LoginPage {
 	/*******************************
 	 * LOGIN PAGE ELEMENTS LOCATORS
 	 *******************/
-	@FindBy(xpath = "//span[contains(text(),'Deskera Books')]")
-	
+	@FindBy(xpath = "//span[contains(text(),'Deskera Books')]/../preceding-sibling::div[@class='card-background-img']")
+
 	private WebElement goToDeskeraBooksCard;
 	@FindBy(xpath = "//*[@id='wtf2-input-2']")
-	
+
 	private WebElement userLoginEmail;
 	@FindBy(xpath = "//*[@id='wtf2-input-3']")
-	
+
 	private WebElement userLoginPassword;
 	@FindBy(xpath = "//wtf2-icon[contains(.,'visibility_off')]")
-	
+
 	private WebElement eyeIcon;
 	@FindBy(xpath = "(//span[contains(.,'Remember me')])[1]")
-	
+
 	private WebElement rememberMe;
 	@FindBy(xpath = "//span[contains(.,'Forgot Password')]")
-	
+
 	private WebElement forgotPasswordLink;
 
 	@FindBy(xpath = "(//span[contains(.,'Sign in') or contains(.,'SIGN IN')])[2]")	
 	private WebElement signInButton;
 	@FindBy(xpath = "(//span[contains(.,'Google')])[1]")
-	
+
 	private WebElement signInUsingGoogle;
 	@FindBy(xpath = "(//span[contains(.,'SIGN UP Now') or contains(.,'Sign up Now')])[2]")
 	private WebElement signUpNowLink;
 	@FindBy(xpath = "//h6[@class='m-0 p-0 font-weight-500']")
-	
+
 	private WebElement dashboardHeading;
 	private static String pageTitleText = "Deskera SSO";
 	/*******************************
 	 * Sign Using Google PAGE ELEMENTS LOCATORS
 	 *******************/
 	@FindBy(xpath = "//input[@aria-label='Email or phone']")
-	
+
 	private WebElement googleEmailOrPhone;
 	@FindBy(xpath = "//span[@class='CwaK9']/span[contains(text(),'Next')]")
-	
+
 	private WebElement nextButton;
 	@FindBy(xpath = "//input[contains(@autocomplete,'current-password')]")
-	
+
 	private WebElement googlePassword;
 	@FindBy(xpath = "//span[@class='CwaK9']/span[contains(text(),'Next')]")
-	
+
 	private WebElement PasswordNextButton;
 
 	/***********************************
@@ -98,6 +99,13 @@ public class LoginPage {
 
 	public void WDWaitClickable(WebElement we) {
 		wait.until(ExpectedConditions.elementToBeClickable(we));
+	}
+
+	public void MOverElement(WebElement we) throws InterruptedException
+	{
+		Actions action = new Actions(driver);
+		action.moveToElement(we).perform();
+		Thread.sleep(1000);
 	}
 
 	@Step("Verify Login Page Elements")
@@ -144,6 +152,7 @@ public class LoginPage {
 		WDWait(goToDeskeraBooksCard);
 		WDWaitClickable(goToDeskeraBooksCard);
 		Thread.sleep(3000);
+		MOverElement(goToDeskeraBooksCard);
 		goToDeskeraBooksCard.click();
 		Thread.sleep(3000);
 		ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());

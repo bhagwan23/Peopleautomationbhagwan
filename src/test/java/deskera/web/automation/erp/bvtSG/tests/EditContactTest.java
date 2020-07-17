@@ -24,7 +24,7 @@ public class EditContactTest extends DriverFactory {
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "environment" })
+	@Parameters({ "confContacts", "environment" })
 	public void getConf(String conf, String URL) {
 		confPath = conf;
 		url = URL;
@@ -33,41 +33,24 @@ public class EditContactTest extends DriverFactory {
 	@TestRailId(testRailId = 20261)
 	@Test
 	@Description(value = "C20261 To verify that user is able to Edit contact")
-
-	public void editContacts() throws InterruptedException{
-		/*
-		 * String emailAddress = ReadPropertyUtil.readProperty("userEmail", confPath);
-		 * String passWord = ReadPropertyUtil.readProperty("userPass", confPath);
-		 */
-		
-		String cEdit= ReadPropertyUtil.readProperty("ContactName1", confPath);
-
-		String name= ReadPropertyUtil.readProperty("UpdatedContactName", confPath);
-		String UENNumber= ReadPropertyUtil.readProperty("UpdatedUEN_Number", confPath);
-		String TAXNumber= ReadPropertyUtil.readProperty("UpdatedTAX_Number", confPath);
-		String email= ReadPropertyUtil.readProperty("UpdatedcontactMail1", confPath);
-		String currency= ReadPropertyUtil.readProperty("currency", confPath);
-		String paymentTerms= ReadPropertyUtil.readProperty("paymentTerms", confPath);
-		
-		String address= ReadPropertyUtil.readProperty("Updatedaddress", confPath);
-		String state= ReadPropertyUtil.readProperty("Updatedstate", confPath);
-		String postal= ReadPropertyUtil.readProperty("Updatedpostal", confPath);
-		String city= ReadPropertyUtil.readProperty("Updatedcity", confPath);
-		String country= ReadPropertyUtil.readProperty("Updatedcountry", confPath);
-
-		
-		// Create login Page Object instance
-		/*
-		 * LoginPage loginPage = new LoginPage(driver, wait); loginPage.openURL(url);
-		 * loginPage.enterEmailandPassword(emailAddress, passWord);
-		 * loginPage.clickSignIn();
-		 */
-		//Create Contact page object instance
+	public void editContacts() throws InterruptedException {
+		String cEdit = ReadPropertyUtil.readProperty("ContactName1", confPath);
+		String name = ReadPropertyUtil.readProperty("UpdatedContactName", confPath);
+		String UENNumber = ReadPropertyUtil.readProperty("UpdatedUEN_Number", confPath);
+		String TAXNumber = ReadPropertyUtil.readProperty("UpdatedTAX_Number", confPath);
+		String email = ReadPropertyUtil.readProperty("UpdatedcontactMail1", confPath);
+		String currency = ReadPropertyUtil.readProperty("currency", confPath);
+		String paymentTerms = ReadPropertyUtil.readProperty("paymentTerms", confPath);
+		String address = ReadPropertyUtil.readProperty("Updatedaddress", confPath);
+		String state = ReadPropertyUtil.readProperty("Updatedstate", confPath);
+		String postal = ReadPropertyUtil.readProperty("Updatedpostal", confPath);
+		String city = ReadPropertyUtil.readProperty("Updatedcity", confPath);
+		String country = ReadPropertyUtil.readProperty("Updatedcountry", confPath);
+		// Create Contact page object instance
 		ContactsPage contactsPage = new ContactsPage(driver, wait);
 		contactsPage.clickContactsButton();
-
-		//Edit contact page object instance
-		EditContactPage editcontact= new EditContactPage(driver, wait);
+		// Edit contact page object instance
+		EditContactPage editcontact = new EditContactPage(driver, wait);
 		editcontact.searchRecord(cEdit);
 		editcontact.clickContextMenuIcon();
 		editcontact.clickEditButton();
@@ -75,9 +58,10 @@ public class EditContactTest extends DriverFactory {
 		editcontact.editAddressInfo(address, state, postal, city, country);
 		editcontact.clickSaveChangeButton();
 		editcontact.verifysuccessmessage();
-		//contactsPage.clickContactsButton();
+		// contactsPage.clickContactsButton();
 		Thread.sleep(3000);
 		editcontact.verifyEditedContact(name, UENNumber, TAXNumber, currency, paymentTerms);
-		//contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber,currency, paymentTerms);
+		// contactsPage.verifyAddedContacts(name, UENNumber, TAXNumber,currency,
+		// paymentTerms);
 	}
 }

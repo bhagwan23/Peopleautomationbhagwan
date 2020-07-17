@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import deskera.web.automation.core.SoftAssertListner;
 import io.qameta.allure.Step;
 
 public class BuyPage {
@@ -21,57 +22,51 @@ public class BuyPage {
 	private WebDriver driver;
 	private int timeout = 15;
 	private WebDriverWait wait;
+	private SoftAssertListner sAssert;
 
 	public BuyPage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;
 		PageFactory.initElements(driver, this);
+		sAssert = new SoftAssertListner(driver);
 	}
 
 	/*******************************
 	 * BUY PAGE ELEMENTS LOCATORS
 	 *******************/
 	@FindBy(xpath = "//span[@class='ng-star-inserted'][contains(.,'Buy')]")
-	@CacheLookup
 	private WebElement buyTab;
 	@FindBy(xpath = "//h1[contains(.,'Buy Records')]")
-	@CacheLookup
 	private WebElement buyRecordHeading;
 	@FindBy(xpath = "//button[contains(.,'Create New')]")
-	@CacheLookup
+	
 	private WebElement createNewButton;
-	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Order Total')]")
-	@CacheLookup
+	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Order Total') or contains(.,'Orders Total')]")
+	
 	private WebElement orderTotal;
 	@FindBy(xpath = "//h5[contains(text(),'1')]")
-	@CacheLookup
 	private WebElement orderTotalCount;
-	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Bills Total')]")
-	@CacheLookup
+	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Bill Total') or contains(.,'Bills Total')]")
+	
 	private WebElement billTotal;
-	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Archive Total')]")
-	@CacheLookup
+	@FindBy(xpath = "//div[@class='summary-title'][contains(.,'Archive Total') or contains(.,'Archived Total')]")
+	
 	private WebElement archiveTotal;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Number arrow_drop')]")
-	@CacheLookup
+	
 	private WebElement numberColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Contact arrow_drop')]")
-	@CacheLookup
+	
 	private WebElement contactColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Due Date arrow_drop')]")
-	@CacheLookup
 	private WebElement dueDateColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Total Amount')]")
-	@CacheLookup
 	private WebElement totalAmountColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Goods Received')]")
-	@CacheLookup
 	private WebElement goodsReceivedColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Quick Actions')]")
-	@CacheLookup
 	private WebElement quickAction;
 	@FindBy(xpath = "//button[contains(.,'New Order')]")
-	@CacheLookup
 	private WebElement newOrderButton;
 	private static String pageTitleText = "Deskera Books";
 
@@ -80,67 +75,47 @@ public class BuyPage {
 	 *******************/
 
 	@FindBy(xpath = "//button[contains(.,'Save')]")
-	@CacheLookup
 	private WebElement saveButton;
 	@FindBy(xpath = "//span[contains(.,'+ Add a contact')]")
-	@CacheLookup
 	private WebElement addContactButton;
 	@FindBy(xpath = "//input[@formcontrolname='documentDate']")
-	@CacheLookup
 	private WebElement orderDate;
 	@FindBy(xpath = "//input[@formcontrolname='validTillDate']")
-	@CacheLookup
 	private WebElement dueDate;
 	@FindBy(xpath = "//span[contains(.,'+ Add a Line Item')]")
-	@CacheLookup
 	private WebElement addLineItemButton;
 	@FindBy(xpath = "//h5[contains(.,'Order Settings')]")
-	@CacheLookup
 	private WebElement orderSettingText;
 	@FindBy(xpath = "//span[contains(.,'Customize Number Format')]")
-	@CacheLookup
 	private WebElement customizeNumberFormat;
 	@FindBy(xpath = "//span[contains(.,'Global Custom Fields')]")
-	@CacheLookup
 	private WebElement globalCustomFields;
 	@FindBy(xpath = "//span[contains(text(),'Multi-Currency Options')]")
-	@CacheLookup
 	private WebElement multiCurrencyOptions;
 	@FindBy(xpath = "(//span[@class='mat-option-text'])[2]")
-	@CacheLookup
 	private WebElement firstContact;
 	@FindBy(xpath = "(//input[@aria-autocomplete='list'])[1]")
-	@CacheLookup
 	private WebElement typeHere;
 	@FindBy(xpath = "(//input[@aria-autocomplete='list'])[1]")
-	@CacheLookup
 	private WebElement pTypeHere;
 	@FindBy(xpath = "(//span[contains(@class,'mat-option-text')])[1]")
-	@CacheLookup
 	private WebElement firstProduct;
 	@FindBy(xpath = "//input[@formcontrolname='productQuantity']")
-	@CacheLookup
 	private WebElement pQuantity;
 	@FindBy(xpath = "(//input[@role='combobox'])[2]")
-	@CacheLookup
 	private WebElement pTax;
-	@FindBy(xpath = "//mat-checkbox[@formcontrolname='unitPriceGstInclusive']")
-	@CacheLookup
+	@FindBy(xpath = "//mat-checkbox[@formcontrolname='unitPriceGstInclusive']/label/span[1]")
+	
 	private WebElement unitPriceIsTaxInclusive;
 	@FindBy(xpath = "//input[@formcontrolname='unitPrice']")
-	@CacheLookup
 	private WebElement unitPriceTextBox;
 	@FindBy(xpath = "//input[@formcontrolname='discountString']")
-	@CacheLookup
 	private WebElement discountTextBox;
 	@FindBy(xpath = "(//div[@class='mat-form-field-infix']//div[@class='mat-input-element read-only-value'])[2]")
-	@CacheLookup
 	private WebElement amountSGD;
 	@FindBy(xpath = "//span[text()='Order has been saved successfully']")
-	@CacheLookup
 	private WebElement ordercreatedSuccessMessage;
 	@FindBy(xpath = "//*[@id='container-3']/extn-content/ng-list/div/div/mat-table/mat-row/mat-cell[5]/span")
-	@CacheLookup
 	private WebElement verifyAmountInGrid;
 	String amount;
 
@@ -149,25 +124,18 @@ public class BuyPage {
 	 *******************/
 
 	@FindBy(xpath = "//input[@placeholder='Search Records']")
-	@CacheLookup
 	private WebElement searchRecord;
 	@FindBy(xpath = "//mat-table//mat-row[@class='mat-row ng-star-inserted']//mat-cell[3]")
-	@CacheLookup
 	private WebElement contactName;
 	@FindBy(xpath = "//span[contains(text(),'Convert to Bill')]")
-	@CacheLookup
 	private WebElement convertToBillButton;
 	@FindBy(xpath = "//div[@class='mat-dialog-title']//span[contains(text(),'Convert to Bill')]")
-	@CacheLookup
 	private WebElement convertToBillHeading;
 	@FindBy(xpath = "//span[contains(text(),'Convert (Auto-Received)')]")
-	@CacheLookup
 	private WebElement convertAutoReceivedbutton;
 	@FindBy(xpath = "//span[contains(text(),'Convert Only')]")
-	@CacheLookup
 	private WebElement convertOnlyButton;
 	@FindBy(xpath = "//span[contains(text(),'Order is billed successfully')]")
-	@CacheLookup
 	private WebElement convertBillSucessMsg;
 
 	
@@ -176,101 +144,70 @@ public class BuyPage {
 	 *******************/
 
 	@FindBy(xpath = "//button[contains(.,'New Bill')]")
-	@CacheLookup
 	private WebElement newBillButton;
 	@FindBy(xpath = "//input[@formcontrolname='documentDate']")
-	@CacheLookup
 	private WebElement billDate;
 	@FindBy(xpath = "//h5[contains(.,'Bill Settings')]")
-	@CacheLookup
+	
 	private WebElement billSettingText;
 	@FindBy(xpath = "//div[@class='canvas-title']")
-	@CacheLookup
 	private WebElement billText;
 	@FindBy(xpath = "//span[text()='Bill has been saved successfully']")
-	@CacheLookup
 	private WebElement billcreatedSuccessMessage;
 	@FindBy(xpath = "//h5[contains(text(),'1')]")
-	@CacheLookup
 	private WebElement billTotalCount;
 	@FindBy(xpath = "//div[@class='tab-container activeTab ng-star-inserted']")
-	@CacheLookup
 	private WebElement billCard;
 
 	@FindBy(xpath = "//span[contains(text(),'Receive Goods')]")
-	@CacheLookup
 	private WebElement receivedGoodsButton;
 	@FindBy(xpath = "//input[@formcontrolname='receiptQuantity']")
-	@CacheLookup
 	private WebElement receivingTextBox;
 	@FindBy(xpath = "//span[contains(text(),'Cancel')]")
-	@CacheLookup
 	private WebElement cancelButton;
 	@FindBy(xpath = "//span[@class='mat-button-wrapper'][contains(text(),'Receive')]")
-	@CacheLookup
 	private WebElement receiveButton;
 	@FindBy(xpath = "//span[contains(text(),'Make Payment')]")
-	@CacheLookup
 	private WebElement makePaymentButton;
 	@FindBy(xpath = "//div[@class='mat-dialog-title'][contains(.,'Make Payment')]")
-	@CacheLookup
 	private WebElement makePaymentHeading;
 	@FindBy(xpath = "//div[contains(text(),'General')]")
-	@CacheLookup
 	private WebElement generalTab;
 	@FindBy(xpath = "//div[contains(text(),'Confirm')]")
-	@CacheLookup
 	private WebElement confirmTab;
 	@FindBy(xpath = "//div[contains(text(),'Current Outstanding')]")
-	@CacheLookup
 	private WebElement currentOustandingText;
 	@FindBy(xpath = "//span[@class='statusBadge due-in']")
-	@CacheLookup
 	private WebElement dueInLabel;
 	@FindBy(xpath = "//span[@class='dueAmount']//span[contains(text(),'SGD')]")
-	@CacheLookup
 	private WebElement sgdCurrency;
 	@FindBy(xpath = "//span[@class='dueAmount']")
-	@CacheLookup
 	private WebElement displayedAmount;
 	@FindBy(xpath = "//input[@formcontrolname='documentDate']")
-	@CacheLookup
 	private WebElement paymentDate;
 	@FindBy(xpath = "//div[@class='currency-dropdown-code']")
-	@CacheLookup
 	private WebElement currencyDropdown;
 	@FindBy(xpath = "//div[@class='amount']//input[@inputtype='decimal']")
-	@CacheLookup
 	private WebElement paymentAndCurrencyAmount;
 	@FindBy(xpath = "//div[@class='mat-select-value']//span[contains(.,'Pay From')]")
-	@CacheLookup
 	private WebElement payFromDropDown;
 	@FindBy(xpath = "//span[contains(text(),'Cash')]")
-	@CacheLookup
 	private WebElement clickOnCash;
 	@FindBy(xpath = "//span[contains(text(),'Next')]")
-	@CacheLookup
 	private WebElement nextButton;
 	@FindBy(xpath = "//div[@class='payment-preview-title']")
-	@CacheLookup
 	private WebElement confirmPaymentMadeText;
 	@FindBy(xpath = "//div[contains(text(),'Pay From')]/following-sibling::div")
-	@CacheLookup
 	private WebElement payfromCash;
 	@FindBy(xpath = "//span[contains(text(),'Back')]")
-	@CacheLookup
 	private WebElement backButton;
 	@FindBy(xpath = "//button[@class='mat-flat-button mat-stroked-button mat-button-base mat-primary ng-star-inserted']//span[@class='mat-button-wrapper'][contains(text(),'Pay')]")
-	@CacheLookup
 	private WebElement payButton;
 	@FindBy(xpath = "//span[contains(text(),'Close')]")
-	@CacheLookup
 	private WebElement closeButton;
 	@FindBy(xpath = "//span[@class='mat-button-wrapper'][contains(text(),'Print')]")
-	@CacheLookup
 	private WebElement printButton;
 	@FindBy(xpath = "//span[text()='1 Payment Received']")
-	@CacheLookup
 	private WebElement paymentReceivedSuccessMessage;
 
 	/*******************************
@@ -278,13 +215,10 @@ public class BuyPage {
 	 *******************/
 
 	@FindBy(xpath = "//mat-row[1]//mat-cell[8]//button[2]//span[1]//mat-icon[1]")
-	@CacheLookup
 	private WebElement contextMenuIcon;
 	@FindBy(xpath = "//button[contains(text(),'Archive Bill')]")
-	@CacheLookup
 	private WebElement archiveBillButton;
 	@FindBy(xpath = "//h5[contains(text(),'1')]")
-	@CacheLookup
 	private WebElement archiveTotalCount;
 	
 	
@@ -292,29 +226,22 @@ public class BuyPage {
 	 * Reopen Bill/Order Page Element Locators
 	 *******************/
 	@FindBy(xpath = "//mat-row[1]//mat-cell[8]//button[1]//span[1]//mat-icon[1]")
-	@CacheLookup
 	private WebElement archiveContextMenuIcon; 
 	@FindBy(xpath = "//button[contains(text(),'Reopen')]")
-	@CacheLookup
 	private WebElement reopenButton;
 	@FindBy(xpath = "//div[@class='no-records ng-star-inserted']")
-	@CacheLookup
 	private WebElement noMatchingRecord;
 	
 	/*******************************
 	 * Archive Order Page Element Locators
 	 *******************/
 	@FindBy(xpath = "//mat-row[1]//mat-cell[7]//button[2]//span[1]//mat-icon[1]")
-	@CacheLookup
 	private WebElement orderContextMenuIcon;
 	@FindBy(xpath = "//button[contains(text(),'Archive Order')]")
-	@CacheLookup
 	private WebElement archiveOrderButton;
 	@FindBy(xpath = "//div[@class='tabs-container']//div[3]")
-	@CacheLookup
 	private WebElement archiveCard;
 	@FindBy(xpath = "//span[contains(text(),'Cancelled')]")
-	@CacheLookup
 	private WebElement cancelledStatus;
 	
 	/*******************************
@@ -327,7 +254,8 @@ public class BuyPage {
 
 	@Step("Verify page title")
 	public void verifyPageTitle() {
-		Assert.assertEquals(driver.getTitle(), pageTitleText);
+		sAssert.assertEquals(driver.getTitle(), pageTitleText);
+		sAssert.assertAll();
 	}
 
 	// Common util for webdriver wait
@@ -338,7 +266,8 @@ public class BuyPage {
 	@Step("verify buytab elements")
 	public void verifybuytabElements() {
 		WDWait(buyTab);
-		buyTab.isDisplayed();
+		sAssert.assertTrue(buyTab.isDisplayed(), "Verify Buy tab");
+		sAssert.assertAll();
 
 	}
 
@@ -347,6 +276,8 @@ public class BuyPage {
 		WDWait(buyTab);
 		buyTab.click();
 		clickPopup();
+		sAssert.assertAll();
+
 	}
 
 	@Step("close popup on buy page")
@@ -389,17 +320,20 @@ public class BuyPage {
 	@Step("Verify Buy page elements")
 	public void verifyBuyPageElement() {
 		WDWait(buyRecordHeading);
-		buyRecordHeading.isDisplayed();
-		createNewButton.isDisplayed();
-		orderTotal.isDisplayed();
-		billTotal.isDisplayed();
-		archiveTotal.isDisplayed();
-		numberColumn.isDisplayed();
-		contactColumn.isDisplayed();
-		dueDateColumn.isDisplayed();
-		totalAmountColumn.isDisplayed();
-		goodsReceivedColumn.isDisplayed();
-		quickAction.isDisplayed();
+		sAssert.assertTrue(buyRecordHeading.isDisplayed(),"Verify buy record heading");
+		sAssert.assertTrue(createNewButton.isDisplayed());
+		sAssert.assertTrue(orderTotal.isDisplayed());
+		sAssert.assertTrue(billTotal.isDisplayed());
+		sAssert.assertTrue(archiveTotal.isDisplayed());
+		sAssert.assertTrue(numberColumn.isDisplayed());
+		sAssert.assertTrue(contactColumn.isDisplayed());
+		sAssert.assertTrue(dueDateColumn.isDisplayed());
+		sAssert.assertTrue(totalAmountColumn.isDisplayed());
+		sAssert.assertTrue(goodsReceivedColumn.isDisplayed());
+		sAssert.assertTrue(quickAction.isDisplayed());
+		
+		sAssert.assertAll();
+
 	}
 
 	@Step("Click On Create New Button and then Click on New Order")
@@ -407,6 +341,8 @@ public class BuyPage {
 		WDWait(createNewButton);
 		wait.until(ExpectedConditions.elementToBeClickable(createNewButton));
 		createNewButton.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step(" Click on New Order")
@@ -414,20 +350,24 @@ public class BuyPage {
 		WDWait(newOrderButton);
 		wait.until(ExpectedConditions.elementToBeClickable(newOrderButton));
 		newOrderButton.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verify create order page elements")
 	public void verifyCreateOrderElements() {
 		WDWait(saveButton);
-		saveButton.isDisplayed();
-		addContactButton.isDisplayed();
-		orderDate.isDisplayed();
-		dueDate.isDisplayed();
-		addLineItemButton.isDisplayed();
-		orderSettingText.isDisplayed();
-		customizeNumberFormat.isDisplayed();
-		globalCustomFields.isDisplayed();
+		sAssert.assertTrue(saveButton.isDisplayed(),"Verify save button");
+		sAssert.assertTrue(addContactButton.isDisplayed(), "Verify add contact button");
+		sAssert.assertTrue(orderDate.isDisplayed(),"Verify order date");
+		sAssert.assertTrue(dueDate.isDisplayed(),"Verify due date");
+		sAssert.assertTrue(addLineItemButton.isDisplayed(), "Verify add line item button");
+		sAssert.assertTrue(orderSettingText.isDisplayed(),"Verify order setting text");
+		sAssert.assertTrue(customizeNumberFormat.isDisplayed(),"Verify custom number format text");
+		sAssert.assertTrue(globalCustomFields.isDisplayed(), "Verify global custom field text");
 		// unitPriceIsTaxInclusive.isDisplayed();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Add Contact")
@@ -438,12 +378,16 @@ public class BuyPage {
 		typeHere.sendKeys(cName);
 		WDWait(firstContact);
 		firstContact.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verify Multi currency options")
 	public void verifyMultiCurrencyOptions() {
 		WDWait(multiCurrencyOptions);
-		multiCurrencyOptions.isDisplayed();
+		sAssert.assertTrue(multiCurrencyOptions.isDisplayed(), "Verify multi currency option");
+		sAssert.assertAll();
+
 	}
 
 	@Step("Add Product")
@@ -455,13 +399,16 @@ public class BuyPage {
 		pTypeHere.sendKeys(pName);
 		WDWait(firstProduct);
 		firstProduct.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verrify default quantity of products")
 	public void verifydefaultQuantityAndTax() {
 		WDWait(pQuantity);
-		pQuantity.isDisplayed();
-		Assert.assertEquals(pQuantity.getAttribute("value"), "1.00");
+		sAssert.assertTrue(pQuantity.isDisplayed(),"Verify quantity");
+		sAssert.assertEquals(pQuantity.getAttribute("value"), "1.00");
+		sAssert.assertAll();
 
 	}
 
@@ -477,6 +424,8 @@ public class BuyPage {
 		WDWait(discountTextBox);
 		discountTextBox.clear();
 		discountTextBox.sendKeys(discount);
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verify Total Amount ")
@@ -517,7 +466,10 @@ public class BuyPage {
 		double totalAmount = (quantity1 * unitPrice1 - discount1) + taxAmount;
 		System.out.println("Total Amount=" + totalAmount);
 
-		Assert.assertEquals(amount1, totalAmount);
+		sAssert.assertEquals(amount1, totalAmount);
+		
+		sAssert.assertAll();
+
 	}
 
 	@Step("Click on Save Button")
@@ -525,77 +477,93 @@ public class BuyPage {
 		WDWait(saveButton);
 		// Thread.sleep(3000);
 		saveButton.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verify success message")
 	public void verifysuccessmessage() {
 		WDWait(ordercreatedSuccessMessage);
-		ordercreatedSuccessMessage.isDisplayed();
-		wait.until(ExpectedConditions.invisibilityOf(ordercreatedSuccessMessage));
+		sAssert.assertTrue(ordercreatedSuccessMessage.isDisplayed(), "Verify order created success message");
+		wait.until(ExpectedConditions.visibilityOf(ordercreatedSuccessMessage));
+		sAssert.assertAll();
 
 	}
 	@Step("Verify total amount in grid")
 	public void verifyamountInGrid(){
 		WDWait(verifyAmountInGrid);
-		verifyAmountInGrid.isDisplayed();
+		sAssert.assertTrue(verifyAmountInGrid.isDisplayed(),"Verify amount in grid");
 		
-		Assert.assertEquals(verifyAmountInGrid.getText(), amount);
+		sAssert.assertEquals(verifyAmountInGrid.getText(), amount);
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verify total order count")
 	public void ordetTotalCount() {
 		WDWait(orderTotalCount);
-		orderTotalCount.isDisplayed();
-		Assert.assertEquals(orderTotalCount.getText(), "1");
+		sAssert.assertTrue(orderTotalCount.isDisplayed(),"Verify order count");
+		sAssert.assertEquals(orderTotalCount.getText(), "1");
+		sAssert.assertAll();
 
 	}
 
 	@Step("Search created order")
-	public void searchCreatedOrder(String cName) {
+	public void searchCreatedRecord(String cName) throws InterruptedException {
 		WDWait(searchRecord);
+		//wait.until(ExpectedConditions.elementToBeClickable(searchRecord));
 		searchRecord.click();
+		Thread.sleep(4000);
 		searchRecord.sendKeys(cName);
+		sAssert.assertAll();
+
 	}
 
 	@Step("Click on searched order")
 	public void clickOnContact(String cName) {
 		WDWait(contactName);
 		wait.until(ExpectedConditions.elementToBeClickable(contactName));
-		Assert.assertEquals(contactName.getText(), cName);
+		sAssert.assertEquals(contactName.getText(), cName);
 		contactName.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Click on Convert to bill button")
 	public void clickConvertToBillButton() throws InterruptedException {
 
 		WDWait(convertToBillButton);
-		convertToBillButton.isDisplayed();
+		sAssert.assertTrue(convertToBillButton.isDisplayed(),"Verify convert to bill button");
 		convertToBillButton.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verify convert to bill popup")
 	public void verifyConvertToBillPopupElements() {
 		WDWait(convertToBillHeading);
-		convertToBillHeading.isDisplayed();
+		sAssert.assertTrue(convertToBillHeading.isDisplayed(),"Verify convert to bill heading");
 		WDWait(convertAutoReceivedbutton);
-		convertAutoReceivedbutton.isDisplayed();
+		sAssert.assertTrue(convertAutoReceivedbutton.isDisplayed(),"Verify auto receive button");
 		WDWait(convertOnlyButton);
-		convertOnlyButton.isDisplayed();
+		sAssert.assertTrue(convertOnlyButton.isDisplayed(),"Verify convert only button");
+		sAssert.assertAll();
 	}
 
 	@Step("Click on convert autoreceived button")
 	public void clickConvertAutoReceivedButton() {
 		WDWait(convertAutoReceivedbutton);
-		convertAutoReceivedbutton.isDisplayed();
+		sAssert.assertTrue(convertAutoReceivedbutton.isDisplayed(),"Verify convert autoreceive button");
 		convertAutoReceivedbutton.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Verify success message")
 	public void verifyConvertBillsuccessmessage() {
 		WDWait(convertBillSucessMsg);
-		convertBillSucessMsg.isDisplayed();
-		wait.until(ExpectedConditions.invisibilityOf(convertBillSucessMsg));
-
+		sAssert.assertTrue(convertBillSucessMsg.isDisplayed(),"Verify convert bill success message");
+		wait.until(ExpectedConditions.visibilityOf(convertBillSucessMsg));
+		sAssert.assertAll();
 	}
 
 	/*******************************
@@ -607,157 +575,173 @@ public class BuyPage {
 		WDWait(newBillButton);
 		wait.until(ExpectedConditions.elementToBeClickable(newBillButton));
 		newBillButton.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Verify create order page elements")
 	public void verifyCreateBillElements() {
 		WDWait(saveButton);
-		saveButton.isDisplayed();
+		sAssert.assertTrue(saveButton.isDisplayed(),"Verify save button");
 		WDWait(billText);
-		billText.isDisplayed();
-		addContactButton.isDisplayed();
-		billDate.isDisplayed();
-		dueDate.isDisplayed();
-		addLineItemButton.isDisplayed();
-		billSettingText.isDisplayed();
-		customizeNumberFormat.isDisplayed();
-		globalCustomFields.isDisplayed();
-		unitPriceIsTaxInclusive.isDisplayed();
+		sAssert.assertTrue(billText.isDisplayed(),"Verify bill text");
+		sAssert.assertTrue(addContactButton.isDisplayed(),"Verify add contact button");
+		sAssert.assertTrue(billDate.isDisplayed(),"Verify bill date");
+		sAssert.assertTrue(dueDate.isDisplayed(),"Verify due date");
+		sAssert.assertTrue(addLineItemButton.isDisplayed(),"Verify add line item buttom");
+		sAssert.assertTrue(billSettingText.isDisplayed(),"Verify billing setting text");
+		sAssert.assertTrue(customizeNumberFormat.isDisplayed(),"Verify customize number format");
+		sAssert.assertTrue(globalCustomFields.isDisplayed(),"Verify global custom fields");
+		/*wait.until(ExpectedConditions.visibilityOf(unitPriceIsTaxInclusive));
+		sAssert.assertTrue(unitPriceIsTaxInclusive.isDisplayed(),"Verify unit price is tax inclusive button");*/
+		sAssert.assertAll();
 	}
 
 	@Step("Verify success message")
 	public void verifybillcreatedsuccessmessage() {
 		WDWait(billcreatedSuccessMessage);
-		billcreatedSuccessMessage.isDisplayed();
-		wait.until(ExpectedConditions.invisibilityOf(billcreatedSuccessMessage));
-
+		sAssert.assertTrue(billcreatedSuccessMessage.isDisplayed(),"Verify bill created success message");
+		wait.until(ExpectedConditions.visibilityOf(billcreatedSuccessMessage));
+		sAssert.assertAll();
 	}
 
 	@Step("Verify total bill count")
 	public void billTotalCount() {
 		WDWait(billTotalCount);
-		billTotalCount.isDisplayed();
-		Assert.assertEquals(billTotalCount.getText(), "1");
-
+		sAssert.assertTrue(billTotalCount.isDisplayed(),"Verify bill total count");
+		sAssert.assertEquals(billTotalCount.getText(), "1");
+		sAssert.assertAll();
 	}
 
 	@Step("Click on Bill Card")
 	public void clickOnBillCard() {
 		WDWait(billCard);
-		billCard.isDisplayed();
+		sAssert.assertTrue(billCard.isDisplayed(),"Verify bill card");
 		billCard.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Click on Received Goods button")
 	public void clickReceivedGoodsButton() {
 		WDWait(receivedGoodsButton);
-		receivedGoodsButton.isDisplayed();
+		sAssert.assertTrue(receivedGoodsButton.isDisplayed(),"Verify received goods button");
 		receivedGoodsButton.click();
+		sAssert.assertAll();
+
 	}
 
 	@Step("Verify receive goods elements ")
 	public void verifyReceivedGoodsElements() {
 		WDWait(receivingTextBox);
-		receivingTextBox.isDisplayed();
+		sAssert.assertTrue(receivingTextBox.isDisplayed(),"Verify receiving text box");
 		WDWait(cancelButton);
-		cancelButton.isDisplayed();
+		sAssert.assertTrue(cancelButton.isDisplayed(),"Verify cancel button");
 		WDWait(receiveButton);
-		receiveButton.isDisplayed();
+		sAssert.assertTrue(receiveButton.isDisplayed(),"Verify receive button");
+		sAssert.assertAll();
 
 	}
 
 	@Step("Click on Receive button")
 	public void clickReceiveButton() throws InterruptedException {
 		WDWait(receiveButton);
-		receiveButton.isDisplayed();
+		sAssert.assertTrue(receiveButton.isDisplayed(),"Click receive button");
 		receiveButton.click();
 		Thread.sleep(3000);
+		sAssert.assertAll();
+
 	}
 
 	@Step("Click on Make Payment button")
 	public void clickMakePaymentButton() {
 		WDWait(makePaymentButton);
-		makePaymentButton.isDisplayed();
+		sAssert.assertTrue(makePaymentButton.isDisplayed(),"Click make payment button");
 		makePaymentButton.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Verify make payment page element")
 	public void verifyMakePaymentElement() {
 		WDWait(makePaymentHeading);
-		makePaymentHeading.isDisplayed();
+		sAssert.assertTrue(makePaymentHeading.isDisplayed(),"Verify make payment heading");
 		WDWait(generalTab);
-		generalTab.isDisplayed();
+		sAssert.assertTrue(generalTab.isDisplayed(),"Verify general tab");
 		WDWait(confirmTab);
-		confirmTab.isDisplayed();
+		sAssert.assertTrue(confirmTab.isDisplayed(),"Verify confirm tab");
 		WDWait(currentOustandingText);
-		currentOustandingText.isDisplayed();
+		sAssert.assertTrue(currentOustandingText.isDisplayed(),"Verify current outstanding text");
 		WDWait(dueInLabel);
-		dueInLabel.isDisplayed();
+		sAssert.assertTrue(dueInLabel.isDisplayed(),"Verify due in label");
 		WDWait(sgdCurrency);
-		sgdCurrency.isDisplayed();
+		sAssert.assertTrue(sgdCurrency.isDisplayed(),"Verify currency");
 		WDWait(displayedAmount);
-		displayedAmount.isDisplayed();
+		sAssert.assertTrue(displayedAmount.isDisplayed(),"Verify displayed amount");
 		WDWait(paymentDate);
-		paymentDate.isDisplayed();
+		sAssert.assertTrue(paymentDate.isDisplayed(),"Verify payment date");
 		WDWait(currencyDropdown);
-		currencyDropdown.isDisplayed();
+		sAssert.assertTrue(currencyDropdown.isDisplayed(),"Verify currency drop down");
 		WDWait(paymentAndCurrencyAmount);
-		paymentAndCurrencyAmount.isDisplayed();
-
+		sAssert.assertTrue(paymentAndCurrencyAmount.isDisplayed(),"Verify payment and currency field");
+		sAssert.assertAll();
 	}
 
 	@Step("Click on Pay Form Drop down")
 	public void clickPayFormDropDown() throws InterruptedException {
 		WDWait(payFromDropDown);
-		payFromDropDown.isDisplayed();
+		sAssert.assertTrue(payFromDropDown.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(payFromDropDown));
 		payFromDropDown.click();
 		WDWait(clickOnCash);
-		clickOnCash.isDisplayed();
+		sAssert.assertTrue(clickOnCash.isDisplayed());
 		clickOnCash.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Verify default currency in Payment and amount")
 	public void verifyCurrency() {
 		WDWait(sgdCurrency);
-		Assert.assertEquals(sgdCurrency.getText(), "SGD");
+		sAssert.assertEquals(sgdCurrency.getText(), "SGD");
+		sAssert.assertAll();
 	}
 
 	@Step("Click on Next button")
 	public void clickOnNext() {
 		WDWait(nextButton);
-		nextButton.isDisplayed();
+		sAssert.assertTrue(nextButton.isDisplayed());
 		nextButton.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Verify Confirm payment made page elements")
 	public void verifyConfirmPaymentElements() {
 		WDWait(confirmPaymentMadeText);
-		confirmPaymentMadeText.isDisplayed();
+		sAssert.assertTrue(confirmPaymentMadeText.isDisplayed(),"Verify confirm Payment Made Text");
 		WDWait(payfromCash);
-		payfromCash.isDisplayed();
-		Assert.assertEquals(payfromCash.getText(), "Cash");
+		sAssert.assertTrue(payfromCash.isDisplayed(),"Verify pay from cash");
+		sAssert.assertEquals(payfromCash.getText(), "Cash");
 		WDWait(backButton);
-		backButton.isDisplayed();
+		sAssert.assertTrue(backButton.isDisplayed(),"Verify back button");
 		WDWait(payButton);
-		payButton.isDisplayed();
+		sAssert.assertTrue(payButton.isDisplayed(),"Verify pay button");
 		payButton.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Click on Close button")
 	public void ClickOnCloseButton() {
 		WDWait(printButton);
-		printButton.isDisplayed();
+		sAssert.assertTrue(printButton.isDisplayed());
 		WDWait(closeButton);
-		closeButton.isDisplayed();
+		sAssert.assertTrue(closeButton.isDisplayed());
 		closeButton.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Verify payment received success message")
 	public void verifyPaymentReceivedsuccessmessage() {
 		WDWait(paymentReceivedSuccessMessage);
-		paymentReceivedSuccessMessage.isDisplayed();
-		wait.until(ExpectedConditions.invisibilityOf(paymentReceivedSuccessMessage));
+		sAssert.assertTrue(paymentReceivedSuccessMessage.isDisplayed(),"Verify payment received success message");
+		wait.until(ExpectedConditions.visibilityOf(paymentReceivedSuccessMessage));
+		sAssert.assertAll();
 	}
 
 	/******************************
@@ -767,27 +751,30 @@ public class BuyPage {
 	@Step("Click on Context Menu icon")
 	public void clickContextMenuIcon() throws InterruptedException {
 		WDWait(contextMenuIcon);
-		contextMenuIcon.isDisplayed();
+		sAssert.assertTrue(contextMenuIcon.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(contextMenuIcon));
 		// Thread.sleep(3000);
 		contextMenuIcon.click();
 		// Thread.sleep(4000);
+		sAssert.assertAll();
 	}
 
 	@Step("Click on Archive Bill button")
 	public void clickOnArchiveBillButton() {
 		WDWait(archiveBillButton);
-		archiveBillButton.isDisplayed();
+		sAssert.assertTrue(archiveBillButton.isDisplayed());
+		wait.until(ExpectedConditions.elementToBeClickable(archiveBillButton));
 		archiveBillButton.click();
+		sAssert.assertAll();
 	}
 
 	@Step("Verify total archive count")
 	public void archiveTotalCount() {
 		WDWait(archiveTotalCount);
-		archiveTotalCount.isDisplayed();
+		sAssert.assertTrue(archiveTotalCount.isDisplayed(),"Verify archive total count");
 		wait.until(ExpectedConditions.visibilityOf(archiveTotalCount));
-		Assert.assertEquals(archiveTotalCount.getText(), "1");
-
+		sAssert.assertEquals(archiveTotalCount.getText(), "1");
+		sAssert.assertAll();
 	}
 	
 	/******************************
@@ -796,32 +783,34 @@ public class BuyPage {
 	@Step("Click on Context Menu icon of Orders")
 	public void clickOrderContextMenuIcon() {
 		WDWait(orderContextMenuIcon);
-		orderContextMenuIcon.isDisplayed();
+		sAssert.assertTrue(orderContextMenuIcon.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(orderContextMenuIcon));
 		orderContextMenuIcon.click();
+		sAssert.assertAll();
 	}
 	@Step("Click on Archive Order button")
 	public void clickOnArchiveOrderButton() {
 		WDWait(archiveOrderButton);
-		archiveOrderButton.isDisplayed();
+		sAssert.assertTrue(archiveOrderButton.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(archiveOrderButton));
 		archiveOrderButton.click();
-
+		sAssert.assertAll();
 	}
 	@Step("Click on Archive card")
 	public void clickOnArchiveCard(){
 		WDWait(archiveCard);
-		archiveCard.isDisplayed();
+		sAssert.assertTrue(archiveCard.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(archiveCard));
 		archiveCard.click();
-		
+		sAssert.assertAll();
 	}
 	@Step("Verify cancelled status of archived record")
 	public void verifyCancelledStatus() throws InterruptedException{
 		WDWait(cancelledStatus);
-		cancelledStatus.isDisplayed();
+		sAssert.assertTrue(cancelledStatus.isDisplayed(),"Verify cancelled status");
 		wait.until(ExpectedConditions.visibilityOf(cancelledStatus));
-		Assert.assertEquals(cancelledStatus.getText(), "Cancelled");
+		sAssert.assertEquals(cancelledStatus.getText(), "Cancelled");
+		sAssert.assertAll();
 	}
 	
 	/******************************
@@ -830,22 +819,26 @@ public class BuyPage {
 	@Step("Click on context menu icon to reopen")
 	public void clickOnContextMenuOnArchivePage(){
 		WDWait(archiveContextMenuIcon);
-		archiveContextMenuIcon.isDisplayed();
+		sAssert.assertTrue(archiveContextMenuIcon.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(archiveContextMenuIcon));
 		archiveContextMenuIcon.click();
+		sAssert.assertAll();
 	}
 	@Step("Click on Reopen button")
 	public void clickOnReopen(){
 		WDWait(reopenButton);
-		reopenButton.isDisplayed();
+		sAssert.assertTrue(reopenButton.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(reopenButton));
 		reopenButton.click();
+		sAssert.assertAll();
 	}
 	@Step("No records message after reopen of bill/order")
-	public void noMatchingRecord(){
+	public void noMatchingRecord() throws InterruptedException{
 		WDWait(noMatchingRecord);
+		Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOf(noMatchingRecord));
-		noMatchingRecord.isDisplayed();
+		sAssert.assertTrue(noMatchingRecord.isDisplayed(),"Verify no matching record text");
+		sAssert.assertAll();
 	}
 	
 	

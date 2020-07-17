@@ -377,20 +377,20 @@ public class CreateProductPage {
 
 	@Step("Select Non Tracked Product from Dropdown")
 	public void selectNonTrackedProduct() {
-		sAssert.assertTrue(wait.until(ExpectedConditions.elementToBeClickable(productTypedropdown)) != null,"Verify productTypedropdown");
+		sAssert.assertTrue(wait.until(ExpectedConditions.elementToBeClickable(productTypedropdown)) != null,
+				"Verify productTypedropdown");
 		productTypedropdown.click();
 		nonTrackedProductType.click();
 		sAssert.assertAll();
-
 	}
 
 	@Step("Select Tracked Product from Dropdown")
 	public void selectTrackedProduct() {
-		sAssert.assertTrue(wait.until(ExpectedConditions.visibilityOf(productTypedropdown)) != null,"Wait for productTypedropdown");
+		sAssert.assertTrue(wait.until(ExpectedConditions.visibilityOf(productTypedropdown)) != null,
+				"Wait for productTypedropdown");
 		productTypedropdown.click();
 		trackedProductType.click();
 		sAssert.assertAll();
-
 	}
 
 	@Step("Upload Image for Product")
@@ -541,7 +541,7 @@ public class CreateProductPage {
 	@Step("Verify Inventory Tab For Tracked Product")
 	public void verifyInventoryTabForTrackedProduct(String defaultUnitOfMeasurement,
 			String defaultCostOfGoodSoldAccount, String defaultInventoryAccount, String defaultStockAdjustmentAccount)
-					throws InterruptedException {
+			throws InterruptedException {
 		Thread.sleep(4000);
 		WDWait(unitOfMeasurement);
 		unitOfMeasurement.isDisplayed();
@@ -638,12 +638,11 @@ public class CreateProductPage {
 		createProductSuccessMessage.isDisplayed();
 		sAssert.assertTrue(wait.until(ExpectedConditions.visibilityOf(createProductSuccessMessage)) != null);
 		sAssert.assertAll();
-
 	}
 
 	@Step("Verify Tracked Product Count")
 	public void verifyTrackedProductCount() throws InterruptedException {
-		// Thread.sleep(5000);
+		Thread.sleep(3000);
 		if (startByAddingOrImportingYourProducsText.size() != 0) {
 			Thread.sleep(2000);
 			closeIcon.click();
@@ -657,7 +656,7 @@ public class CreateProductPage {
 
 	@Step("Verify Non Tracked Product Count")
 	public void verifyNonTrackedProductCount() throws InterruptedException {
-		// Thread.sleep(5000);
+		 Thread.sleep(5000);
 		if (startByAddingOrImportingYourProducsText.size() != 0) {
 			Thread.sleep(2000);
 			closeIcon.click();
@@ -671,7 +670,7 @@ public class CreateProductPage {
 
 	@Step("Verify BOM Product Count")
 	public void verifyBomProductCount() throws InterruptedException {
-		// Thread.sleep(5000);
+		 Thread.sleep(3000);
 		if (startByAddingOrImportingYourProducsText.size() != 0) {
 			Thread.sleep(2000);
 			closeIcon.click();

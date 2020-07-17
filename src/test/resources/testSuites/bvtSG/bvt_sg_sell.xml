@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite thread-count="1" name="Go.Deskera Web BVT Sell Suite"
+<suite thread-count="1" name="ERP Web Sell Test Suite"
 	parallel="false" preserve-order="true">
 
 	<listeners>
@@ -13,18 +13,24 @@
 	<!-- System config for framework -->
 	<parameter name="envConf"
 		value="src/test/resources/systemConfig/environment.config"></parameter>
-	<parameter name="conf"
+	<parameter name="confCommon"
 		value="src/test/resources/bvtSGConfig/Common.config"></parameter>
 	<parameter name="confProducts"
 		value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
 	<parameter name="confContacts"
 		value="src/test/resources/bvtSGConfig/TestDataContactSG.config"></parameter>
+	<parameter name="confBuy"
+		value="src/test/resources/bvtSGConfig/TestDataBuySG.config"></parameter>
+	<parameter name="confSell"
+		value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
+
+
 
 
 
 	<!-- Run Test Cases -->
 
- 	  <test name=" 1 Create Quote " parallel="false">
+  <test name="1 Create Quote Test" parallel="false">
 		<classes>
 		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -36,9 +42,9 @@
 					value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
 			</class>
 		</classes>
-	</test>    
-	
-	    <test name=" 2 Create Invoice" parallel="false">
+	</test> 
+	 
+	 <test name="2 Create Invoice Test" parallel="false">
 		<classes>
 		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -50,8 +56,7 @@
 					value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
 			</class>
 		</classes>
-	</test>   
-	 
+	</test> 
 	    
 	   <test name="3 Archive Quote / Invoice Test" parallel="false">
 		<classes>
@@ -97,6 +102,11 @@
  
 	
 	<test name=" 6 Create Bank" parallel="false">
+=======
+	</test>
+ -->
+	<test name=" 2 Create Bank" parallel="false">
+>>>>>>> master
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -121,8 +131,9 @@
 				</methods>
 			</class>
 
-			<class name="deskera.web.automation.erp.bvtSG.tests.BankReconciliationTest">
-			<parameter name="conf"
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.BankReconciliationTest">
+				<parameter name="conf"
 					value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
 			</class>
 		</classes>

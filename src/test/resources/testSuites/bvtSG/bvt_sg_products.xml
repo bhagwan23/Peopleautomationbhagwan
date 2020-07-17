@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite thread-count="1" name="Go.Deskera Web BVT Products Suite"
+<suite thread-count="1" name="ERP Web Products Test Suite"
 	parallel="false" preserve-order="true">
 
 	<listeners>
@@ -15,8 +15,17 @@
 	<!-- System config for framework -->
 	<parameter name="envConf"
 		value="src/test/resources/systemConfig/environment.config"></parameter>
-	<parameter name="conf"
+	<parameter name="confCommon"
 		value="src/test/resources/bvtSGConfig/Common.config"></parameter>
+	<parameter name="confProducts"
+		value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
+	<parameter name="confContacts"
+		value="src/test/resources/bvtSGConfig/TestDataContactSG.config"></parameter>
+	<parameter name="confBuy"
+		value="src/test/resources/bvtSGConfig/TestDataBuySG.config"></parameter>
+	<parameter name="confSell"
+		value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
+
 
 
 	<!-- Run Test Cases -->
@@ -55,8 +64,6 @@
 			</class>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.AddNonTrackedProductTest">
-				<parameter name="conf"
-					value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
 			</class>
 		</classes>
 	</test>
@@ -70,8 +77,7 @@
 			</class>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.EditProductTest">
-				<parameter name="conf"
-					value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
+
 			</class>
 		</classes>
 	</test>
@@ -84,8 +90,7 @@
 			</class>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.AddTrackedProductTest">
-				<parameter name="conf"
-					value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
+
 			</class>
 		</classes>
 	</test>
@@ -98,8 +103,7 @@
 			</class>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.CopyProductTest">
-				<parameter name="conf"
-					value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
+
 			</class>
 		</classes>
 	</test>
@@ -113,8 +117,7 @@
 			</class>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.AddBOMProductTest">
-				<parameter name="conf"
-					value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
+
 			</class>
 		</classes>
 	</test>
@@ -127,8 +130,7 @@
 			</class>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.DeleteProductTest">
-				<parameter name="conf"
-					value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
+
 			</class>
 		</classes>
 	</test>
@@ -141,8 +143,6 @@
 			</class>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.CreateCustomNumberFormat">
-				<parameter name="conf"
-					value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
 			</class>
 		</classes>
 	</test>

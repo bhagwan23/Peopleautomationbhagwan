@@ -131,9 +131,9 @@ public class CopyContactPage {
 	@Step("Verify success message")
 	public void verifysuccessmessage(){
 		WDWait(copyContactSuccessMessage);
-		copyContactSuccessMessage.isDisplayed();
-        wait.until(ExpectedConditions.invisibilityOf(copyContactSuccessMessage));
-
+		sAssert.assertTrue(copyContactSuccessMessage.isDisplayed(), "Verify copy contact success message");
+        wait.until(ExpectedConditions.visibilityOf(copyContactSuccessMessage));
+        sAssert.assertAll();
 	}
 	@Step("Verify copied contact")
 	public void verifyCopiedContact(String cName, String UENNumber, String TAXNumber, String currency, String paymentTerms) throws InterruptedException{
@@ -143,29 +143,31 @@ public class CopyContactPage {
 		
 		WDWait(enteredName);
 		wait.until(ExpectedConditions.elementToBeClickable(enteredName));
-		Assert.assertEquals(enteredName.getText(), cName);
+		sAssert.assertEquals(enteredName.getText(), cName);
 		enteredName.click();
 		
-		Assert.assertEquals(contactName.getText(), cName);
-		Assert.assertEquals(uENnumber.getText(), UENNumber);
-		Assert.assertEquals(tax.getText(), TAXNumber);
-		Assert.assertEquals(contactCurrency.getText(), currency);
+		sAssert.assertEquals(contactName.getText(), cName);
+		sAssert.assertEquals(uENnumber.getText(), UENNumber);
+		sAssert.assertEquals(tax.getText(), TAXNumber);
+		sAssert.assertEquals(contactCurrency.getText(), currency);
 		organization= companyOrg.getText();
-		Assert.assertEquals(contactOrg.getText(),organization);
+		sAssert.assertEquals(contactOrg.getText(),organization);
 
 
 		scrollToElement(accPayable);
 		wait.until(ExpectedConditions.visibilityOf(accPayable));
 		Thread.sleep(5000);
-		Assert.assertEquals(accPayable.getText(), "Accounts Payable");
+		sAssert.assertEquals(accPayable.getText(), "Accounts Payable");
 		
 		scrollToElement(accReceivable);
 		wait.until(ExpectedConditions.visibilityOf(accReceivable));
 		Thread.sleep(5000);
-		Assert.assertEquals(accReceivable.getText(), "Accounts Receivable");
+		sAssert.assertEquals(accReceivable.getText(), "Accounts Receivable");
 
-		Assert.assertEquals(buyPaymentTerm.getText(), paymentTerms);
-		Assert.assertEquals(sellPaymentTerm.getText(), paymentTerms);
+		sAssert.assertEquals(buyPaymentTerm.getText(), paymentTerms);
+		sAssert.assertEquals(sellPaymentTerm.getText(), paymentTerms);
+
+		sAssert.assertAll();
 
 	}
 	@Step("Scroll page")
@@ -173,7 +175,7 @@ public class CopyContactPage {
 	{
 
 		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
-		sAssert.assertTrue(copyContactSuccessMessage.isDisplayed(),"Verify Success message for Contact creation");
+		//sAssert.assertTrue(copyContactSuccessMessage.isDisplayed(),"Verify Success message for Contact creation");
 		sAssert.assertAll();
 
 	}

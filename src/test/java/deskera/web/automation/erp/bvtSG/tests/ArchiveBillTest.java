@@ -13,7 +13,7 @@ import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
 public class ArchiveBillTest extends DriverFactory {
-	String confPath, url;
+	String confPath, url,confProductsPath,confContactsPath;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
 
 	/**
@@ -23,10 +23,12 @@ public class ArchiveBillTest extends DriverFactory {
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "environment" })
-	public void getConf(String conf, String URL) {
+	@Parameters({ "confBuy", "environment","confProducts","confContacts" })
+	public void getConf(String conf, String URL,String confProducts,String confContacts) {
 		confPath = conf;
 		url = URL;
+		confProductsPath=confProducts;
+		confContactsPath=confContacts;
 	}
 
 	@TestRailId(testRailId = 20299)
@@ -34,8 +36,8 @@ public class ArchiveBillTest extends DriverFactory {
 	@Description(value = "C20299 To verify user should be able to Archive/Reopen Order or Bill")
 	public void archiveBillTest() throws InterruptedException {
 	
-		String contactName = ReadPropertyUtil.readProperty("ContactName", confPath);
-		String productName = ReadPropertyUtil.readProperty("ProductName", confPath);
+		String contactName = ReadPropertyUtil.readProperty("ContactName1", confContactsPath);
+		String productName = ReadPropertyUtil.readProperty("trackedProductName", confProductsPath);
 
 		String quantity = ReadPropertyUtil.readProperty("quantity", confPath);
 		String discount = ReadPropertyUtil.readProperty("discount", confPath);
@@ -58,7 +60,7 @@ public class ArchiveBillTest extends DriverFactory {
 		buy.clickSaveButton();
 		buy.verifybillcreatedsuccessmessage();
 		buy.clickOnBillCard();
-		buy.searchCreatedOrder(contactName);
+		buy.searchCreatedRecord(contactName);
 
 		// Click on Context Menu Icon
 		buy.clickContextMenuIcon();
@@ -72,7 +74,7 @@ public class ArchiveBillTest extends DriverFactory {
 		buy.clickOnContextMenuOnArchivePage();
 		buy.clickOnReopen();
 		
-		buy.noMatchingRecord();
+		//buy.noMatchingRecord();
 
 	}
 }

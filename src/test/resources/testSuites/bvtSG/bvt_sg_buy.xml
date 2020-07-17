@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite thread-count="1" name="Go.Deskera Web BVT Products Suite"
+<suite thread-count="1" name="ERP Web Buy Test Suite"
 	parallel="false" preserve-order="true">
 
 	<listeners>
@@ -12,17 +12,32 @@
 	<parameter name="browser" value="chrome"></parameter>
 
 
-
 	<!-- System config for framework -->
 	<parameter name="envConf"
 		value="src/test/resources/systemConfig/environment.config"></parameter>
+	<parameter name="confCommon"
+		value="src/test/resources/bvtSGConfig/Common.config"></parameter>
+	<parameter name="confProducts"
+		value="src/test/resources/bvtSGConfig/TestDataProductSG.config"></parameter>
+	<parameter name="confContacts"
+		value="src/test/resources/bvtSGConfig/TestDataContactSG.config"></parameter>
+	<parameter name="confBuy"
+		value="src/test/resources/bvtSGConfig/TestDataBuySG.config"></parameter>
+	<parameter name="confSell"
+		value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
+
 
 	<!-- <parameter name="singUpUrl" value="https://auth-qa.deskera.xyz/auth/signup"></parameter> -->
 
 	<!-- Run Test Cases -->
-	<parameter name="conf"
-		value="src/test/resources/bvtSGConfig/TestDataBuySG.config"></parameter>
 
+
+	<suite-files>
+
+		<suite-file
+			path="src/test/resources/testSuites/bvtSG/bvt_base_setup_SG.xml"></suite-file>
+
+	</suite-files>
 
 
 	<test name=" 1 Create Order " parallel="false">
@@ -34,6 +49,7 @@
 			</class>
 			<class
 				name="deskera.web.automation.erp.bvtSG.tests.CreateNewOrderTest">
+
 				<methods>
 					<include name="createOrderTest"></include>
 				</methods>
@@ -41,9 +57,10 @@
 		</classes>
 	</test>
 
+
 	<test name=" 2 Archive Order " parallel="false">
 		<classes>
-		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
 					<include name="loginTest"></include>
 				</methods>
@@ -57,9 +74,10 @@
 		</classes>
 	</test>
 
+
 	<test name=" 3 Create Bill " parallel="false">
 		<classes>
-		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
 					<include name="loginTest"></include>
 				</methods>
@@ -76,7 +94,7 @@
 
 	<test name=" 4 Archive Bill " parallel="false">
 		<classes>
-		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
 					<include name="loginTest"></include>
 				</methods>

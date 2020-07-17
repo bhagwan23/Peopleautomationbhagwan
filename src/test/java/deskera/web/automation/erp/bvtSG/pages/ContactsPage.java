@@ -264,7 +264,7 @@ public class ContactsPage {
 	@FindBy(xpath = "//div[@class='section-container pb-4']//div[3]//div[1]/following-sibling::div[@class='field-value']")
 	
 	private WebElement displayedNumber;
-	String customFormatNumber="U-0001-R";
+	String customFormatNumber="U-0001-C";
 
 
 
@@ -275,7 +275,8 @@ public class ContactsPage {
 	}
 	@Step("Verify page title")
 	public void verifyPageTitle() {
-	Assert.assertEquals(driver.getTitle(), pageTitleText);
+		sAssert.assertEquals(driver.getTitle(), pageTitleText);
+		sAssert.assertAll();
 	}
 	// Common util for webdriver wait
 	public void WDWait(WebElement we) {
@@ -285,13 +286,14 @@ public class ContactsPage {
 	public void verifyContactElements(){
 		WDWait(contactsButton);
 		sAssert.assertTrue(contactsButton.isDisplayed(),"Verify Contact Section link");
-
+		sAssert.assertAll();
 	}
 	@Step("Click on contact button")
 	public void clickContactsButton() throws InterruptedException{
 		WDWait(contactsButton);
 		contactsButton.click(); 
 		clickPopup();
+		sAssert.assertAll();
 	}
 	@Step("close popup on contacts page")
 	public void clickPopup() throws InterruptedException{	
@@ -327,12 +329,12 @@ public class ContactsPage {
 
 		
 		/*
-=======
+
 
 		WDWait(customNumberFormat);
 		sAssert.assertTrue(customNumberFormat.isDisplayed(),"Verify Custom Number format option");
 		customNumberFormat.click();
->>>>>>> master
+
 		WDWait(cusomNumberFormatCancelButton);
 		sAssert.assertTrue(cusomNumberFormatCancelButton.isDisplayed(),"");
 		cusomNumberFormatCancelButton.click();
@@ -341,7 +343,6 @@ public class ContactsPage {
 		customField.click();
 		WDWait(customCancelButton);
 		customCancelButton.isDisplayed();
-<<<<<<< HEAD
 		customCancelButton.click();*/
 		
 
@@ -353,7 +354,7 @@ public class ContactsPage {
 
 	}
 	@Step("Enter general info")
-	public void enterGeneralInfo(String Cname, String email, String UEN, String tax){
+	public void enterGeneralInfo(String Cname, String email, String UEN, String tax) throws InterruptedException{
 		WDWait(name);
 
 		//wait.until(ExpectedConditions.elementToBeClickable(name));
@@ -365,8 +366,9 @@ public class ContactsPage {
 		contactUEN.sendKeys(UEN);		
 		WDWait(taxNumber);
 		taxNumber.sendKeys(tax);
+		Thread.sleep(3000);
 		sAssert.assertTrue(currency.isDisplayed(),"Verify currency");
-		Assert.assertEquals(currency.getText(), "Singapore Dollar (SGD)");
+		sAssert.assertEquals(currency.getText(), "Singapore Dollar (SGD)");
 		sAssert.assertTrue(autoNumberingFormat.isDisplayed(),"Verify autoNumberingFormat");
 
 		WDWait(saveButton);
@@ -393,32 +395,33 @@ public class ContactsPage {
 		selectNET30.click();
 
 		WDWait(accountPayable);
-		accountPayable.isDisplayed();
+		sAssert.assertTrue(accountPayable.isDisplayed());
 		buyAccount=accountPayable.getAttribute("value");
-		Assert.assertEquals(accountPayable.getAttribute("value"), "Accounts Payable");
+		sAssert.assertEquals(accountPayable.getAttribute("value"), "Accounts Payable");
 
 		WDWait(accountReceivable);
-		accountReceivable.isDisplayed();
+		sAssert.assertTrue(accountReceivable.isDisplayed());
 		sellAccount=accountReceivable.getAttribute("value");
-		Assert.assertEquals(accountReceivable.getAttribute("value"), "Accounts Receivable");
+		sAssert.assertEquals(accountReceivable.getAttribute("value"), "Accounts Receivable");
 		
 		sAssert.assertAll();
 
 
 	}
 	@Step("Verify address details")
-	public void addressDetails(){
+	public void addressDetails() throws InterruptedException{
 		WDWait(address);
-		address.isDisplayed();
+		sAssert.assertTrue(address.isDisplayed());
 		address.click();
-		enterAddress.isDisplayed();
-		state.isDisplayed();
-		postalCode.isDisplayed();
-		city.isDisplayed();
-		country.isDisplayed();
-		setAsCurrentBillingAddress.isDisplayed();
-		setAsCurrentShippingAddress.isDisplayed();
-		addAnotherAddress.isDisplayed();
+		Thread.sleep(3000);
+		sAssert.assertTrue(enterAddress.isDisplayed());
+		sAssert.assertTrue(state.isDisplayed());
+		sAssert.assertTrue(postalCode.isDisplayed());
+		sAssert.assertTrue(city.isDisplayed());
+		sAssert.assertTrue(country.isDisplayed());
+		sAssert.assertTrue(setAsCurrentBillingAddress.isDisplayed());
+		sAssert.assertTrue(setAsCurrentShippingAddress.isDisplayed());
+		sAssert.assertTrue(addAnotherAddress.isDisplayed());
 		
 		
 		sAssert.assertAll();
@@ -443,6 +446,8 @@ public class ContactsPage {
 	@Step("Click on save button")
 	public void clickSaveButton(){
 		saveButton.click();
+		sAssert.assertAll();
+
 	}
 	@Step("Verify added contacts")
 	public void verifyAddedContacts(String cName, String UENNumber, String TAXNumber,String currency, String paymentTerms) throws InterruptedException{
@@ -457,27 +462,27 @@ public class ContactsPage {
 
 		WDWait(enteredName);
 		wait.until(ExpectedConditions.elementToBeClickable(enteredName));
-		Assert.assertEquals(enteredName.getText(), cName);
+		sAssert.assertEquals(enteredName.getText(), cName);
 		enteredName.click();
 		
-		Assert.assertEquals(contactName.getText(), cName);
-		Assert.assertEquals(uENnumber.getText(), UENNumber);
-		Assert.assertEquals(tax.getText(), TAXNumber);
-		Assert.assertEquals(contactCurrency.getText(), currency);
+		sAssert.assertEquals(contactName.getText(), cName);
+		sAssert.assertEquals(uENnumber.getText(), UENNumber);
+		sAssert.assertEquals(tax.getText(), TAXNumber);
+		sAssert.assertEquals(contactCurrency.getText(), currency);
 		organization= companyOrg.getText();
-		Assert.assertEquals(contactOrg.getText(),organization);
+		sAssert.assertEquals(contactOrg.getText(),organization);
 		
 		scrollToElement(accPayable);
 		wait.until(ExpectedConditions.visibilityOf(accPayable));
 		Thread.sleep(5000);
-		Assert.assertEquals(accPayable.getText(), buyAccount);
+		sAssert.assertEquals(accPayable.getText(), buyAccount);
 		scrollToElement(accReceivable);
 		wait.until(ExpectedConditions.visibilityOf(accReceivable));
 		Thread.sleep(5000);
-		Assert.assertEquals(accReceivable.getText(), sellAccount);
+		sAssert.assertEquals(accReceivable.getText(), sellAccount);
 		
-		Assert.assertEquals(buyPaymentTerm.getText(), paymentTerms);
-		Assert.assertEquals(sellPaymentTerm.getText(), paymentTerms);
+		sAssert.assertEquals(buyPaymentTerm.getText(), paymentTerms);
+		sAssert.assertEquals(sellPaymentTerm.getText(), paymentTerms);
 		
 		
 		/*WDWait(customField);
@@ -493,8 +498,8 @@ public class ContactsPage {
 	@Step("Verify success message")
 	public void verifyContactCreatedSucessMessage(){
 		WDWait(createContactSuccessMessage);
-		createContactSuccessMessage.isDisplayed();
-		wait.until(ExpectedConditions.invisibilityOf(createContactSuccessMessage));
+		sAssert.assertTrue(createContactSuccessMessage.isDisplayed(),"Verify create contacts success message");
+		wait.until(ExpectedConditions.visibilityOf(createContactSuccessMessage));
 		sAssert.assertAll();
 
 
@@ -502,14 +507,14 @@ public class ContactsPage {
 	@Step("Verify summary count")
 	public void allSummaryCountForFirstContact(){
 		WDWait(allSummaryCount);
-		allSummaryCount.isDisplayed();
-	    Assert.assertEquals(allSummaryCount.getText(), "1");
-
+		sAssert.assertTrue(allSummaryCount.isDisplayed(),"Verify all summary count");
+		sAssert.assertEquals(allSummaryCount.getText(), "1");
+		sAssert.assertAll();
 	}
 	@Step("Verify summary count")
 	public void allSummaryCountForSecondContact(){
 		WDWait(allSummaryCount);
-		sAssert.assertTrue(allSummaryCount.isDisplayed());
+		sAssert.assertTrue(allSummaryCount.isDisplayed(),"Verify all summary count");
 		sAssert.assertEquals(allSummaryCount.getText(), "2","Verify count of 2 contacts displayed for All Summary");
 		sAssert.assertAll();
 		
@@ -518,22 +523,24 @@ public class ContactsPage {
 	@Step("Clilck on custom number format link")
 	public void clickCustomNumberFormat(){
 		WDWait(customNumberFormat);
-		customNumberFormat.isDisplayed();
+		sAssert.assertTrue(customNumberFormat.isDisplayed());
 		customNumberFormat.click();
+		sAssert.assertAll();
 	}
 	@Step("Verify Custom Number Format Page Elements ")
 	public void verifyCustomNumberFormatPageElements() {
 		WDWait(previewLabel);
-		previewLabel.isDisplayed();
-		previewBox.isDisplayed();
-		prefixTextBox.isDisplayed();
-		separatorDropdown.isDisplayed();
-		displayDigits.isDisplayed();
-		separatorDropdownAfterDigits.isDisplayed();
-		suffixTextBox.isDisplayed();
-		setAsDefault.isDisplayed();
-		cusomNumberFormatCancelButton.isDisplayed();
-		customNumberFormatSaveButton.isDisplayed();
+		sAssert.assertTrue(previewLabel.isDisplayed(), "Verify preview label");
+		sAssert.assertTrue(previewBox.isDisplayed(),"Verify preview box");
+		sAssert.assertTrue(prefixTextBox.isDisplayed(),"Verify prefix text box");
+		sAssert.assertTrue(separatorDropdown.isDisplayed(),"Verify drop down field");
+		sAssert.assertTrue(displayDigits.isDisplayed(),"Verify display digits");
+		sAssert.assertTrue(separatorDropdownAfterDigits.isDisplayed(),"verify seperator drop down after digits");
+		sAssert.assertTrue(suffixTextBox.isDisplayed(),"sAssert.assertTrue(erify suffix text box");
+		sAssert.assertTrue(setAsDefault.isDisplayed(),"Verify set as default field");
+		sAssert.assertTrue(cusomNumberFormatCancelButton.isDisplayed(),"Verify custom number format cancel button");
+		sAssert.assertTrue(customNumberFormatSaveButton.isDisplayed(),"Verify custom number format save button");
+		sAssert.assertAll();
 	}
 	@Step("Enter Custom Number format details ")
 	public void enterCustomNumberFormatDetails() {
@@ -551,36 +558,42 @@ public class ContactsPage {
 		hypenAfterDigits.click();
 		WDWait(suffixTextBox);
 		suffixTextBox.sendKeys("C");	
+		sAssert.assertAll();
 	}
 	@Step("Preview Custom Number format")
 	public void previewCustomNumberFormat() {
 		WDWait(previewBox);
-		Assert.assertEquals(previewBox.getText(), customFormatNumber);	
+		sAssert.assertEquals(previewBox.getText(), customFormatNumber);	
+		sAssert.assertAll();
 	}
 	@Step("Click on Save Button on Custom Number Format Page")
 	public void clickSaveCustomNumberFormatButton() throws InterruptedException {
 		WDWait(customNumberFormatSaveButton);
 		customNumberFormatSaveButton.click();
 		//Thread.sleep(4000);
+		sAssert.assertAll();
 	}
 	@Step("Verify Custom Number Format In Contact Number")
 	public void verifyCustomNumberFormatInContactNumber() throws InterruptedException {
 		WDWait(autoNumberingformat);
 		Thread.sleep(5000);
-		Assert.assertEquals(autoNumberingformat.getAttribute("value"), customFormatNumber);		
+		sAssert.assertEquals(autoNumberingformat.getAttribute("value"), customFormatNumber);	
+		sAssert.assertAll();
 	}
 	@Step("Verify Contact Number and Format")
 	public void verifyCustomFormatNumber() {
 		WDWait(displayedNumber);
 		Actions action = new Actions(driver);
 		action.moveToElement(displayedNumber).perform();
-        Assert.assertEquals(displayedNumber.getText(), customFormatNumber);
+		sAssert.assertEquals(displayedNumber.getText(), customFormatNumber);
+		sAssert.assertAll();
 	}
 	@Step("Scroll page")
 	public void scrollToElement(WebElement element)
 	{
 
 		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
+		sAssert.assertAll();
 	}
 	
 	

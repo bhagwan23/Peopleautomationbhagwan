@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -60,7 +61,7 @@ public class LoginPage {
 	@FindBy(xpath = "//input[contains(@autocomplete,'current-password')]")
 	private WebElement googlePassword;
 	@FindBy(xpath = "//span[@class='CwaK9']/span[contains(text(),'Next')]")
-	private WebElement PasswordNextButton;
+    private WebElement PasswordNextButton;
 	/***********************************
 	 * 
 	 * Page objects manipulation methods
@@ -84,6 +85,13 @@ public class LoginPage {
 
 	public void WDWaitClickable(WebElement we) {
 		wait.until(ExpectedConditions.elementToBeClickable(we));
+	}
+
+	public void MOverElement(WebElement we) throws InterruptedException
+	{
+		Actions action = new Actions(driver);
+		action.moveToElement(we).perform();
+		Thread.sleep(1000);
 	}
 
 	@Step("Verify Login Page Elements")
@@ -112,6 +120,7 @@ public class LoginPage {
 	public void clickSignIn() throws InterruptedException {
 		WDWait(signInButton);
 		signInButton.click();
+		Thread.sleep(3000);
 		goToDeskeraBooks();
 		// WDWait(dashboardHeading);
 		// dashboardHeading.isDisplayed();
@@ -128,6 +137,8 @@ public class LoginPage {
 		Thread.sleep(3000);
 		WDWait(goToDeskeraBooksCard);
 		WDWaitClickable(goToDeskeraBooksCard);
+		Thread.sleep(3000);
+		MOverElement(goToDeskeraBooksCard);
 		goToDeskeraBooksCard.click();
 		Thread.sleep(3000);
 		ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());

@@ -4,8 +4,12 @@
 <suite thread-count="1" name="ERP Web BVT Test Suite - SG"
 	parallel="false" preserve-order="true">
 
-	<suite-files>
+	<parameter name="environment" value="${environment}"></parameter>
 
+
+	<suite-files>
+		<suite-file
+			path="src/test/resources/testSuites/bvtSG/bvt_sg_sign_up_with_org.xml"></suite-file>
 		<suite-file
 			path="src/test/resources/testSuites/bvtSG/bvt_sg_contacts.xml"></suite-file>
 		<suite-file
@@ -14,6 +18,8 @@
 			path="src/test/resources/testSuites/bvtSG/bvt_sg_buy.xml"></suite-file>
 		<suite-file
 			path="src/test/resources/testSuites/bvtSG/bvt_sg_sell.xml"></suite-file>
+		<suite-file
+			path="src/test/resources/testSuites/bvtSG/bug_fix_tests.xml"></suite-file>
 		<suite-file
 			path="src/test/resources/testSuites/bvtSG/bvt_sg_import.xml"></suite-file>
 		<suite-file

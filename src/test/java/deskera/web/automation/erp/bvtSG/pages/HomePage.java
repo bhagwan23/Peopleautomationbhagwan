@@ -204,7 +204,7 @@ public class HomePage {
 	
 	@Step("Click On Setting Tab")
 	public void clickSettingTab() throws InterruptedException{
-		Thread.sleep(8000);
+		Thread.sleep(3000);
 		//WDWait(settingTab); 
 		/*
 		 * JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -254,7 +254,7 @@ public class HomePage {
         
 		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Products')]")));
 		// driver.findElement(By.xpath("//div[@id='container-1']/dt-navbar/div/ul/li[10]/a/span")).click();
-		Thread.sleep(3000); // THis is important because popup gets loaded and
+		Thread.sleep(1500); // THis is important because popup gets loaded and
 							// then disappears
 		// driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click();
 		for (int second = 0; second <= 5; second++) {

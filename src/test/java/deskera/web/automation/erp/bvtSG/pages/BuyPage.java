@@ -827,17 +827,20 @@ public class BuyPage {
 	
 	/******************************
 	 * Reopen Order Object Manipulation Methods
+	 * @throws InterruptedException 
 	 *******************/
 	@Step("Click on context menu icon to reopen")
-	public void clickOnContextMenuOnArchivePage(){
+	public void clickOnContextMenuOnArchivePage() throws InterruptedException{
 		WDWait(archiveContextMenuIcon);
 		sAssert.assertTrue(archiveContextMenuIcon.isDisplayed());
+		MOverElement(archiveContextMenuIcon);
 		wait.until(ExpectedConditions.elementToBeClickable(archiveContextMenuIcon));
 		archiveContextMenuIcon.click();
 		sAssert.assertAll();
 	}
 	@Step("Click on Reopen button")
-	public void clickOnReopen(){
+	public void clickOnReopen() throws InterruptedException{
+		Thread.sleep(1000);
 		WDWait(reopenButton);
 		sAssert.assertTrue(reopenButton.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(reopenButton));

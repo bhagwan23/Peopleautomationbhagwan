@@ -41,7 +41,7 @@ public class CreateBankPage {
 	private WebElement bankTab;
 	@FindBy(xpath = "//span[contains(text(),'ACC10001')]")
 	private WebElement defaultbankcode;
-	@FindBy(xpath = "//button[@class='wtf2-flat-button text-uppercase wtf2-primary pl-3 wtf2-button']")
+	@FindBy(xpath = "//button/span/span[contains(text(),'ADD')]")
 	private WebElement addBankButton;
 	@FindBy(xpath = "//input[@id='wtf2-input-0']")
 

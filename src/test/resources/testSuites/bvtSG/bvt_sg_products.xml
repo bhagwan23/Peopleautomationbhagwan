@@ -30,7 +30,7 @@
 
 	<!-- Run Test Cases -->
 
-	<test name=" 1 Sign Up without Phone Number test" parallel="false">
+	<!-- <test name=" 1 Sign Up without Phone Number test" parallel="false">
 
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
@@ -53,7 +53,7 @@
 				name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
 			</class>
 		</classes>
-	</test>
+	</test> -->
 
 	<test name=" 3 C20263 Add Non Tracked Product" parallel="false">
 		<classes>
@@ -146,17 +146,6 @@
 			</class>
 		</classes>
 	</test>
-	<test name=" 10 C20425 Add Demo Company" parallel="false">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
-				<methods>
-					<include name="loginTest"></include>
-				</methods>
-			</class>
-			<class
-				name="deskera.web.automation.erp.bvtSG.tests.AddDemoCompanyTest">
-			</class>
-		</classes>
-	</test>
+	
 
 </suite> 

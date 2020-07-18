@@ -97,10 +97,17 @@ public class DeleteContactPage {
 
 	}
 	@Step("Verify deleted contacts")
-	public void verifyDeletedContact(){
-		WDWait(thereIsNoMatchingRecords);
-		sAssert.assertTrue(thereIsNoMatchingRecords.isDisplayed(), "No matching record message");
-		sAssert.assertAll();
+	public void verifyDeletedContact(String cName) throws InterruptedException{
+		//Thread.sleep(2000);
+		//WDWait(thereIsNoMatchingRecords);
+		//sAssert.assertTrue(thereIsNoMatchingRecords.isDisplayed(), "No matching record message");
+		//sAssert.assertAll();
+		 if (driver.getPageSource().contains(cName)) {
+	            System.out.println("Contact not deleted");
+	            Assert.fail();
+	        } else {
+	            System.out.println(cName+"Contact Deleted successfully");
+	        }
 
 	}
 	@Step("Verify summary count after deletion of contact")

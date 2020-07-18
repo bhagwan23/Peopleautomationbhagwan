@@ -26,7 +26,7 @@
 
 
 
-
+<!-- 
 	<test name="1 Sign Up without Phone Number test" parallel="false">
 	<classes>
 		<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
@@ -54,7 +54,7 @@
 			</class>
 		</classes>
 	</test>
-
+ -->
 
 	<test name="1 C20261 Add Contacts" parallel="false">
 

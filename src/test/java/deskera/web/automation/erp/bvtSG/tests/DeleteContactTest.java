@@ -45,7 +45,7 @@ public class DeleteContactTest extends DriverFactory {
 		// Click on searchbox and search deleted contact
 		deletecontact.searchRecord(name);
 		// Verify deleted contact
-		deletecontact.verifyDeletedContact();
+		deletecontact.verifyDeletedContact(name);
 		// verify all summary count after deletion of contact
 		deletecontact.verifysummarycount();
 	}

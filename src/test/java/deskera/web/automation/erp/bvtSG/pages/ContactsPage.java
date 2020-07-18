@@ -130,10 +130,10 @@ public class ContactsPage {
 	@FindBy(xpath="//div[contains(text(),'Set as Current Shipping Address')]")
 	
 	private WebElement setAsCurrentShippingAddress;
-	@FindBy(xpath="//span[@class='field-value add-address']")
+	@FindBy(xpath="//span[contains(text(),'+ Add another address')]")
 	
 	private WebElement addAnotherAddress;
-	@FindBy(xpath= "//button[@class='mat-flat-button mat-button-base mat-primary']")
+	@FindBy(xpath= "//button/span/span[contains(text(),'Save')]")
 	
 	private WebElement saveButton;
 	@FindBy(xpath= "//div//i[contains(@class,'fa-times close-button m')]//self::i[1]")
@@ -302,10 +302,10 @@ public class ContactsPage {
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()=' Contacts ']"))); // Contact // link                                                                                                            // or                                                                                                            // Produ                                                                                                            // link
 		//driver.findElement(By.xpath("//span[text()=' Contacts ']")).click();
 		contactsButton.click();
-		Thread.sleep(3000); // THis is important because popup gets loaded and then disappears
+		Thread.sleep(1000); // THis is important because popup gets loaded and then disappears
 		// driver.findElement(By.cssSelector("i.fas.fa-times.close-button.mt-2")).click();
-		for (int second = 0; second <= 15; second++) {
-			if (second == 15) {
+		for (int second = 0; second <= 10; second++) {
+			if (second == 10) {
 				System.out.println("Popup Not found!");
 				break;
 			}

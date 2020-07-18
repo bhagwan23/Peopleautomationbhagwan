@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -257,6 +258,13 @@ public class BuyPage {
 		sAssert.assertEquals(driver.getTitle(), pageTitleText);
 		sAssert.assertAll();
 	}
+	public void MOverElement(WebElement we) throws InterruptedException
+	{
+		Actions action = new Actions(driver);
+		action.moveToElement(we).perform();
+		Thread.sleep(1000);
+	}
+
 
 	// Common util for webdriver wait
 	public void WDWait(WebElement we) {
@@ -779,17 +787,21 @@ public class BuyPage {
 	
 	/******************************
 	 * Archive Order Object Manipulation Methods
+	 * @throws InterruptedException 
 	 *******************/
 	@Step("Click on Context Menu icon of Orders")
-	public void clickOrderContextMenuIcon() {
+	public void clickOrderContextMenuIcon() throws InterruptedException {
 		WDWait(orderContextMenuIcon);
 		sAssert.assertTrue(orderContextMenuIcon.isDisplayed());
+		MOverElement(orderContextMenuIcon);
 		wait.until(ExpectedConditions.elementToBeClickable(orderContextMenuIcon));
 		orderContextMenuIcon.click();
+		Thread.sleep(1000);
 		sAssert.assertAll();
 	}
 	@Step("Click on Archive Order button")
-	public void clickOnArchiveOrderButton() {
+	public void clickOnArchiveOrderButton() throws InterruptedException {
+		Thread.sleep(1000);
 		WDWait(archiveOrderButton);
 		sAssert.assertTrue(archiveOrderButton.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(archiveOrderButton));
@@ -815,17 +827,20 @@ public class BuyPage {
 	
 	/******************************
 	 * Reopen Order Object Manipulation Methods
+	 * @throws InterruptedException 
 	 *******************/
 	@Step("Click on context menu icon to reopen")
-	public void clickOnContextMenuOnArchivePage(){
+	public void clickOnContextMenuOnArchivePage() throws InterruptedException{
 		WDWait(archiveContextMenuIcon);
 		sAssert.assertTrue(archiveContextMenuIcon.isDisplayed());
+		MOverElement(archiveContextMenuIcon);
 		wait.until(ExpectedConditions.elementToBeClickable(archiveContextMenuIcon));
 		archiveContextMenuIcon.click();
 		sAssert.assertAll();
 	}
 	@Step("Click on Reopen button")
-	public void clickOnReopen(){
+	public void clickOnReopen() throws InterruptedException{
+		Thread.sleep(1000);
 		WDWait(reopenButton);
 		sAssert.assertTrue(reopenButton.isDisplayed());
 		wait.until(ExpectedConditions.elementToBeClickable(reopenButton));

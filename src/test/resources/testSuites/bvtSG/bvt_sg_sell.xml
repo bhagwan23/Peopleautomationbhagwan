@@ -102,11 +102,6 @@
  
 	
 	<test name=" 6 Create Bank" parallel="false">
-=======
-	</test>
- -->
-	<test name=" 2 Create Bank" parallel="false">
->>>>>>> master
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>

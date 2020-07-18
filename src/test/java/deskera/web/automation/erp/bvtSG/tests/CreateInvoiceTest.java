@@ -46,7 +46,6 @@ public class CreateInvoiceTest extends DriverFactory{
 		homePage.clickSellTab();
 		sellPage.verifyPageTitle();
 		sellPage.verifySellPageElements();
-		sellPage.verifyCountOfInvoiceBefore();
 		sellPage.clickNewInvoiceButton();
 		sellPage.verifyCreateInvoicePageElements();
 		sellPage.selectContact(contactName);
@@ -56,9 +55,7 @@ public class CreateInvoiceTest extends DriverFactory{
 		sellPage.verifyTotalAmount();
 		sellPage.clickSaveButton();
 		sellPage.verifyCreateInvoiceSuccessMessage();
-		sellPage.verifyCountOfInvoiceAfter();
 		sellPage.verifyCreatedInvoice();
-		//Fulfill Invoice 
 		sellPage.clickThreeDots();
 		sellPage.clickFullfillButton();
 		sellPage.verifyFullfillYourInvoiceWindowElements();
@@ -66,14 +63,30 @@ public class CreateInvoiceTest extends DriverFactory{
 		sellPage.verifyDirectFulfillmentOfInvoiceWindowElements();
 		sellPage.clickFullfillButton();
 		sellPage.verifyFulfillmentStatus();
-		// Make Payment for Invoice
 		sellPage.openFirstInvoice();
 		sellPage.clickReceivePaymentButton();
 		sellPage.verifyRaceivePaymentWindowElements();
-		sellPage.verifyTotalAmountOnGeneralTab();
 		sellPage.selectCashOption();
 		sellPage.clickNextButton();
-		sellPage.verifyTotalAmountOnConfirmTab();
 		sellPage.clickReceiveButton();
+		
+		
+		
+		
+		
+		
+		
+		/*
+		sellPage.verifyCreatedQuote();
+		sellPage.clickThreeDots();
+		sellPage.clickFullfillButton();
+		sellPage.verifyFullfillYourQuotationwindowElements();
+		sellPage.clickDirectButton();
+		sellPage.clickFullfillButton();
+		sellPage.verifyFulfillmentStatus();
+		sellPage.verifyCountOfInvoiceBefore();
+		sellPage.openFirstQuoteQuote();
+		sellPage.clickConvertToInvoiceButton();
+		sellPage.verifyCountOfInvoiceAfter();	*/
 	}
 }

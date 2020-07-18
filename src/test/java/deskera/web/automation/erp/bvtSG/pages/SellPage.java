@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import org.apache.hc.core5.http.nio.support.classic.SharedInputBuffer;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -22,20 +21,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import deskera.web.automation.core.SoftAssertListner;
 import io.qameta.allure.Step;
 
 public class SellPage {
 
 	private WebDriver driver;
 	private WebDriverWait wait;
-	private SoftAssertListner sAssert;
 
 	public SellPage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;
 		PageFactory.initElements(driver, this);
-		sAssert = new SoftAssertListner(driver);
 	}
 
 	/*******************************
@@ -67,14 +63,19 @@ public class SellPage {
 	@FindBy(xpath = "//button[contains(.,'New Invoice')]")
 	private WebElement newInvoiceButton;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Number arrow_drop')]")
+
 	private WebElement numberColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Contact arrow_drop')]")
+
 	private WebElement contactColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Due Date arrow_drop')]")
+
 	private WebElement dueDateColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Total Amount')]")
+
 	private WebElement totalAmountColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Fulfillment')]")
+
 	private WebElement fullfillmentColumn;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Quick Actions')]")
 	private WebElement quickActionsColumn;
@@ -82,10 +83,6 @@ public class SellPage {
 	private WebElement threeDotsOnFirstRecord;
 	@FindBy(xpath = "//button[contains(.,'Fulfill')]")
 	private WebElement fullfillButton;
-	@FindBy(xpath = "//button[contains(.,'Archive Quote')]")
-	private WebElement archiveQuoteButton;
-	@FindBy(xpath = "//button[contains(.,'Archive Invoice')]")
-	private WebElement archiveInvoiceButton;
 	@FindBy(xpath = "//span[contains(.,'Fulfill Your Quotation')]")
 	private WebElement fullfillYourQuotationText;
 	@FindBy(xpath = "//span[contains(.,'Fulfill Your Invoice')]")
@@ -122,6 +119,7 @@ public class SellPage {
 	private WebElement commitingQuantity;
 	@FindBy(xpath = "//div[contains(text(),' Stock Left ')]//following::div//div[@class='dt-cell dt-cell-stock align-right ng-star-inserted']")
 	private WebElement stockLeft;
+
 	@FindBy(xpath = "//span[contains(text(),'Fulfill')]")
 	private WebElement fulfillButton;
 	@FindBy(xpath = "//mat-header-cell[contains(text(),'Fulfillment')]//following::mat-row//mat-cell[6]//span")
@@ -134,32 +132,9 @@ public class SellPage {
 	private WebElement totalInvoiceCount;
 	@FindBy(xpath = "(//div[@class='summary-values']//h5)[3]")
 	private WebElement totalArchiveCount;
-	@FindBy(xpath = "//mat-header-cell[contains(text(),'Status')]//following::mat-row//mat-cell[text()=' Quote ']//following::mat-cell[3]//span[text()=' Cancelled ']")
-	private WebElement quoteArchiveStatus;
-	@FindBy(xpath = "//mat-header-cell[contains(text(),'Status')]//following::mat-row//mat-cell[text()=' Invoice ']//following::mat-cell[3]//span[text()=' Cancelled ']")
-	private WebElement invoiceArchiveStatus;
-	@FindBy(xpath = "(//mat-cell[text()=' Quote ']//following::span[contains(text(),'Cancelled')])[1]")
-	private WebElement cancelledQuoteArchive;
-	@FindBy(xpath = "(//mat-cell[text()=' Invoice ']//following::span[contains(text(),'Cancelled')])[1]")
-	private WebElement cancelledInvoiceArchive;
-	@FindBy(xpath = "(//mat-header-cell[contains(text(),'Status')]//following::mat-row//mat-cell[text()=' Quote ']//following::mat-cell[3]//span[text()=' Cancelled ']//following::mat-icon[text()='more_vert'])[1]")
-	private WebElement threeDotsOnCancelledQuote;
-	@FindBy(xpath = "(//mat-header-cell[contains(text(),'Status')]//following::mat-row//mat-cell[text()=' Invoice ']//following::mat-cell[3]//span[text()=' Cancelled ']//following::mat-icon[text()='more_vert'])[1]")
-	private WebElement threeDotsOnCancelledInvoice;
-	@FindBy(xpath = "//button[contains(.,'Reopen')]")
-	private WebElement reopenButton;
-	@FindBy(xpath = "//span[contains(.,'Apply Credit Note')]")
-	private WebElement applyCreditNoteButton;
-	@FindBy(xpath = "//span[contains(.,'Apply Advance Payment')]")
-	private WebElement applyAdvancePaymentButton;
-	
-	int quoteCountBefore = 0;
-	int quoteCountAfter = 0;
+
 	int invoiceCountBefore = 0;
 	int invoiceCountAfter = 0;
-	int archiveCountBefore=0;
-	int archiveCountAfter=0;		
-	double displayedTOTAL1=0;
 	private static String pageTitleText = "Deskera Books";
 
 	/*******************************
@@ -169,63 +144,65 @@ public class SellPage {
 	@FindBy(xpath = "//button[contains(.,'Save')]")
 	private WebElement saveButton;
 	@FindBy(xpath = "//h5[contains(.,'Quote Settings')]")
+
 	private WebElement quoteSettingText;
 	@FindBy(xpath = "//h5[contains(.,'Invoice Settings')]")
+
 	private WebElement invoiceSettingText;
 	@FindBy(xpath = "//span[contains(.,'Customize Number Format')]")
+
 	private WebElement customizeNumberFormat;
 	@FindBy(xpath = "//span[contains(.,'Global Custom Fields')]")
+
 	private WebElement globalCustomFields;
 	@FindBy(xpath = "//span[contains(.,'+ Add a contact')]")
+
 	private WebElement addContactButton;
 	@FindBy(xpath = "//input[contains(@placeholder,'Type here')]")
 	private WebElement contactSearchBox;
 	@FindBy(xpath = "//input[@formcontrolname='documentDate']")
+
 	private WebElement quoteDate;
 	@FindBy(xpath = "//input[@formcontrolname='fulfillmentDate']")
+
 	private WebElement receivedInDate;
 	@FindBy(xpath = "//input[@formcontrolname='validTillDate']")
+
 	private WebElement dueDate;
 	@FindBy(xpath = "(//span[@class='mat-option-text'])[2]")
 	private WebElement firstContact;
 	@FindBy(xpath = "//span[contains(.,'+ Add a Line Item')]")
+
 	private WebElement addLineItemButton;
-	@FindBy(xpath = "//span[contains(.,'+ Add Attachment')]")
-	private WebElement addAttachmentButton;
-	@FindBy(xpath = "//textarea[@formcontrolname='memo']")
-	private WebElement memoTextBox;
 	@FindBy(xpath = "(//input[contains(@ng-reflect-placeholder,'Type here')])[1]")
+
 	private WebElement productSearchBox;
 	@FindBy(xpath = "(//span[contains(@class,'mat-option-text')])[1]")
+
 	private WebElement firstProduct;
 	@FindBy(xpath = "//textarea[@placeholder='Description Optional']")
+
 	private WebElement descriptionTextArea;
 	@FindBy(xpath = "//input[@formcontrolname='productQuantity']")
+
 	private WebElement quantityTextBox;
 	@FindBy(xpath = "//input[@formcontrolname='unitPrice']")
+
 	private WebElement unitPriceTextBox;
 	@FindBy(xpath = "//input[@formcontrolname='discountString']")
+
 	private WebElement discountTextBox;
 	@FindBy(xpath = "(//input[@role='combobox'])[2]")
+
 	private WebElement taxTextBox;
 	@FindBy(xpath = "(//div[@class='mat-form-field-infix']//div[@class='mat-input-element read-only-value'])[2]")
+
 	private WebElement totalAmount;
-	@FindBy(xpath = "//input[@type='checkbox']//following::span[text()='Unit Price is Tax Inclusive']")
-	private WebElement unitPriceIsTaxInclusiveCheckoBox;
-	@FindBy(xpath = "//div[@class='doc-summary__value'][contains(.,'SGD')]")
-	private WebElement subTotal;
-	@FindBy(xpath = "//span[contains(.,'-Discount')]/../div[1]")
-	private WebElement Discount;
-	@FindBy(xpath = "//span[contains(.,'Before-tax')]/../div[1]")
-	private WebElement beforeTax;
-	@FindBy(xpath = "//span[contains(.,'+tax')]/../div[1]")
-	private WebElement Tax;
-	@FindBy(xpath = "//span[contains(.,' total (SGD) ')]/../div[1]")
-	private WebElement total;
 	@FindBy(xpath = "//span[text()='Quotation has been saved successfully']")
 	private WebElement createQuoteSuccessMessage;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Quick Actions')]//following::mat-row//mat-cell[2]")
 	private WebElement createdFirstQuote;;
+
 	@FindBy(xpath = "//span[contains(.,'Invoice has been saved successfully')]")
 	private WebElement createInvoiceSuccessMessage;
 	@FindBy(xpath = "//mat-header-cell[contains(.,'Quick Actions')]//following::mat-row[1]//mat-cell[2]")
@@ -242,8 +219,6 @@ public class SellPage {
 	private WebElement confirmTab;
 	@FindBy(xpath = "//input[@placeholder='Choose a date']")
 	private WebElement PaymentDateTextBox;
-	@FindBy(xpath = "//span[contains(@class,'dueAmount')]")
-	private WebElement displayedTotalOnGeneralTab;
 	@FindBy(xpath = "//span[contains(text(),'Deposited To')]")
 	private WebElement depositedToDropdown;
 	@FindBy(xpath = "//span[contains(.,'HSBC')]")
@@ -264,40 +239,12 @@ public class SellPage {
 	private WebElement chequeNumber;
 	@FindBy(xpath = "//span[contains(.,'Next')]")
 	private WebElement nextButton;
-	@FindBy(xpath = "//div[contains(@class,'row d-flex justify-')]//div")
-	private WebElement displayedTotalOnConfirmTab;
 	@FindBy(xpath = "(//button[contains(.,'Receive')])[2]")
 	private WebElement receiveButton;
 	@FindBy(xpath = "//span[contains(.,'Close')]")
 	private WebElement closeButton;
 	@FindBy(xpath = "//button[contains(@class,'cancel-btn')]//span//mat-icon")
 	private WebElement backButton;
-	@FindBy(xpath = "//li[contains(.,'Credit Note Number')]//following::form//div//ul//li//span[1]")
-	private WebElement creditNoteNumber;
-	@FindBy(xpath = "//li[contains(.,'Amount Due')]//following::form//div//ul//li//span[2]")
-	private WebElement amountDue;
-	@FindBy(xpath = "(//input[@formcontrolname='amount'])[1]")
-	private WebElement amountTextBox;
-	@FindBy(xpath = "//span[@class='mat-button-wrapper'][contains(.,'Apply')]")
-	private WebElement applyButton;
-	@FindBy(xpath = "//span[contains(.,'Cancel')]")
-	private WebElement cancelButton;
-	@FindBy(xpath = "//span[contains(text(),'Credit Note Applied')]")
-	private WebElement applyCreditNoteSuccessMessage;
-	@FindBy(xpath = "//span[@class='doc-summary__label toggle-dir '][contains(.,'Payments keyboard_arrow_right')]")
-	private WebElement paymentsSection;
-	@FindBy(xpath = "//span[text()='Payments ']//following::div[1]")
-	private WebElement paymentsAmount;
-	@FindBy(xpath = "//span[@class='doc-summary__label'][contains(.,'CN-00')]//following::div[1]")
-	private WebElement displayedCreditNoteAmount;
-	@FindBy(xpath = "//span[text()='Outstanding ']//following::div[1]")
-	private WebElement outstandingAmount;
-	@FindBy(xpath = "//li[contains(.,'Code')]//following::form//div[1]//ul//li[1]//span[1]")
-	private WebElement paymentCode;
-	@FindBy(xpath = "//span[contains(text(),'Advance Payment Applied')]")
-	private WebElement applyAdvancepaymentSuccessMessage;
-	@FindBy(xpath = "//span[@class='doc-summary__label'][contains(.,'RP-00')]//following::div[1]")
-	private WebElement displayedAdvancePaymentAmount;
 
 	/***********************************
 	 * 
@@ -306,8 +253,7 @@ public class SellPage {
 	 *********************************/
 	@Step("Verify Sell Page Title")
 	public void verifyPageTitle() throws InterruptedException {
-		sAssert.assertEquals(driver.getTitle(), pageTitleText);
-		sAssert.assertAll();
+		Assert.assertEquals(driver.getTitle(), pageTitleText);
 	}
 
 	// Common util for webdriver wait
@@ -326,8 +272,8 @@ public class SellPage {
 		archiveTotalButton.isDisplayed();
 		dateRangeButton.isDisplayed();
 		filtersButton.isDisplayed();
-		//totalAmountBaseCurrecnyText.isDisplayed();
-		//totalAmountBaseCurrecnyTogleButton.isDisplayed();
+		totalAmountBaseCurrecnyText.isDisplayed();
+		totalAmountBaseCurrecnyTogleButton.isDisplayed();
 		searchBox.isDisplayed();
 		numberColumn.isDisplayed();
 		contactColumn.isDisplayed();
@@ -364,8 +310,6 @@ public class SellPage {
 		receivedInDate.isDisplayed();
 		dueDate.isDisplayed();
 		addLineItemButton.isDisplayed();
-		addAttachmentButton.isDisplayed();
-		memoTextBox.isDisplayed();
 		quoteSettingText.isDisplayed();
 		customizeNumberFormat.isDisplayed();
 		globalCustomFields.isDisplayed();
@@ -394,17 +338,16 @@ public class SellPage {
 		firstContact.click();
 	}
 
-	@Step("Verify Quote/Invoice Date, Ship By Date , Valid till Date ")
+	@Step("Verify Quote Date, Ship By Date , Valid till Date ")
 	public void verifyDisplayedDates() throws InterruptedException {
 		Thread.sleep(2000);
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime now = LocalDateTime.now();
 		System.out.println(dtf.format(now));
 		System.out.println(quoteDate.getAttribute("value"));
-		sAssert.assertEquals(quoteDate.getAttribute("value"), dtf.format(now));
+		Assert.assertEquals(quoteDate.getAttribute("value"), dtf.format(now));
 		System.out.println(receivedInDate.getAttribute("value"));
-		sAssert.assertEquals(receivedInDate.getAttribute("value"), dtf.format(now));
-		sAssert.assertAll();
+		Assert.assertEquals(receivedInDate.getAttribute("value"), dtf.format(now));
 	}
 
 	@Step("Select Product")
@@ -448,14 +391,13 @@ public class SellPage {
 
 	@Step("Click on Save Button")
 	public void clickSaveButton() {
-		driver.findElement(By.xpath("//body")).sendKeys(Keys.chord(Keys.CONTROL, Keys.HOME));
 		WDWait(saveButton);
 		saveButton.click();
 	}
 
 	@Step("Verify Total Amount ")
 	public void verifyTotalAmount() throws InterruptedException {
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		String quantity = quantityTextBox.getAttribute("value");
 		System.out.println("String Quantity=" + quantity);
 		double quantity1 = Double.parseDouble(quantity);
@@ -478,7 +420,7 @@ public class SellPage {
 		double tax1 = Double.parseDouble(numberOnlytax);
 		System.out.println("Double tax1 =" + tax1);
 
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 
 		String displayedTotal = totalAmount.getText();
 		System.out.println("displayedTotal=" + displayedTotal);
@@ -489,46 +431,7 @@ public class SellPage {
 		System.out.println("Total Tax = " + taxAmount);
 		double totalAmount = (quantity1 * unitPrice1 - discount1) + taxAmount;
 		System.out.println("Total Amount=" + totalAmount);
-		sAssert.assertEquals(displayedTotal1, totalAmount);
-		
-		unitPriceIsTaxInclusiveCheckoBox.isDisplayed();
-		
-		Actions action =new Actions(driver);
-		action.moveToElement(subTotal).build().perform();
-		String displayedSubTotal = subTotal.getText();
-		System.out.println("displayedSubTotal=" +displayedSubTotal);
-		double displayedSubTotal1 = Double.parseDouble(displayedSubTotal.replaceAll("[^0-9.]", ""));
-		System.out.println("Double displayedsubTotal1 =" + displayedSubTotal1);
-		sAssert.assertEquals(displayedSubTotal1, quantity1*unitPrice1);
-		
-		action.moveToElement(Discount).build().perform();
-		String displayedDiscount = Discount.getText();
-		System.out.println("displayedDiscount=" +displayedDiscount);
-		double displayedDiscount1 = Double.parseDouble(displayedDiscount.replaceAll("[^0-9.]", ""));
-		System.out.println("Double displayedDiscount1 =" + displayedDiscount1);
-		sAssert.assertEquals(displayedDiscount1,discount1);
-		
-		action.moveToElement(beforeTax).build().perform();
-		String displayedBeforeTax = beforeTax.getText();
-		System.out.println("displayedBeforeTax=" +displayedBeforeTax);
-		double displayedBeforeTax1 = Double.parseDouble(displayedBeforeTax.replaceAll("[^0-9.]", ""));
-		System.out.println("Double displayedBeforeTax1 =" + displayedBeforeTax1);
-		sAssert.assertEquals(displayedBeforeTax1,displayedSubTotal1-displayedDiscount1);
-		
-		action.moveToElement(Tax).build().perform();
-		String displayedTax = Tax.getText();
-		System.out.println("displayedTax=" +displayedTax);
-		double displayedTax1 = Double.parseDouble(displayedTax.replaceAll("[^0-9.]", ""));
-		System.out.println("Double displayedTax1 =" + displayedTax1);
-		sAssert.assertEquals(displayedTax1,taxAmount);
-		
-		action.moveToElement(total).build().perform();
-		String displayedTOTAL = total.getText();
-		System.out.println("displayedTOTAL=" +displayedTOTAL);
-		displayedTOTAL1 = Double.parseDouble(displayedTOTAL.replaceAll("[^0-9.]", ""));
-		System.out.println("Double displayedTOTAL1 =" +displayedTOTAL1);
-		sAssert.assertEquals(displayedTOTAL1,totalAmount);
-		sAssert.assertAll();
+		Assert.assertEquals(displayedTotal1, totalAmount);
 	}
 
 	@Step("Verify Create Quote Success Message")
@@ -541,10 +444,9 @@ public class SellPage {
 	@Step("Verify Created Quote")
 	public void verifyCreatedQuote() throws InterruptedException {
 		WDWait(createdFirstQuote);
-		createdFirstQuote.click();		
+		createdFirstQuote.click();
 		verifyDisplayedDates();
 		verifyTotalAmount();
-		driver.findElement(By.xpath("//body")).sendKeys(Keys.chord(Keys.CONTROL, Keys.HOME));
 		WDWait(backButton);
 		backButton.click();
 	}
@@ -555,8 +457,7 @@ public class SellPage {
 		createdFirstInvoice.click();
 		verifyDisplayedDates();
 		verifyTotalAmount();
-		driver.findElement(By.xpath("//body")).sendKeys(Keys.chord(Keys.CONTROL, Keys.HOME));
-		WDWait(backButton);	
+		WDWait(backButton);
 		backButton.click();
 	}
 
@@ -582,19 +483,6 @@ public class SellPage {
 	public void clickFullfillButton() {
 		WDWait(fullfillButton);
 		fullfillButton.click();
-	}
-	
-	@Step("Click on Archive Quote Button")
-	public void clickArchiveQuoteButton() throws InterruptedException {
-		WDWait(archiveQuoteButton);
-		archiveQuoteButton.click();
-		Thread.sleep(2000);
-	}
-	
-	@Step("Click on Archive Invoice Button")
-	public void clickArchiveInvoiceButton() {
-		WDWait(archiveInvoiceButton);
-		archiveInvoiceButton.click();
 	}
 
 	@Step("Verify FullFill Your Quotation window Elements")
@@ -624,7 +512,7 @@ public class SellPage {
 		shipToLabel.isDisplayed();
 		shipFromLabel.isDisplayed();
 		warehouseDropdown.isDisplayed();
-		sAssert.assertEquals(warehouseDropdown.getAttribute("value"), "Primary Warehouse");
+		Assert.assertEquals(warehouseDropdown.getAttribute("value"), "Primary Warehouse");
 		fullFillDate.isDisplayed();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime now = LocalDateTime.now();
@@ -634,7 +522,6 @@ public class SellPage {
 		requiredQuantity.isDisplayed();
 		commitingQuantity.isDisplayed();
 		stockLeft.isDisplayed();
-		sAssert.assertAll();
 	}
 
 	@Step("Verify Direct Fulfillment Of Invoice Window Elements")
@@ -645,7 +532,7 @@ public class SellPage {
 		shipFromLabel.isDisplayed();
 		Thread.sleep(2000);
 		warehouseDropdown.isDisplayed();
-		sAssert.assertEquals(warehouseDropdown.getAttribute("value"), "Primary Warehouse");
+		Assert.assertEquals(warehouseDropdown.getAttribute("value"), "Primary Warehouse");
 		fullFillDate.isDisplayed();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime now = LocalDateTime.now();
@@ -655,7 +542,6 @@ public class SellPage {
 		requiredQuantity.isDisplayed();
 		commitingQuantity.isDisplayed();
 		stockLeft.isDisplayed();
-		sAssert.assertAll();
 	}
 
 	@Step("Click on Direct button")
@@ -669,26 +555,8 @@ public class SellPage {
 		WDWait(convertToInvoiceButton);
 		convertToInvoiceButton.click();
 	}
-	
-	@Step("Verify Count of Quote Before")
-	public void verifyCountOfQuoteBefore() {
-		WDWait(totalQuoteCount);
-		String quoteCount = totalQuoteCount.getText();
-		quoteCountBefore = Integer.parseInt(quoteCount);
-		System.out.println("Integer Quote Count Before=" + quoteCountBefore);
-	}
 
-	@Step("Verify Count of Quote After ")
-	public void verifyCountOfQuoteAfter() {
-		WDWait(totalQuoteCount);
-		String quoteCount = totalQuoteCount.getText();
-		quoteCountAfter = Integer.parseInt(quoteCount);
-		System.out.println("Integer Quote Count After=" + quoteCountAfter);
-		sAssert.assertEquals(quoteCountAfter, quoteCountBefore + 1);
-		sAssert.assertAll();
-	}
-	
-	@Step("Verify Count of Invoice Before Quote Convert to invoice ")
+	@Step("Verify Count of Invoice Before Quote Conevrt to invoice ")
 	public void verifyCountOfInvoiceBefore() {
 		WDWait(totalInvoiceCount);
 		String invoiceCount = totalInvoiceCount.getText();
@@ -696,54 +564,20 @@ public class SellPage {
 		System.out.println("Integer invoiceCountBefore=" + invoiceCountBefore);
 	}
 
-	@Step("Verify Count of Invoice After Quote Convert to invoice ")
+	@Step("Verify Count of Invoice After Quote Conevrt to invoice ")
 	public void verifyCountOfInvoiceAfter() {
 		WDWait(totalInvoiceCount);
 		String invoiceCount = totalInvoiceCount.getText();
 		invoiceCountAfter = Integer.parseInt(invoiceCount);
 		System.out.println("Integer invoiceCountAfter=" + invoiceCountAfter);
-		sAssert.assertEquals(invoiceCountAfter, invoiceCountBefore + 1);
-		sAssert.assertAll();
-	}
-	
-	@Step("Verify Count of Archive Before")
-	public void verifyCountOfArchiveBefore() {
-		WDWait(totalArchiveCount);
-		String archiveCount = totalArchiveCount.getText();
-		archiveCountBefore = Integer.parseInt(archiveCount);
-		System.out.println("Integer Archive CountBefore=" + archiveCountBefore);
+		Assert.assertEquals(invoiceCountAfter, invoiceCountBefore + 1);
 	}
 
-	@Step("Verify Count of Archive After")
-	public void verifyCountOfArchiveAfter() throws InterruptedException {
-		Thread.sleep(3000);
-		WDWait(totalArchiveCount);
-		String archiveCount = totalArchiveCount.getText();
-		archiveCountAfter = Integer.parseInt(archiveCount);
-		System.out.println("Integer archiveCountAfter=" + archiveCountAfter);
-		sAssert.assertEquals(archiveCountAfter, archiveCountBefore + 1);
-		sAssert.assertAll();
-	}
-	
-	@Step("Click on Archive tab")
-	public void clickArchiveTab() throws InterruptedException {
-		wait.until(ExpectedConditions.elementToBeClickable(totalArchiveCount));
-		totalArchiveCount.click();	
-	}
-	
-	@Step("Click on Invoice tab")
-	public void clickInvoiceTab() throws InterruptedException {
-		wait.until(ExpectedConditions.elementToBeClickable(totalInvoiceCount));
-		totalInvoiceCount.click();	
-	}
-	
-	
 	@Step("Verify Fulfillment Status")
 	public void verifyFulfillmentStatus() throws InterruptedException {
 		Thread.sleep(3000);
 		WDWait(fulfillmentStatus);
-		sAssert.assertEquals(fulfillmentStatus.getText(), "Fulfilled");
-		sAssert.assertAll();
+		Assert.assertEquals(fulfillmentStatus.getText(), "Fulfilled");
 	}
 
 	@Step("Verify Create Invoice Success Message")
@@ -771,16 +605,6 @@ public class SellPage {
 		depositedToDropdown.isDisplayed();
 	}
 
-	@Step("Verify Total Amount on General Tab")
-	public void verifyTotalAmountOnGeneralTab() throws InterruptedException {
-		WDWait(displayedTotalOnGeneralTab);
-		System.out.println("Total on General Tab"+displayedTotalOnGeneralTab.getText());
-		String displayedTotalonGeneralTab=displayedTotalOnGeneralTab.getText();
-		double displayedTotal = Double.parseDouble(displayedTotalonGeneralTab.replaceAll("[^0-9.]", ""));
-		sAssert.assertEquals(displayedTotal,displayedTOTAL1);
-		sAssert.assertAll();
-	}
-	
 	@Step("Select Cash Option from Deposited To dropdown ")
 	public void selectCashOption() throws InterruptedException {
 		WDWait(depositedToDropdown);
@@ -793,16 +617,6 @@ public class SellPage {
 	public void clickNextButton() throws InterruptedException {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].click();", nextButton);
-	}
-	
-	@Step("Verify Total Amount on Confirm Tab")
-	public void verifyTotalAmountOnConfirmTab() throws InterruptedException {
-		WDWait(displayedTotalOnConfirmTab);
-		System.out.println("Total on Confirm Tab"+displayedTotalOnConfirmTab.getText());
-		String displayedTotalonConfirmTab=displayedTotalOnConfirmTab.getText();
-		double displayedTotal = Double.parseDouble(displayedTotalonConfirmTab.replaceAll("[^0-9.]", ""));
-		sAssert.assertEquals(displayedTotal,displayedTOTAL1);
-		sAssert.assertAll();
 	}
 
 	@Step("Receive Payment For First Invoice")
@@ -884,174 +698,4 @@ public class SellPage {
 		backButton.click();
 		Thread.sleep(2000);
 	}
-	
-	@Step("Verify Archive Cancelled Status for Quote")
-	public void verifyArchiveStatusForQuote() throws InterruptedException {
-		WDWait(quoteArchiveStatus);
-		sAssert.assertEquals(quoteArchiveStatus.getText(), "Cancelled");
-		sAssert.assertAll();
-	}
-	
-	@Step("Verify Archive Cancelled Status for Quote")
-	public void verifyArchiveStatusForInvoice() throws InterruptedException {
-		WDWait(invoiceArchiveStatus);
-		sAssert.assertEquals(invoiceArchiveStatus.getText(), "Cancelled");
-		sAssert.assertAll();
-	}
-	
-	@Step("Open Cancelled Quote Archive")
-	public void openCancelledQuoteArchive() throws InterruptedException {
-		WDWait(cancelledQuoteArchive);
-		cancelledQuoteArchive.click();
-	}
-	
-	@Step("Open Cancelled Invoice Archive")
-	public void openCancelledInvoiceArchive() throws InterruptedException {
-		WDWait(cancelledInvoiceArchive);
-		cancelledInvoiceArchive.click();
-	}
-
-	@Step("Verify Archived Quote")
-	public void verifyArchivedQuote() throws InterruptedException {
-		Thread.sleep(3000);		
-		verifyDisplayedDates();
-		verifyTotalAmount();
-		driver.findElement(By.xpath("//body")).sendKeys(Keys.chord(Keys.CONTROL, Keys.HOME));
-		WDWait(backButton);
-		backButton.click();
-	}
-
-	@Step("Verify Archived  Invoice")
-	public void verifyArchivedInvoice() throws InterruptedException {
-		Thread.sleep(3000);		
-		verifyDisplayedDates();
-		verifyTotalAmount();
-		driver.findElement(By.xpath("//body")).sendKeys(Keys.chord(Keys.CONTROL, Keys.HOME));
-		WDWait(backButton);
-		backButton.click();
-	}
-	
-	@Step("Click three dots on Cancelled Quote")
-	public void clickThreeDotsOnCancelledQuote() throws InterruptedException {
-		Thread.sleep(2000);
-		Actions action=new Actions(driver);
-		action.moveToElement(threeDotsOnCancelledQuote).build().perform();
-		WDWait(threeDotsOnCancelledQuote);
-		wait.until(ExpectedConditions.elementToBeClickable(threeDotsOnCancelledQuote));
-		threeDotsOnCancelledQuote.click();
-	}
-	
-	@Step("Click three dots on Cancelled Invoice")
-	public void clickThreeDotsOnCancelledInvoice() throws InterruptedException {
-		Thread.sleep(2000);
-		Actions action=new Actions(driver);
-		action.moveToElement(threeDotsOnCancelledInvoice).build().perform();
-		wait.until(ExpectedConditions.elementToBeClickable(threeDotsOnCancelledInvoice));
-		WDWait(threeDotsOnCancelledInvoice);
-		threeDotsOnCancelledInvoice.click();
-	}
-	
-	@Step("Click On Reopen Button")
-	public void clickReopenButton() throws InterruptedException {
-		WDWait(reopenButton);
-		reopenButton.click();
-		Thread.sleep(3000);			
-	}
-	
-	@Step("Click On Apply Credit Note  Button")
-	public void clickApplyCreditNoteButton() throws InterruptedException {
-		WDWait(applyCreditNoteButton);
-		applyCreditNoteButton.click();
-	}
-	
-	@Step("Verify Apply Credit Note Window")
-	public void verifyApplyCreditNoteWindow(String creditNoteAmount) throws InterruptedException {
-		WDWait(creditNoteNumber);
-		creditNoteNumber.isDisplayed();
-		amountDue.isDisplayed();
-		String displayedAmountDue=amountDue.getText();
-		String amountDue=String.valueOf(displayedAmountDue.replaceAll("[^0-9.]", ""));  
-		sAssert.assertEquals(amountDue,creditNoteAmount);
-		amountTextBox.isDisplayed();
-		applyButton.isDisplayed();
-		cancelButton.isDisplayed();
-		sAssert.assertAll();		
-	}
-	
-	@Step("Enter Credit Note Amount")
-	public void enterCreditNoteAmount(String creditNoteAmount) throws InterruptedException {
-		WDWait(amountTextBox);
-		amountTextBox.sendKeys(creditNoteAmount);			
-	}
-	
-	@Step("Click On Apply Button")
-	public void clickApplyButton() throws InterruptedException {
-		WDWait(applyButton);
-		applyButton.click();
-		Thread.sleep(3000);			
-	}
-	
-	@Step("Verify Apply Credit Note Success Message")
-	public void verifyApplyCreditNoteSuccessMessage() throws InterruptedException {
-		WDWait(applyCreditNoteSuccessMessage);
-		applyCreditNoteSuccessMessage.isDisplayed();
-		Thread.sleep(3000);			
-	}
-	
-	@Step("Verify Credit Note Amount under Payments ")
-	public void verifyCreditNoteAmount(String creditNoteAmount) throws InterruptedException {
-		driver.findElement(By.xpath("//body")).sendKeys(Keys.chord(Keys.CONTROL, Keys.END));
-		WDWait(paymentsSection);
-		paymentsSection.click();		
-		WDWait(displayedCreditNoteAmount);
-		String displayedAmount=displayedCreditNoteAmount.getText();
-		String paymentAmount=String.valueOf(displayedAmount.replaceAll("[^0-9.]", "")); 
-		sAssert.assertEquals(paymentAmount,creditNoteAmount);
-		sAssert.assertAll();
-	}
-	
-	@Step("Click On Apply Advance Payment Button")
-	public void clickApplyAdvancePaymentButton() throws InterruptedException {
-		WDWait(applyAdvancePaymentButton);
-		applyAdvancePaymentButton.click();
-	}
-	
-	@Step("Verify Apply Advance Payment Window")
-	public void verifyApplyAdvancePaymentWindow(String advancePaymentAmount) throws InterruptedException {
-		WDWait(paymentCode);
-		paymentCode.isDisplayed();
-		amountDue.isDisplayed();
-		String displayedAmountDue=amountDue.getText();
-		String amountDue=String.valueOf(displayedAmountDue.replaceAll("[^0-9.]", ""));  
-		Assert.assertEquals(amountDue,advancePaymentAmount);
-		amountTextBox.isDisplayed();
-		applyButton.isDisplayed();
-		cancelButton.isDisplayed();	
-	}
-	
-	@Step("Enter Advance payment Amount")
-	public void enterAdvancePaymentAmount(String advancePaymentAmount) throws InterruptedException {
-		WDWait(amountTextBox);
-		amountTextBox.sendKeys(advancePaymentAmount);			
-	}
-	
-	@Step("Verify Apply Advance Payment Success Message")
-	public void verifyApplyApplyAdvancePaymentSuccessMessage() throws InterruptedException {
-		WDWait(applyAdvancepaymentSuccessMessage);
-		applyAdvancepaymentSuccessMessage.isDisplayed();
-		Thread.sleep(3000);			
-	}
-	
-	@Step("Verify Advance Payment Amount under Payments")
-	public void verifyAdvancePaymentAmount(String advancePaymentAmount) throws InterruptedException {
-		driver.findElement(By.xpath("//body")).sendKeys(Keys.chord(Keys.CONTROL, Keys.END));
-		WDWait(paymentsSection);
-		paymentsSection.click();		
-		WDWait(displayedAdvancePaymentAmount);
-		String displayedAmount=displayedAdvancePaymentAmount.getText();
-		String paymentAmount=String.valueOf(displayedAmount.replaceAll("[^0-9.]", "")); 
-		sAssert.assertEquals(paymentAmount,advancePaymentAmount);	
-		sAssert.assertAll();
-	}
-	
 }

@@ -33,7 +33,7 @@ public class EditChartOfAccountsPage {
 		sAssert = new SoftAssertListner(driver);
 	}
 	
-	@FindBy(xpath = "//span[@class='ng-star-inserted'][contains(text(),'Accounting')]")	
+	@FindBy(xpath = "//span[contains(text(),'Accounting')]")	
 	private WebElement accountingButton;
 	
 	@FindBy(xpath = "//div[contains(@class,'row ng-star-inserted')]//div[1]//wtf2-card[1]")
@@ -50,6 +50,9 @@ public class EditChartOfAccountsPage {
 	
 	@FindBy(xpath = "//button[contains(text(),'Deactivate')]")
 	private WebElement deactivateButton;
+	
+	@FindBy(xpath = "//button[contains(text(),'Activate')]")
+	private WebElement activateButton;
 	
 	@FindBy(xpath = "//label[contains(text(),'Edit Account')]")
 	private WebElement editAccountLabel;
@@ -94,6 +97,10 @@ public class EditChartOfAccountsPage {
 	@FindBy(xpath= "//span[text()='Account has been deactivated successfully.']")
 	@CacheLookup
 	private WebElement deactivateCOASuccessMessage;
+	
+	@FindBy(xpath= "//span[text()='Account has been activated successfully.']")
+	@CacheLookup
+	private WebElement activateCOASuccessMessage;
 	
 	@FindBy(xpath = "*[@id='container-3']/extn-content[1]/dt-chart-of-account-list[1]/div[1]/div[1]/mat-table[1]/mat-row[1]/mat-cell[6]/span[1]/span[1]")
 	private WebElement inactive;
@@ -216,6 +223,27 @@ public class EditChartOfAccountsPage {
 		Thread.sleep(2000);
 		sAssert.assertAll();
 		
+	}
+	
+	@Step("Click on Activate button")
+	public void clickActivateButton() throws InterruptedException {
+		
+		WDWait(activateButton);
+		wait.until(ExpectedConditions.elementToBeClickable(activateButton));
+		activateButton.isDisplayed();
+		activateButton.click();	
+		Thread.sleep(2000);
+		sAssert.assertAll();
+		
+	}
+	
+	@Step("Verify activate COA success message")
+	public void verifyCOAActivatedSucessMessage() throws InterruptedException {
+		WDWait(activateCOASuccessMessage);
+		wait.until(ExpectedConditions.visibilityOf(activateCOASuccessMessage));
+		activateCOASuccessMessage.isDisplayed();
+		sAssert.assertAll();
+
 	}
 	
 }

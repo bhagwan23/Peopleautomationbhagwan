@@ -97,6 +97,9 @@ public class ChartOfAccountsPage {
 	@FindBy(xpath = "//span[@class='mat-option-text'][contains(text(),'Bank')]")
 	private WebElement bank;
 	
+	@FindBy(xpath = "//span[@class='mat-option-text'][contains(text(),'Cash')]")
+	private WebElement cash;
+	
 	@FindBy(xpath= "//span[text()='Account is successfully created.']")
 	private WebElement createCOASuccessMessage;
 	
@@ -189,6 +192,20 @@ public class ChartOfAccountsPage {
 		Thread.sleep(2000);
 		bank.isDisplayed();
 		bank.click();
+		accountCode.sendKeys(code);
+		accountName.sendKeys(name);
+		description.sendKeys(desc);
+		sAssert.assertAll();
+	}
+	
+	@Step("Enter account details")
+	public void enterAccountDetail(String name, String code, String type, String desc) throws InterruptedException {
+		WDWait(accountType);
+		accountType.sendKeys(type);
+		sAssert.assertTrue(accountType.isDisplayed(),"Verify account type list");
+		Thread.sleep(2000);
+		cash.isDisplayed();
+		cash.click();
 		accountCode.sendKeys(code);
 		accountName.sendKeys(name);
 		description.sendKeys(desc);

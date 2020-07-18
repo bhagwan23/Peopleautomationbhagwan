@@ -3,7 +3,6 @@ package deskera.web.automation.erp.bvtSG.tests;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import deskera.web.automation.core.DriverFactory;
 import deskera.web.automation.core.TestRailId;
 import deskera.web.automation.erp.bvtSG.pages.HomePage;
@@ -11,7 +10,7 @@ import deskera.web.automation.erp.bvtSG.pages.SellPage;
 import deskera.web.automation.utils.ReadPropertyUtil;
 import io.qameta.allure.Description;
 
-public class CreateInvoiceTest extends DriverFactory{
+public class ArchiveQuoteInvoiceTest extends DriverFactory {
 	String confPath, url,confProductsPath,confContactsPath;
 	ReadPropertyUtil rProp = new ReadPropertyUtil();
 
@@ -30,10 +29,10 @@ public class CreateInvoiceTest extends DriverFactory{
 		confContactsPath=confContacts;
 	}
 	
-	@TestRailId(testRailId = 21100)
+	@TestRailId(testRailId = 20298)
 	@Test()
-	@Description(value = "C21100 To verify that user is able to Create/Fulfill/Get paid - Invoice")
-	public void createInvoiceTest() throws InterruptedException {
+	@Description(value = "C20298 To verify user should be able to Archive/Reopen quotes or Invoice")
+	public void archiveQuoteInvoiceTest() throws InterruptedException {
 		// Read test specific data from config
 		String quantity = ReadPropertyUtil.readProperty("quantity", confPath);
 		String discount = ReadPropertyUtil.readProperty("discount", confPath);
@@ -42,11 +41,30 @@ public class CreateInvoiceTest extends DriverFactory{
 		// Create Page Object instance
 		HomePage homePage=new HomePage(driver, wait);
 		SellPage sellPage=new SellPage(driver, wait);		
-		// Access Test methods
+		// Create Quote		
 		homePage.clickSellTab();
 		sellPage.verifyPageTitle();
 		sellPage.verifySellPageElements();
-		sellPage.verifyCountOfInvoiceBefore();
+		sellPage.clickNewQuoteButton();
+		sellPage.verifyCreateQuotePageElements();
+		sellPage.selectContact(contactName);
+        sellPage.verifyDisplayedDates();
+		sellPage.selectProduct(trackedProductName);		
+		sellPage.enterProductDetails(quantity, discount);
+		sellPage.verifyTotalAmount();
+		sellPage.clickSaveButton();
+		sellPage.verifyCreateQuoteSuccessMessage();
+		sellPage.verifyCreatedQuote();
+		//Archive Quote
+		sellPage.verifyCountOfArchiveBefore();
+		sellPage.clickThreeDots();
+		sellPage.clickArchiveQuoteButton();
+		sellPage.verifyCountOfArchiveAfter();
+		sellPage.clickArchiveTab();
+		sellPage.verifyArchiveStatusForQuote();
+		sellPage.openCancelledQuoteArchive();
+		sellPage.verifyArchivedQuote();
+		//Create Invoice 
 		sellPage.clickNewInvoiceButton();
 		sellPage.verifyCreateInvoicePageElements();
 		sellPage.selectContact(contactName);
@@ -56,24 +74,30 @@ public class CreateInvoiceTest extends DriverFactory{
 		sellPage.verifyTotalAmount();
 		sellPage.clickSaveButton();
 		sellPage.verifyCreateInvoiceSuccessMessage();
-		sellPage.verifyCountOfInvoiceAfter();
 		sellPage.verifyCreatedInvoice();
-		//Fulfill Invoice 
+		//Archive Invoice
+		sellPage.verifyCountOfArchiveBefore();
 		sellPage.clickThreeDots();
-		sellPage.clickFullfillButton();
-		sellPage.verifyFullfillYourInvoiceWindowElements();
-		sellPage.clickDirectButton();
-		sellPage.verifyDirectFulfillmentOfInvoiceWindowElements();
-		sellPage.clickFullfillButton();
-		sellPage.verifyFulfillmentStatus();
-		// Make Payment for Invoice
-		sellPage.openFirstInvoice();
-		sellPage.clickReceivePaymentButton();
-		sellPage.verifyRaceivePaymentWindowElements();
-		sellPage.verifyTotalAmountOnGeneralTab();
-		sellPage.selectCashOption();
-		sellPage.clickNextButton();
-		sellPage.verifyTotalAmountOnConfirmTab();
-		sellPage.clickReceiveButton();
+		sellPage.clickArchiveInvoiceButton();
+		sellPage.verifyCountOfArchiveAfter();
+		sellPage.clickArchiveTab();
+		sellPage.verifyArchiveStatusForInvoice();
+		sellPage.openCancelledInvoiceArchive();
+		sellPage.verifyArchivedInvoice();
+		//Reopen Quote
+		sellPage.verifyCountOfQuoteBefore();
+		sellPage.clickThreeDotsOnCancelledQuote();
+		sellPage.clickReopenButton();
+		sellPage.verifyCountOfQuoteAfter();
+		// Reopen Invoice
+		sellPage.verifyCountOfInvoiceBefore();
+		sellPage.clickThreeDotsOnCancelledInvoice();
+		sellPage.clickReopenButton();
+		sellPage.verifyCountOfInvoiceAfter();
+		
+		
+		
+		
+		
 	}
 }

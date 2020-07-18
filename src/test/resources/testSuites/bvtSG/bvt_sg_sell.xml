@@ -30,50 +30,83 @@
 
 	<!-- Run Test Cases -->
 
-
-	<!-- <test name=" 1 Create Quote " parallel="false"> <classes> <class name="deskera.web.automation.erp.bvtSG.tests.LoginTest"> 
-		<methods> <include name="loginTest"></include> </methods> </class> <class 
-		name="deskera.web.automation.erp.bvtSG.tests.CreateQuoteTest"> <parameter 
-		name="conf" value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter> 
-		</class> </classes> </test> -->
-
-	<!-- <test name=" 2 Create Invoice" parallel="false"> <classes> <class name="deskera.web.automation.erp.bvtSG.tests.LoginTest"> 
-		<methods> <include name="loginTest"></include> </methods> </class> <class 
-		name="deskera.web.automation.erp.bvtSG.tests.CreateInvoiceTest"> <parameter 
-		name="conf" value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter> 
-		</class> </classes> </test> -->
-
-
-	<!-- <test name=" 1 Create Quote " parallel="false"> <classes> <class name="deskera.web.automation.erp.bvtSG.tests.CreateQuoteTest"> 
-		</class> </classes> </test> -->
-
-
-	<!-- <test name=" 1 Sign Up without Phone Number test" parallel="false">
-
+  <test name="1 Create Quote Test" parallel="false">
 		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
-				<methods>
-					<include name="testSignUpWithoutPhoneNumber"></include>
-				</methods>
-			</class>
-		</classes>
-	</test>
-
-	<test name=" 2 Create Organization" parallel="false"
-		preserve-order="true">
-		<classes>
-			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
 					<include name="loginTest"></include>
 				</methods>
 			</class>
-			<class
-				name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
+			<class name="deskera.web.automation.erp.bvtSG.tests.CreateQuoteTest">
+			<parameter name="conf"
+					value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
 			</class>
 		</classes>
+	</test> 
+	 
+	 <test name="2 Create Invoice Test" parallel="false">
+		<classes>
+		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+			<class name="deskera.web.automation.erp.bvtSG.tests.CreateInvoiceTest">
+			<parameter name="conf"
+					value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
+			</class>
+		</classes>
+	</test> 
+	    
+	   <test name="3 Archive Quote / Invoice Test" parallel="false">
+		<classes>
+		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+			<class name="deskera.web.automation.erp.bvtSG.tests.ArchiveQuoteInvoiceTest">
+			<parameter name="conf"
+					value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
+			</class>
+		</classes>
+	</test>  
+	
+	 <test name="4 Apply Credit Note for Invoice" parallel="false">
+		<classes>
+		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+			<class name="deskera.web.automation.erp.bvtSG.tests.ApplyCreditNoteForInvoiceTest">
+			<parameter name="conf"
+					value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
+			</class>
+		</classes>
+	</test> 
+    
+    <test name="5 Apply Advanced Payment For Invoice" parallel="false">
+		<classes>
+		<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+			<class name="deskera.web.automation.erp.bvtSG.tests.ApplyAdvancedPaymentForInvoiceTest">
+			<parameter name="conf"
+					value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
+			</class>
+		</classes>
+	</test>  
+ 
+	
+	<test name=" 6 Create Bank" parallel="false">
+=======
 	</test>
  -->
 	<test name=" 2 Create Bank" parallel="false">
+>>>>>>> master
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 				<methods>
@@ -89,7 +122,7 @@
 		</classes>
 	</test>
 
-	<test name="3 Bank Reconciliation" parallel="false">
+	<test name="7 Bank Reconciliation" parallel="false">
 		<classes>
 			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
 
@@ -104,7 +137,7 @@
 					value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
 			</class>
 		</classes>
-	</test>
+	</test> 
 
 
 </suite> 

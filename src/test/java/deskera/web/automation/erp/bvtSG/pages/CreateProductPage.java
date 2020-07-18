@@ -1039,8 +1039,7 @@ public class CreateProductPage {
 	public void verifyDeleteProductSuccessMessage() throws InterruptedException {
 		WDWait(deleteSuccessMessage);
 		deleteSuccessMessage.isDisplayed();
-		wait.until(ExpectedConditions.visibilityOf(deleteSuccessMessage));
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 	}
 
 	@Step("Verify BOM Product Count After Delete")

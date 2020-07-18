@@ -58,7 +58,6 @@ public class CreateQuoteTest extends DriverFactory{
 		homePage.clickSellTab();
 		sellPage.verifyPageTitle();
 		sellPage.verifySellPageElements();
-		sellPage.verifyCountOfQuoteBefore();
 		sellPage.clickNewQuoteButton();
 		sellPage.verifyCreateQuotePageElements();
 		sellPage.selectContact(contactName);
@@ -68,9 +67,7 @@ public class CreateQuoteTest extends DriverFactory{
 		sellPage.verifyTotalAmount();
 		sellPage.clickSaveButton();
 		sellPage.verifyCreateQuoteSuccessMessage();
-		sellPage.verifyCountOfQuoteAfter();
 		sellPage.verifyCreatedQuote();
-		//FulFill Quote
 		sellPage.clickThreeDots();
 		sellPage.clickFullfillButton();
 		sellPage.verifyFullfillYourQuotationWindowElements();
@@ -78,7 +75,6 @@ public class CreateQuoteTest extends DriverFactory{
 		sellPage.verifyDirectFulfillmentOfQuotationWindowElements();
 		sellPage.clickFullfillButton();
 		sellPage.verifyFulfillmentStatus();
-		//Convert Quote to Invoice
 		sellPage.verifyCountOfInvoiceBefore();
 		sellPage.openFirstQuote();
 		sellPage.clickConvertToInvoiceButton();

@@ -52,8 +52,7 @@
 				</methods>
 			</class>
 			<class name="deskera.web.automation.erp.bvtSG.tests.CreateInvoiceTest">
-			<parameter name="conf"
-					value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
+			
 			</class>
 		</classes>
 	</test> 
@@ -66,8 +65,7 @@
 				</methods>
 			</class>
 			<class name="deskera.web.automation.erp.bvtSG.tests.ArchiveQuoteInvoiceTest">
-			<parameter name="conf"
-					value="src/test/resources/bvtSGConfig/TestDataSellSG.config"></parameter>
+			
 			</class>
 		</classes>
 	</test>  

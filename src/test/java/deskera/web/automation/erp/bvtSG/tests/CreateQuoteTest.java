@@ -22,7 +22,7 @@ public class CreateQuoteTest extends DriverFactory{
 	 * @param URL
 	 */
 	@BeforeClass
-	@Parameters({ "conf", "environment","confProducts","confContacts"})
+	@Parameters({ "confSell", "environment","confProducts","confContacts"})
 	public void getConf(String conf, String URL,String confProducts,String confContacts) {
 		confPath = conf;
 		url = URL;

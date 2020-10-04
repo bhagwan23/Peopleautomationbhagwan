@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+
+<suite thread-count="1" name="PEOPLE Web Employee Test Suite"
+	parallel="false" preserve-order="true">
+
+	<listeners>
+		<listener
+			class-name="deskera.people.automation.core.TestListenerOnFailure">
+		</listener>
+	</listeners>
+
+	<parameter name="browser" value="chrome"></parameter>
+
+	<!-- System config for framework -->
+	<parameter name="envConf"
+		value="src/test/resources/systemConfig/environment.config"></parameter>
+	<parameter name="confCommon"
+		value="src/test/resources/bvtSGConfig/Common.config"></parameter>
+		
+		
+
+
+<!--  
+
+	<test name="1 Sign Up without Phone Number test" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.SignUpTest">
+				<methods>
+					<include name="testSignUpWithoutPhoneNumber"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="2 Create Organization" parallel="false">
+		<classes>
+			<class name="deskera.web.automation.erp.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+			<class
+				name="deskera.web.automation.erp.bvtSG.tests.CreateOrganizationTest">
+			</class>
+		</classes>
+	</test>
+	
+	-->	
+
+	 
+	<!--  
+	<test name="1 Add Pay Schedule" parallel="false">
+
+		<classes>
+		
+			<class name="deskera.web.automation.people.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+	
+			<class
+				name="deskera.web.automation.people.bvtSG.tests.AddPayscheduleTest">
+				<methods>
+					<parameter name="conf"
+						value="src/test/resources/bvtSGConfig/TestDatapeopleemp.config"></parameter>
+										
+						<include name="addpayschedule"></include>
+						
+				</methods>
+			</class>
+		</classes>
+	</test>
+		
+	
+<test name="2 Add Earning Component" parallel="false">
+
+		<classes>
+		
+			<class name="deskera.web.automation.people.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+	
+			<class
+				name="deskera.web.automation.people.bvtSG.tests.AddEarningComponentTest">
+				<methods>
+					<parameter name="conf"
+						value="src/test/resources/bvtSGConfig/TestDatapeopleemp.config"></parameter>
+										
+						<include name="addEarningComponent"></include>
+						
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+	
+	
+	<test name="3 Add Deduction Component" parallel="false">
+
+		<classes>
+		
+			<class name="deskera.web.automation.people.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+	
+			<class
+				name="deskera.web.automation.people.bvtSG.tests.AddDeductionComponentTest">
+				<methods>
+					<parameter name="conf"
+						value="src/test/resources/bvtSGConfig/TestDatapeopleemp.config"></parameter>
+										
+						<include name="addDeductionComponent"></include>
+						
+				</methods>
+			</class>
+		</classes>
+	</test>
+		
+	
+	<test name="4 Edit Component" parallel="false">
+
+		<classes>
+		
+			<class name="deskera.web.automation.people.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+	
+			<class
+				name="deskera.web.automation.people.bvtSG.tests.EditComponentTest">
+				<methods>
+					<parameter name="conf"
+						value="src/test/resources/bvtSGConfig/TestDatapeopleemp.config"></parameter>
+										
+						<include name="editComponent"></include>
+						
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+ 	
+	 <test name="5 Delete Component" parallel="false">
+
+		<classes>
+		
+			<class name="deskera.web.automation.people.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+	
+			<class
+				name="deskera.web.automation.people.bvtSG.tests.DeleteComponentTest">
+				<methods>
+					<parameter name="conf"
+						value="src/test/resources/bvtSGConfig/TestDatapeopleemp.config"></parameter>
+										
+						<include name="deleteComponent"></include>
+						
+				</methods>
+			</class>
+		</classes>
+	</test>
+ 
+ -->	
+ 
+	
+	<test name="6 Add employee" parallel="false">
+
+		<classes>
+		
+			<class name="deskera.web.automation.people.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+	
+			<class
+				name="deskera.web.automation.people.bvtSG.tests.AddnewemployeeTest">
+				<methods>
+					<parameter name="conf"
+						value="src/test/resources/bvtSGConfig/TestDatapeopleemp.config"></parameter>
+										
+						<include name="addemp"></include>
+						
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+<!--	
+
+	<test name="7 Edit employee" parallel="false">
+
+		<classes>
+		
+			<class name="deskera.web.automation.people.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+	
+			<class
+				name="deskera.web.automation.people.bvtSG.tests.EditemployeeTest">
+				<methods>
+					<parameter name="conf"
+						value="src/test/resources/bvtSGConfig/TestDatapeopleemp.config"></parameter>
+										
+						<include name="editEmployee"></include>
+						
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+    <test name="8 Delete employee" parallel="false">
+
+		<classes>
+		
+			<class name="deskera.web.automation.people.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+	
+			<class
+				name="deskera.web.automation.people.bvtSG.tests.DeleteemployeeTest">
+				<methods>
+					<parameter name="conf"
+						value="src/test/resources/bvtSGConfig/TestDatapeopleemp.config"></parameter>
+										
+						<include name="deleteEmployee"></include>
+						
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+ 
+	
+	
+
+
+
+	<test name="9 Add PR1 employee payrun" parallel="false">
+
+		<classes>
+		
+			<class name="deskera.web.automation.people.bvtSG.tests.LoginTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+	
+			<class
+				name="deskera.web.automation.people.bvtSG.tests.Pr1EmployeePayrunTest">
+				<methods>
+					<parameter name="conf"
+						value="src/test/resources/bvtSGConfig/TestDatapeopleemp.config"></parameter>
+										
+						<include name="addpr1user"></include>
+						<include name="addsgpayroll"></include>
+						
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+-->
+ 
+	
+	
+
+</suite>
